@@ -1,0 +1,127 @@
+# this file is used for Execution of the PaleoCar function
+# the details on the input are mentioned below
+# The output of the execution are 3 files, generated in the test dir.
+# Two are graphs and the other 1 is the log of the execution,
+
+# SEt this option to true for debugging only.
+
+options(echo=TRUE)
+args <- commandArgs(trailingOnly = TRUE)
+print(args)
+
+##load the libraries for execution of the paleocar
+
+library(paleocar)
+library(magrittr)
+library(raster)
+library(magrittr)
+library(tibble)
+library(readr)
+
+
+#set the current project directory and
+# source the wrapper function files.
+
+setwd(args[1])
+#setwd("D:\\Study\\Internship\\WT_PaleoCar_2017\\meteor_example\\webapp_paloecar\\")
+
+source("Rscript/wrapper_paleocar.R")
+
+## load the tree ring chronologies
+data(itrdb)
+
+## set the input parameters
+
+## set the test directory
+testDir= paste0("test/", args[2],"/")
+
+## the prism data input
+prism_data= paste0("data/", args[3])
+
+## label
+label= args[4]
+
+## the chronologies
+chronologies=itrdb
+
+
+
+## the calibration years
+## For getting the values as year1:year2 as vector we need to split the string
+## and formulate it as vector .
+calibration.years <- as.numeric(unlist(strsplit(args[5], split=":")))[1]:as.numeric(unlist(strsplit(args[5], split=":")))[2]
+
+## the prediction years
+## For getting the values as year1:year2 as vector we need to split the string
+## and formulate it as vector .
+prediction.years <- as.numeric(unlist(strsplit(args[6], split=":")))[1]:as.numeric(unlist(strsplit(args[6], split=":")))[2]
+
+## the verbose parameter for logging
+verbose=args[7]
+
+## input data type as vector, matrix or raster (v, m ,r)
+input_data_type=args[8]
+
+
+## Check if input_data_type is a vector and execute the paleocar
+if(input_data_type=="v")
+{
+
+  prism_data = read.csv(prism_data, header = TRUE)
+  prism_data = prism_data[,1]
+
+  run_paleocar(  testDir,
+                 prism_data,
+                 label,
+                 chronologies,
+                 calibration.years=calibration.years,
+                 prediction.years=prediction.years,
+                 verbose=verbose,
+                 input_data_type = "v"
+  )
+}
+
+
+## Check if input_data_type is a matrix and execute the paleocar
+
+if(input_data_type=="m"){
+
+  predictands = read.csv(prism_data, header = TRUE)
+  predictands.matrix <- predictands %>%
+    raster::as.matrix() %>%
+    t()
+
+  # Print to show format
+  predictands.matrix %>%
+    tibble::as_tibble()
+
+
+  run_paleocar(  testDir,
+                 predictands.matrix,
+                 label,
+                 chronologies,
+                 calibration.years,
+                 prediction.years,
+                 verbose,
+                 "m"
+  )
+}
+
+## Check if input_data_type is a raster and execute the paleocar
+
+if(input_data_type=="r")
+{
+  predictands = prism_data
+
+  run_paleocar(  testDir,
+                 predictands,
+                 label,
+                 chronologies,
+                 calibration.years,
+                 prediction.years,
+                 verbose,
+                 "r"
+  )
+}
+
+

@@ -1,0 +1,130 @@
+<head>
+  <title>PaleoCar</title>
+</head>
+
+
+<template name="home">
+  <div class="container">
+    {{> Nav}}
+  <div class="section">
+    <table class="bordered">
+      <tbody>
+        <tr>
+          <td>
+            <h5>What is PaleoCar?</h5>
+          </td>
+        </tr>
+        <tr>
+          <td class=h4>
+            PaleoCar is an R package implementing functions to perform spatio-temporal paleoclimate reconstruction from tree-rings using the CAR (Correlation Adjusted corRelation) approach of Zuber and Strimmer as implemented in the care package for R.       
+          </td>
+        </tr>
+        <tr>
+          <td class=h4>
+            It is optimized for speed and memory use. This is based on the approach used in Bocinsky and Kohler (2014):
+            <p class=h4>
+            Bocinsky, R. K. and Kohler, T. A. (2014). A 2,000-year reconstruction of the rain-fed maize agricultural niche in the US Southwest. Nature Communications, 5:5618. doi: <a href="">10.1038/ncomms6618 </a>.
+            </p>  
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</template>
+
+<template name="Nav">
+  <div class="topnav" id="myTopnav">
+    <a href="/">Home</a>
+    <a href="/execpaleocar">execpaleocar</a>
+    <a href="/provenance">Provenance</a>
+    <a href="/contactus">Contact Us</a>
+  </div>
+</template>
+
+
+          
+
+<template name="map">  
+<div class="card-panel hoverable">
+        {{> pop_lat_lng}} 
+  <div class="map-container">        
+        {{#unless geolocationError}}
+          {{> googleMap name="map" options=mapOptions}}
+        {{else}}
+          Geolocation failed: {{geolocationError}}
+        {{/unless}}
+  </div>
+ </div>
+</template>  
+
+<template name="pop_lat_lng">
+  <table>
+    <tr>
+      <td> <b> Latitude: </b></td>
+      <td> {{txt_lat}} </td>
+      <td> <b>Longitude:  </b></td>
+      <td>   {{txt_lng}} </td>
+      <td> <b>Region Of Interest:  </b></td>
+      <td> {{txt_ROI}}</td>
+    </tr>
+  </table> 
+</template>
+
+<template name="btn_exec_paleocar">
+  <table>
+    <tr>
+      <td>
+        <button class="exec_PaleoCar"> Execute PaleoCar. </button>  
+      </td>
+    </tr>
+  </table>    
+</template>
+ 
+
+<template name="execpaleocar">
+  <div class="container">
+    {{> Nav}}
+    <div class="section">
+        <p class="h4"> Executing PaleoCar </p>
+        <p class="h5"> Steps for Executing PaleoCar. </p>
+      <table class="striped">
+        <tbody>
+        <td class=h5>
+          1. Select region from the map. <br> 
+          2. Provenance Grpahs. <br>
+          3. Execution of the scripts. <br>
+          4. Result Output. <br>
+        </td>
+        </tbody>
+      </table>
+    </div>
+    <div class=divider></div>
+    <table>
+      <tr>
+        <td>  
+          {{> map}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{> btn_exec_paleocar}}
+        </td>
+      </tr>
+    </table> 
+  </div>
+</template>
+
+<template name="provenance">
+  <div class="container">
+    {{> Nav}}
+    <p> THis page is for provenance.</p> 
+  </div>
+</template>
+
+<template name="contactus">
+  <div class="container">
+    {{> Nav}}
+    <p> THis page is for contact us.</p> 
+  </div>
+</template>
