@@ -174,18 +174,6 @@ Template.pop_lat_lng.helpers({
 Template.btn_exec_paleocar.events({
   'click .exec_PaleoCar':function(){
 
-
-  var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' +  test_dir + ' ' + out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' + prediction_years + ' '+ 'T'+ ' ' + "v" ;
-  //alert(cmd_exe_paleocar);
-  Meteor.call('exec_srv_paleoCar',cmd_exe_paleocar,(error, result) => 
-                {
-                  if (error) {
-                    alert(error);
-                  } else {
-                    alert(result)
-                  }
-                });    
-
   // Before execution of paleocar generate the prism data. 
   //alert(g_Lat.get() + g_Lng.get());
 
@@ -200,8 +188,20 @@ Template.btn_exec_paleocar.events({
                   }
                 });
 
+  // Execute  PaleoCAr for the Vector region for now. 
+  var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' +  test_dir + ' ' + out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' + prediction_years + ' '+ 'T'+ ' ' + "v" ;
+  //alert(cmd_exe_paleocar);
+  Meteor.call('exec_srv_paleoCar',cmd_exe_paleocar,(error, result) => 
+                {
+                  if (error) {
+                    alert(error);
+                  } else {
+                    alert(result)
+                  }
+                });    
 
   }
+
 });
 
 // Adding Routing information into the code. 
