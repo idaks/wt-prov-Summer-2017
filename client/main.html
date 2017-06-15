@@ -2,52 +2,119 @@
   <title>PaleoCar</title>
 </head>
 
-
+<!-- 
+  Home Page template for displaying the PaleoCar background 
+  and static images for the result of the earlier Paleocar execution.
+-->
 <template name="home">
   <div class="container">
     {{> Nav}}
-  <div class="section">
-    <table class="bordered">
-      <tbody>
-        <tr>
-          <td>
-            <h5>What is PaleoCar?</h5>
-          </td>
-        </tr>
-        <tr>
-          <td class=h4>
-            PaleoCar is an R package implementing functions to perform spatio-temporal paleoclimate reconstruction from tree-rings using the CAR (Correlation Adjusted corRelation) approach of Zuber and Strimmer as implemented in the care package for R.       
-          </td>
-        </tr>
-        <tr>
-          <td class=h4>
-            It is optimized for speed and memory use. This is based on the approach used in Bocinsky and Kohler (2014):
-            <p class=h4>
-            Bocinsky, R. K. and Kohler, T. A. (2014). A 2,000-year reconstruction of the rain-fed maize agricultural niche in the US Southwest. Nature Communications, 5:5618. doi: <a href="">10.1038/ncomms6618 </a>.
-            </p>  
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="section">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <h5>What is PaleoCar?</h5>
+            </td>
+          </tr>
+          <tr>
+            <td class=h4>
+              PaleoCar is an R package implementing functions to perform spatio-temporal paleoclimate reconstruction from tree-rings using the CAR (Correlation Adjusted corRelation) approach of Zuber and Strimmer as implemented in the care package for R.       
+            </td>
+          </tr>
+          <tr>
+            <td class=h4>
+              It is optimized for speed and memory use. This is based on the approach used in Bocinsky and Kohler (2014):
+              <p class=h4>
+              Bocinsky, R. K. and Kohler, T. A. (2014). A 2,000-year reconstruction of the rain-fed maize agricultural niche in the US Southwest. Nature Communications, 5:5618. doi: <a href="">10.1038/ncomms6618 </a>.
+              </p>  
+            </td>
+          </tr>
+          <tr >
+            <td class=h4>
+              <b> Development </b>
+              <ul>
+                <li> <a href=http://bocinsky.io/> Kyle Bocinsky </a> - Crow Canyon Archaeological Center, Cortez, CO </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class = h4>
+              <b> Install paleocar </b>
+              <ul>
+                <li> For installing and running Paleocar manually in R, you may refer to the <a href=https://github.com/bocinsky/paleocar> Github. </a> 
+                </li>
+              </ul> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      {{> pc_images}}
+    </div>
   </div>
 </template>
 
+<!-- 
+  Template for creation of the navigation grid on the top of the page
+-->
 <template name="Nav">
   <div class="topnav" id="myTopnav">
     <a href="/">Home</a>
-    <a href="/execpaleocar">execpaleocar</a>
+    <a href="/execpaleocar">Execute PaleoCar</a>
     <a href="/provenance">Provenance</a>
     <a href="/contactus">Contact Us</a>
   </div>
 </template>
 
 
-          
+<!-- 
+  Template for diaplying of the images of the Paleocar result
+-->
+<template name="pc_images">
 
+    <div class="card-panel hoverable">    
+    <table>
+      <tr>
+        <td>
+          <img src="/images/raster_pred_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
+        </td>
+        <td>
+          <img src="/images/raster_uncer_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img src="/images/matrix_pred_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
+        </td>
+        <td>
+          <img src="/images/matrix_uncer_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
+        </td>
+      </tr> 
+      <tr>
+        <td>
+          <img src="/images/vector_pred_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
+        </td>
+        <td>
+          <img src="/images/vector_uncer_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
+        </td>
+      </tr> 
+    </table>
+  </div>
+
+</template>          
+
+<!-- 
+  Template for displaying the map on the ExecutePaleocar template.
+-->
 <template name="map">  
 <div class="card-panel hoverable">
-        {{> pop_lat_lng}} 
+  <!-- 
+  This calls for the template which populates the lat and long values
+  from the marker and displays for the user. 
+  -->
+      {{> pop_lat_lng}} 
   <div class="map-container">        
         {{#unless geolocationError}}
           {{> googleMap name="map" options=mapOptions}}
@@ -58,6 +125,9 @@
  </div>
 </template>  
 
+<!-- 
+  Template for  populating the current lat and long values set by marker
+-->
 <template name="pop_lat_lng">
   <table>
     <tr>
@@ -71,6 +141,10 @@
   </table> 
 </template>
 
+<!-- 
+  Template for executing the paleocar. 
+  This has an event associated with the button 
+-->
 <template name="btn_exec_paleocar">
   <table>
     <tr>
@@ -82,6 +156,10 @@
 </template>
  
 
+<!-- 
+  This template is used for execution of the paleocar. 
+  It internally calls the map, btn_exec_paleocar and res_img templates. 
+-->
 <template name="execpaleocar">
   <div class="container">
     {{> Nav}}
@@ -111,10 +189,19 @@
           {{> btn_exec_paleocar}}
         </td>
       </tr>
+      <tr>
+        <td>
+          {{> res_img}}
+        </td>
+      </tr>
     </table> 
   </div>
 </template>
 
+
+<!-- 
+  This template is used for displaying the provenance 
+-->
 <template name="provenance">
   <div class="container">
     {{> Nav}}
@@ -122,9 +209,44 @@
   </div>
 </template>
 
+
+<!-- 
+  This template is used for displaying the contact information if needed. 
+-->
 <template name="contactus">
   <div class="container">
     {{> Nav}}
     <p> THis page is for contact us.</p> 
   </div>
+</template>
+
+
+<!-- 
+  This template is used for displaying the result of the paleocar execution. 
+  It is only enabled when the showFullContent reactive variable is set to true. 
+-->
+<template name="res_img">
+ 
+  {{#if show_prog_bar}}
+  <div class="card-panel hoverable">   
+    <table>
+      <tr>
+        <td>
+          <img src={{src}} style="width:350px;height:400px;">
+        </td>
+      </tr>
+    </table>
+  </div>d
+  {{/if}}
+  {{#if show_res_img}}  
+  <div class="card-panel hoverable">   
+    <table>
+      <tr>
+        <td>
+          <img src={{src}} style="width:350px;height:400px;">
+        </td>
+      </tr>
+    </table>
+  </div>
+  {{/if}}
 </template>

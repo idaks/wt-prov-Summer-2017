@@ -20,36 +20,36 @@ Calculating models of with 3 input vectors.
 Define models: 0.03 minutes
 Calculate 4 linear models: 0 minutes
 Clean linear models: 0 minutes
-Total modeling time: 0.04 minutes
+Total modeling time: 0.03 minutes
 99 cell-years remaining
 
 Calculating models of with 4 input vectors.
-Define models: 0.04 minutes
+Define models: 0.02 minutes
 Calculate 6 linear models: 0 minutes
 Clean linear models: 0 minutes
-Total modeling time: 0.05 minutes
+Total modeling time: 0.03 minutes
 13 cell-years remaining
 
 Calculating models of with 5 input vectors.
-Define models: 0.02 minutes
+Define models: 0.01 minutes
 Calculate 3 linear models: 0 minutes
 Clean linear models: 0 minutes
-Total modeling time: 0.02 minutes
+Total modeling time: 0.01 minutes
 5 cell-years remaining
 
 Calculating models of with 6 input vectors.
-Define models: 0.02 minutes
+Define models: 0.01 minutes
 Calculate 1 linear models: 0 minutes
 Clean linear models: 0 minutes
-Total modeling time: 0.02 minutes
+Total modeling time: 0.01 minutes
 5 cell-years remaining
 
 Calculating models of with 7 input vectors.
-Define models: 0.02 minutes
+Define models: 0.01 minutes
 Calculate 2 linear models: 0 minutes
 Clean linear models: 0 minutes
-Total modeling time: 0.02 minutes
+Total modeling time: 0.01 minutes
 
-Total Modeling Time: 0.2094408 minutes
+Total Modeling Time: 0.146016 minutes
 
-Optimizing models: 0.01 minutes
+Optimizing models: 0 minutes

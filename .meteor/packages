@@ -20,14 +20,13 @@ shell-server@0.2.3            # Server-side component of the `meteor shell` comm
 #autopublish@1.0.7             # Publish all data to the clients (for prototyping)
 #insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 twbs:bootstrap
-#semantic:ui-dropdown
 dburles:google-maps
-mdg:geolocation
-#yogiben:autoform-map
+#mdg:geolocation
 materialize:materialize
-fourseven:scss
-#dynamic-import
-#kadira:flow-router
+#fourseven:scss
 kadira:blaze-layout
-fortawesome:fontawesome
+#fortawesome:fontawesome
 iron:router
+mrt:nprogress
+cfs:standard-packages
+cfs:gridfs

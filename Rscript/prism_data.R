@@ -31,5 +31,5 @@ coord <- c(as.numeric(args[3]),as.numeric(args[2])) %>% # Longitude before latit
 ## Call the prism_Data function for creating the csv file for the vectors
 prism_data(coord,paste0("data/",args[4]), paste0("data/",args[5]))
 
-cat("Success")
+cat(1)
 

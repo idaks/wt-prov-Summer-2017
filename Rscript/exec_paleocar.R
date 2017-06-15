@@ -5,7 +5,7 @@
 
 # SEt this option to true for debugging only.
 
-options(echo=TRUE)
+options(echo=FALSE)
 args <- commandArgs(trailingOnly = TRUE)
 print(args)
 
@@ -23,8 +23,6 @@ library(readr)
 # source the wrapper function files.
 
 setwd(args[1])
-#setwd("D:\\Study\\Internship\\WT_PaleoCar_2017\\meteor_example\\webapp_paloecar\\")
-
 source("Rscript/wrapper_paleocar.R")
 
 ## load the tree ring chronologies
@@ -123,5 +121,7 @@ if(input_data_type=="r")
                  "r"
   )
 }
+
+cat(2)
 
 

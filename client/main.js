@@ -6,12 +6,18 @@ import { Meteor } from 'meteor/meteor';
 import './main.html';
 
 
-var map_zoom=5; 
+var map_zoom=6; 
 
 // global reactive var for storing lat and long values. 
 const g_Lat = new ReactiveVar('');
 const g_Lng = new ReactiveVar('');
+const r_coord = new ReactiveVar('');
 
+// Reactive variable for hiding the result images 
+// On click event of the button btn_exe_palecoar
+// it will be set to true.
+//Template.show_res_img.someReactiveVar = new ReactiveVar(false);
+const show_res_img = new ReactiveVar(false);
 // The current Project Directory, 
 var curr_dir = "D:\\Study\\Internship\\WT_PaleoCar_2017\\meteor_example\\wt-prov-summer-2017\\";
 
@@ -57,13 +63,16 @@ Template.map.helpers({
 
 Template.map.onCreated(function() {  
   var marker,latLng ;
-  var map;
+  var map, rectangle;
+
+
 
   // Get the map ready for display 
 
   GoogleMaps.ready('map', function(map)
   {
     var map, latLng;
+
     // position the marker to the current location for now 
     latLng = {lat: 36.5, lng: -111.5};
 
@@ -72,10 +81,11 @@ Template.map.onCreated(function() {
     // With the boundary and later post a validation 
     // check which makes the user to click in that boundary only. 
 
-    bound_region();
+     bound_region();
     // bound_region(37.2309,-108);
   
      map: new google.maps.LatLng(latLng);
+     
      g_Lat.set(latLng.lat);
      g_Lng.set(latLng.lng);
     
@@ -99,39 +109,29 @@ Template.map.onCreated(function() {
 
  
     marker.addListener('dragend', function(event){
+
     // For ebugging purpose
     // alert the marked location for now.
     //alert(event.latLng);
 
-
     g_Lat.set(event.latLng.lat());
     g_Lng.set(event.latLng.lng());
     //alert(g_Lng + g_Lat);
+
     // Check whether the marker falls in the South-West Region or not?
     // if yes, then execute PaleoCar
-    // If not, raise an error 
+    // If not, raise an error
+     //gm_geom.poly.containsLocation(event.latLng, rectangle);
 
-    // exec_PaleoCar();
-
+    show_res_img.set(false);
     });
 
-    // Function for creating the boundary region
-    // AS of now simply created the boundary, 
-    // but some more logic would be required to display the correct thing.
-    function bound_region()
-    {
-      var cmd_ras_ext = 'Rscript  '+ curr_dir + 'Rscript\\raster_extent.R ' +  curr_dir + ' ' + in_file_name_ext ;
-      //alert(cmd_ras_ext);
-      Meteor.call('exec_srv_paleoCar',cmd_ras_ext,(error, result) => 
-      {
-        if (error) {
-          alert(error);
-        }
-        else
-        {
-          coord=result.split(" ");
-          alert(coord);
-          rectangle = new google.maps.Rectangle({
+    function polygon(coord){
+          //coord = r_coord.get().split(" ");
+          //alert("ors");
+          //alert(coord);
+      
+          rectangle: new google.maps.Rectangle({
           strokeColor: '#FF01230',
           strokeOpacity: 0.8,
           strokeWeight: 2,
@@ -146,10 +146,26 @@ Template.map.onCreated(function() {
                 west:  parseFloat(coord[0])
               }
           });
-          
-         }
-      });
-    }
+
+     }
+
+    // Function for creating the boundary region
+    // AS of now simply created the boundary, 
+    // but some more logic would be required to display the correct thing.
+    function bound_region()
+    {
+      var cmd_ras_ext = 'Rscript  '+ curr_dir + 'Rscript\\raster_extent.R ' +  curr_dir + ' ' + in_file_name_ext ;
+      //alert(cmd_ras_ext);
+      Meteor.call('exec_Rscript', cmd_ras_ext, function(error, result) {
+          if (error) {
+            return console.log(error);
+          } else 
+          {
+            polygon(result.split(" "));
+            //return console.log(result);
+          }
+        });     
+      }
    });
 });
 
@@ -172,37 +188,63 @@ Template.pop_lat_lng.helpers({
 });
 
 Template.btn_exec_paleocar.events({
+
   'click .exec_PaleoCar':function(){
 
   // Before execution of paleocar generate the prism data. 
   //alert(g_Lat.get() + g_Lng.get());
-
+  
   var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' ' + out_file_prism_data ;
-  //alert(cmd_prism_data);
-  Meteor.call('exec_srv_paleoCar',cmd_prism_data,(error, res) => 
+  
+  
+  // Display and Start loading of the Prgoress Bar. 
+
+  NProgress.start();
+  Meteor.call('exec_Rscript',cmd_prism_data,function(error, result) 
                 {
                   if (error) {
                     alert(error);
                   } else {
-                    //alert(res)
+                    //alert(res);
                   }
                 });
 
   // Execute  PaleoCAr for the Vector region for now. 
   var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' +  test_dir + ' ' + out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' + prediction_years + ' '+ 'T'+ ' ' + "v" ;
-  //alert(cmd_exe_paleocar);
-  Meteor.call('exec_srv_paleoCar',cmd_exe_paleocar,(error, result) => 
+  
+
+  Meteor.call('exec_Rscript',cmd_exe_paleocar,function(error, result)
                 {
                   if (error) {
                     alert(error);
                   } else {
-                    alert(result)
-                  }
-                });    
+                    // Stop the Progress bar
+                    NProgress.done();                      
 
-  }
-
+                    // now load the output of the 
+                    show_res_img.set(true);    
+                    }
+          });
 });
+
+
+// code for displaying the Result images and hiding it when the execute button is not submitted. 
+
+Template.res_img.onCreated(function(){
+    show_res_img.set(false);
+});
+
+Template.res_img.helpers({
+  show_res_img: function(){
+    //show_res_img.set(true);
+    return show_res_img.get();
+  },
+
+  src:function(){
+    return "../test/test2/predictions.jpg";
+  }
+});
+
 
 // Adding Routing information into the code. 
 
@@ -217,4 +259,6 @@ Router.route('/execpaleocar');
 
 // when you navigate to "/contactus" automatically render the template named "ContactUs".
 Router.route('/contactus');
+
+
 
