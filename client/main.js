@@ -225,6 +225,7 @@ Template.btn_exec_paleocar.events({
                     show_res_img.set(true);    
                     }
           });
+  }
 });
 
 
