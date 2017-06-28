@@ -1,0 +1,47 @@
+digraph Workflow {
+rankdir=LR
+fontname=Helvetica; fontsize=18; labelloc=t
+label=get_itrdb_data
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+get_treepolygon
+get_itrdb
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+prism_data
+"tree.buffer"
+"prediction.years"
+"calibration.years"
+treepolygon
+itrdb
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+get_treepolygon -> treepolygon
+prism_data -> get_treepolygon
+"tree.buffer" -> get_treepolygon
+get_itrdb -> itrdb
+"prediction.years" -> get_itrdb
+"calibration.years" -> get_itrdb
+treepolygon -> get_itrdb
+label -> get_itrdb
+"measurement.type" -> get_itrdb
+"chronology.type" -> get_itrdb
+}}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+"calibration.years_input_port" [label=""]
+"prediction.years_input_port" [label=""]
+"tree.buffer_input_port" [label=""]
+prism_data_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+itrdb_output_port [label=""]
+}}
+"calibration.years_input_port" -> "calibration.years"
+"prediction.years_input_port" -> "prediction.years"
+"tree.buffer_input_port" -> "tree.buffer"
+prism_data_input_port -> prism_data
+itrdb -> itrdb_output_port
+}

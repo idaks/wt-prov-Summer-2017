@@ -109,7 +109,7 @@
   Template for displaying the map on the ExecutePaleocar template.
 -->
 <template name="map">  
-<div class="card-panel hoverable">
+ <div class="card-panel hoverable">
   <!-- 
   This calls for the template which populates the lat and long values
   from the marker and displays for the user. 
@@ -137,6 +137,8 @@
       <td>   {{txt_lng}} </td>
       <td> <b>Region Of Interest:  </b></td>
       <td> {{txt_ROI}}</td>
+      <td> <b>RunId:  </b></td>
+      <td> {{txt_runid}}</td>
     </tr>
   </table> 
 </template>
@@ -155,6 +157,18 @@
   </table>    
 </template>
  
+
+<template name="btn_show_provenance">
+  <table>
+    <tr>
+      <td>
+        <button class="show_provenance"> Provenance Result </button>  
+      </td>
+    </tr>
+  </table>    
+      
+</template>
+
 
 <!-- 
   This template is used for execution of the paleocar. 
@@ -193,7 +207,7 @@
         <td>
           {{> res_img}}
         </td>
-      </tr>
+      </tr>  
     </table> 
   </div>
 </template>
@@ -203,10 +217,36 @@
   This template is used for displaying the provenance 
 -->
 <template name="provenance">
-  <div class="container">
+<div class="container">
     {{> Nav}}
-    <p> THis page is for provenance.</p> 
+    <!-- <img src="paleocar_model.png"  style="width:800px;height:300px;"> -->
+    <p> <b> RunId : {{dis_run_id}} </b> </p>
+   <!--  {{> btn_show_provenance}}    -->
+   <div  class="card-panel hoverable">
+    <table>
+    <tr>
+    <td>
+       {{#each show_prov_img}}
+        <li>
+          {{name}} 
+          <img src="{{image_data}}"  style="width:700px;height:250px;">
+        </li>
+      {{/each}} 
+
+    </td>
+<!--     <td>
+      <ul>
+      {{#each show_dir_struture}}
+        <li>
+            {{name}} : {{path}}  
+        </li>
+        {{/each}} 
+      </ul>          
+    </td>
+ -->    </tr>
+    </table>
   </div>
+</div>
 </template>
 
 
@@ -217,6 +257,7 @@
   <div class="container">
     {{> Nav}}
     <p> THis page is for contact us.</p> 
+    {{> acTemplate}}
   </div>
 </template>
 
@@ -226,27 +267,53 @@
   It is only enabled when the showFullContent reactive variable is set to true. 
 -->
 <template name="res_img">
- 
-  {{#if show_prog_bar}}
+{{#if show_res_img}}  
   <div class="card-panel hoverable">   
     <table>
       <tr>
         <td>
-          <img src={{src}} style="width:350px;height:400px;">
-        </td>
-      </tr>
-    </table>
-  </div>d
-  {{/if}}
-  {{#if show_res_img}}  
-  <div class="card-panel hoverable">   
-    <table>
-      <tr>
-        <td>
-          <img src={{src}} style="width:350px;height:400px;">
+          <ul>
+          {{#each show_image}}
+          <li>
+            <tr>
+            <p> <b> Result of the run: </b> {{run_count}} </p>
+            
+            </tr>
+            <img src="{{img_uncertainty}}" style="width:350px;height:400px;">
+            <img src="{{img_prediction}}"  style="width:350px;height:400px;">
+          </li>
+            {{/each}} 
+          </ul>
+           <!-- <img src="{{ show_image }}" style="width:350px;height:400px;"> -->
+          <!-- {{> myLineChart }} -->
         </td>
       </tr>
     </table>
   </div>
-  {{/if}}
+{{/if}}
 </template>
+
+<template name="acTemplate">
+    <div id="chartcontainer"></div>
+</template>
+
+<template name='myLineChart'>
+   <canvas id="myLineChart" width="400" height="200"></canvas>
+</template>
+
+
+<template name='run_result_tbl'>
+  <div>
+    <ul>
+    {{#each run_log_info}}
+      <li>
+          {{label}}
+          {{run_time}}
+          {{DateTime}} 
+      </li>
+      {{/each}} 
+    </ul>
+  </div>
+</template> 
+ 
+

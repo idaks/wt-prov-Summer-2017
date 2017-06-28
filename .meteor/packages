@@ -17,16 +17,18 @@ es5-shim@4.6.15                # ECMAScript 5 compatibility for older browsers
 ecmascript@0.8.0              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.3            # Server-side component of the `meteor shell` command
 
-#autopublish@1.0.7             # Publish all data to the clients (for prototyping)
-#insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 twbs:bootstrap
 dburles:google-maps
-#mdg:geolocation
+##mdg:geolocation
 materialize:materialize
-#fourseven:scss
 kadira:blaze-layout
-#fortawesome:fontawesome
 iron:router
 mrt:nprogress
-cfs:standard-packages
-cfs:gridfs
+#chart:chart
+#d3
+nvd3:nvd3
+#momentjs:moment
+harrison:papa-parse
+anychart:anychart

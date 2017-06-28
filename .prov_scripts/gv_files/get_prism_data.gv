@@ -1,0 +1,32 @@
+digraph Workflow {
+rankdir=LR
+fontname=Helvetica; fontsize=18; labelloc=t
+label=get_prism_data
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+get_prism_data
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+prism_data [shape=record rankdir=LR label="{{<f0> prism_data |<f1> file\:/data/112W36N.csv}}"];
+coordinates
+netcdf_file [shape=record rankdir=LR label="{{<f0> netcdf_file |<f1> file\:/data/112W36N.nc}}"];
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+get_prism_data -> prism_data
+coordinates -> get_prism_data
+netcdf_file -> get_prism_data
+}}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+coordinates_input_port [label=""]
+netcdf_file_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+prism_data_output_port [label=""]
+}}
+coordinates_input_port -> coordinates
+netcdf_file_input_port -> netcdf_file
+prism_data -> prism_data_output_port
+}

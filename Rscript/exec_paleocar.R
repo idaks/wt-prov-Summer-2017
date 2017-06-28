@@ -7,7 +7,7 @@
 
 options(echo=FALSE)
 args <- commandArgs(trailingOnly = TRUE)
-print(args)
+#print(args)
 
 ##load the libraries for execution of the paleocar
 
@@ -31,7 +31,7 @@ data(itrdb)
 ## set the input parameters
 
 ## set the test directory
-testDir= paste0("test/", args[2],"/")
+testDir= paste0(args[2],"/")
 
 ## the prism data input
 prism_data= paste0("data/", args[3])

@@ -79,7 +79,8 @@ run_paleocar <- function (testDir,
   ## Create the test directory in which the plots whould be generated
   unlink(testDir)
   dir.create(testDir, showWarnings=F, recursive=T)
-
+  
+  out_file_name<- 'outputfile.csv'
   predictands <- prism_data
   chronologies <- itrdb
   calibration.years <- calibration.years
@@ -97,29 +98,54 @@ run_paleocar <- function (testDir,
                                     calibration.years = calibration.years,
                                     prediction.years = prediction.years,
                                     verbose = verbose)
+    
+    
+    ## Save the output of the paleocar model 
+    ## it contains a list as ouput and hasa CAR values, AIC's Coeffecients etc.  
+    readr::write_rds(recon_vector,
+                     path = paste0(testDir,label,".model.Rds"),
+                     compress = "gz")
 
     # Generate predictions and uncertainty (and plot timeseries of each)
-    jpeg(paste0(testDir,'predictions.jpg'))
-    predict_paleocar_models(models = recon_vector,
+    
+    recon_predict <-predict_paleocar_models(models = recon_vector,
                             #meanVar = "chained",
-                            prediction.years = prediction.years) %>%
-      plot(x = as.numeric(names(.)),
-           y = .,
+                            prediction.years = prediction.years)  
+    
+    jpeg(paste0(testDir,'predictions.jpg'))
+    
+    plot(x = as.numeric(names(recon_predict)),
+           y = recon_predict,
            type = "l",
            main="Predicted PPT Values Vs Prediction Years",
            xlab="Prediction Years", ylab="Mean PPT Values")
-
+    
     dev.off();
 
+    #Save the output of prediction into a csv file. 
+    data.frame(x = as.numeric(names(recon_predict)),y = recon_predict)%>%
+      readr::write_csv(paste0(testDir,"/recon_vector_predict.csv"))
+    
+    
+    ## Generating Uncertainty in the model 
+    recon_uncertain <- uncertainty_paleocar_models(recon_vector,
+                                prediction.years = prediction.years) 
+
+    #save the ouput of the graph as jpeg image. 
+
     jpeg(paste0(testDir,'uncertainty.jpg'));
-    uncertainty_paleocar_models(recon_vector,
-                                prediction.years = prediction.years) %>%
-      plot(x = as.numeric(names(.)),
-           y = .,
+
+      plot(x = as.numeric(names(recon_uncertain)),
+           y = recon_uncertain,
            type = "l",
            main="Uncertain PPT Values Vs Prediction Years",
            xlab="Prediction Years", ylab="Mean PPT Values")
     dev.off();
+    
+    #Save the output of uncertainty into a csv file.
+    data.frame(x = as.numeric(names(recon_uncertain)),y = recon_uncertain)%>%
+      readr::write_csv(paste0(testDir,"/recon_vector_uncertain.csv"))
+    
     sink()
   }
   if(input_data_type=="m"){
@@ -130,12 +156,27 @@ run_paleocar <- function (testDir,
                                     prediction.years = prediction.years,
                                     verbose = verbose)
 
-    # Generate predictions and uncertainty (and plot location means in uncertainty)
-    jpeg(paste0(testDir,'predictions.jpg'));
-    predict_paleocar_models(models = recon_matrix,
+    ## Save the output of the paleocar model 
+    ## it contains a list as ouput and hasa CAR values, AIC's Coeffecients etc.  
+    readr::write_rds(recon_matrix,
+                     path = paste0(testDir,label,".model_matrix.Rds"),
+                     compress = "gz")
+    
+    # Generate predictions of the model 
+    
+    recon_pred_matrix <- predict_paleocar_models(models = recon_matrix,
                             meanVar = "chained",
-                            prediction.years = prediction.years) %>%
-      rowMeans() %>%
+                            prediction.years = prediction.years) 
+    
+
+    data.frame(x = as.numeric(names(rowMeans(recon_pred_matrix))),y = rowMeans(recon_pred_matrix))%>%
+      readr::write_csv(paste0(testDir,"/recon_matrix_uncertain.csv"))
+    
+    # Save the graph of the mean predicted values. 
+
+    jpeg(paste0(testDir,'predictions.jpg'));
+      
+      rowMeans(recon_pred_matrix) %>%
       plot(x = as.numeric(names(.)),
            y = .,
            type = "l",
@@ -145,6 +186,7 @@ run_paleocar <- function (testDir,
     dev.off()
 
     jpeg(paste0(testDir,'uncertainty.jpg'));
+    
     uncertainty_paleocar_models(models = recon_matrix,
                                 prediction.years = prediction.years) %>%
       rowMeans() %>%
@@ -171,7 +213,12 @@ run_paleocar <- function (testDir,
                                ceiling = NULL,
                                force.redo = T,
                                verbose = verbose)
-
+    
+    ## Save the output of the paleocar model 
+    ## it contains a list as ouput and hasa CAR values, AIC's Coeffecients etc.  
+    readr::write_rds(recon_data,
+                     path = paste0(testDir,label,".model_raster.Rds"),
+                     compress = "gz")
     sink()
     ## Plotting and saving the graphs for predictions generated by paleocar model##
 
