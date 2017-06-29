@@ -16,17 +16,17 @@
 <g id="clust2" class="cluster"><title>cluster_workflow_box_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="70,-16 70,-350 1226,-350 1226,-16 70,-16"/>
 </g>
-<g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="8,-47 8,-221 54,-221 54,-47 8,-47"/>
-</g>
-<g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="16,-55 16,-213 46,-213 46,-55 16,-55"/>
-</g>
 <g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="1242,-27 1242,-137 1288,-137 1288,-27 1242,-27"/>
 </g>
 <g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="1250,-35 1250,-129 1280,-129 1280,-35 1250,-35"/>
+</g>
+<g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="8,-47 8,-221 54,-221 54,-47 8,-47"/>
+</g>
+<g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="16,-55 16,-213 46,-213 46,-55 16,-55"/>
 </g>
 <!-- gen_prism_data -->
 <g id="node1" class="node"><title>gen_prism_data</title>
