@@ -1,0 +1,91 @@
+digraph Workflow {
+rankdir=LR
+fontname=Helvetica; fontsize=18; labelloc=t
+label=paleocar_models
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+get_predictor_matrix
+get_reconstruction_matrix
+get_predlist
+get_predictand_matrix
+getCarscores
+calculateModels
+defineLinearModels
+calculateLinearModels
+simplifyLinearModels
+optimizeModels
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+itrdb
+calibration_year
+prediction_year
+"reconstruction.matrix"
+prism_data [shape=record rankdir=LR label="{{<f0> prism_data |<f1> 112W36N.csv}}"];
+"predictand.matrix"
+"predictor.matrix"
+predlist
+carscores
+"max.preds"
+models
+matches
+coefficients
+"model.errors"
+"linear.models"
+"final.models"
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+"min.width"
+get_predictor_matrix -> "predictor.matrix"
+get_predictor_matrix -> "max.preds"
+itrdb -> get_predictor_matrix
+calibration_year -> get_predictor_matrix
+"min.width" -> get_predictor_matrix
+get_reconstruction_matrix -> "reconstruction.matrix"
+itrdb -> get_reconstruction_matrix
+prediction_year -> get_reconstruction_matrix
+"min.width" -> get_reconstruction_matrix
+get_predlist -> predlist
+"reconstruction.matrix" -> get_predlist
+get_predictand_matrix -> "predictand.matrix"
+prism_data -> get_predictand_matrix
+getCarscores -> carscores
+"predictand.matrix" -> getCarscores
+"predictor.matrix" -> getCarscores
+calculateModels -> "linear.models"
+predlist -> calculateModels
+carscores -> calculateModels
+"max.preds" -> calculateModels
+defineLinearModels -> models
+defineLinearModels -> matches
+predlist -> defineLinearModels
+carscores -> defineLinearModels
+calculateLinearModels -> coefficients
+calculateLinearModels -> "model.errors"
+models -> calculateLinearModels
+matches -> calculateLinearModels
+simplifyLinearModels -> "final.models"
+coefficients -> simplifyLinearModels
+"model.errors" -> simplifyLinearModels
+optimizeModels -> "final.models"
+"linear.models" -> optimizeModels
+}}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+itrdb_input_port [label=""]
+prism_data_input_port [label=""]
+calibration_year_input_port [label=""]
+prediction_year_input_port [label=""]
+"min.width_input_port" [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+"final.models_output_port" [label=""]
+}}
+itrdb_input_port -> itrdb
+prism_data_input_port -> prism_data
+calibration_year_input_port -> calibration_year
+prediction_year_input_port -> prediction_year
+"min.width_input_port" -> "min.width"
+"final.models" -> "final.models_output_port"
+}

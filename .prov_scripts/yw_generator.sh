@@ -35,9 +35,9 @@ cd $dir
 for file in `ls -a *.R` ;
 do
  echo $file 
- yw graph -c graph.view=combined $file > gv_files/${file:0:${#file}-3}.gv
- yw graph -c graph.view=combined $file | dot -Tpdf -o prov_pdf/${file:0:${#file}-3}.pdf
- yw graph -c graph.view=combined $file | dot -Tpng -o graphs/${file:0:${#file}-3}.png
- yw graph -c graph.view=combined $file | dot -Tsvg -o svg_files/${file:0:${#file}-3}.svg
+ yw graph -c graph.view=combined $file > gv_files/${file:0:${#file}-2}.gv
+ yw graph -c graph.view=combined $file | dot -Tpdf -o prov_pdf/${file:0:${#file}-2}.pdf
+ yw graph -c graph.view=combined $file | dot -Tpng -o graphs/${file:0:${#file}-2}.png
+ yw graph -c graph.view=combined $file | dot -Tsvg -o svg_files/${file:0:${#file}-2}.svg
 done
 #yw graph   | doT -Tpng -o ${1}.png 

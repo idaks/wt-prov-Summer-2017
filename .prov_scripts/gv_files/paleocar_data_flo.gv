@@ -1,0 +1,63 @@
+digraph Workflow {
+rankdir=LR
+fontname=Helvetica; fontsize=18; labelloc=t
+label=exec_paleocar
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+gen_prism_data
+paleocar_models
+paleocar_predict_model
+uncertainty_paleocar_model
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+"paleocar_model.rds"
+prediction_graph
+uncertainty_graph
+coordinates
+netcdf_file [shape=record rankdir=LR label="{{<f0> netcdf_file |<f1> 112W36N.nc}}"];
+itrdb
+prism_data [shape=record rankdir=LR label="{{<f0> prism_data |<f1> 112W36N.csv}}"];
+"calibration.year"
+"prediction.year"
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+gen_prism_data -> prism_data
+coordinates -> gen_prism_data
+netcdf_file -> gen_prism_data
+paleocar_models -> "paleocar_model.rds"
+itrdb -> paleocar_models
+prism_data -> paleocar_models
+"calibration.year" -> paleocar_models
+"prediction.year" -> paleocar_models
+"min.width" -> paleocar_models
+verbose -> paleocar_models
+paleocar_predict_model -> prediction_graph
+"paleocar_model.rds" -> paleocar_predict_model
+"prediction.year" -> paleocar_predict_model
+uncertainty_paleocar_model -> uncertainty_graph
+"paleocar_model.rds" -> uncertainty_paleocar_model
+}}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+coordinates_input_port [label=""]
+netcdf_file_input_port [label=""]
+itrdb_input_port [label=""]
+"calibration.year_input_port" [label=""]
+"prediction.year_input_port" [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+"paleocar_model.rds_output_port" [label=""]
+prediction_graph_output_port [label=""]
+uncertainty_graph_output_port [label=""]
+}}
+coordinates_input_port -> coordinates
+netcdf_file_input_port -> netcdf_file
+itrdb_input_port -> itrdb
+"calibration.year_input_port" -> "calibration.year"
+"prediction.year_input_port" -> "prediction.year"
+"paleocar_model.rds" -> "paleocar_model.rds_output_port"
+prediction_graph -> prediction_graph_output_port
+uncertainty_graph -> uncertainty_graph_output_port
+}
