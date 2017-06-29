@@ -83,22 +83,22 @@ Meteor.methods({
     },
       prov_gen : function (test_dir) 
       {
-          var res;
-          file = test_dir.slice(0,-8) + '/.prov_scripts/yw_generator.sh'
-          filepath=test_dir + '\\paleocar_model123.png';
-          command = 'C:\\msys64\\usr\\bin\\sh.exe ' + file + ' ' + filepath ;  
-          console.log(command);
-          
-          res = cmd(command);
-          //console.log(res); 
-          
-          filepath=test_dir + '\\paleocar_model123.png';
-          data=fs.readFileSync(filepath);
-          
-          data= new Buffer(data, 'binary').toString('base64');
-          //console.log(data);
-          return  "data:image/png;base64," + data ;
-          
+        var res;
+        file = test_dir.slice(0,-8) + '/.prov_scripts/yw_generator.sh'
+        filepath=test_dir + '\\paleocar_model123.png';
+        command = 'C:\\msys64\\usr\\bin\\sh.exe ' + file + ' ' + filepath ;  
+        console.log(command);
+        
+        res = cmd(command);
+        //console.log(res); 
+        
+        filepath=test_dir + '\\paleocar_model123.png';
+        data=fs.readFileSync(filepath);
+        
+        data= new Buffer(data, 'binary').toString('base64');
+        //console.log(data);
+        return  "data:image/png;base64," + data ;
+        
       },
       pros_prov_img : function (graphs_dir,run_id,run_count) 
       {

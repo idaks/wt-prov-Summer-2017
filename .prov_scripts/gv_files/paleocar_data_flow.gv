@@ -35,6 +35,7 @@ paleocar_predict_model -> prediction_graph
 "prediction.year" -> paleocar_predict_model
 uncertainty_paleocar_model -> uncertainty_graph
 "paleocar_model.rds" -> uncertainty_paleocar_model
+"prediction.year" -> uncertainty_paleocar_model
 }}
 subgraph cluster_input_ports_group_outer { label=""; penwidth=0
 subgraph cluster_input_ports_group_inner { label=""; penwidth=0

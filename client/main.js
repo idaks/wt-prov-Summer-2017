@@ -59,7 +59,25 @@ var calibration_years="1924:1983";
 var prediction_years="1:2000";
  
 
-Meteor.startup(function() {  
+Meteor.startup(function() { 
+  run_id = uuid.slice(0,8); 
+  img_dir = curr_dir + '\\.prov_scripts\\graphs';
+
+  if(DataSource.find({label:'ceb48571',run_count:0}).count() < 1 )
+  {
+    //alert(run_id);
+    Meteor.call('pros_prov_img',img_dir,run_id,run_count,function(error, result)
+      {
+        if (error) 
+        {
+          alert(error);
+        } 
+        else 
+        {
+        }
+
+      });
+  }
   GoogleMaps.load({key: "AIzaSyCaNgs-oPrH7UbrrFq_jt-BPlL3c6orer8"});
 });
 
@@ -101,9 +119,9 @@ Template.map.onCreated(function() {
     // With the boundary and later post a validation 
     // check which makes the user to click in that boundary only. 
 
-     bound_region();
+    coord_bound= bound_region();
     // bound_region(37.2309,-108);
-  
+    //alert(coord_bound);
      map: new google.maps.LatLng(latLng);
      
      g_Lat.set(latLng.lat);
@@ -132,26 +150,51 @@ Template.map.onCreated(function() {
     
     // For ebugging purpose
     // alert the marked location for now.
-    //alert(event.latLng);
+    // alert(bound.west);
+    // alert(bound.south);
+    // alert(event.latLng.lng());
 
-    g_Lat.set(event.latLng.lat());
-    g_Lng.set(event.latLng.lng());
-    //alert(g_Lng + g_Lat);
+    if(!(
+          (bound.north > parseFloat(event.latLng.lat()) ) &&  
+          (bound.south < parseFloat(event.latLng.lat()) ) &&
+          (bound.west  < parseFloat(event.latLng.lng()) ) && 
+          (bound.east  > parseFloat(event.latLng.lng()) )
+      ))       
+    {
+        alert("Cannot Choose a point outside the polygon. Resetting the marker.");
+        marker.setPosition(latLng);
+        marker.setAnimation(google.maps.Animation.DROP);
+        
+        g_Lat.set(latLng.lat());
+        g_Lng.set(latLng.lng());
+        
+        show_res_img.set(false);    
+        show_res_tbl.set(false);
+    }
+    else 
+    {
+      
+      g_Lat.set(event.latLng.lat());
+      g_Lng.set(event.latLng.lng());
 
-    // Check whether the marker falls in the South-West Region or not?
-    // if yes, then execute PaleoCar
-    // If not, raise an error
-     //gm_geom.poly.containsLocation(event.latLng, rectangle);
-
+      //alert(g_Lng + g_Lat);
       show_res_img.set(false);    
       show_res_tbl.set(false);
+    }
     });
 
     function polygon(coord){
           //coord = r_coord.get().split(" ");
           //alert("ors");
           //alert(coord);
-      
+          bound =
+              {
+                north: parseFloat(coord[3]),
+                south: parseFloat(coord[2]),
+                east:  parseFloat(coord[1]),
+                west:  parseFloat(coord[0])
+              };
+
           rectangle: new google.maps.Rectangle({
           strokeColor: '#FF01230',
           strokeOpacity: 0.8,
@@ -159,15 +202,12 @@ Template.map.onCreated(function() {
           fillColor: '#FF0015',
           fillOpacity: 0.35,
           map:map.instance,
-          bounds: 
-              {
-                north: parseFloat(coord[3]),
-                south: parseFloat(coord[2]),
-                east:  parseFloat(coord[1]),
-                west:  parseFloat(coord[0])
-              }
+          bounds: bound
+
           });
 
+          return bound;
+               
      }
 
     // Function for creating the boundary region
@@ -207,7 +247,7 @@ Template.pop_lat_lng.helpers({
   },
   txt_runid:function()
   { 
-    run_id = uuid.slice(0,8); 
+    //run_id = uuid.slice(0,8); 
     return run_id;
   }
 
@@ -399,26 +439,29 @@ Template.btn_show_provenance.events({
 Template.provenance.onCreated(function()
 {
 
-img_dir = curr_dir + '\\.prov_scripts\\graphs';
-//alert(img_dir);
+/*img_dir = curr_dir + '\\.prov_scripts\\graphs';
 
-Meteor.call('pros_prov_img',img_dir,run_id,run_count,function(error, result)
-  {
-    if (error) 
+if(DataSource.find({label:'ceb48571',run_count:0}).count() < 1 )
+{
+  //alert(run_id);
+  Meteor.call('pros_prov_img',img_dir,run_id,run_count,function(error, result)
     {
-      alert(error);
-    } 
-    else 
-    {
-    }
+      if (error) 
+      {
+        alert(error);
+      } 
+      else 
+      {
+      }
 
-  });
+    });
+}*/
 })
 
 Template.provenance.helpers({
   dis_run_id:function()
   {
-    return run_id; 
+    return run_id;
   },
   show_prov_img: function()
   {

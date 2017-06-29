@@ -37,6 +37,7 @@
     #
     #@begin uncertainty_paleocar_model 
     #@in paleocar_interim_model @as paleocar_model.rds 
+    #@in prediction.year @as prediction.year
     #
     #@out image @as uncertainty_graph 
     #@end uncertainty_paleocar_model
