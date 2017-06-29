@@ -38,5 +38,6 @@ do
  yw graph -c graph.view=combined $file > gv_files/${file:0:${#file}-3}.gv
  yw graph -c graph.view=combined $file | dot -Tpdf -o prov_pdf/${file:0:${#file}-3}.pdf
  yw graph -c graph.view=combined $file | dot -Tpng -o graphs/${file:0:${#file}-3}.png
+ yw graph -c graph.view=combined $file | dot -Tsvg -o svg_files/${file:0:${#file}-3}.svg
 done
 #yw graph   | doT -Tpng -o ${1}.png 
