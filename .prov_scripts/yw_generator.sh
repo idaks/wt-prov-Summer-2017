@@ -32,7 +32,7 @@ cd $dir
 
 #mkdir $output 
 
-for file in `ls -a *.py` ;
+for file in `ls -a *.R` ;
 do
  echo $file 
  yw graph -c graph.view=combined $file > gv_files/${file:0:${#file}-3}.gv
