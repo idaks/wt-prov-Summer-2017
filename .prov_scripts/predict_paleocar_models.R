@@ -4,6 +4,6 @@
       #@PARAM meanVar
       #@param floor 
       #@param ceiling 
-      #@OUT predictions
-
+      #@OUT predictions_model 
+      
       #@end predict_paleocar_models

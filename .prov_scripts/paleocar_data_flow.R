@@ -1,21 +1,50 @@
 
 #@begin exec_paleocar
 #@in coordinates
-#@in netcdf_file @file 112W36N.nc
-#@in itrdb 
+#@in netcdf_file @file /data/112W36N.nc
+#@in chronologies 
 #@in calibration.year
 #@in prediction.year
-#@out paleocar_model.rds
-#@out prediction_graph @file /{run_id}/{run_count}/prediction.jpg 
-#@out uncertainty_graph @file /{run_id}/{run_count}/uncertainty.jpg
+#@out paleocar_models @file /{run_id}/{run_count}/{label}.model.rds 
+#@out prediction_model @file /{run_id}/{run_count}/{label}.prediction.rds 
+#@out uncertainty_model @file /{run_id}/{run_count}/{label}.uncertainty.rds 
 
     #@begin gen_prism_data
     #@in coordinates
     #@in netcdf_file
     
-    #@out prism_data @file 112W36N.csv 
+    #@out prism_data @file /data/112W36N.csv 
     #@end gen_prism_data
+    
+    #@begin get_itrdb_data
+    #@in calibration.years
+    #@in prediction.years
+    #@in tree.buffer
+    #@in prism_data 
+    
+    #@begin get_treepolygon
+    #@in prism_data  
+    #@in width @as tree.buffer
+    #@out treepolygon 
+    #@end get_treepolygon
 
+    #@begin get_itrdb
+    #@in recon.years @as prediction.years
+    #@in calib.yearr @as calibration.years
+    #@in template @as treepolygon 
+    #@param label 
+    #@param measurement.type 
+    #@param chronology.type 
+    
+    
+    #@out itrdb 
+    #@end get_itrdb 
+    
+    #@out itrdb 
+    #@end get_itrdb_data
+    
+    
+    
     #@begin paleocar_models
     #@in chronologies @as itrdb @desc A matrix of tree ring chronologies, indexed annually. Each chronology is a column. The first column must be labeled "YEAR" and is the calendar year.
     #@in predictands  @as prism_data @file 112W36N.csv @desc A RasterBrick, RasterStack, matrix, or vector of the numeric predictand (response) variable.
@@ -24,24 +53,27 @@
     #@param min_width @as min.width @desc An integer, indicating the minimum number of tree-ring samples allowed for that year of a chronology to be valid.
     #@param verbose @desc Logical, display status messages during run.
 
-    #@out model @as paleocar_model.rds
+    #@out model @as paleocar_model.rds @file /{run_id}/{run_count}/{label}.model.rds  
     
     #@end paleocar_models
     
     #@begin paleocar_predict_model 
     #@in paleocar_interim_model @as paleocar_model.rds
     #@in prediction.year @as prediction.year
-    #
-    #@out image @as prediction_graph 
+    
+    #@out model @as prediction_model @file /{run_id}/{run_count}/{label}.prediction.rds 
     #@end paleocar_predict_model
-    #
+    
     #@begin uncertainty_paleocar_model 
     #@in paleocar_interim_model @as paleocar_model.rds 
     #@in prediction.year @as prediction.year
-    #
-    #@out image @as uncertainty_graph 
-    #@end uncertainty_paleocar_model
     
+    #@out model @as uncertainty_model  @file /{run_id}/{run_count}/{label}.uncertainty.rds 
+    #@end uncertainty_paleocar_model
+    #@out paleocar_models @file /{run_id}/{run_count}/{label}.model.rds 
+
+
+
 #@end exec_paleocar 
 
 

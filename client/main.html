@@ -178,15 +178,23 @@
   <div class="container">
     {{> Nav}}
     <div class="section">
-        <p class="h4"> Executing PaleoCar </p>
+        <p class="h3"> Execute PaleoCar </p>
         <p class="h5"> Steps for Executing PaleoCar. </p>
       <table class="striped">
         <tbody>
         <td class=h5>
+        <tr>        
           1. Select region from the map. <br> 
-          2. Provenance Graphs. <br>
-          3. Execution of the scripts. <br>
-          4. Result Output. <br>
+        </tr>  
+        <tr> 
+          2. Click "Execute PaleoCar Button". <br>
+        </tr>
+        <tr>
+          <p> The result of the execution will be displayed below. <br> </p>
+        </tr>
+        <tr>
+          <p> The Provenance information is available on the provenance tab for the execution. <br> </p>
+        </tr>
         </td>
         </tbody>
       </table>
@@ -279,8 +287,8 @@
             <p> <b> Result of the run: </b> {{run_count}} </p>
             
             </tr>
-            <img src="{{img_uncertainty}}" style="width:350px;height:400px;">
             <img src="{{img_prediction}}"  style="width:350px;height:400px;">
+            <img src="{{img_uncertainty}}" style="width:350px;height:400px;">
           </li>
             {{/each}} 
           </ul>

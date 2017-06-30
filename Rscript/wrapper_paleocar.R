@@ -111,6 +111,9 @@ run_paleocar <- function (testDir,
     recon_predict <-predict_paleocar_models(models = recon_vector,
                             #meanVar = "chained",
                             prediction.years = prediction.years)  
+    readr::write_rds(recon_predict,
+                     path = paste0(testDir,label,".prediction.Rds"),
+                     compress = "gz")
     
     jpeg(paste0(testDir,'predictions.jpg'))
     
@@ -130,6 +133,10 @@ run_paleocar <- function (testDir,
     ## Generating Uncertainty in the model 
     recon_uncertain <- uncertainty_paleocar_models(recon_vector,
                                 prediction.years = prediction.years) 
+    
+    readr::write_rds(recon_uncertain,
+                     path = paste0(testDir,label,".uncertainty.Rds"),
+                     compress = "gz")
 
     #save the ouput of the graph as jpeg image. 
 

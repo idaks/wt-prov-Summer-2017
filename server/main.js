@@ -66,19 +66,19 @@ Meteor.methods({
          var filePath=imageName;
         //console.log(imageName.slice(0,-15));
         //console.log(fs.readdirSync(imageName.slice(0,-15)));
-        filePath=imageName.slice(0,-15)+'/'+fs.readdirSync(imageName.slice(0,-15))[2];
-        //console.log(filePath);
+        filePath=imageName.slice(0,-15)+'/'+fs.readdirSync(imageName.slice(0,-15))[4];
+        console.log(filePath);
         var data = fs.readFileSync( filePath );
        
         prediction = new Buffer(data, 'binary').toString('base64');
-        prediction = "data:image/jpeg;base64,"+ prediction;
-        data=fs.readFileSync(imageName.slice(0,-15)+'/'+fs.readdirSync(imageName.slice(0,-15))[5]);
+        prediction = "data:image/jpg;base64,"+ prediction;
+        data=fs.readFileSync(imageName.slice(0,-15)+'/'+fs.readdirSync(imageName.slice(0,-15))[7]);
         
         uncertainty= new Buffer(data, 'binary').toString('base64');
-        uncertainty = "data:image/jpeg;base64,"+ uncertainty;
+        uncertainty = "data:image/jpg;base64,"+ uncertainty;
         
         DataSource.insert({label: uuid, img_prediction: prediction, img_uncertainty: uncertainty, run_count: run_count});
-        //console.log("data:image/jpeg;base64,"+data );
+        //console.log("data:image/jpeg;base64,"+prediction );
         return  prediction + "---" + uncertainty ;
     },
       prov_gen : function (test_dir) 
@@ -103,7 +103,7 @@ Meteor.methods({
       pros_prov_img : function (graphs_dir,run_id,run_count) 
       {
         var res;
-        //console.log(graphs_dir);
+        console.log("Called pros_prov_img.");
         folder=fs.readdirSync(graphs_dir);
         folder.forEach(function (file) {
         //someFn(item);

@@ -74,6 +74,7 @@ Meteor.startup(function() {
         } 
         else 
         {
+           //alert("Called Meteor method");
         }
 
       });
@@ -338,8 +339,9 @@ Template.btn_exec_paleocar.events({
     });*/
 
     //console.log(DataSource.find({label:uuid}).fetch())
-
+    //alert(test_dir);
     var cmd_read_image= test_dir +'/predictions.jpg';
+
 
     Meteor.call('imgSend',cmd_read_image,uuid,run_count,function(error, result)
     {
@@ -350,7 +352,7 @@ Template.btn_exec_paleocar.events({
       else 
       {
         //console.log(result);
-        res_img1.set(result);
+        //res_img1.set(result);
        // Stop the Progress bar
         NProgress.done();
 
@@ -385,7 +387,7 @@ Template.res_img.helpers({
   show_image: function()
   {
     //return res_img1.get();
-    //console.log(DataSource.find({label:uuid}));
+   //alert(DataSource.find({label:uuid}).fetch());
     return DataSource.find({label:uuid});
   }
 });

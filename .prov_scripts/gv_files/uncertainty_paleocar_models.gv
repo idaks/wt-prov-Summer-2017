@@ -7,11 +7,11 @@ subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
 uncertainty_paleocar_models
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
-predictions
+uncertainty_model
 models
 "prediction.years"
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
-uncertainty_paleocar_models -> predictions
+uncertainty_paleocar_models -> uncertainty_model
 models -> uncertainty_paleocar_models
 "prediction.years" -> uncertainty_paleocar_models
 }}
@@ -24,9 +24,9 @@ models_input_port [label=""]
 subgraph cluster_output_ports_group_outer { label=""; penwidth=0
 subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
-predictions_output_port [label=""]
+uncertainty_model_output_port [label=""]
 }}
 models_input_port -> models
 "prediction.years_input_port" -> "prediction.years"
-predictions -> predictions_output_port
+uncertainty_model -> uncertainty_model_output_port
 }
