@@ -56,20 +56,24 @@ Meteor.methods({
         DataSource.insert({label: uuid, X: parseInt(line[0]), Y: parseFloat(line[1])});
      });
         //console.log(DataSource.find({label: uuid}).fetch());
-        console.log(uuid);
+       // console.log(uuid);
     },
 
-    imgSend : function (imageName,uuid,run_count) 
+    'srv_rd_pc_result': function (filedir,uuid,run_count) 
     {
+        //console.log(filedir);
+        var data = fs.readFileSync(filedir + '/predictions.jpg');
+        prediction = new Buffer(data, 'binary').toString('base64');
+        prediction = "data:image/jpg;base64,"+ prediction;
+        
+        data = fs.readFileSync(filedir + '/uncertainty.jpg');
+        uncertainty= new Buffer(data, 'binary').toString('base64');
+        uncertainty = "data:image/jpg;base64,"+ uncertainty;
 
-        //var filePath = curr_dir + '/.images/' + imgName;
-         var filePath=imageName;
-        //console.log(imageName.slice(0,-15));
-        //console.log(fs.readdirSync(imageName.slice(0,-15)));
-        filePath=imageName.slice(0,-15)+'/'+fs.readdirSync(imageName.slice(0,-15))[4];
-        console.log(filePath);
-        var data = fs.readFileSync( filePath );
-       
+        DataSource.insert({label: uuid, img_prediction: prediction, img_uncertainty: uncertainty, run_count: run_count});
+        /*
+        
+        console.log(data);
         prediction = new Buffer(data, 'binary').toString('base64');
         prediction = "data:image/jpg;base64,"+ prediction;
         data=fs.readFileSync(imageName.slice(0,-15)+'/'+fs.readdirSync(imageName.slice(0,-15))[7]);
@@ -80,43 +84,45 @@ Meteor.methods({
         DataSource.insert({label: uuid, img_prediction: prediction, img_uncertainty: uncertainty, run_count: run_count});
         //console.log("data:image/jpeg;base64,"+prediction );
         return  prediction + "---" + uncertainty ;
+        */
     },
-      prov_gen : function (test_dir) 
-      {
-        var res;
-        file = test_dir.slice(0,-8) + '/.prov_scripts/yw_generator.sh'
-        filepath=test_dir + '\\paleocar_model123.png';
-        command = 'C:\\msys64\\usr\\bin\\sh.exe ' + file + ' ' + filepath ;  
-        console.log(command);
-        
-        res = cmd(command);
-        //console.log(res); 
-        
-        filepath=test_dir + '\\paleocar_model123.png';
-        data=fs.readFileSync(filepath);
-        
-        data= new Buffer(data, 'binary').toString('base64');
-        //console.log(data);
-        return  "data:image/png;base64," + data ;
-        
-      },
-      pros_prov_img : function (graphs_dir,run_id,run_count) 
-      {
-        var res;
-        console.log("Called pros_prov_img.");
-        folder=fs.readdirSync(graphs_dir);
-        folder.forEach(function (file) {
-        //someFn(item);
-        filepath= graphs_dir+'\\' +file;
-        data=fs.readFileSync(filepath);
-        data= new Buffer(data, 'binary').toString('base64');
-        data = "data:image/png;base64," + data;
-        
-        DataSource.insert({label: run_id,name:file,image_data:data ,run_count: run_count});
+/*    prov_gen : function (test_dir) 
+    {
+      var res;
+      file = test_dir.slice(0,-8) + '/.prov_scripts/yw_generator.sh'
+      filepath=test_dir + '\\paleocar_model123.png';
+      command = 'C:\\msys64\\usr\\bin\\sh.exe ' + file + ' ' + filepath ;  
+      console.log(command);
+      
+      res = cmd(command);
+      //console.log(res); 
+      
+      filepath=test_dir + '\\paleocar_model123.png';
+      data=fs.readFileSync(filepath);
+      
+      data= new Buffer(data, 'binary').toString('base64');
+      //console.log(data);
+      return  "data:image/png;base64," + data ;
+      
+    },
+*/
+    'insert_pros_prov_img' : function (graphs_dir,run_id,run_count) 
+    {
+      var res;
+      //console.log("Called pros_prov_img.");
+      folder=fs.readdirSync(graphs_dir);
+      folder.forEach(function (file) {
+      //someFn(item);
+      filepath= graphs_dir+'\\' +file;
+      data=fs.readFileSync(filepath);
+      data= new Buffer(data, 'binary').toString('base64');
+      data = "data:image/png;base64," + data;
+      
+      DataSource.insert({label: run_id,name:file,image_data:data ,run_count: run_count});
 
-        })
-        console.log ("completed");
-      }
+      })
+      //console.log ("completed");
+    }
   });
 });
 

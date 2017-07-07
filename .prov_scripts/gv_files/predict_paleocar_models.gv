@@ -7,8 +7,8 @@ subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
 predict_paleocar_models
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
-predictions_model
-models
+predictions_model [shape=record rankdir=LR label="{{<f0> predictions_model |<f1> file\:\{run_id\}/\{run_count\}/\{label\}.prediction_model.rds}}"];
+models [shape=record rankdir=LR label="{{<f0> models |<f1> file\:\{run_id\}/\{run_count\}/\{label\}.models.rds}}"];
 "prediction.years"
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
 meanVar

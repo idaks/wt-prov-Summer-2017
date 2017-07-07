@@ -2,7 +2,7 @@
 
     #@begin paleocar_models
     #@in chronologies @as itrdb @desc A matrix of tree ring chronologies, indexed annually. Each chronology is a column. The first column must be labeled "YEAR" and is the calendar year.
-    #@in predictands  @as prism_data @file 112W36N.csv @desc A RasterBrick, RasterStack, matrix, or vector of the numeric predictand (response) variable.
+    #@in predictands  @as prism_data @uri {data_file}.csv @desc A RasterBrick, RasterStack, matrix, or vector of the numeric predictand (response) variable.
     #@in calibration.years @as calibration_year @desc An integer vector of years corresponding to the layers in the \code{predictands} brick.
     #@in prediction.years  @as prediction_year  @desc An optional integer vector of years for the reconstruction.
     #@param min_width @as min.width @desc An integer, indicating the minimum number of tree-ring samples allowed for that year of a chronology to be valid.
@@ -49,17 +49,18 @@
           
           predlist <- get_predlist(reconstruction.matrix)
           
-			#@END get_predlist
-            #
+    			#@END get_predlist
+
             #@begin get_predictand_matrix 
             #@in predictands @as prism_data
             #@out predictand.matrix 
             #@end get_predictand_matrix 
-            #
+
             #@BEGIN getCarscores
             #@IN predictand.matrix
             #@IN predictor.matrix
             #@OUT carscores
+
                 carscores <- carscore_batch(predictand.matrix=predictand.matrix, predictor.matrix=predictor.matrix)
                 carscores.ranks <- matrixStats::colRanks(1-(carscores^2), preserveShape=T)
                 rownames(carscores.ranks) <- rownames(carscores)

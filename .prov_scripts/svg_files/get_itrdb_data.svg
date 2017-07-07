@@ -16,17 +16,17 @@
 <g id="clust2" class="cluster"><title>cluster_workflow_box_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="70,-16 70,-338 698,-338 698,-16 70,-16"/>
 </g>
-<g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="8,-164 8,-306 54,-306 54,-164 8,-164"/>
-</g>
-<g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="16,-172 16,-298 46,-298 46,-172 16,-172"/>
-</g>
 <g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="714,-154 714,-200 760,-200 760,-154 714,-154"/>
 </g>
 <g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="722,-162 722,-192 752,-192 752,-162 722,-162"/>
+</g>
+<g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="8,-164 8,-306 54,-306 54,-164 8,-164"/>
+</g>
+<g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="16,-172 16,-298 46,-298 46,-172 16,-172"/>
 </g>
 <!-- get_treepolygon -->
 <g id="node1" class="node"><title>get_treepolygon</title>

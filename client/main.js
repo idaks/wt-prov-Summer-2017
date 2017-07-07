@@ -1,10 +1,8 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { GoogleMaps } from 'meteor/dburles:google-maps';
-//import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { Chart }from 'chart.js';
-//import { DataSource } from '../data/DataSource';
 import './main.html';
 
 
@@ -23,8 +21,11 @@ const r_coord = new ReactiveVar('');
 
 const show_res_img = new ReactiveVar(false);
 const show_res_tbl = new ReactiveVar(false);
-const show_prov_img_data = new ReactiveVar('');
+const show_pros_prov_img = new ReactiveVar(false);
+const wait_img = new ReactiveVar(false);
+
 const res_img1 = new ReactiveVar('');
+const prediction_years = new ReactiveVar("1850:2000");
 
 //Generate a unique Id which will also be a output directoru for the result.
 var uuid = Meteor.uuid();
@@ -55,18 +56,18 @@ var test_dir='';
 
 var calibration_years="1924:1983";
 
-// Prediction year
-var prediction_years="1:2000";
+
+
  
 
 Meteor.startup(function() { 
   run_id = uuid.slice(0,8); 
   img_dir = curr_dir + '\\.prov_scripts\\graphs';
 
-  if(DataSource.find({label:'ceb48571',run_count:0}).count() < 1 )
+  if(DataSource.find({label:run_id,run_count:0}).count() < 1 )
   {
     //alert(run_id);
-    Meteor.call('pros_prov_img',img_dir,run_id,run_count,function(error, result)
+    Meteor.call('insert_pros_prov_img',img_dir,run_id,run_count,function(error, result)
       {
         if (error) 
         {
@@ -169,8 +170,13 @@ Template.map.onCreated(function() {
         g_Lat.set(latLng.lat());
         g_Lng.set(latLng.lng());
         
+
+        // Resetting the values for image result to hide.
         show_res_img.set(false);    
+        // Resetting the values for result of the table to hide. 
         show_res_tbl.set(false);
+        // Resetting the values for prospective images to hide. 
+        show_pros_prov_img.set(false);
     }
     else 
     {
@@ -260,8 +266,14 @@ Template.btn_exec_paleocar.events({
 
   'click .exec_PaleoCar':function(){
     // start the Progress bar
-     NProgress.start();
+    NProgress.start();
 
+    // Display image for the provenance 
+    wait_img.set(true);
+
+    // hide the prospective provenance     
+    show_pros_prov_img.set(false);
+     //alert(prediction_years.get());
   
   // Before execution of paleocar generate the prism data. 
   //alert(g_Lat.get() + g_Lng.get());  
@@ -306,7 +318,7 @@ Template.btn_exec_paleocar.events({
   // Execute  PaleoCAr for the Vector region for now. 
   var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' + 
                            test_dir + ' ' + out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' +
-                           prediction_years + ' '+ 'T'+ ' ' + "v" ;
+                           prediction_years.get() + ' '+ 'T'+ ' ' + "v" ;
   
   Meteor.call('exec_Rscript',cmd_exe_paleocar,function(error, result)
     {
@@ -319,31 +331,8 @@ Template.btn_exec_paleocar.events({
 
       }
     }); 
-
-// Block for reading a csv file into a collection 
-/*    Meteor.call('read_csv',test_dir + '/recon_vector_predict.csv',uuid,function(error, result)
-    {
-      if (error) 
-      {
-        alert(error);
-      } 
-      else
-      { 
-        Run_Log.insert(
-          {
-            label : uuid,
-            run_time: run_count,
-            DateTime: new Date().toJSON()
-          });
-      }
-    });*/
-
-    //console.log(DataSource.find({label:uuid}).fetch())
-    //alert(test_dir);
-    var cmd_read_image= test_dir +'/predictions.jpg';
-
-
-    Meteor.call('imgSend',cmd_read_image,uuid,run_count,function(error, result)
+   // alert(test_dir);
+    Meteor.call('srv_rd_pc_result',test_dir,uuid,run_count,function(error, result)
     {
       if (error) 
       {
@@ -352,24 +341,18 @@ Template.btn_exec_paleocar.events({
       else 
       {
         //console.log(result);
-        //res_img1.set(result);
-       // Stop the Progress bar
         NProgress.done();
 
         // now load the output of the 
-        show_res_img.set(true);        
-        show_res_tbl.set(true);
-        //alert(show_res_tbl.get())
+        show_res_img.set(true);
+
+        // hide the image of Loading. 
+        wait_img.set(false);        
       }
 
     }); 
-    //alert(run_count); 
-
    }
 });
-
-
-
 
 // code for displaying the Result images and hiding it when the execute button is not submitted. 
 
@@ -381,13 +364,10 @@ Template.res_img.onCreated(function(){
 
 Template.res_img.helpers({
   show_res_img: function(){
-    //show_res_img.set(true);
     return show_res_img.get();
   },
   show_image: function()
   {
-    //return res_img1.get();
-   //alert(DataSource.find({label:uuid}).fetch());
     return DataSource.find({label:uuid});
   }
 });
@@ -399,7 +379,6 @@ Template.run_result_tbl.onCreated(function(){
 Template.run_result_tbl.helpers({
   show_res_tbl: function()
   {
-    //alert(show_res_tbl.get())
     return show_res_tbl.get();
   },
   run_log_info: function()
@@ -409,16 +388,9 @@ Template.run_result_tbl.helpers({
 });
 
 
-/*Template.execpaleocar.helpers({
-  show_image: function()
-  {
-    return res_img1.get();
-  }
-});*/
-
 
 Template.btn_show_provenance.events({
-  'click .show_provenance':function()
+/*  'click .show_provenance':function()
   {
     test_dir=curr_dir + '\\.output' 
     Meteor.call('prov_gen',test_dir,function(error, result)
@@ -433,34 +405,21 @@ Template.btn_show_provenance.events({
       }
 
     });
+  }*/
+'click .dis_prov_img': function()
+  {
+    show_pros_prov_img.set(true);
   }
-
 
 })
 
 Template.provenance.onCreated(function()
 {
-
-/*img_dir = curr_dir + '\\.prov_scripts\\graphs';
-
-if(DataSource.find({label:'ceb48571',run_count:0}).count() < 1 )
-{
-  //alert(run_id);
-  Meteor.call('pros_prov_img',img_dir,run_id,run_count,function(error, result)
-    {
-      if (error) 
-      {
-        alert(error);
-      } 
-      else 
-      {
-      }
-
-    });
-}*/
+  
 })
 
 Template.provenance.helpers({
+  
   dis_run_id:function()
   {
     return run_id;
@@ -479,7 +438,27 @@ Template.provenance.helpers({
 })
 
 
+Template.execpaleocar.helpers({
+  wait_img:function()
+  {
+    //alert(wait_img.get());
+    return wait_img.get();
+  },
+  prediction_years:function()
+  {
+    return prediction_years.get();
+  },
+  show_pros_prov_img:function()
+  {
+    return show_pros_prov_img.get();
+  }
+})
 
+Template.execpaleocar.events({
+  'input #prediction_year': function (event) {
+    prediction_years.set(Template.instance().$("#prediction_year").val());
+  }
+})
 
 // Adding Routing information into the code. 
 
@@ -496,100 +475,4 @@ Router.route('/execpaleocar');
 Router.route('/contactus');
 
 
-
-//====================================================================================================
-
-//============================================================================
-
-/*let barChartOptions = {
-    scales: {
-        yAxes: getY()
-    }
-}
-*/
-//Template.myLineChart.helpers(chartdata());
-
-//Template.myLineChart.helpers(ChartOptions());
-
-/*Template.barChart.onRendered(function () {
-      console.log("barChart is rendered")
-      let ctx = $("#barChart");
-      let myBarChart = new Chart(ctx, {
-        type   : 'line',
-        data   : barChartData,
-        //options: barChartOptions
-      });
-
-});*/
-
-Template.myLineChart.onRendered(function () 
-{
-  console.log("myLineChart is rendered")
-  let ctx = $("#myLineChart");
-  //var cur = DataSource.find({label:uuid},{field}).fetch();
-
-  this.autorun(() => {
-
-  console.log(chartdata());
-  var myLineChart = new Chart(ctx, 
-  {
-        type: 'line',
-        data: chartdata(),
-//        options: getY()
-        options: {
-        scales: {
-        yAxes: [{
-            ticks: 
-            {
-                suggestedMin: -800,
-                suggestedMax:  800
-            }
-        }]
-      }
-    } 
-  });
-});
-
-
-function chartdata () 
-{
-let  chart_data = 
-  {
-    labels: getX(),
-    datasets: 
-    [{
-      label: 'Mean PPT Values Vs Prediction Years',
-      data: getY()
-    }]
-  }
-//console.log(chart_data);
-return chart_data;
-}
-
-function getX()
-{
-  var colX = [];
-  var cur = DataSource.find({label:uuid}).fetch();
-  
-  cur.forEach(function(cat){
-      colX.push([cat.X]);
-      //collData.push([cat.X]);
-    })
-  //console.log(colX);
-  return colX;
-}
-
-function getY()
-  {
-  var colY = [];
-  var cur = DataSource.find({label:uuid}).fetch();
-  
-  cur.forEach(function(cat){
-      colY.push([{x:cat.X,y: cat.Y}]);
-      //collData.push([cat.X]);
-    })
-  console.log(colY);
-  return colY;
-  }
-});
 

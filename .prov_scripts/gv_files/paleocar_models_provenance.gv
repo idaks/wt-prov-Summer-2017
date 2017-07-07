@@ -20,7 +20,7 @@ itrdb
 calibration_year
 prediction_year
 "reconstruction.matrix"
-prism_data [shape=record rankdir=LR label="{{<f0> prism_data |<f1> 112W36N.csv}}"];
+prism_data [shape=record rankdir=LR label="{{<f0> prism_data |<f1> \{data_file\}.csv}}"];
 "predictand.matrix"
 "predictor.matrix"
 predlist

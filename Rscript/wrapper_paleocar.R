@@ -109,7 +109,7 @@ run_paleocar <- function (testDir,
     # Generate predictions and uncertainty (and plot timeseries of each)
     
     recon_predict <-predict_paleocar_models(models = recon_vector,
-                            #meanVar = "chained",
+                            meanVar = 'none',
                             prediction.years = prediction.years)  
     readr::write_rds(recon_predict,
                      path = paste0(testDir,label,".prediction.Rds"),

@@ -7,9 +7,9 @@ subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
 get_prism_data
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
-prism_data [shape=record rankdir=LR label="{{<f0> prism_data |<f1> file\:/data/112W36N.csv}}"];
+prism_data [shape=record rankdir=LR label="{{<f0> prism_data |<f1> file\:/data/\{data_file\}.csv}}"];
 coordinates
-netcdf_file [shape=record rankdir=LR label="{{<f0> netcdf_file |<f1> file\:/data/112W36N.nc}}"];
+netcdf_file [shape=record rankdir=LR label="{{<f0> netcdf_file |<f1> file\:/data/\{data_file\}.nc}}"];
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
 get_prism_data -> prism_data
 coordinates -> get_prism_data

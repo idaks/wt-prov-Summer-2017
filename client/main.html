@@ -108,21 +108,21 @@
 <!-- 
   Template for displaying the map on the ExecutePaleocar template.
 -->
-<template name="map">  
+<template name="map">
  <div class="card-panel hoverable">
   <!-- 
   This calls for the template which populates the lat and long values
   from the marker and displays for the user. 
   -->
-      {{> pop_lat_lng}} 
-  <div class="map-container">        
-        {{#unless geolocationError}}
-          {{> googleMap name="map" options=mapOptions}}
-        {{else}}
-          Geolocation failed: {{geolocationError}}
-        {{/unless}}
+  {{> pop_lat_lng}} 
+    <div class="map-container">        
+      {{#unless geolocationError}}
+        {{> googleMap name="map" options=mapOptions}}
+      {{else}}
+        Geolocation failed: {{geolocationError}}
+      {{/unless}}
+   </div>
   </div>
- </div>
 </template>  
 
 <!-- 
@@ -162,13 +162,11 @@
   <table>
     <tr>
       <td>
-        <button class="show_provenance"> Provenance Result </button>  
+        <button class="dis_prov_img"> Prospective Provenance.  </button>  
       </td>
     </tr>
-  </table>    
-      
+  </table>          
 </template>
-
 
 <!-- 
   This template is used for execution of the paleocar. 
@@ -179,44 +177,36 @@
     {{> Nav}}
     <div class="section">
         <p class="h3"> Execute PaleoCar </p>
-        <p class="h5"> Steps for Executing PaleoCar. </p>
-      <table class="striped">
-        <tbody>
-        <td class=h5>
-        <tr>        
+        <p class="h5"> Steps for Executing PaleoCar. <br></p>
+        <p class=h5>
           1. Select region from the map. <br> 
-        </tr>  
-        <tr> 
           2. Click "Execute PaleoCar Button". <br>
-        </tr>
-        <tr>
-          <p> The result of the execution will be displayed below. <br> </p>
-        </tr>
-        <tr>
-          <p> The Provenance information is available on the provenance tab for the execution. <br> </p>
-        </tr>
-        </td>
-        </tbody>
-      </table>
+        </p>
+        <p> The result of the execution will be displayed below. <br> </p>
+        <p> The Provenance information is available on the provenance tab for the execution. <br> </p>
     </div>
     <div class=divider></div>
-    <table>
-      <tr>
-        <td>  
-          {{> map}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{> btn_exec_paleocar}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{> res_img}}
-        </td>
-      </tr>  
-    </table> 
+    <p class="h5"> Prediction Years: </p><input type="text" id="prediction_year" value={{prediction_years}}> 
+
+    {{> btn_show_provenance}}
+    
+    {{#if show_pros_prov_img}}
+      <img src="/prospective_prov_img/data_flow.jpg" style="width:350;height:400px;" align="middle"> 
+    {{/if }}
+    
+    <div class="container">
+      {{> map}}
+   
+    {{#if wait_img}}
+      <div class="floating"> 
+       {{> dis_pros_prov_img}}
+      </div>
+    {{/if}}
+   
+    </div>
+     {{> btn_exec_paleocar}}
+     {{> res_img}}
+    
   </div>
 </template>
 
@@ -233,16 +223,38 @@
    <div  class="card-panel hoverable">
     <table>
     <tr>
-    <td>
+      <img src=/prospective_prov_img/paleocar_data_flow.png style="width:850px;height:250px;">
+    </tr>
+    <tr>
+      <img src=/prospective_prov_img/get_itrdb_data.png style="width:600px;height:300px;">
+    </tr>
+    <tr>
+      <img src=/prospective_prov_img/get_prism_data.png style="width:600px;height:300px;">
+    </tr>
+    <tr>
+      <img src=/prospective_prov_img/paleocar_models_provenance.png style="width:830px;height:  300px;">
+    </tr>
+    <tr>
+      <img src=/prospective_prov_img/predict_paleocar_models.png style="width:600px;height:300px;">
+    </tr>
+    <tr>
+      <img src=/prospective_prov_img/uncertainty_paleocar_models.png style="width:600px;height:300px;">
+    </tr>
+
+<!--
+    <tr>
+     <td>
        {{#each show_prov_img}}
         <li>
           {{name}} 
-          <img src="{{image_data}}"  style="width:700px;height:250px;">
+          <img src="{{image_data}}"  style="width:700px;height:300px;">
         </li>
       {{/each}} 
 
-    </td>
-<!--     <td>
+    </td> 
+-->
+<!--     
+    <td>
       <ul>
       {{#each show_dir_struture}}
         <li>
@@ -251,7 +263,9 @@
         {{/each}} 
       </ul>          
     </td>
- -->    </tr>
+   
+    </tr>
+-->
     </table>
   </div>
 </div>
@@ -265,7 +279,6 @@
   <div class="container">
     {{> Nav}}
     <p> THis page is for contact us.</p> 
-    {{> acTemplate}}
   </div>
 </template>
 
@@ -325,3 +338,6 @@
 </template> 
  
 
+<template name='dis_pros_prov_img' >
+  <img src="/prospective_prov_img/paleocar_data_flow.gif" style="width:350;height:400px;"> 
+</template>

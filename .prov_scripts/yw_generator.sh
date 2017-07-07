@@ -11,26 +11,19 @@ export PATH=$PATH:$JAVA_HOME/bin 
  
 # configure GraphViz 
 export GRAPHVIZ_HOME='/c/Program Files (x86)/Graphviz2.38/' 
-export PATH=$PATH:$GRAPHVIZ_HOME/bin 
- 
+export PATH=$PATH:$GRAPHVIZ_HOME/bin
+
 # configure XSB 
 export XSB_HOME='/c/Program Files (x86)/XSB' 
 export PATH=$PATH:$XSB_HOME/config/x64-pc-windows/bin 
 
-#echo "pratik"
-
- alias yw="java -jar /d/Study/Internship/WT_PaleoCar_2017/YesWorkflow/yesworkflow-0.2.1.1-jar-with-dependencies.jar"
+alias yw="java -jar /d/Study/Internship/WT_PaleoCar_2017/YesWorkflow/yesworkflow-0.2.1.1-jar-with-dependencies.jar"
  
- #yw --help 
- #doT --version 
-
-echo $1
 
 dir="/d/Study/Internship/WT_PaleoCar_2017/meteor_example/wt-prov-summer-2017/.Prov_Scripts/"
 
 cd $dir
 
-#mkdir $output 
 
 for file in `ls -a *.R` ;
 do
