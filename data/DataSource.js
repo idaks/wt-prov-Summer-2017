@@ -1,6 +1,7 @@
 DataSource = new Meteor.Collection('dataSource');
-Chart_Data = new Meteor.Collection('Chart_Data');
-Run_Log    = new Mongo.Collection('Run_Log');
+Files = new Meteor.Collection('files');
+Tree_Ring_Files = new Meteor.Collection('Tree_Ring_Files');
+//Run_Log    = new Mongo.Collection('Run_Log');
 Dir_Structure = new Mongo.Collection('Dir_Structure');
 
 //Chart_Data.remove({});

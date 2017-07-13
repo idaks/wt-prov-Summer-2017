@@ -1,47 +1,46 @@
 digraph Workflow {
-rankdir=LR
+rankdir=TB
 fontname=Helvetica; fontsize=18; labelloc=t
-label=get_itrdb_data
+label=""
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
 subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
-get_treepolygon
-get_itrdb
+gen_shapefile [shape=record rankdir=LR label="{<f0> gen_shapefile |<f1> download shape dir and create the shapefile for the spatial polygon}"];
+get_treepolygon [shape=record rankdir=LR label="{<f0> get_treepolygon |<f1> Get Tree-ring data from the ITRDB for 10-degree buffer around GRCA}"];
+get_itrdb [shape=record rankdir=LR label="{<f0> get_itrdb |<f1> extract the re-whitened residuals of the tree-ring chronologies}"];
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
-prism_data
-"tree.buffer"
-"prediction.years"
-"calibration.years"
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:/data/itrdb.Rda}"];
+shapefile_dir [shape=record rankdir=LR label="{<f0> shapefile_dir |<f1> http\://nrdata.nps.gov/programs/Lands/grca_tracts.zip}"];
+shapefile [shape=record rankdir=LR label="{<f0> shapefile |<f1> file\:/data-raw/grca.shx}"];
 treepolygon
-itrdb
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+tree_buffer [shape=record rankdir=LR label="{<f0> tree_buffer |<f1> 10_degree_buffer_around_the_area}"];
+label
+"measurement.type"
+"chronology.type"
+gen_shapefile -> shapefile
+shapefile_dir -> gen_shapefile
 get_treepolygon -> treepolygon
-prism_data -> get_treepolygon
-"tree.buffer" -> get_treepolygon
+tree_buffer -> get_treepolygon
+shapefile -> get_treepolygon
 get_itrdb -> itrdb
-"prediction.years" -> get_itrdb
-"calibration.years" -> get_itrdb
 treepolygon -> get_itrdb
 label -> get_itrdb
 "measurement.type" -> get_itrdb
 "chronology.type" -> get_itrdb
 }}
-subgraph cluster_input_ports_group_outer { label=""; penwidth=0
-subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
-"calibration.years_input_port" [label=""]
-"prediction.years_input_port" [label=""]
-"tree.buffer_input_port" [label=""]
-prism_data_input_port [label=""]
-}}
-subgraph cluster_output_ports_group_outer { label=""; penwidth=0
-subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+shapefile_dir_input_port [label=""]
+tree_buffer_input_port [label=""]
+label_input_port [label=""]
+"measurement.type_input_port" [label=""]
+"chronology.type_input_port" [label=""]
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 itrdb_output_port [label=""]
-}}
-"calibration.years_input_port" -> "calibration.years"
-"prediction.years_input_port" -> "prediction.years"
-"tree.buffer_input_port" -> "tree.buffer"
-prism_data_input_port -> prism_data
+shapefile_dir_input_port -> shapefile_dir
+tree_buffer_input_port -> tree_buffer
+label_input_port -> label
+"measurement.type_input_port" -> "measurement.type"
+"chronology.type_input_port" -> "chronology.type"
 itrdb -> itrdb_output_port
 }

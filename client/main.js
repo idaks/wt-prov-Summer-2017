@@ -22,9 +22,12 @@ const r_coord = new ReactiveVar('');
 const show_res_img = new ReactiveVar(false);
 const show_res_tbl = new ReactiveVar(false);
 const show_pros_prov_img = new ReactiveVar(false);
+const show_tree_ring_data = new ReactiveVar(false);
+
+const display_image = new ReactiveVar('');
 const wait_img = new ReactiveVar(false);
 
-const res_img1 = new ReactiveVar('');
+//const res_img1 = new ReactiveVar('');
 const prediction_years = new ReactiveVar("1850:2000");
 
 //Generate a unique Id which will also be a output directoru for the result.
@@ -58,13 +61,11 @@ var calibration_years="1924:1983";
 
 
 
- 
-
 Meteor.startup(function() { 
   run_id = uuid.slice(0,8); 
   img_dir = curr_dir + '\\.prov_scripts\\graphs';
 
-  if(DataSource.find({label:run_id,run_count:0}).count() < 1 )
+/*  if(DataSource.find({label:run_id,run_count:0}).count() < 1 )
   {
     //alert(run_id);
     Meteor.call('insert_pros_prov_img',img_dir,run_id,run_count,function(error, result)
@@ -80,6 +81,7 @@ Meteor.startup(function() {
 
       });
   }
+*/  
   GoogleMaps.load({key: "AIzaSyCaNgs-oPrH7UbrrFq_jt-BPlL3c6orer8"});
 });
 
@@ -173,8 +175,8 @@ Template.map.onCreated(function() {
 
         // Resetting the values for image result to hide.
         show_res_img.set(false);    
-        // Resetting the values for result of the table to hide. 
-        show_res_tbl.set(false);
+/*        // Resetting the values for result of the table to hide. 
+        show_res_tbl.set(false);*/
         // Resetting the values for prospective images to hide. 
         show_pros_prov_img.set(false);
     }
@@ -185,7 +187,7 @@ Template.map.onCreated(function() {
       g_Lng.set(event.latLng.lng());
 
       //alert(g_Lng + g_Lat);
-      show_res_img.set(false);    
+      //show_res_img.set(false);    
       show_res_tbl.set(false);
     }
     });
@@ -265,7 +267,11 @@ Template.pop_lat_lng.helpers({
 Template.btn_exec_paleocar.events({
 
   'click .exec_PaleoCar':function(){
-    // start the Progress bar
+
+  //Counter for maintaing the execution run.
+    run_count = run_count + 1 ;
+  
+  // start the Progress bar
     NProgress.start();
 
     // Display image for the provenance 
@@ -273,15 +279,17 @@ Template.btn_exec_paleocar.events({
 
     // hide the prospective provenance     
     show_pros_prov_img.set(false);
-     //alert(prediction_years.get());
   
+    // sEt the test directory
+    test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count ;
   // Before execution of paleocar generate the prism data. 
   //alert(g_Lat.get() + g_Lng.get());  
-  var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' ' + out_file_prism_data ;
+ 
+  var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' '  + out_file_prism_data ;
   
   
   // Display and Start loading of the Prgoress Bar. 
-  Meteor.call('exec_Rscript',cmd_prism_data,function(error, result)
+  Meteor.call('exec_Rscript',cmd_prism_data,curr_dir,function(error, result)
     {
       if (error) 
       {
@@ -289,15 +297,13 @@ Template.btn_exec_paleocar.events({
       } 
       else 
       {
-
+        display_image.set(result);
       }
     });
 
-  //Counter for maintaing the execution run. 
-  
-  run_count = run_count + 1 ;
 
   //Test directory for storing the information of every run.
+/*  
     test_dir= curr_dir + '.output\\' + run_id ;
     Dir_Structure.insert({ id: run_id , name:run_id, path: test_dir, parent:null});
     
@@ -313,8 +319,7 @@ Template.btn_exec_paleocar.events({
     
     test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count +'\\Retro_Provenance_Output';
     Dir_Structure.insert({id: run_id +'_'+ run_count +'_REP_PRO_OUT', name:"Retro_Provenance_Output",path:test_dir,  parent:run_id +'_'+ run_count});
-        
-    test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count ;
+   */     
   // Execute  PaleoCAr for the Vector region for now. 
   var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' + 
                            test_dir + ' ' + out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' +
@@ -331,8 +336,8 @@ Template.btn_exec_paleocar.events({
 
       }
     }); 
-   // alert(test_dir);
-    Meteor.call('srv_rd_pc_result',test_dir,uuid,run_count,function(error, result)
+   
+    Meteor.call('srv_rd_pc_result',test_dir,run_id,run_count,function(error, result)
     {
       if (error) 
       {
@@ -343,21 +348,23 @@ Template.btn_exec_paleocar.events({
         //console.log(result);
         NProgress.done();
 
-        // now load the output of the 
-        show_res_img.set(true);
-
         // hide the image of Loading. 
-        wait_img.set(false);        
+        wait_img.set(false);
+
+        // now load the output of the result.
+        show_res_img.set(true);  
       }
 
-    }); 
+    });
+
+
    }
 });
 
 // code for displaying the Result images and hiding it when the execute button is not submitted. 
 
 Template.res_img.onCreated(function(){
-    show_res_img.set(false);
+    //show_res_img.set(false);
 });
 
 
@@ -368,10 +375,16 @@ Template.res_img.helpers({
   },
   show_image: function()
   {
-    return DataSource.find({label:uuid});
+    return DataSource.find({label:run_id});
+  },
+  files: function () {
+    //alert(run_count);
+    return Files.find({label: run_id});
+  //return Files.find();
   }
 });
 
+/*
 Template.run_result_tbl.onCreated(function(){
     show_res_tbl.set(false);
 });
@@ -383,29 +396,13 @@ Template.run_result_tbl.helpers({
   },
   run_log_info: function()
   { 
-    return Run_Log.find({label:uuid});
+    return Run_Log.find({label:run_id});
   }
 });
 
-
+*/
 
 Template.btn_show_provenance.events({
-/*  'click .show_provenance':function()
-  {
-    test_dir=curr_dir + '\\.output' 
-    Meteor.call('prov_gen',test_dir,function(error, result)
-    {
-      if (error) 
-      {
-        alert(error);
-      } 
-      else 
-      {
-        show_prov_img_data.set(result);
-      }
-
-    });
-  }*/
 'click .dis_prov_img': function()
   {
     show_pros_prov_img.set(true);
@@ -451,6 +448,10 @@ Template.execpaleocar.helpers({
   show_pros_prov_img:function()
   {
     return show_pros_prov_img.get();
+  },
+  display_image:function()
+  {
+    return display_image.get();
   }
 })
 
@@ -460,19 +461,57 @@ Template.execpaleocar.events({
   }
 })
 
-// Adding Routing information into the code. 
 
-Router.route('/', function () {
-// render the Home template with a custom data context
-this.render('home');
+
+Template.fileList.helpers({
+result_data: function () 
+{
+    //alert(run_count);
+    return Files.find({label: run_id});
+  //return Files.find();
+},
+show_res_img:function()
+{
+  return show_res_img.get();
+},
+show_tree_ring_data:function()
+{
+  //alert(show_tree_ring_data.get());
+  return show_tree_ring_data.get();
+},
+show_tree_ring_files:function()
+{
+  return Tree_Ring_Files.find({label:run_id});
+}
 });
-// when you navigate to "/provenance" automatically render the template named "Provenance".
-Router.route('/provenance');
-// when you navigate to "/execpaleocar" automatically render the template named "Execute Paleocar".
-Router.route('/execpaleocar');
 
-// when you navigate to "/contactus" automatically render the template named "ContactUs".
-Router.route('/contactus');
+Template.fileList.events({
 
+  'click .button': function(event)
+  { 
+    var calibration_year =  Template.instance().$("#chronological_year").val() ; 
+    var output_file =  calibration_year + "_tree_ring_data.csv" ;
+    //alert(output_file)
+   
+    var cmd_get_predict_val = 'Rscript  '+ curr_dir + 'Rscript\\get_prediction_val.R ' + test_dir + 
+    ' ' +   test_dir + '\\' + event.currentTarget.id + ' ' + calibration_year +' ' + output_file ; 
+
+    Meteor.call('exec_Rscript',cmd_get_predict_val,function(error, result)
+    {
+      if (error) 
+      {
+        alert("Kindly check the year entered. It should be between 1924 and 1983.");
+      } 
+      else 
+      {
+        show_tree_ring_data.set(true);
+        Tree_Ring_Files.insert({label:run_id,filename:output_file, year:calibration_year, path:test_dir.slice(72) + '\\' + output_file});
+      }
+    });
+  },
+  'input #chronological_year': function (event) 
+  {
+  }
+})
 
 

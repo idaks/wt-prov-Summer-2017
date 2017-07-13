@@ -1,7 +1,7 @@
 digraph Workflow {
-rankdir=LR
+rankdir=TB
 fontname=Helvetica; fontsize=18; labelloc=t
-label=get_predictor_matrix
+label=""
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
 subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
@@ -19,19 +19,13 @@ itrdb -> get_predictor_matrix
 calibration_year -> get_predictor_matrix
 "min.width" -> get_predictor_matrix
 }}
-subgraph cluster_input_ports_group_outer { label=""; penwidth=0
-subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 itrdb_input_port [label=""]
 calibration_year_input_port [label=""]
 "min.width_input_port" [label=""]
-}}
-subgraph cluster_output_ports_group_outer { label=""; penwidth=0
-subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 "predictor.matrix_output_port" [label=""]
 "max.preds_output_port" [label=""]
-}}
 itrdb_input_port -> itrdb
 calibration_year_input_port -> calibration_year
 "min.width_input_port" -> "min.width"

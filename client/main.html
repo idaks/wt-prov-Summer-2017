@@ -42,7 +42,7 @@
             <td class = h4>
               <b> Install paleocar </b>
               <ul>
-                <li> For installing and running Paleocar manually in R, you may refer to the <a href=https://github.com/bocinsky/paleocar> Github. </a> 
+                <li> For installing and running Paleocar manually in R, you may refer to the example on <a href=https://github.com/bocinsky/paleocar> Github. </a> 
                 </li>
               </ul> 
             </td>
@@ -73,11 +73,11 @@
   Template for diaplying of the images of the Paleocar result
 -->
 <template name="pc_images">
-
     <div class="card-panel hoverable">    
     <table>
       <tr>
         <td>
+          <p class="h4"> Output of paleocar with raster input values.</p>
           <img src="/images/raster_pred_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
         </td>
         <td>
@@ -86,6 +86,7 @@
       </tr>
       <tr>
         <td>
+          <p class="h4"> Output of paleocar with matrix input values.</p>
           <img src="/images/matrix_pred_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
         </td>
         <td>
@@ -94,6 +95,7 @@
       </tr> 
       <tr>
         <td>
+        <p class="h4"> Output of paleocar with vecttor input values.</p>
           <img src="/images/vector_pred_ppt_vs_pred_years.jpeg" style="width:350px;height:400px;">
         </td>
         <td>
@@ -137,7 +139,7 @@
       <td>   {{txt_lng}} </td>
       <td> <b>Region Of Interest:  </b></td>
       <td> {{txt_ROI}}</td>
-      <td> <b>RunId:  </b></td>
+      <td> <b>Session id:  </b></td>
       <td> {{txt_runid}}</td>
     </tr>
   </table> 
@@ -176,24 +178,25 @@
   <div class="container">
     {{> Nav}}
     <div class="section">
-        <p class="h3"> Execute PaleoCar </p>
-        <p class="h5"> Steps for Executing PaleoCar. <br></p>
-        <p class=h5>
-          1. Select region from the map. <br> 
-          2. Click "Execute PaleoCar Button". <br>
+        <!-- <p class="h3"> Execute PaleoCar </p> -->
+        <p class="h4"> This demo explains the paleocar reconstruction for a single location.</p>
+        <p class="h4"> <b> Steps for Executing PaleoCar. </b> </p>
+        <br>
+        <p class="h5">
+          <ol>
+            1. Drop the marker inside the highlighted polygon for selecting a location. <br> 
+            2. Enter the range for prediction years. <p class="h6"> *the calibration year range is set for 60 years (1924 to 1983) in this example. </p> <br> 
+            3. Click "Execute PaleoCar Button". <br>
+          </ol>
         </p>
-        <p> The result of the execution will be displayed below. <br> </p>
-        <p> The Provenance information is available on the provenance tab for the execution. <br> </p>
+        <ol>
+          <p> The result of the execution will be displayed below. <br> </p>
+          <p> The Provenance information for the execution is available on the provenance tab.  <br> </p>
+        </ol>
     </div>
     <div class=divider></div>
     <p class="h5"> Prediction Years: </p><input type="text" id="prediction_year" value={{prediction_years}}> 
-
-    {{> btn_show_provenance}}
-    
-    {{#if show_pros_prov_img}}
-      <img src="/prospective_prov_img/data_flow.jpg" style="width:350;height:400px;" align="middle"> 
-    {{/if }}
-    
+  
     <div class="container">
       {{> map}}
    
@@ -201,12 +204,14 @@
       <div class="floating"> 
        {{> dis_pros_prov_img}}
       </div>
-    {{/if}}
-   
+    {{/if}}    
     </div>
-     {{> btn_exec_paleocar}}
+    {{#if show_pros_prov_img}}
+      <img src="/prospective_prov_img/web_app_paleocar_data_flow.png" width="100%" height="100%" > 
+    {{/if }}
+     <td> {{> btn_show_provenance}} </td> <td> {{> btn_exec_paleocar}} </td>
      {{> res_img}}
-    
+     {{> fileList}}
   </div>
 </template>
 
@@ -218,56 +223,43 @@
 <div class="container">
     {{> Nav}}
     <!-- <img src="paleocar_model.png"  style="width:800px;height:300px;"> -->
-    <p> <b> RunId : {{dis_run_id}} </b> </p>
+    <p> <b> Session id : {{dis_run_id}} </b> </p>
    <!--  {{> btn_show_provenance}}    -->
-   <div  class="card-panel hoverable">
+  <!--  <div  class="card-panel hoverable"> -->
     <table>
     <tr>
-      <img src=/prospective_prov_img/paleocar_data_flow.png style="width:850px;height:250px;">
+      <p align="center" class=h4> YesWorkflow Graph of PaleoCar Execution. </p>
+      <img src=/prospective_prov_img/web_app_paleocar_data_flow.png title="YesWorkflow Graph of PaleoCar Execution." width="100%" height="100%" >
     </tr>
+    <div class="divider"> </div>
     <tr>
-      <img src=/prospective_prov_img/get_itrdb_data.png style="width:600px;height:300px;">
-    </tr>
-    <tr>
-      <img src=/prospective_prov_img/get_prism_data.png style="width:600px;height:300px;">
-    </tr>
-    <tr>
-      <img src=/prospective_prov_img/paleocar_models_provenance.png style="width:830px;height:  300px;">
-    </tr>
-    <tr>
-      <img src=/prospective_prov_img/predict_paleocar_models.png style="width:600px;height:300px;">
-    </tr>
-    <tr>
-      <img src=/prospective_prov_img/uncertainty_paleocar_models.png style="width:600px;height:300px;">
+      <p align="center" class=h4> Get ITRDB Data. </p>
+      <img src=/prospective_prov_img/get_itrdb_data.png width="100%" height="100%">
     </tr>
 
-<!--
+    <div class="divider"> <br> </div>
     <tr>
-     <td>
-       {{#each show_prov_img}}
-        <li>
-          {{name}} 
-          <img src="{{image_data}}"  style="width:700px;height:300px;">
-        </li>
-      {{/each}} 
-
-    </td> 
--->
-<!--     
-    <td>
-      <ul>
-      {{#each show_dir_struture}}
-        <li>
-            {{name}} : {{path}}  
-        </li>
-        {{/each}} 
-      </ul>          
-    </td>
-   
+      <p align="center" class=h4> PaleoCar Model Data Flow. </p>
+      <img src=/prospective_prov_img/paleocar_models_provenance.png width="100%" height="100%">
     </tr>
--->
-    </table>
-  </div>
+
+    <div class="divider"> </div>
+    <tr>
+      <p align="center" class=h4> Workflow of calculating models in paleocar. </p>
+      <img src=/prospective_prov_img/calculatemodels.png width="100%" height="100%">
+    </tr>
+    <div class=divider></div>
+    <tr>
+      <p align="center" class=h4> PaleoCar Prediction Model. </p>
+      <img src=/prospective_prov_img/predict_paleocar_models.png width="100%" height="100%">
+    </tr>
+    <div class=divider></div>
+    <tr>
+      <p align="center" class=h4> PaleoCar Uncertainty Model. </p>
+      <img src=/prospective_prov_img/uncertainty_paleocar_models.png width="100%" height="100%">
+    </tr>
+  </table>
+  <!-- </div> -->
 </div>
 </template>
 
@@ -298,46 +290,86 @@
           <li>
             <tr>
             <p> <b> Result of the run: </b> {{run_count}} </p>
-            
+            </tr>
+            <tr>            
             </tr>
             <img src="{{img_prediction}}"  style="width:350px;height:400px;">
             <img src="{{img_uncertainty}}" style="width:350px;height:400px;">
-          </li>
+            </li>
             {{/each}} 
-          </ul>
-           <!-- <img src="{{ show_image }}" style="width:350px;height:400px;"> -->
-          <!-- {{> myLineChart }} -->
+          </ul>          
         </td>
       </tr>
     </table>
+ <!--    {{>show_file_list}} -->
   </div>
 {{/if}}
 </template>
 
-<template name="acTemplate">
-    <div id="chartcontainer"></div>
-</template>
-
-<template name='myLineChart'>
-   <canvas id="myLineChart" width="400" height="200"></canvas>
-</template>
-
-
-<template name='run_result_tbl'>
-  <div>
-    <ul>
-    {{#each run_log_info}}
-      <li>
-          {{label}}
-          {{run_time}}
-          {{DateTime}} 
-      </li>
-      {{/each}} 
-    </ul>
-  </div>
-</template> 
- 
 
 <template name='dis_pros_prov_img' >
-  <img src="/prospective_prov_img/paleocar_data_flow.gif" style="width:350;height:400px;"> 
+  <img src="/prospective_prov_img/paleocar_data_flow.gif" style="width:400;height:400px;"> 
 </template>
+
+
+<template name="fileList">
+{{#if show_res_img}}
+<!--   <div class="card-panel hoverable"> -->
+    <table>
+    <tr>
+      <td>
+        <p class="h5"> Enter a year for getting tree-ring chronologies (between 1924 and 1983): </p>
+      </td>
+      <td>
+        <input type="text" id="chronological_year"> 
+      </td>
+      <td>
+        <button class=button id="Grca_Region.model.Rds"><strong > Get Treering data </strong>   </button>  
+      </td>
+    </tr>
+    </table>
+    {{#if show_tree_ring_data}}
+      {{#each show_tree_ring_files}}
+      <ul>  
+        <strong class="h5">{{this.year}} : {{this.filename}} </strong> <a href="{{this.path}}" target="newWindow()" download>Download</a>  
+      </ul>
+      {{/each}}
+    {{/if}}
+    {{#each result_data}}
+    <br>
+    <br>
+    
+    <p class="h5"> <b> Files generated during the execution of PaleoCar run: {{counter}} </b> </p>
+    <p class="h5"> <b> Output File Location: {{test_dir}} </b> </p>
+    <table>
+      <li>
+      <tr>
+        <td>
+          <strong >112W36N.csv </strong> 
+        </td>
+        <td>
+          <a href=/data/112W36N.csv target="_blank" download>Download</a>
+        </td>
+      </tr>
+      </li>
+      {{#each files}}
+      <li>
+        <td>
+          <strong >{{this.filename}} </strong>
+        </td>
+        <td>
+          <a href="{{this.path}}" target="_blank" download>Download</a>  
+        </td>
+        <!-- <a href="{{this.path}}" download="{{this.filename}}"  target="_parent">Download</a> -->
+       
+      </li>
+      {{/each }}
+    </table>
+    {{/each}}
+      <!-- <strong >predictions.jpeg </strong> <a href=".output\22eee8c5\Run_output_1\predictions.jpeg" target="_parent" download> Download </a>   -->
+     <!--  <a href="/images/matrix_pred_ppt_vs_pred_years.jpeg" download target="_parent">Download File</a> -->
+<!--   </div> -->
+{{/if}}
+</template>
+
+    

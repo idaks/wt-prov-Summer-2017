@@ -125,9 +125,9 @@ run_paleocar <- function (testDir,
     
     dev.off();
 
-    #Save the output of prediction into a csv file. 
-    data.frame(x = as.numeric(names(recon_predict)),y = recon_predict)%>%
-      readr::write_csv(paste0(testDir,"/recon_vector_predict.csv"))
+    # #Save the output of prediction into a csv file. 
+    # data.frame(x = as.numeric(names(recon_predict)),y = recon_predict)%>%
+    #   readr::write_csv(paste0(testDir,"/recon_vector_predict.csv"))
     
     
     ## Generating Uncertainty in the model 
@@ -149,10 +149,10 @@ run_paleocar <- function (testDir,
            xlab="Prediction Years", ylab="Mean PPT Values")
     dev.off();
     
-    #Save the output of uncertainty into a csv file.
-    data.frame(x = as.numeric(names(recon_uncertain)),y = recon_uncertain)%>%
-      readr::write_csv(paste0(testDir,"/recon_vector_uncertain.csv"))
-    
+    # #Save the output of uncertainty into a csv file.
+    # data.frame(x = as.numeric(names(recon_uncertain)),y = recon_uncertain)%>%
+    #   readr::write_csv(paste0(testDir,"/recon_vector_uncertain.csv"))
+    # 
     sink()
   }
   if(input_data_type=="m"){
@@ -175,10 +175,10 @@ run_paleocar <- function (testDir,
                             meanVar = "chained",
                             prediction.years = prediction.years) 
     
-
-    data.frame(x = as.numeric(names(rowMeans(recon_pred_matrix))),y = rowMeans(recon_pred_matrix))%>%
-      readr::write_csv(paste0(testDir,"/recon_matrix_uncertain.csv"))
-    
+# 
+#     data.frame(x = as.numeric(names(rowMeans(recon_pred_matrix))),y = rowMeans(recon_pred_matrix))%>%
+#       readr::write_csv(paste0(testDir,"/recon_matrix_uncertain.csv"))
+#     
     # Save the graph of the mean predicted values. 
 
     jpeg(paste0(testDir,'predictions.jpg'));

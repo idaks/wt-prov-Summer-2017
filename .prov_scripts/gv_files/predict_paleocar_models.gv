@@ -1,44 +1,42 @@
 digraph Workflow {
-rankdir=LR
+rankdir=TB
 fontname=Helvetica; fontsize=18; labelloc=t
-label=predict_paleocar_models
+label=""
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
 subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
-predict_paleocar_models
+predict_paleocar_models [shape=record rankdir=LR label="{<f0> predict_paleocar_models |<f1> generates climate predictions over a specified prediction period}"];
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
-predictions_model [shape=record rankdir=LR label="{{<f0> predictions_model |<f1> file\:\{run_id\}/\{run_count\}/\{label\}.prediction_model.rds}}"];
-models [shape=record rankdir=LR label="{{<f0> models |<f1> file\:\{run_id\}/\{run_count\}/\{label\}.models.rds}}"];
+timeseries_plot_prediction [shape=record rankdir=LR label="{<f0> timeseries_plot_prediction |<f1> file\:/.output/\{session_id\}/\{run_id\}/prediction.jpg}"];
+predictions_model [shape=record rankdir=LR label="{<f0> predictions_model |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.prediction.rds}"];
+models [shape=record rankdir=LR label="{<f0> models |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.models.rds}"];
 "prediction.years"
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
-meanVar
+meanvariance
 floor
 ceiling
+predict_paleocar_models -> timeseries_plot_prediction
 predict_paleocar_models -> predictions_model
-models -> predict_paleocar_models
-"prediction.years" -> predict_paleocar_models
-meanVar -> predict_paleocar_models
+meanvariance -> predict_paleocar_models
 floor -> predict_paleocar_models
+models -> predict_paleocar_models
 ceiling -> predict_paleocar_models
+"prediction.years" -> predict_paleocar_models
 }}
-subgraph cluster_input_ports_group_outer { label=""; penwidth=0
-subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
-models_input_port [label=""]
-"prediction.years_input_port" [label=""]
-meanVar_input_port [label=""]
+meanvariance_input_port [label=""]
 floor_input_port [label=""]
+models_input_port [label=""]
 ceiling_input_port [label=""]
-}}
-subgraph cluster_output_ports_group_outer { label=""; penwidth=0
-subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+"prediction.years_input_port" [label=""]
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+timeseries_plot_prediction_output_port [label=""]
 predictions_model_output_port [label=""]
-}}
-models_input_port -> models
-"prediction.years_input_port" -> "prediction.years"
-meanVar_input_port -> meanVar
+meanvariance_input_port -> meanvariance
 floor_input_port -> floor
+models_input_port -> models
 ceiling_input_port -> ceiling
+"prediction.years_input_port" -> "prediction.years"
+timeseries_plot_prediction -> timeseries_plot_prediction_output_port
 predictions_model -> predictions_model_output_port
 }

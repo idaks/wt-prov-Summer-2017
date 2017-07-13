@@ -33,3 +33,5 @@ nvd3:nvd3
 harrison:papa-parse
 anychart:anychart
 sacha:spin
+#npm.depends({'file-download': '0.1.2'});
+udondan:zipzap

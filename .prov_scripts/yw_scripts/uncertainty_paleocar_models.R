@@ -1,0 +1,8 @@
+#@BEGIN uncertainty_paleocar_models @desc Get reconstruction LOOCV uncertainty
+#@IN models @uri file:/.output/{session_id}/{run_id}/{label}.models.rds
+#@IN prediction.years  
+
+#@OUT plot @as timeseries_plot_uncertainty @uri file:/.output/{session_id}/{run_id}/uncertainty.jpg
+#@OUT uncertainty_model @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds 
+
+#@end uncertainty_paleocar_models
