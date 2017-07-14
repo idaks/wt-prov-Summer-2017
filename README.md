@@ -20,3 +20,20 @@ Software developed as part of the Whole Tale internship on provenance
 ![alt text](public/prospective_prov_img/web_app_paleocar_data_flow.png "YW Graph of PaleoCar.")
 
 
+wt-prov-summer-2017
+   │
+   ├── public
+   │   ├── images    // contains paleocar result images 
+   │   ├── prospective_prov_img // contains provenance graphs images 
+   └── server
+       └── main.js   // meteor server side file
+   └── Rscript       // Contains wrapper Rscripts for executing the paleocar. 
+   ├── client  
+   │   ├── main.css     // Client side style sheet
+   │   ├── main.html    // Client side html file
+   │   └── main.js      // Client javascript file 
+   ├── data 
+   │   ├── DataSource.js //file containing the collection 
+   │   └── itrdb.rda         
+   ├── lib
+   │   └── routes.js
