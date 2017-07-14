@@ -5,24 +5,30 @@ label=""
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
 subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
-uncertainty_paleocar_models [shape=record rankdir=LR label="{<f0> uncertainty_paleocar_models |<f1> Get reconstruction LOOCV uncertainty}"];
+extract_uncertainty_model [shape=record rankdir=LR label="{<f0> extract_uncertainty_model |<f1> extract the LOOCV uncertainty information from the set of Paleocar models for specified period.}"];
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
 timeseries_plot_uncertainty [shape=record rankdir=LR label="{<f0> timeseries_plot_uncertainty |<f1> file\:/.output/\{session_id\}/\{run_id\}/uncertainty.jpg}"];
 uncertainty_model [shape=record rankdir=LR label="{<f0> uncertainty_model |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.uncertainty.rds}"];
 models [shape=record rankdir=LR label="{<f0> models |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.models.rds}"];
 "prediction.years"
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
-uncertainty_paleocar_models -> timeseries_plot_uncertainty
-uncertainty_paleocar_models -> uncertainty_model
-models -> uncertainty_paleocar_models
-"prediction.years" -> uncertainty_paleocar_models
+extract_uncertainty_model -> timeseries_plot_uncertainty
+extract_uncertainty_model -> uncertainty_model
+models -> extract_uncertainty_model
+"prediction.years" -> extract_uncertainty_model
 }}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 models_input_port [label=""]
 "prediction.years_input_port" [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 timeseries_plot_uncertainty_output_port [label=""]
 uncertainty_model_output_port [label=""]
+}}
 models_input_port -> models
 "prediction.years_input_port" -> "prediction.years"
 timeseries_plot_uncertainty -> timeseries_plot_uncertainty_output_port

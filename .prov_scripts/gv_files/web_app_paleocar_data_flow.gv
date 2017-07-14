@@ -6,57 +6,70 @@ subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
 subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
 get_user_input [shape=record rankdir=LR label="{<f0> get_user_input |<f1> Get coordinates and years for predicting the model from the web app user.}"];
-get_prism_data [shape=record rankdir=LR label="{<f0> get_prism_data |<f1> Load netcdf file with ppt data and extract the values for the input coordinates.}"];
-paleocar_model [shape=record rankdir=LR label="{<f0> paleocar_model |<f1> create paleocar model for predicting the climate.}"];
-paleocar_predict_model
-uncertainty_paleocar_model
+extract_prism_data [shape=record rankdir=LR label="{<f0> extract_prism_data |<f1> Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.}"];
+gen_paleocar_model [shape=record rankdir=LR label="{<f0> gen_paleocar_model |<f1> generate paleocar models for predicting the climate for the given years.}"];
+exrtact_prediction_model [shape=record rankdir=LR label="{<f0> exrtact_prediction_model |<f1> extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.}"];
+extract_uncertainty_model [shape=record rankdir=LR label="{<f0> extract_uncertainty_model |<f1> extract the LOOCV uncertainty information from the set of Paleocar models for specified period.}"];
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
 paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:/.output/\{session_id\}\{run_id\}/\{label\}.models.rds}"];
 prediction_model [shape=record rankdir=LR label="{<f0> prediction_model |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.prediction.rds}"];
 uncertainty_model [shape=record rankdir=LR label="{<f0> uncertainty_model |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.uncertainty.rds}"];
 prediction_plot [shape=record rankdir=LR label="{<f0> prediction_plot |<f1> file\:/\{session_id\}/\{run_id\}/\{label\}.prediction.jpg}"];
 uncertainty_plot [shape=record rankdir=LR label="{<f0> uncertainty_plot |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.uncertainty.jpg}"];
-user_input
+paleocar_model_log_file [shape=record rankdir=LR label="{<f0> paleocar_model_log_file |<f1> file\:/.output/\{session_id\}\{run_id\}/paleocar_model_log.txt}"];
+user_map_marker_pos
+user_prediction_year
 coordinates
-prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{data_file\}.csv}"];
+prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{data_file\}.csv}"];
 "prediction.year"
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
-netcdf_file [shape=record rankdir=LR label="{<f0> netcdf_file |<f1> file\:/data/\{data_file\}.nc}"];
-itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:/data/itrdb.Rda}"];
+prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:/data/\{data_file\}.nc}"];
 calibration_year
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:/data/itrdb.Rda}"];
 get_user_input -> coordinates
 get_user_input -> "prediction.year"
-user_input -> get_user_input
-get_prism_data -> prism_data
-coordinates -> get_prism_data
-netcdf_file -> get_prism_data
-paleocar_model -> paleocar_models
-itrdb -> paleocar_model
-prism_data -> paleocar_model
-calibration_year -> paleocar_model
-"prediction.year" -> paleocar_model
-paleocar_predict_model -> prediction_model
-paleocar_predict_model -> prediction_plot
-paleocar_models -> paleocar_predict_model
-"prediction.year" -> paleocar_predict_model
-uncertainty_paleocar_model -> uncertainty_model
-uncertainty_paleocar_model -> uncertainty_plot
-paleocar_models -> uncertainty_paleocar_model
-"prediction.year" -> uncertainty_paleocar_model
+user_map_marker_pos -> get_user_input
+user_prediction_year -> get_user_input
+extract_prism_data -> prism_data_for_coordinates
+coordinates -> extract_prism_data
+prism_data -> extract_prism_data
+gen_paleocar_model -> paleocar_models
+gen_paleocar_model -> paleocar_model_log_file
+calibration_year -> gen_paleocar_model
+itrdb -> gen_paleocar_model
+prediction_year -> gen_paleocar_model
+prism_data_for_coordinates -> gen_paleocar_model
+exrtact_prediction_model -> prediction_model
+exrtact_prediction_model -> prediction_plot
+paleocar_models -> exrtact_prediction_model
+"prediction.year" -> exrtact_prediction_model
+extract_uncertainty_model -> uncertainty_model
+extract_uncertainty_model -> uncertainty_plot
+paleocar_models -> extract_uncertainty_model
+"prediction.year" -> extract_uncertainty_model
 }}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
-user_input_input_port [label=""]
-netcdf_file_input_port [label=""]
+user_map_marker_pos_input_port [label=""]
+user_prediction_year_input_port [label=""]
+prism_data_input_port [label=""]
 itrdb_input_port [label=""]
 calibration_year_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 paleocar_models_output_port [label=""]
 prediction_model_output_port [label=""]
 uncertainty_model_output_port [label=""]
 prediction_plot_output_port [label=""]
 uncertainty_plot_output_port [label=""]
-user_input_input_port -> user_input
-netcdf_file_input_port -> netcdf_file
+paleocar_model_log_file_output_port [label=""]
+}}
+user_map_marker_pos_input_port -> user_map_marker_pos
+user_prediction_year_input_port -> user_prediction_year
+prism_data_input_port -> prism_data
 itrdb_input_port -> itrdb
 calibration_year_input_port -> calibration_year
 paleocar_models -> paleocar_models_output_port
@@ -64,4 +77,5 @@ prediction_model -> prediction_model_output_port
 uncertainty_model -> uncertainty_model_output_port
 prediction_plot -> prediction_plot_output_port
 uncertainty_plot -> uncertainty_plot_output_port
+paleocar_model_log_file -> paleocar_model_log_file_output_port
 }

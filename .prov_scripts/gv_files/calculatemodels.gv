@@ -31,12 +31,18 @@ simplifyLinearModels -> "linear.models"
 coefficients -> simplifyLinearModels
 "model.errors" -> simplifyLinearModels
 }}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 predlist_input_port [label=""]
 carscores_input_port [label=""]
 "max.preds_input_port" [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 "linear.models_output_port" [label=""]
+}}
 predlist_input_port -> predlist
 carscores_input_port -> carscores
 "max.preds_input_port" -> "max.preds"

@@ -44,15 +44,21 @@ uncertainty_paleocar_model -> uncertainty_model
 paleocar_models -> uncertainty_paleocar_model
 "prediction.year" -> uncertainty_paleocar_model
 }}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 coordinates_input_port [label=""]
 netcdf_file_input_port [label=""]
 "calibration.year_input_port" [label=""]
 "prediction.year_input_port" [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 paleocar_models_output_port [label=""]
 prediction_model_output_port [label=""]
 uncertainty_model_output_port [label=""]
+}}
 coordinates_input_port -> coordinates
 netcdf_file_input_port -> netcdf_file
 "calibration.year_input_port" -> "calibration.year"

@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 .map-container {
-  width: 400%;
-  max-width: 100%;
+  width: 100%;
+  max-width: 200%;
   height: 400px;
   align: center;
 }
@@ -35,10 +35,10 @@ body {
 }
  
 .floating{
-  float: left;
+  float: center;
   position: absolute;
-  left: 100px;
-  top:  80px;
+  left: 200px;
+  top:  2px;
 }
 
 /*header {

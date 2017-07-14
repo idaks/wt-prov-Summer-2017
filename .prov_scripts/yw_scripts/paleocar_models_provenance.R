@@ -44,7 +44,7 @@
 
 #@end getCarscores
 
-#@BEGIN calculateModels @desc Prepare data and calculate CAR scores
+#@BEGIN calculateModels @desc Prepare data for modelling and calculate CAR scores.
 #@IN predlist @as predlist
 #@IN carscores @as carscores
 #@IN max_preds @as max.preds
@@ -52,7 +52,7 @@
     
 #@end calculateModels
 
-# @BEGIN optimizeModels 
+# @BEGIN optimizeModels  @desc optimize models for speed and memory use. 
 # @IN linear.models
 # @OUT final.models @as models @uri file:/.output/{session_id}/{run_id}/{label}.model.Rds 
 # @end optimizeModels

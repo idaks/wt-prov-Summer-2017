@@ -76,9 +76,7 @@ run_paleocar <- function (testDir,
                           verbose,
                           input_data_type,
                           ...){
-  ## Create the test directory in which the plots whould be generated
-  unlink(testDir)
-  dir.create(testDir, showWarnings=F, recursive=T)
+
   
   out_file_name<- 'outputfile.csv'
   predictands <- prism_data
@@ -260,3 +258,4 @@ reg_boundary <- function(in_file_name,
   y<-as.vector(y)
   return(cat(trimws(y[1:4])))
 }
+

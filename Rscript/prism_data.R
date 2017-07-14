@@ -22,15 +22,19 @@ library(readr)
 setwd(args[1])
 source("Rscript/wrapper_paleocar.R")
 
+testDir=paste0(args[6],'/')
+
+## Create the test directory in which the plots whould be generated
+unlink(testDir)
+dir.create(testDir, showWarnings=F, recursive=T)
 ## Get the coordinates into a matrix form for generating the required prism data file.
 
 coord <- c(as.numeric(args[3]),as.numeric(args[2])) %>% # Longitude before latitude!
   matrix(ncol = 2)
 
- 
 
 ## Call the prism_Data function for creating the csv file for the vectors
-prism_data(coord,paste0("data/",args[4]),  args[5])
+prism_data(coord,paste0("data/",args[4]),paste0(testDir,args[5]))
 
-cat(1)
+# cat(1)
 

@@ -3,39 +3,38 @@
 
 #@in prediction_year @as prediction.year
 
-#@in shapefile_dir   @uri http://nrdata.nps.gov/programs/Lands/grca_tracts.zip
-
+#@in shapefile_archive   @uri http://nrdata.nps.gov/programs/Lands/grca_tracts.zip
+#@in user_label_itrdb 
 #@param calibration_year @as calibration.year
 #@param tree_buffer @uri 10_degree_buffer_around_the_area
 
 
-#@out itrdb 
+#@out ITRDB 
 
 
-#@begin gen_shapefile @desc download shape dir and create the shapefile for the spatial polygon
-#@in spatial_polygon @as shapefile_dir
+#@begin get_shapefile @desc download shapefile archive and extract the shapefile for the grca region.
+#@in spatial_polygon @as shapefile_archive
 
 #@out polygon_shape @as shapefile  @uri file:/data-raw/grca.shx
 #@end get_shapefile 
 
 #@param label 
-#@param measurement.type
-#@param chronology.type 
-
-    #@begin get_treepolygon @desc Get Tree-ring data from the ITRDB for 10-degree buffer around GRCA
-    #@param width @as tree_buffer
+#@param measurement_type
+#@param chronology_type 
+    
+    #@begin get_treepolygon @desc Get Tree-ring data from the ITRDB for tree_buffer around GRCA
+    #@in width @as tree_buffer
     #@in polygon @as shapefile 
     #@out treepolygon  @as treepolygon
     
     #@end get_treepolygon
 
-
-#@begin get_itrdb  @desc  extract the re-whitened residuals of the tree-ring chronologies
+#@begin get_tree_ring_data  @desc Extract tree ring data for the grca region using get_itrdb function and  treepolygon template.
 #@in treepolygon 
-#@param label 
-#@param measurement.type
-#@param chronology.type 
-#@out itrdb  @as itrdb @uri file:/data/itrdb.Rda
+#@param label @as user_label_itrdb 
+#@param measurement_type
+#@param chronology_type 
+#@out itrdb  @as ITRDB @uri file:/data/itrdb.Rda
 #@end get_itrdb
 
 #@end get_itrdb_data 

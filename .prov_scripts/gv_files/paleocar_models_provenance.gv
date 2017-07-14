@@ -11,8 +11,8 @@ get_reconstruction_matrix [shape=record rankdir=LR label="{<f0> get_reconstructi
 gen_predictand_matrix [shape=record rankdir=LR label="{<f0> gen_predictand_matrix |<f1> Generate a matrix from the input prism data file.}"];
 get_predlist [shape=record rankdir=LR label="{<f0> get_predlist |<f1> Get list of stepwise predictors from a reconstruction matrix}"];
 getCarscores [shape=record rankdir=LR label="{<f0> getCarscores |<f1> Compute CAR scores over a matrix of predictands.}"];
-calculateModels [shape=record rankdir=LR label="{<f0> calculateModels |<f1> Prepare data and calculate CAR scores}"];
-optimizeModels
+calculateModels [shape=record rankdir=LR label="{<f0> calculateModels |<f1> Prepare data for modelling and calculate CAR scores.}"];
+optimizeModels [shape=record rankdir=LR label="{<f0> optimizeModels |<f1> optimize models for speed and memory use.}"];
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
 models [shape=record rankdir=LR label="{<f0> models |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.model.Rds}"];
 itrdb
@@ -52,14 +52,20 @@ carscores -> calculateModels
 optimizeModels -> models
 "linear.models" -> optimizeModels
 }}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 prism_data_input_port [label=""]
 "calibration.years_input_port" [label=""]
 "prediction.years_input_port" [label=""]
 itrdb_input_port [label=""]
 "min.width_input_port" [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 models_output_port [label=""]
+}}
 prism_data_input_port -> prism_data
 "calibration.years_input_port" -> "calibration.years"
 "prediction.years_input_port" -> "prediction.years"

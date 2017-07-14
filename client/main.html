@@ -64,7 +64,7 @@
     <a href="/">Home</a>
     <a href="/execpaleocar">Execute PaleoCar</a>
     <a href="/provenance">Provenance</a>
-    <a href="/contactus">Contact Us</a>
+    <!-- <a href="/contactus">Contact Us</a> -->
   </div>
 </template>
 
@@ -117,7 +117,7 @@
   from the marker and displays for the user. 
   -->
   {{> pop_lat_lng}} 
-    <div class="map-container">        
+    <div class="map-container" >        
       {{#unless geolocationError}}
         {{> googleMap name="map" options=mapOptions}}
       {{else}}
@@ -207,9 +207,9 @@
     {{/if}}    
     </div>
     {{#if show_pros_prov_img}}
-      <img src="/prospective_prov_img/web_app_paleocar_data_flow.png" width="100%" height="100%" > 
+      <img src="/prospective_prov_img/web_app_paleocar_data_flow.png" width="125%" height="150%" > 
     {{/if }}
-     <td> {{> btn_show_provenance}} </td> <td> {{> btn_exec_paleocar}} </td>
+     <td  > {{> btn_show_provenance}} </td> <td> {{> btn_exec_paleocar}} </td>
      {{> res_img}}
      {{> fileList}}
   </div>
@@ -231,6 +231,12 @@
       <p align="center" class=h4> YesWorkflow Graph of PaleoCar Execution. </p>
       <img src=/prospective_prov_img/web_app_paleocar_data_flow.png title="YesWorkflow Graph of PaleoCar Execution." width="100%" height="100%" >
     </tr>
+    <div class="divider"> </div>
+    <tr>
+      <p align="center" class=h4> Get PRISM Data. </p>
+      <img src=/prospective_prov_img/get_prism_data.png width="100%" height="100%">
+    </tr>
+
     <div class="divider"> </div>
     <tr>
       <p align="center" class=h4> Get ITRDB Data. </p>
@@ -308,7 +314,7 @@
 
 
 <template name='dis_pros_prov_img' >
-  <img src="/prospective_prov_img/paleocar_data_flow.gif" style="width:400;height:400px;"> 
+  <img src="/prospective_prov_img/paleocar_data_flow.gif" style="width:75%;height:75%; "> 
 </template>
 
 

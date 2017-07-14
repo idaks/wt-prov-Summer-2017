@@ -1,4 +1,4 @@
-#@BEGIN predict_paleocar_models @desc generates climate predictions over a specified prediction period
+#@begin exrtact_prediction_model @desc extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.
 #@PARAM meanvariance 
 #@param floor  
 #@IN models @uri file:/.output/{session_id}/{run_id}/{label}.models.rds 

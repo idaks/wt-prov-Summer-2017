@@ -285,9 +285,9 @@ Template.btn_exec_paleocar.events({
   // Before execution of paleocar generate the prism data. 
   //alert(g_Lat.get() + g_Lng.get());  
  
-  var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' '  + out_file_prism_data ;
+  var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' '  + out_file_prism_data  + ' ' + test_dir ;
   
-  
+  //alert(cmd_prism_data);
   // Display and Start loading of the Prgoress Bar. 
   Meteor.call('exec_Rscript',cmd_prism_data,curr_dir,function(error, result)
     {
@@ -300,29 +300,10 @@ Template.btn_exec_paleocar.events({
         display_image.set(result);
       }
     });
-
-
-  //Test directory for storing the information of every run.
-/*  
-    test_dir= curr_dir + '.output\\' + run_id ;
-    Dir_Structure.insert({ id: run_id , name:run_id, path: test_dir, parent:null});
     
-    
-    test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count;
-    Dir_Structure.insert({ id: run_id +'_'+ run_count, name: 'Run_output_' + run_count, counter:run_count, path: test_dir, parent:run_id});
-
-    test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count + '\\PaleoCar_Results'; 
-    Dir_Structure.insert({id: run_id +'_'+ run_count +'_PO', name: "PaleoCar_Results", path: test_dir, parent:run_id +'_'+ run_count});
-    
-    test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count +'\\Provenance_Output';
-    Dir_Structure.insert({id: run_id +'_'+ run_count +'_PRO_OUT', name:"Provenance_Output", path:test_dir, parent:run_id +'_'+ run_count});
-    
-    test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count +'\\Retro_Provenance_Output';
-    Dir_Structure.insert({id: run_id +'_'+ run_count +'_REP_PRO_OUT', name:"Retro_Provenance_Output",path:test_dir,  parent:run_id +'_'+ run_count});
-   */     
   // Execute  PaleoCAr for the Vector region for now. 
   var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' + 
-                           test_dir + ' ' + out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' +
+                           test_dir + ' ' +  out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' +
                            prediction_years.get() + ' '+ 'T'+ ' ' + "v" ;
   
   Meteor.call('exec_Rscript',cmd_exe_paleocar,function(error, result)

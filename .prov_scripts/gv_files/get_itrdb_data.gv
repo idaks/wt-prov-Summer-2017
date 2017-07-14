@@ -5,42 +5,48 @@ label=""
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
 subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
-gen_shapefile [shape=record rankdir=LR label="{<f0> gen_shapefile |<f1> download shape dir and create the shapefile for the spatial polygon}"];
-get_treepolygon [shape=record rankdir=LR label="{<f0> get_treepolygon |<f1> Get Tree-ring data from the ITRDB for 10-degree buffer around GRCA}"];
-get_itrdb [shape=record rankdir=LR label="{<f0> get_itrdb |<f1> extract the re-whitened residuals of the tree-ring chronologies}"];
+get_shapefile [shape=record rankdir=LR label="{<f0> get_shapefile |<f1> download shapefile archive and extract the shapefile for the grca region.}"];
+get_treepolygon [shape=record rankdir=LR label="{<f0> get_treepolygon |<f1> Get Tree-ring data from the ITRDB for tree_buffer around GRCA}"];
+get_tree_ring_data [shape=record rankdir=LR label="{<f0> get_tree_ring_data |<f1> Extract tree ring data for the grca region using get_itrdb function and treepolygon template.}"];
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
-itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:/data/itrdb.Rda}"];
-shapefile_dir [shape=record rankdir=LR label="{<f0> shapefile_dir |<f1> http\://nrdata.nps.gov/programs/Lands/grca_tracts.zip}"];
+ITRDB [shape=record rankdir=LR label="{<f0> ITRDB |<f1> file\:/data/itrdb.Rda}"];
+shapefile_archive [shape=record rankdir=LR label="{<f0> shapefile_archive |<f1> http\://nrdata.nps.gov/programs/Lands/grca_tracts.zip}"];
+tree_buffer [shape=record rankdir=LR label="{<f0> tree_buffer |<f1> 10_degree_buffer_around_the_area}"];
 shapefile [shape=record rankdir=LR label="{<f0> shapefile |<f1> file\:/data-raw/grca.shx}"];
 treepolygon
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
-tree_buffer [shape=record rankdir=LR label="{<f0> tree_buffer |<f1> 10_degree_buffer_around_the_area}"];
-label
-"measurement.type"
-"chronology.type"
-gen_shapefile -> shapefile
-shapefile_dir -> gen_shapefile
+user_label_itrdb
+measurement_type
+chronology_type
+get_shapefile -> shapefile
+shapefile_archive -> get_shapefile
 get_treepolygon -> treepolygon
 tree_buffer -> get_treepolygon
 shapefile -> get_treepolygon
-get_itrdb -> itrdb
-treepolygon -> get_itrdb
-label -> get_itrdb
-"measurement.type" -> get_itrdb
-"chronology.type" -> get_itrdb
+get_tree_ring_data -> ITRDB
+treepolygon -> get_tree_ring_data
+user_label_itrdb -> get_tree_ring_data
+measurement_type -> get_tree_ring_data
+chronology_type -> get_tree_ring_data
 }}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
-shapefile_dir_input_port [label=""]
+shapefile_archive_input_port [label=""]
+user_label_itrdb_input_port [label=""]
 tree_buffer_input_port [label=""]
-label_input_port [label=""]
-"measurement.type_input_port" [label=""]
-"chronology.type_input_port" [label=""]
+measurement_type_input_port [label=""]
+chronology_type_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
-itrdb_output_port [label=""]
-shapefile_dir_input_port -> shapefile_dir
+ITRDB_output_port [label=""]
+}}
+shapefile_archive_input_port -> shapefile_archive
+user_label_itrdb_input_port -> user_label_itrdb
 tree_buffer_input_port -> tree_buffer
-label_input_port -> label
-"measurement.type_input_port" -> "measurement.type"
-"chronology.type_input_port" -> "chronology.type"
-itrdb -> itrdb_output_port
+measurement_type_input_port -> measurement_type
+chronology_type_input_port -> chronology_type
+ITRDB -> ITRDB_output_port
 }

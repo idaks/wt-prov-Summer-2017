@@ -15,11 +15,17 @@ get_car_scores -> carscores
 "predictand.matrix" -> get_car_scores
 "predictor.matrix" -> get_car_scores
 }}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 "predictand.matrix_input_port" [label=""]
 "predictor.matrix_input_port" [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 carscores_output_port [label=""]
+}}
 "predictand.matrix_input_port" -> "predictand.matrix"
 "predictor.matrix_input_port" -> "predictor.matrix"
 carscores -> carscores_output_port

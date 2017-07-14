@@ -34,7 +34,7 @@ data(itrdb)
 testDir= paste0(args[2],"/")
 
 ## the prism data input
-prism_data= paste0("data/", args[3])
+prism_data= paste0(testDir, args[3])
 
 ## label
 label= args[4]
