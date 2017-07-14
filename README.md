@@ -17,5 +17,6 @@ Software developed as part of the Whole Tale internship on provenance
    meteor run
 6. Open the web application from browser as http://localhost:3000
 
+![alt text](public/prospective_prov_img/web_app_paleocar_data_flow.png "YW Graph of PaleoCar.")
 
 
