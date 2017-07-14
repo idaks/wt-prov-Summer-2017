@@ -1,12 +1,12 @@
 # wt-prov-summer-2017
 
-# H1 Software developed as part of the Whole Tale internship on provenance
+# Software developed as part of the Whole Tale internship on provenance
 
-# H2 Pre-requisite for executing PaleoCar using the web application. 
+# Pre-requisite for executing PaleoCar using the web application. 
 1. Install R server version 3.3 or above.  
 2. Install PaleoCar using the [github repo] https://github.com/bocinsky/paleocar of Kyle. 
 
-# H2 Installing Meteor and Executing webapp for Paleocar
+# Installing Meteor and Executing webapp for Paleocar
 
 1. Install [meteor] https://www.meteor.com/install on local machine 
 2. Clone the Github repo.
