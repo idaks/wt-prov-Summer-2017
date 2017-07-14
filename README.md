@@ -18,4 +18,4 @@ Software developed as part of the Whole Tale internship on provenance
 6. Open the web application from browser as http://localhost:3000
 
 
-![alt text](https://github.com/idaks/wt-prov-summer-2017/tree/master/.prov_scripts/svg_files/web_app_paleocar_data_flow.svg "YW Graph of PaleoCar.")
+
