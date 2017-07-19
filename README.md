@@ -19,7 +19,7 @@ Software developed as part of the Whole Tale internship on provenance
 
 ![alt text](public/prospective_prov_img/web_app_paleocar_data_flow.png "YW Graph of PaleoCar.")
 
-
+<pre>
 wt-prov-summer-2017
    │
    ├── public
@@ -37,3 +37,4 @@ wt-prov-summer-2017
    │   └── itrdb.rda         
    ├── lib
    │   └── routes.js
+</pre> 
