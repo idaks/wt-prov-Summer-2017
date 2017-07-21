@@ -32,5 +32,8 @@ do
  yw graph $file | dot -Tpdf -o ../prov_pdf/${file:0:${#file}-2}.pdf
  yw graph $file | dot -Tpng -o ../graphs/${file:0:${#file}-2}.png
  yw graph $file | dot -Tsvg -o ../svg_files/${file:0:${#file}-2}.svg
+
+ yw extract -c extract.factsfile $file > ../facts/${file:0:${#file}-2}.P
+ yw model   -c model.factsfile   $file > ../models/${file:0:${#file}-2}.P
 done
 #yw graph   | doT -Tpng -o ${1}.png 

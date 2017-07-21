@@ -15,17 +15,17 @@
 <g id="clust2" class="cluster"><title>cluster_workflow_box_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="16,-70 16,-764 1058,-764 1058,-70 16,-70"/>
 </g>
-<g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="536,-8 536,-54 582,-54 582,-8 536,-8"/>
-</g>
-<g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="544,-16 544,-46 574,-46 574,-16 544,-16"/>
-</g>
 <g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="352,-780 352,-826 526,-826 526,-780 352,-780"/>
 </g>
 <g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="360,-788 360,-818 518,-818 518,-788 360,-788"/>
+</g>
+<g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="536,-8 536,-54 582,-54 582,-8 536,-8"/>
+</g>
+<g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="544,-16 544,-46 574,-46 574,-16 544,-16"/>
 </g>
 <!-- get_predictor_matrix -->
 <g id="node1" class="node"><title>get_predictor_matrix</title>

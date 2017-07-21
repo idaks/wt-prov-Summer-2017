@@ -1,0 +1,119 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'paleocar_models_provenance.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 1, 'begin', '@begin', 'paleocar_models').
+annotation(2, 1, 2, 'in', '@in', 'prism_data').
+annotation(3, 1, 2, 'uri', '@uri', '/.output/{session_id}/{run_id}/{data_file}.csv').
+annotation(4, 1, 2, 'desc', '@desc', 'A RasterBrick, RasterStack, matrix, or vector of the numeric predictand (response) variable.').
+annotation(5, 1, 3, 'in', '@in', 'calibration.years').
+annotation(6, 1, 3, 'desc', '@desc', 'An integer vector of years corresponding to the layers in the \code{predictands} brick.').
+annotation(7, 1, 4, 'in', '@in', 'prediction.years').
+annotation(8, 1, 4, 'desc', '@desc', 'An optional integer vector of years for the reconstruction.').
+annotation(9, 1, 5, 'param', '@param', 'itrdb').
+annotation(10, 1, 5, 'desc', '@desc', 'A matrix of tree ring chronologies, indexed annually. Each chronology is a column. The first column must be labeled "YEAR" and is the calendar year.').
+annotation(11, 1, 6, 'param', '@param', 'min_width').
+annotation(12, 1, 6, 'as', '@as', 'min.width').
+annotation(13, 1, 6, 'desc', '@desc', 'An integer, indicating the minimum number of tree-ring samples allowed for that year of a chronology to be valid.').
+annotation(14, 1, 7, 'param', '@param', 'verbose').
+annotation(15, 1, 7, 'desc', '@desc', 'Logical, display status messages during run.').
+annotation(16, 1, 8, 'out', '@out', 'models').
+annotation(17, 1, 8, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.model.Rds').
+annotation(18, 1, 11, 'begin', '@BEGIN', 'get_predictor_matrix').
+annotation(19, 1, 11, 'desc', '@desc', 'Get chronologies matrix for the calibration years.').
+annotation(20, 1, 12, 'param', '@param', 'tree_ring_data').
+annotation(21, 1, 12, 'as', '@as', 'itrdb').
+annotation(22, 1, 13, 'param', '@param', 'calibration.years').
+annotation(23, 1, 13, 'as', '@as', 'calibration.years').
+annotation(24, 1, 14, 'param', '@param', 'min.width').
+annotation(25, 1, 14, 'desc', '@desc', 'integer, indicating the minimum number of tree-ring samples allowed').
+annotation(26, 1, 15, 'out', '@OUT', 'predictor.matrix').
+annotation(27, 1, 16, 'end', '@end', 'get_predictor_matrix').
+annotation(28, 1, 18, 'begin', '@begin', 'get_max_preds').
+annotation(29, 1, 18, 'desc', '@desc', 'Get the maximum number of predictors.').
+annotation(30, 1, 19, 'in', '@in', 'matrix').
+annotation(31, 1, 19, 'as', '@as', 'predictor.matrix').
+annotation(32, 1, 20, 'out', '@out', 'max.preds').
+annotation(33, 1, 21, 'end', '@end', 'get_max_preds').
+annotation(34, 1, 23, 'begin', '@BEGIN', 'get_reconstruction_matrix').
+annotation(35, 1, 23, 'desc', '@desc', 'Get chronologies matrix for the prediction years.').
+annotation(36, 1, 24, 'in', '@IN', 'chronologies').
+annotation(37, 1, 24, 'as', '@as', 'itrdb').
+annotation(38, 1, 25, 'in', '@IN', 'reconstruction.years').
+annotation(39, 1, 25, 'as', '@as', 'prediction.years').
+annotation(40, 1, 26, 'param', '@PARAM', 'min.width').
+annotation(41, 1, 26, 'desc', '@desc', 'integer, indicating the minimum number of tree-ring samples allowed').
+annotation(42, 1, 27, 'out', '@OUT', 'reconstruction.matrix').
+annotation(43, 1, 28, 'end', '@END', 'get_reconstruction_matrix').
+annotation(44, 1, 30, 'begin', '@begin', 'gen_predictand_matrix').
+annotation(45, 1, 30, 'desc', '@desc', 'Generate a matrix from the input prism data file.').
+annotation(46, 1, 31, 'in', '@in', 'data').
+annotation(47, 1, 31, 'as', '@as', 'prism_data').
+annotation(48, 1, 32, 'out', '@out', 'predictand.matrix').
+annotation(49, 1, 33, 'end', '@end', 'gen_predictand_matrix').
+annotation(50, 1, 35, 'begin', '@BEGIN', 'get_predlist').
+annotation(51, 1, 35, 'desc', '@desc', 'Get list of stepwise predictors from a reconstruction matrix').
+annotation(52, 1, 36, 'in', '@IN', 'matrix').
+annotation(53, 1, 36, 'as', '@as', 'reconstruction.matrix').
+annotation(54, 1, 37, 'out', '@OUT', 'predlist').
+annotation(55, 1, 38, 'end', '@END', 'get_predlist').
+annotation(56, 1, 40, 'begin', '@BEGIN', 'getCarscores').
+annotation(57, 1, 40, 'desc', '@desc', 'Compute CAR scores over a matrix of predictands.').
+annotation(58, 1, 41, 'in', '@IN', 'matrix').
+annotation(59, 1, 41, 'as', '@as', 'predictand.matrix').
+annotation(60, 1, 42, 'in', '@IN', 'predictor.matrix').
+annotation(61, 1, 43, 'out', '@OUT', 'carscores').
+annotation(62, 1, 45, 'end', '@end', 'getCarscores').
+annotation(63, 1, 47, 'begin', '@BEGIN', 'calculateModels').
+annotation(64, 1, 47, 'desc', '@desc', 'Prepare data for modelling and calculate CAR scores.').
+annotation(65, 1, 48, 'in', '@IN', 'predlist').
+annotation(66, 1, 48, 'as', '@as', 'predlist').
+annotation(67, 1, 49, 'in', '@IN', 'carscores').
+annotation(68, 1, 49, 'as', '@as', 'carscores').
+annotation(69, 1, 50, 'in', '@IN', 'max_preds').
+annotation(70, 1, 50, 'as', '@as', 'max.preds').
+annotation(71, 1, 51, 'out', '@OUT', 'linear.models').
+annotation(72, 1, 53, 'end', '@end', 'calculateModels').
+annotation(73, 1, 55, 'begin', '@BEGIN', 'optimizeModels').
+annotation(74, 1, 55, 'desc', '@desc', 'optimize models for speed and memory use.').
+annotation(75, 1, 56, 'in', '@IN', 'linear.models').
+annotation(76, 1, 57, 'out', '@OUT', 'final.models').
+annotation(77, 1, 57, 'as', '@as', 'models').
+annotation(78, 1, 57, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.model.Rds').
+annotation(79, 1, 58, 'end', '@end', 'optimizeModels').
+annotation(80, 1, 61, 'end', '@end', 'paleocar_models').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(3, 2).
+annotation_qualifies(4, 2).
+annotation_qualifies(6, 5).
+annotation_qualifies(8, 7).
+annotation_qualifies(10, 9).
+annotation_qualifies(12, 11).
+annotation_qualifies(13, 11).
+annotation_qualifies(15, 14).
+annotation_qualifies(17, 16).
+annotation_qualifies(19, 18).
+annotation_qualifies(21, 20).
+annotation_qualifies(23, 22).
+annotation_qualifies(25, 24).
+annotation_qualifies(29, 28).
+annotation_qualifies(31, 30).
+annotation_qualifies(35, 34).
+annotation_qualifies(37, 36).
+annotation_qualifies(39, 38).
+annotation_qualifies(41, 40).
+annotation_qualifies(45, 44).
+annotation_qualifies(47, 46).
+annotation_qualifies(51, 50).
+annotation_qualifies(53, 52).
+annotation_qualifies(57, 56).
+annotation_qualifies(59, 58).
+annotation_qualifies(64, 63).
+annotation_qualifies(66, 65).
+annotation_qualifies(68, 67).
+annotation_qualifies(70, 69).
+annotation_qualifies(74, 73).
+annotation_qualifies(77, 76).
+annotation_qualifies(78, 76).

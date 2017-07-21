@@ -1,0 +1,229 @@
+
+% FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
+program(1, 'paleocar_models', 'paleocar_models', 1, 80).
+program(2, 'get_predictor_matrix', 'paleocar_models.get_predictor_matrix', 18, 27).
+program(3, 'get_max_preds', 'paleocar_models.get_max_preds', 28, 33).
+program(4, 'get_reconstruction_matrix', 'paleocar_models.get_reconstruction_matrix', 34, 43).
+program(5, 'gen_predictand_matrix', 'paleocar_models.gen_predictand_matrix', 44, 49).
+program(6, 'get_predlist', 'paleocar_models.get_predlist', 50, 55).
+program(7, 'getCarscores', 'paleocar_models.getCarscores', 56, 62).
+program(8, 'calculateModels', 'paleocar_models.calculateModels', 63, 72).
+program(9, 'optimizeModels', 'paleocar_models.optimizeModels', 73, 79).
+
+% FACT: workflow(program_id).
+workflow(1).
+
+% FACT: function(program_id).
+
+% FACT: has_subprogram(program_id, subprogram_id).
+has_subprogram(1, 2).
+has_subprogram(1, 3).
+has_subprogram(1, 4).
+has_subprogram(1, 5).
+has_subprogram(1, 6).
+has_subprogram(1, 7).
+has_subprogram(1, 8).
+has_subprogram(1, 9).
+
+% FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
+port(1, 'in', 'prism_data', 'paleocar_models<-prism_data', 2, 1).
+port(2, 'in', 'calibration.years', 'paleocar_models<-calibration.years', 5, 2).
+port(3, 'in', 'prediction.years', 'paleocar_models<-prediction.years', 7, 3).
+port(4, 'param', 'itrdb', 'paleocar_models<-itrdb', 9, 4).
+port(5, 'param', 'min_width', 'paleocar_models<-min_width', 11, 5).
+port(6, 'param', 'verbose', 'paleocar_models<-verbose', 14, 6).
+port(7, 'out', 'models', 'paleocar_models->models', 16, 7).
+port(8, 'param', 'tree_ring_data', 'paleocar_models.get_predictor_matrix<-tree_ring_data', 20, 8).
+port(9, 'param', 'calibration.years', 'paleocar_models.get_predictor_matrix<-calibration.years', 22, 9).
+port(10, 'param', 'min.width', 'paleocar_models.get_predictor_matrix<-min.width', 24, 10).
+port(11, 'OUT', 'predictor.matrix', 'paleocar_models.get_predictor_matrix->predictor.matrix', 26, 11).
+port(12, 'in', 'matrix', 'paleocar_models.get_max_preds<-matrix', 30, 11).
+port(13, 'out', 'max.preds', 'paleocar_models.get_max_preds->max.preds', 32, 12).
+port(14, 'IN', 'chronologies', 'paleocar_models.get_reconstruction_matrix<-chronologies', 36, 8).
+port(15, 'IN', 'reconstruction.years', 'paleocar_models.get_reconstruction_matrix<-reconstruction.years', 38, 13).
+port(16, 'PARAM', 'min.width', 'paleocar_models.get_reconstruction_matrix<-min.width', 40, 10).
+port(17, 'OUT', 'reconstruction.matrix', 'paleocar_models.get_reconstruction_matrix->reconstruction.matrix', 42, 14).
+port(18, 'in', 'data', 'paleocar_models.gen_predictand_matrix<-data', 46, 15).
+port(19, 'out', 'predictand.matrix', 'paleocar_models.gen_predictand_matrix->predictand.matrix', 48, 16).
+port(20, 'IN', 'matrix', 'paleocar_models.get_predlist<-matrix', 52, 14).
+port(21, 'OUT', 'predlist', 'paleocar_models.get_predlist->predlist', 54, 17).
+port(22, 'IN', 'matrix', 'paleocar_models.getCarscores<-matrix', 58, 16).
+port(23, 'IN', 'predictor.matrix', 'paleocar_models.getCarscores<-predictor.matrix', 60, 11).
+port(24, 'OUT', 'carscores', 'paleocar_models.getCarscores->carscores', 61, 18).
+port(25, 'IN', 'predlist', 'paleocar_models.calculateModels<-predlist', 65, 17).
+port(26, 'IN', 'carscores', 'paleocar_models.calculateModels<-carscores', 67, 18).
+port(27, 'IN', 'max_preds', 'paleocar_models.calculateModels<-max_preds', 69, 12).
+port(28, 'OUT', 'linear.models', 'paleocar_models.calculateModels->linear.models', 71, 19).
+port(29, 'IN', 'linear.models', 'paleocar_models.optimizeModels<-linear.models', 75, 19).
+port(30, 'OUT', 'final.models', 'paleocar_models.optimizeModels->final.models', 76, 20).
+
+% FACT: port_alias(port_id, alias).
+port_alias(5, 'min.width').
+port_alias(8, 'itrdb').
+port_alias(9, 'calibration.years').
+port_alias(12, 'predictor.matrix').
+port_alias(14, 'itrdb').
+port_alias(15, 'prediction.years').
+port_alias(18, 'prism_data').
+port_alias(20, 'reconstruction.matrix').
+port_alias(22, 'predictand.matrix').
+port_alias(25, 'predlist').
+port_alias(26, 'carscores').
+port_alias(27, 'max.preds').
+port_alias(30, 'models').
+
+% FACT: port_uri_template(port_id, uri).
+port_uri_template(1, '/.output/{session_id}/{run_id}/{data_file}.csv').
+port_uri_template(7, 'file:/.output/{session_id}/{run_id}/{label}.model.Rds').
+port_uri_template(30, 'file:/.output/{session_id}/{run_id}/{label}.model.Rds').
+
+% FACT: has_in_port(block_id, port_id).
+has_in_port(1, 1).
+has_in_port(1, 2).
+has_in_port(1, 3).
+has_in_port(1, 4).
+has_in_port(1, 5).
+has_in_port(1, 6).
+has_in_port(2, 8).
+has_in_port(2, 9).
+has_in_port(2, 10).
+has_in_port(3, 12).
+has_in_port(4, 14).
+has_in_port(4, 15).
+has_in_port(4, 16).
+has_in_port(5, 18).
+has_in_port(6, 20).
+has_in_port(7, 22).
+has_in_port(7, 23).
+has_in_port(8, 25).
+has_in_port(8, 26).
+has_in_port(8, 27).
+has_in_port(9, 29).
+
+% FACT: has_out_port(block_id, port_id).
+has_out_port(1, 7).
+has_out_port(2, 11).
+has_out_port(3, 13).
+has_out_port(4, 17).
+has_out_port(5, 19).
+has_out_port(6, 21).
+has_out_port(7, 24).
+has_out_port(8, 28).
+has_out_port(9, 30).
+
+% FACT: data(data_id, data_name, qualified_data_name).
+data(1, 'prism_data', '[prism_data]').
+data(2, 'calibration.years', '[calibration.years]').
+data(3, 'prediction.years', '[prediction.years]').
+data(4, 'itrdb', '[itrdb]').
+data(5, 'min.width', '[min.width]').
+data(6, 'verbose', '[verbose]').
+data(7, 'models', '[models]').
+data(8, 'itrdb', 'paleocar_models[itrdb]').
+data(9, 'calibration.years', 'paleocar_models[calibration.years]').
+data(10, 'min.width', 'paleocar_models[min.width]').
+data(11, 'predictor.matrix', 'paleocar_models[predictor.matrix]').
+data(12, 'max.preds', 'paleocar_models[max.preds]').
+data(13, 'prediction.years', 'paleocar_models[prediction.years]').
+data(14, 'reconstruction.matrix', 'paleocar_models[reconstruction.matrix]').
+data(15, 'prism_data', 'paleocar_models[prism_data]').
+data(16, 'predictand.matrix', 'paleocar_models[predictand.matrix]').
+data(17, 'predlist', 'paleocar_models[predlist]').
+data(18, 'carscores', 'paleocar_models[carscores]').
+data(19, 'linear.models', 'paleocar_models[linear.models]').
+data(20, 'models', 'paleocar_models[models]').
+
+% FACT: channel(channel_id, data_id).
+channel(1, 7).
+channel(2, 8).
+channel(3, 8).
+channel(4, 9).
+channel(5, 10).
+channel(6, 10).
+channel(7, 11).
+channel(8, 11).
+channel(9, 13).
+channel(10, 15).
+channel(11, 14).
+channel(12, 16).
+channel(13, 17).
+channel(14, 18).
+channel(15, 12).
+channel(16, 19).
+channel(17, 1).
+channel(18, 2).
+channel(19, 3).
+channel(20, 4).
+channel(21, 4).
+channel(22, 5).
+channel(23, 5).
+channel(24, 20).
+
+% FACT: port_connects_to_channel(port_id, channel_id).
+port_connects_to_channel(30, 1).
+port_connects_to_channel(8, 2).
+port_connects_to_channel(14, 3).
+port_connects_to_channel(9, 4).
+port_connects_to_channel(10, 5).
+port_connects_to_channel(16, 6).
+port_connects_to_channel(11, 7).
+port_connects_to_channel(12, 7).
+port_connects_to_channel(11, 8).
+port_connects_to_channel(23, 8).
+port_connects_to_channel(15, 9).
+port_connects_to_channel(18, 10).
+port_connects_to_channel(17, 11).
+port_connects_to_channel(20, 11).
+port_connects_to_channel(19, 12).
+port_connects_to_channel(22, 12).
+port_connects_to_channel(21, 13).
+port_connects_to_channel(25, 13).
+port_connects_to_channel(24, 14).
+port_connects_to_channel(26, 14).
+port_connects_to_channel(13, 15).
+port_connects_to_channel(27, 15).
+port_connects_to_channel(28, 16).
+port_connects_to_channel(29, 16).
+port_connects_to_channel(18, 17).
+port_connects_to_channel(9, 18).
+port_connects_to_channel(15, 19).
+port_connects_to_channel(8, 20).
+port_connects_to_channel(14, 21).
+port_connects_to_channel(10, 22).
+port_connects_to_channel(16, 23).
+port_connects_to_channel(30, 24).
+
+% FACT: inflow_connects_to_channel(port_id, channel_id).
+inflow_connects_to_channel(4, 2).
+inflow_connects_to_channel(4, 3).
+inflow_connects_to_channel(2, 4).
+inflow_connects_to_channel(5, 5).
+inflow_connects_to_channel(5, 6).
+inflow_connects_to_channel(3, 9).
+inflow_connects_to_channel(1, 10).
+inflow_connects_to_channel(1, 17).
+inflow_connects_to_channel(2, 18).
+inflow_connects_to_channel(3, 19).
+inflow_connects_to_channel(4, 20).
+inflow_connects_to_channel(4, 21).
+inflow_connects_to_channel(5, 22).
+inflow_connects_to_channel(5, 23).
+
+% FACT: outflow_connects_to_channel(port_id, channel_id).
+outflow_connects_to_channel(7, 1).
+outflow_connects_to_channel(7, 24).
+
+% FACT: uri_variable(uri_variable_id, variable_name, port_id).
+uri_variable(1, 'session_id', 1).
+uri_variable(2, 'run_id', 1).
+uri_variable(3, 'data_file', 1).
+uri_variable(4, 'session_id', 7).
+uri_variable(5, 'run_id', 7).
+uri_variable(6, 'label', 7).
+uri_variable(7, 'session_id', 30).
+uri_variable(8, 'run_id', 30).
+uri_variable(9, 'label', 30).
+
+% FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
+
+% FACT: log_template_variable(log_variable_id, variable_name, log_template_id).

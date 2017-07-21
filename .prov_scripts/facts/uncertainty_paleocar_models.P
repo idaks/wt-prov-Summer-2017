@@ -1,0 +1,23 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'uncertainty_paleocar_models.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 1, 'begin', '@begin', 'extract_uncertainty_model').
+annotation(2, 1, 1, 'desc', '@desc', 'extract the LOOCV uncertainty information from the set of Paleocar models for specified period.').
+annotation(3, 1, 2, 'in', '@IN', 'models').
+annotation(4, 1, 2, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.models.rds').
+annotation(5, 1, 3, 'in', '@IN', 'prediction.years').
+annotation(6, 1, 5, 'out', '@OUT', 'plot').
+annotation(7, 1, 5, 'as', '@as', 'timeseries_plot_uncertainty').
+annotation(8, 1, 5, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/uncertainty.jpg').
+annotation(9, 1, 6, 'out', '@OUT', 'uncertainty_model').
+annotation(10, 1, 6, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds').
+annotation(11, 1, 8, 'end', '@end', 'uncertainty_paleocar_models').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(2, 1).
+annotation_qualifies(4, 3).
+annotation_qualifies(7, 6).
+annotation_qualifies(8, 6).
+annotation_qualifies(10, 9).

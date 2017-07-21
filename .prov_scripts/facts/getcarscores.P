@@ -1,0 +1,14 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'getcarscores.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 1, 'begin', '@begin', 'get_car_scores').
+annotation(2, 1, 2, 'in', '@in', 'predictand.matrix').
+annotation(3, 1, 3, 'in', '@in', 'predictor.matrix').
+annotation(4, 1, 4, 'out', '@out', 'list').
+annotation(5, 1, 4, 'as', '@as', 'carscores').
+annotation(6, 1, 5, 'end', '@end', 'get_car_scores').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(5, 4).

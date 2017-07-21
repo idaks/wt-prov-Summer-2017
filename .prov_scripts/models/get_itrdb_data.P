@@ -1,0 +1,152 @@
+
+% FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
+program(1, 'get_itrdb_data', 'get_itrdb_data', 1, 44).
+program(2, 'get_shapefile', 'get_itrdb_data.get_shapefile', 13, 20).
+program(3, 'get_treepolygon', 'get_itrdb_data.get_treepolygon', 24, 32).
+program(4, 'get_tree_ring_data', 'get_itrdb_data.get_tree_ring_data', 33, 43).
+
+% FACT: workflow(program_id).
+workflow(1).
+
+% FACT: function(program_id).
+
+% FACT: has_subprogram(program_id, subprogram_id).
+has_subprogram(1, 2).
+has_subprogram(1, 3).
+has_subprogram(1, 4).
+
+% FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
+port(1, 'in', 'prediction_year', 'get_itrdb_data<-prediction_year', 3, 1).
+port(2, 'in', 'shapefile_archive', 'get_itrdb_data<-shapefile_archive', 5, 2).
+port(3, 'in', 'user_label_itrdb', 'get_itrdb_data<-user_label_itrdb', 7, 3).
+port(4, 'param', 'calibration_year', 'get_itrdb_data<-calibration_year', 8, 4).
+port(5, 'param', 'tree_buffer', 'get_itrdb_data<-tree_buffer', 10, 5).
+port(9, 'param', 'label', 'get_itrdb_data<-label', 21, 9).
+port(10, 'param', 'measurement_type', 'get_itrdb_data<-measurement_type', 22, 10).
+port(11, 'param', 'chronology_type', 'get_itrdb_data<-chronology_type', 23, 11).
+port(6, 'out', 'ITRDB', 'get_itrdb_data->ITRDB', 12, 6).
+port(7, 'in', 'spatial_polygon', 'get_itrdb_data.get_shapefile<-spatial_polygon', 15, 7).
+port(8, 'out', 'polygon_shape', 'get_itrdb_data.get_shapefile->polygon_shape', 17, 8).
+port(12, 'in', 'width', 'get_itrdb_data.get_treepolygon<-width', 26, 12).
+port(13, 'in', 'polygon', 'get_itrdb_data.get_treepolygon<-polygon', 28, 8).
+port(14, 'out', 'treepolygon', 'get_itrdb_data.get_treepolygon->treepolygon', 30, 13).
+port(15, 'in', 'treepolygon', 'get_itrdb_data.get_tree_ring_data<-treepolygon', 35, 13).
+port(16, 'param', 'label', 'get_itrdb_data.get_tree_ring_data<-label', 36, 14).
+port(17, 'param', 'measurement_type', 'get_itrdb_data.get_tree_ring_data<-measurement_type', 38, 15).
+port(18, 'param', 'chronology_type', 'get_itrdb_data.get_tree_ring_data<-chronology_type', 39, 16).
+port(19, 'out', 'itrdb', 'get_itrdb_data.get_tree_ring_data->itrdb', 40, 17).
+
+% FACT: port_alias(port_id, alias).
+port_alias(1, 'prediction.year').
+port_alias(4, 'calibration.year').
+port_alias(7, 'shapefile_archive').
+port_alias(8, 'shapefile').
+port_alias(12, 'tree_buffer').
+port_alias(13, 'shapefile').
+port_alias(14, 'treepolygon').
+port_alias(16, 'user_label_itrdb').
+port_alias(19, 'ITRDB').
+
+% FACT: port_uri_template(port_id, uri).
+port_uri_template(2, 'http://nrdata.nps.gov/programs/Lands/grca_tracts.zip').
+port_uri_template(5, '10_degree_buffer_around_the_area').
+port_uri_template(8, 'file:/data-raw/grca.shx').
+port_uri_template(19, 'file:/data/itrdb.Rda').
+
+% FACT: has_in_port(block_id, port_id).
+has_in_port(1, 1).
+has_in_port(1, 2).
+has_in_port(1, 3).
+has_in_port(1, 4).
+has_in_port(1, 5).
+has_in_port(1, 9).
+has_in_port(1, 10).
+has_in_port(1, 11).
+has_in_port(2, 7).
+has_in_port(3, 12).
+has_in_port(3, 13).
+has_in_port(4, 15).
+has_in_port(4, 16).
+has_in_port(4, 17).
+has_in_port(4, 18).
+
+% FACT: has_out_port(block_id, port_id).
+has_out_port(1, 6).
+has_out_port(2, 8).
+has_out_port(3, 14).
+has_out_port(4, 19).
+
+% FACT: data(data_id, data_name, qualified_data_name).
+data(1, 'prediction.year', '[prediction.year]').
+data(2, 'shapefile_archive', '[shapefile_archive]').
+data(3, 'user_label_itrdb', '[user_label_itrdb]').
+data(4, 'calibration.year', '[calibration.year]').
+data(5, 'tree_buffer', '[tree_buffer]').
+data(6, 'ITRDB', '[ITRDB]').
+data(9, 'label', '[label]').
+data(10, 'measurement_type', '[measurement_type]').
+data(11, 'chronology_type', '[chronology_type]').
+data(7, 'shapefile_archive', 'get_itrdb_data[shapefile_archive]').
+data(8, 'shapefile', 'get_itrdb_data[shapefile]').
+data(12, 'tree_buffer', 'get_itrdb_data[tree_buffer]').
+data(13, 'treepolygon', 'get_itrdb_data[treepolygon]').
+data(14, 'user_label_itrdb', 'get_itrdb_data[user_label_itrdb]').
+data(15, 'measurement_type', 'get_itrdb_data[measurement_type]').
+data(16, 'chronology_type', 'get_itrdb_data[chronology_type]').
+data(17, 'ITRDB', 'get_itrdb_data[ITRDB]').
+
+% FACT: channel(channel_id, data_id).
+channel(1, 6).
+channel(2, 7).
+channel(3, 12).
+channel(4, 8).
+channel(5, 13).
+channel(6, 14).
+channel(7, 15).
+channel(8, 16).
+channel(9, 2).
+channel(10, 3).
+channel(11, 5).
+channel(12, 10).
+channel(13, 11).
+channel(14, 17).
+
+% FACT: port_connects_to_channel(port_id, channel_id).
+port_connects_to_channel(19, 1).
+port_connects_to_channel(7, 2).
+port_connects_to_channel(12, 3).
+port_connects_to_channel(8, 4).
+port_connects_to_channel(13, 4).
+port_connects_to_channel(14, 5).
+port_connects_to_channel(15, 5).
+port_connects_to_channel(16, 6).
+port_connects_to_channel(17, 7).
+port_connects_to_channel(18, 8).
+port_connects_to_channel(7, 9).
+port_connects_to_channel(16, 10).
+port_connects_to_channel(12, 11).
+port_connects_to_channel(17, 12).
+port_connects_to_channel(18, 13).
+port_connects_to_channel(19, 14).
+
+% FACT: inflow_connects_to_channel(port_id, channel_id).
+inflow_connects_to_channel(2, 2).
+inflow_connects_to_channel(5, 3).
+inflow_connects_to_channel(3, 6).
+inflow_connects_to_channel(10, 7).
+inflow_connects_to_channel(11, 8).
+inflow_connects_to_channel(2, 9).
+inflow_connects_to_channel(3, 10).
+inflow_connects_to_channel(5, 11).
+inflow_connects_to_channel(10, 12).
+inflow_connects_to_channel(11, 13).
+
+% FACT: outflow_connects_to_channel(port_id, channel_id).
+outflow_connects_to_channel(6, 1).
+outflow_connects_to_channel(6, 14).
+
+% FACT: uri_variable(uri_variable_id, variable_name, port_id).
+
+% FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
+
+% FACT: log_template_variable(log_variable_id, variable_name, log_template_id).

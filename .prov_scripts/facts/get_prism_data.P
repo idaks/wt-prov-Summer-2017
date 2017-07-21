@@ -1,0 +1,17 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'get_prism_data.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 2, 'begin', '@begin', 'get_prism_data').
+annotation(2, 1, 2, 'desc', '@desc', 'download prism data and extract precipitation values for the region of interest.').
+annotation(3, 1, 3, 'in', '@in', 'prism_gridded_data').
+annotation(4, 1, 3, 'uri', '@uri', 'http://www.prism.oregonstate.edu/historical/').
+annotation(5, 1, 5, 'out', '@out', 'prism_data').
+annotation(6, 1, 5, 'uri', '@uri', 'file:/data/{data_file}.nc').
+annotation(7, 1, 6, 'end', '@end', 'get_prism_data').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(2, 1).
+annotation_qualifies(4, 3).
+annotation_qualifies(6, 5).

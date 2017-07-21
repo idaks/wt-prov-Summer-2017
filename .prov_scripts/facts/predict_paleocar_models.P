@@ -1,0 +1,26 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'predict_paleocar_models.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 1, 'begin', '@begin', 'exrtact_prediction_model').
+annotation(2, 1, 1, 'desc', '@desc', 'extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.').
+annotation(3, 1, 2, 'param', '@PARAM', 'meanvariance').
+annotation(4, 1, 3, 'param', '@param', 'floor').
+annotation(5, 1, 4, 'in', '@IN', 'models').
+annotation(6, 1, 4, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.models.rds').
+annotation(7, 1, 5, 'param', '@param', 'ceiling').
+annotation(8, 1, 6, 'in', '@IN', 'prediction.years').
+annotation(9, 1, 7, 'out', '@OUT', 'plot').
+annotation(10, 1, 7, 'as', '@as', 'timeseries_plot_prediction').
+annotation(11, 1, 7, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/prediction.jpg').
+annotation(12, 1, 8, 'out', '@OUT', 'predictions_model').
+annotation(13, 1, 8, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
+annotation(14, 1, 9, 'end', '@end', 'predict_paleocar_models').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(2, 1).
+annotation_qualifies(6, 5).
+annotation_qualifies(10, 9).
+annotation_qualifies(11, 9).
+annotation_qualifies(13, 12).

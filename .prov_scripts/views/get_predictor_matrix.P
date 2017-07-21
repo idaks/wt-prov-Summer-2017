@@ -1,0 +1,103 @@
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_source_file(SourceId, SourceFile).
+%...................................................................................................
+yw_source_file(1,'get_predictor_matrix.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_script(WorkflowId, WorkflowName, SourceId, SourceFile).
+%...................................................................................................
+yw_workflow_script(1,get_predictor_matrix,1,'get_predictor_matrix.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_program(1,get_predictor_matrix,nil,1,1,8).
+yw_program(2,get_predictor_matrix,1,1,1,8).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow(1,get_predictor_matrix,nil,1,1,8).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow_step(2,get_predictor_matrix,1,1,1,8).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_function(FunctionId, FunctionName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
+%...................................................................................................
+yw_data(5,'max.preds',1,get_predictor_matrix).
+yw_data(5,'max.preds',nil,nil).
+yw_data(4,'predictor.matrix',1,get_predictor_matrix).
+yw_data(4,'predictor.matrix',nil,nil).
+yw_data(3,'min.width',1,get_predictor_matrix).
+yw_data(3,'min.width',nil,nil).
+yw_data(2,calibration_year,1,get_predictor_matrix).
+yw_data(2,calibration_year,nil,nil).
+yw_data(1,itrdb,1,get_predictor_matrix).
+yw_data(1,itrdb,nil,nil).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_qualified_name(EntityType, Id, QualifiedName).
+%...................................................................................................
+yw_qualified_name(program,1,get_predictor_matrix).
+yw_qualified_name(program,2,'get_predictor_matrix.get_predictor_matrix').
+yw_qualified_name(port,1,'get_predictor_matrix<-chronologies').
+yw_qualified_name(port,2,'get_predictor_matrix<-calibration.years').
+yw_qualified_name(port,3,'get_predictor_matrix<-min.width').
+yw_qualified_name(port,4,'get_predictor_matrix->predictor.matrix').
+yw_qualified_name(port,5,'get_predictor_matrix->max.preds').
+yw_qualified_name(port,6,'get_predictor_matrix.get_predictor_matrix<-chronologies').
+yw_qualified_name(port,7,'get_predictor_matrix.get_predictor_matrix<-calibration.years').
+yw_qualified_name(port,8,'get_predictor_matrix.get_predictor_matrix<-min.width').
+yw_qualified_name(port,9,'get_predictor_matrix.get_predictor_matrix->predictor.matrix').
+yw_qualified_name(port,10,'get_predictor_matrix.get_predictor_matrix->max.preds').
+yw_qualified_name(data,1,'[itrdb]').
+yw_qualified_name(data,2,'[calibration_year]').
+yw_qualified_name(data,3,'[min.width]').
+yw_qualified_name(data,4,'[predictor.matrix]').
+yw_qualified_name(data,5,'[max.preds]').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_description(EntityType, Id, Name, Description)).
+%...................................................................................................

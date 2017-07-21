@@ -1,0 +1,102 @@
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_source_file(SourceId, SourceFile).
+%...................................................................................................
+yw_source_file(1,'getcarscores.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_script(WorkflowId, WorkflowName, SourceId, SourceFile).
+%...................................................................................................
+yw_workflow_script(1,get_car_scores,1,'getcarscores.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_program(1,get_car_scores,nil,1,1,5).
+yw_program(2,get_car_scores,1,1,1,5).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow(1,get_car_scores,nil,1,1,5).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow_step(2,get_car_scores,1,1,1,5).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_function(FunctionId, FunctionName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
+%...................................................................................................
+yw_data(3,carscores,1,get_car_scores).
+yw_data(3,carscores,nil,nil).
+yw_data(2,'predictor.matrix',1,get_car_scores).
+yw_data(2,'predictor.matrix',nil,nil).
+yw_data(1,'predictand.matrix',1,get_car_scores).
+yw_data(1,'predictand.matrix',nil,nil).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_input(2,get_car_scores,in,5,'predictor.matrix',2,'predictor.matrix').
+yw_step_input(2,get_car_scores,in,4,'predictand.matrix',1,'predictand.matrix').
+yw_step_input(1,get_car_scores,in,2,'predictor.matrix',2,'predictor.matrix').
+yw_step_input(1,get_car_scores,in,1,'predictand.matrix',1,'predictand.matrix').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_output(1,get_car_scores,out,3,list,3,carscores).
+yw_step_output(2,get_car_scores,out,6,list,3,carscores).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
+%...................................................................................................
+yw_inflow(1,get_car_scores,2,'predictor.matrix',2,get_car_scores).
+yw_inflow(1,get_car_scores,1,'predictand.matrix',2,get_car_scores).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
+%...................................................................................................
+yw_outflow(2,get_car_scores,3,carscores,1,get_car_scores,3,carscores).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_qualified_name(EntityType, Id, QualifiedName).
+%...................................................................................................
+yw_qualified_name(program,1,get_car_scores).
+yw_qualified_name(program,2,'get_car_scores.get_car_scores').
+yw_qualified_name(port,1,'get_car_scores<-predictand.matrix').
+yw_qualified_name(port,2,'get_car_scores<-predictor.matrix').
+yw_qualified_name(port,3,'get_car_scores->list').
+yw_qualified_name(port,4,'get_car_scores.get_car_scores<-predictand.matrix').
+yw_qualified_name(port,5,'get_car_scores.get_car_scores<-predictor.matrix').
+yw_qualified_name(port,6,'get_car_scores.get_car_scores->list').
+yw_qualified_name(data,1,'[predictand.matrix]').
+yw_qualified_name(data,2,'[predictor.matrix]').
+yw_qualified_name(data,3,'[carscores]').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_description(EntityType, Id, Name, Description)).
+%...................................................................................................

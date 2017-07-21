@@ -1,0 +1,68 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'get_itrdb_data.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 1, 'begin', '@begin', 'get_itrdb_data').
+annotation(2, 1, 1, 'desc', '@desc', 'Get tree ring data for 10 deg width buffer using shapefile and for 60 years (1924:1983)').
+annotation(3, 1, 4, 'in', '@in', 'prediction_year').
+annotation(4, 1, 4, 'as', '@as', 'prediction.year').
+annotation(5, 1, 6, 'in', '@in', 'shapefile_archive').
+annotation(6, 1, 6, 'uri', '@uri', 'http://nrdata.nps.gov/programs/Lands/grca_tracts.zip').
+annotation(7, 1, 7, 'in', '@in', 'user_label_itrdb').
+annotation(8, 1, 8, 'param', '@param', 'calibration_year').
+annotation(9, 1, 8, 'as', '@as', 'calibration.year').
+annotation(10, 1, 9, 'param', '@param', 'tree_buffer').
+annotation(11, 1, 9, 'uri', '@uri', '10_degree_buffer_around_the_area').
+annotation(12, 1, 12, 'out', '@out', 'ITRDB').
+annotation(13, 1, 15, 'begin', '@begin', 'get_shapefile').
+annotation(14, 1, 15, 'desc', '@desc', 'download shapefile archive and extract the shapefile for the grca region.').
+annotation(15, 1, 16, 'in', '@in', 'spatial_polygon').
+annotation(16, 1, 16, 'as', '@as', 'shapefile_archive').
+annotation(17, 1, 18, 'out', '@out', 'polygon_shape').
+annotation(18, 1, 18, 'as', '@as', 'shapefile').
+annotation(19, 1, 18, 'uri', '@uri', 'file:/data-raw/grca.shx').
+annotation(20, 1, 19, 'end', '@end', 'get_shapefile').
+annotation(21, 1, 21, 'param', '@param', 'label').
+annotation(22, 1, 22, 'param', '@param', 'measurement_type').
+annotation(23, 1, 23, 'param', '@param', 'chronology_type').
+annotation(24, 1, 25, 'begin', '@begin', 'get_treepolygon').
+annotation(25, 1, 25, 'desc', '@desc', 'Get Tree-ring data from the ITRDB for tree_buffer around GRCA').
+annotation(26, 1, 26, 'in', '@in', 'width').
+annotation(27, 1, 26, 'as', '@as', 'tree_buffer').
+annotation(28, 1, 27, 'in', '@in', 'polygon').
+annotation(29, 1, 27, 'as', '@as', 'shapefile').
+annotation(30, 1, 28, 'out', '@out', 'treepolygon').
+annotation(31, 1, 28, 'as', '@as', 'treepolygon').
+annotation(32, 1, 30, 'end', '@end', 'get_treepolygon').
+annotation(33, 1, 32, 'begin', '@begin', 'get_tree_ring_data').
+annotation(34, 1, 32, 'desc', '@desc', 'Extract tree ring data for the grca region using get_itrdb function and treepolygon template.').
+annotation(35, 1, 33, 'in', '@in', 'treepolygon').
+annotation(36, 1, 34, 'param', '@param', 'label').
+annotation(37, 1, 34, 'as', '@as', 'user_label_itrdb').
+annotation(38, 1, 35, 'param', '@param', 'measurement_type').
+annotation(39, 1, 36, 'param', '@param', 'chronology_type').
+annotation(40, 1, 37, 'out', '@out', 'itrdb').
+annotation(41, 1, 37, 'as', '@as', 'ITRDB').
+annotation(42, 1, 37, 'uri', '@uri', 'file:/data/itrdb.Rda').
+annotation(43, 1, 38, 'end', '@end', 'get_itrdb').
+annotation(44, 1, 40, 'end', '@end', 'get_itrdb_data').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(2, 1).
+annotation_qualifies(4, 3).
+annotation_qualifies(6, 5).
+annotation_qualifies(9, 8).
+annotation_qualifies(11, 10).
+annotation_qualifies(14, 13).
+annotation_qualifies(16, 15).
+annotation_qualifies(18, 17).
+annotation_qualifies(19, 17).
+annotation_qualifies(25, 24).
+annotation_qualifies(27, 26).
+annotation_qualifies(29, 28).
+annotation_qualifies(31, 30).
+annotation_qualifies(34, 33).
+annotation_qualifies(37, 36).
+annotation_qualifies(41, 40).
+annotation_qualifies(42, 40).

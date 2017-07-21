@@ -1,0 +1,121 @@
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_source_file(SourceId, SourceFile).
+%...................................................................................................
+yw_source_file(1,'predict_paleocar_models.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_script(WorkflowId, WorkflowName, SourceId, SourceFile).
+%...................................................................................................
+yw_workflow_script(1,exrtact_prediction_model,1,'predict_paleocar_models.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_program(1,exrtact_prediction_model,nil,1,1,9).
+yw_program(2,exrtact_prediction_model,1,1,1,9).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow(1,exrtact_prediction_model,nil,1,1,9).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow_step(2,exrtact_prediction_model,1,1,1,9).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_function(FunctionId, FunctionName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
+%...................................................................................................
+yw_data(7,predictions_model,1,exrtact_prediction_model).
+yw_data(7,predictions_model,nil,nil).
+yw_data(6,timeseries_plot_prediction,1,exrtact_prediction_model).
+yw_data(6,timeseries_plot_prediction,nil,nil).
+yw_data(5,'prediction.years',1,exrtact_prediction_model).
+yw_data(5,'prediction.years',nil,nil).
+yw_data(4,ceiling,1,exrtact_prediction_model).
+yw_data(4,ceiling,nil,nil).
+yw_data(3,models,1,exrtact_prediction_model).
+yw_data(3,models,nil,nil).
+yw_data(2,floor,1,exrtact_prediction_model).
+yw_data(2,floor,nil,nil).
+yw_data(1,meanvariance,1,exrtact_prediction_model).
+yw_data(1,meanvariance,nil,nil).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_input(2,exrtact_prediction_model,param,11,ceiling,4,ceiling).
+yw_step_input(2,exrtact_prediction_model,param,9,floor,2,floor).
+yw_step_input(1,exrtact_prediction_model,param,4,ceiling,4,ceiling).
+yw_step_input(1,exrtact_prediction_model,param,2,floor,2,floor).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
+%...................................................................................................
+yw_inflow(1,exrtact_prediction_model,4,ceiling,2,exrtact_prediction_model).
+yw_inflow(1,exrtact_prediction_model,2,floor,2,exrtact_prediction_model).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_qualified_name(EntityType, Id, QualifiedName).
+%...................................................................................................
+yw_qualified_name(program,1,exrtact_prediction_model).
+yw_qualified_name(program,2,'exrtact_prediction_model.exrtact_prediction_model').
+yw_qualified_name(port,1,'exrtact_prediction_model<-meanvariance').
+yw_qualified_name(port,2,'exrtact_prediction_model<-floor').
+yw_qualified_name(port,3,'exrtact_prediction_model<-models').
+yw_qualified_name(port,4,'exrtact_prediction_model<-ceiling').
+yw_qualified_name(port,5,'exrtact_prediction_model<-prediction.years').
+yw_qualified_name(port,6,'exrtact_prediction_model->plot').
+yw_qualified_name(port,7,'exrtact_prediction_model->predictions_model').
+yw_qualified_name(port,8,'exrtact_prediction_model.exrtact_prediction_model<-meanvariance').
+yw_qualified_name(port,9,'exrtact_prediction_model.exrtact_prediction_model<-floor').
+yw_qualified_name(port,10,'exrtact_prediction_model.exrtact_prediction_model<-models').
+yw_qualified_name(port,11,'exrtact_prediction_model.exrtact_prediction_model<-ceiling').
+yw_qualified_name(port,12,'exrtact_prediction_model.exrtact_prediction_model<-prediction.years').
+yw_qualified_name(port,13,'exrtact_prediction_model.exrtact_prediction_model->plot').
+yw_qualified_name(port,14,'exrtact_prediction_model.exrtact_prediction_model->predictions_model').
+yw_qualified_name(data,1,'[meanvariance]').
+yw_qualified_name(data,2,'[floor]').
+yw_qualified_name(data,3,'[models]').
+yw_qualified_name(data,4,'[ceiling]').
+yw_qualified_name(data,5,'[prediction.years]').
+yw_qualified_name(data,6,'[timeseries_plot_prediction]').
+yw_qualified_name(data,7,'[predictions_model]').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_description(EntityType, Id, Name, Description)).
+%...................................................................................................
+yw_description(program,1,exrtact_prediction_model,'extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.').
+yw_description(program,2,exrtact_prediction_model,'extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.').
