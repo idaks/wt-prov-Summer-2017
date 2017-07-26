@@ -5,12 +5,10 @@ EQ2 : What are the names N of all program blocks?
 
 eq2(ProgramName)
 ...................................................................................................
-eq2(extract_uncertainty_model).
-eq2(exrtact_prediction_model).
-eq2(gen_paleocar_model).
-eq2(extract_prism_data).
-eq2(get_user_input).
-eq2(exec_paleocar).
+eq2(get_tree_ring_data).
+eq2(get_treepolygon).
+eq2(get_shapefile).
+eq2(get_itrdb_data).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -18,16 +16,8 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(uncertainty_model).
-eq3(model).
-eq3(paleocar_models).
-eq3(log_file).
-eq3(plot).
-eq3(prism_data_for_coordinates).
-eq3(prediction_model).
-eq3(paleocar_model_log_file).
-eq3(prediction_plot).
-eq3(uncertainty_plot).
+eq3(itrdb).
+eq3(polygon_shape).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -35,6 +25,9 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
+yw_q2(get_tree_ring_data,'Extract tree ring data for the grca region using get_itrdb function and treepolygon template.').
+yw_q2(get_treepolygon,'Get Tree-ring data from the ITRDB for tree_buffer around GRCA').
+yw_q2(get_shapefile,'download shapefile archive and extract the shapefile for the grca region.').
 
 
 ---------------------------------------------------------------------------------------------------
@@ -49,12 +42,6 @@ YW_Q6 : What are the output data for the paleocar?
 
 yw_q6(DataName)
 ...................................................................................................
-yw_q6(paleocar_models).
-yw_q6(prediction_model).
-yw_q6(uncertainty_model).
-yw_q6(prediction_plot).
-yw_q6(uncertainty_plot).
-yw_q6(paleocar_model_log_file).
 
 
 ---------------------------------------------------------------------------------------------------

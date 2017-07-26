@@ -5,7 +5,7 @@ EQ2 : What are the names N of all program blocks?
 
 eq2(ProgramName)
 ...................................................................................................
-eq2(exrtact_prediction_model).
+eq2(get_prism_data).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -13,8 +13,7 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(predictions_model).
-eq3(plot).
+eq3(prism_data).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -22,6 +21,7 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
+yw_q2(get_prism_data,'download prism data and extract precipitation values for the region of interest.').
 
 
 ---------------------------------------------------------------------------------------------------

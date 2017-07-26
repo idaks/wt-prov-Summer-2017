@@ -5,10 +5,7 @@ EQ2 : What are the names N of all program blocks?
 
 eq2(ProgramName)
 ...................................................................................................
-eq2(get_tree_ring_data).
-eq2(get_treepolygon).
-eq2(get_shapefile).
-eq2(get_itrdb_data).
+eq2(exrtact_prediction_model).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -16,8 +13,8 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(itrdb).
-eq3(polygon_shape).
+eq3(predictions_model).
+eq3(plot).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -25,6 +22,7 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
+yw_q2(exrtact_prediction_model,'extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.').
 
 
 ---------------------------------------------------------------------------------------------------

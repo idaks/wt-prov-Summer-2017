@@ -22,6 +22,7 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
+yw_q2(extract_uncertainty_model,'extract the LOOCV uncertainty information from the set of Paleocar models for specified period.').
 
 
 ---------------------------------------------------------------------------------------------------

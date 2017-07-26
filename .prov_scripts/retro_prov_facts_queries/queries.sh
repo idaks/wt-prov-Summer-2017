@@ -10,10 +10,11 @@ cd $dir
 
 for file in `ls -a *.P` ;
 do
-xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN > ../results/${file}
+xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN > ../results/${file:0:${#file}-2}.log
 
 ['../facts/${file}'].
 ['../models/${file}'].
+['../views/${file}'].
 ['../retro_prov_facts_queries/general_rules.P'].
 ['../retro_prov_facts_queries/yw_views.P'].
 
@@ -53,9 +54,9 @@ banner( 'YW_Q2',
 yw_q2(StepName, Description) :-
     yw_workflow_script(WorkflowId,_,_,_),
     yw_workflow_step(StepId, StepName, WorkflowId, _, _, _),
-    yw_description(program, StepId, _, Description).
+    yw_description(Program, StepId, _, Description).
 end_of_file.
-printall(yw_q2(_)).
+printall(yw_q2(_,_)).
 %-------------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------------
@@ -67,7 +68,7 @@ banner( 'YW_Q4','What are the names and descriptions of any outputs of the workf
 yw_q4(OutputName,Description) :-
     yw_workflow_script(WorkflowId,_,_,_), yw_step_output(WorkflowId, _, _, PortId, _,_, OutputName), yw_description(port, PortId, _, Description).
 end_of_file.
-printall(yw_q4(_)).
+printall(yw_q4(_,_)).
 %-------------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------------
@@ -77,9 +78,9 @@ banner( 'YW_Q6',
         'What are the output data for the paleocar?',
         'yw_q6(DataName)').
 [user].
-:- table yw_q6/2.
+:- table yw_q6/1.
 yw_q6(DataName) :-
-                        yw_outflow(_,_,_,DataName,_,exec_paleocar,_,_).
+         yw_outflow(_,_,_,DataName,_,exec_paleocar,_,_).
 end_of_file.
 printall(yw_q6(_)).
 %-------------------------------------------------------------------------------
@@ -98,7 +99,7 @@ yw_q7(DataName,StepName) :-
 			yw_flow(_, SourceProgramName, _, _, _,_, _, _, _, StepName),
 			yw_inflow(_,_,_,DataName,_,SourceProgramName).
 end_of_file.
-printall(yw_q7(_)).
+printall(yw_q7(_,_)).
 %-------------------------------------------------------------------------------
 
 

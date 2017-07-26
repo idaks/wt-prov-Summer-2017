@@ -20,8 +20,8 @@ paleocar_model_log_file [shape=record rankdir=LR label="{<f0> paleocar_model_log
 user_map_marker_pos
 user_prediction_year
 coordinates
-prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{data_file\}.csv}"];
 "prediction.year"
+prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{data_file\}.csv}"];
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
 prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:/data/\{data_file\}.nc}"];
 calibration_year
@@ -37,7 +37,7 @@ gen_paleocar_model -> paleocar_models
 gen_paleocar_model -> paleocar_model_log_file
 calibration_year -> gen_paleocar_model
 itrdb -> gen_paleocar_model
-prediction_year -> gen_paleocar_model
+"prediction.year" -> gen_paleocar_model
 prism_data_for_coordinates -> gen_paleocar_model
 exrtact_prediction_model -> prediction_model
 exrtact_prediction_model -> prediction_plot
