@@ -10,7 +10,6 @@ Meteor.startup(function () {
   // Load exec
   var exec = Npm.require("child_process").exec;
   var cmd = Meteor.wrapAsync(exec);
-  var require = __meteor_bootstrap__.require ? __meteor_bootstrap__.require : Npm.require;
   var fs = Npm.require("fs");
   
 /*  var download = Npm.require('file-download');
