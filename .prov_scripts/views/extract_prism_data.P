@@ -1,0 +1,112 @@
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_source_file(SourceId, SourceFile).
+%...................................................................................................
+yw_source_file(1,'extract_prism_data.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_script(WorkflowId, WorkflowName, SourceId, SourceFile).
+%...................................................................................................
+yw_workflow_script(1,extract_prism_data,1,'extract_prism_data.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_program(1,extract_prism_data,nil,1,35,44).
+yw_program(2,extract_prism_data,1,1,35,44).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow(1,extract_prism_data,nil,1,35,44).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow_step(2,extract_prism_data,1,1,35,44).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_function(FunctionId, FunctionName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
+%...................................................................................................
+yw_data(3,prism_data_for_coordinates,1,extract_prism_data).
+yw_data(3,prism_data_for_coordinates,nil,nil).
+yw_data(2,prism_data,1,extract_prism_data).
+yw_data(2,prism_data,nil,nil).
+yw_data(1,coordinates,1,extract_prism_data).
+yw_data(1,coordinates,nil,nil).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_input(2,extract_prism_data,param,5,prism_data,2,prism_data).
+yw_step_input(2,extract_prism_data,in,4,coordinates,1,coordinates).
+yw_step_input(1,extract_prism_data,param,2,prism_data,2,prism_data).
+yw_step_input(1,extract_prism_data,in,1,coordinates,1,coordinates).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_output(1,extract_prism_data,out,3,prism_data_for_coordinates,3,prism_data_for_coordinates).
+yw_step_output(2,extract_prism_data,out,6,prism_data_for_coordinates,3,prism_data_for_coordinates).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
+%...................................................................................................
+yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
+yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
+%...................................................................................................
+yw_outflow(2,extract_prism_data,3,prism_data_for_coordinates,1,extract_prism_data,3,prism_data_for_coordinates).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_qualified_name(EntityType, Id, QualifiedName).
+%...................................................................................................
+yw_qualified_name(program,1,extract_prism_data).
+yw_qualified_name(program,2,'extract_prism_data.extract_prism_data').
+yw_qualified_name(port,1,'extract_prism_data<-coordinates').
+yw_qualified_name(port,2,'extract_prism_data<-prism_data').
+yw_qualified_name(port,3,'extract_prism_data->prism_data_for_coordinates').
+yw_qualified_name(port,4,'extract_prism_data.extract_prism_data<-coordinates').
+yw_qualified_name(port,5,'extract_prism_data.extract_prism_data<-prism_data').
+yw_qualified_name(port,6,'extract_prism_data.extract_prism_data->prism_data_for_coordinates').
+yw_qualified_name(data,1,'[coordinates]').
+yw_qualified_name(data,2,'[prism_data]').
+yw_qualified_name(data,3,'[prism_data_for_coordinates]').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_description(EntityType, Id, Name, Description)).
+%...................................................................................................
+yw_description(program,1,extract_prism_data,'Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.').
+yw_description(program,2,extract_prism_data,'Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.').
+yw_description(port,1,coordinates,'Coordinates of location for reconstruction of paleoclimate.').
+yw_description(port,2,prism_data,'file containing the precipitation values for the particular region.').
+yw_description(port,2,prism_data,'file containing the precipitation values for the particular region').
+yw_description(port,3,prism_data_for_coordinates,'file containing the precipitation values for the selected region.').
+yw_description(port,4,coordinates,'Coordinates of location for reconstruction of paleoclimate.').
+yw_description(port,5,prism_data,'file containing the precipitation values for the particular region.').
+yw_description(port,5,prism_data,'file containing the precipitation values for the particular region').
+yw_description(port,6,prism_data_for_coordinates,'file containing the precipitation values for the selected region.').

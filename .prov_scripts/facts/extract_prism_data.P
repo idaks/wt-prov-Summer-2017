@@ -1,0 +1,26 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'extract_prism_data.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 35, 'begin', '@begin', 'extract_prism_data').
+annotation(2, 1, 35, 'desc', '@desc', 'Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.').
+annotation(3, 1, 37, 'in', '@in', 'coordinates').
+annotation(4, 1, 37, 'desc', '@desc', 'Coordinates of location for reconstruction of paleoclimate.').
+annotation(5, 1, 38, 'param', '@param', 'prism_data').
+annotation(6, 1, 38, 'desc', '@desc', 'file containing the precipitation values for the particular region.').
+annotation(7, 1, 38, 'uri', '@uri', 'file:/data/{data_file}.nc').
+annotation(8, 1, 38, 'desc', '@desc', 'file containing the precipitation values for the particular region').
+annotation(9, 1, 43, 'out', '@out', 'prism_data_for_coordinates').
+annotation(10, 1, 43, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{data_file}.csv').
+annotation(11, 1, 43, 'desc', '@desc', 'file containing the precipitation values for the selected region.').
+annotation(12, 1, 44, 'end', '@end', 'extract_prism_data').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(2, 1).
+annotation_qualifies(4, 3).
+annotation_qualifies(6, 5).
+annotation_qualifies(7, 5).
+annotation_qualifies(8, 5).
+annotation_qualifies(10, 9).
+annotation_qualifies(11, 9).

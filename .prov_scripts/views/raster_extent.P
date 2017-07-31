@@ -1,0 +1,108 @@
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_source_file(SourceId, SourceFile).
+%...................................................................................................
+yw_source_file(1,'raster_extent.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_script(WorkflowId, WorkflowName, SourceId, SourceFile).
+%...................................................................................................
+yw_workflow_script(1,gen_boundary_region,1,'raster_extent.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_program(1,gen_boundary_region,nil,1,26,32).
+yw_program(2,gen_boundary_region,1,1,26,32).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow(1,gen_boundary_region,nil,1,26,32).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow_step(2,gen_boundary_region,1,1,26,32).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_function(FunctionId, FunctionName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
+%...................................................................................................
+yw_data(3,boundary_coordinates,1,gen_boundary_region).
+yw_data(3,boundary_coordinates,nil,nil).
+yw_data(2,prism_data,1,gen_boundary_region).
+yw_data(2,prism_data,nil,nil).
+yw_data(1,user_map_marker_pos,1,gen_boundary_region).
+yw_data(1,user_map_marker_pos,nil,nil).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_input(2,gen_boundary_region,param,5,prism_data,2,prism_data).
+yw_step_input(2,gen_boundary_region,in,4,user_map_marker_pos,1,user_map_marker_pos).
+yw_step_input(1,gen_boundary_region,param,2,prism_data,2,prism_data).
+yw_step_input(1,gen_boundary_region,in,1,user_map_marker_pos,1,user_map_marker_pos).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_output(1,gen_boundary_region,out,3,boundary_coordinates,3,boundary_coordinates).
+yw_step_output(2,gen_boundary_region,out,6,boundary_coordinates,3,boundary_coordinates).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
+%...................................................................................................
+yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
+yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
+%...................................................................................................
+yw_outflow(2,gen_boundary_region,3,boundary_coordinates,1,gen_boundary_region,3,boundary_coordinates).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_qualified_name(EntityType, Id, QualifiedName).
+%...................................................................................................
+yw_qualified_name(program,1,gen_boundary_region).
+yw_qualified_name(program,2,'gen_boundary_region.gen_boundary_region').
+yw_qualified_name(port,1,'gen_boundary_region<-user_map_marker_pos').
+yw_qualified_name(port,2,'gen_boundary_region<-prism_data').
+yw_qualified_name(port,3,'gen_boundary_region->boundary_coordinates').
+yw_qualified_name(port,4,'gen_boundary_region.gen_boundary_region<-user_map_marker_pos').
+yw_qualified_name(port,5,'gen_boundary_region.gen_boundary_region<-prism_data').
+yw_qualified_name(port,6,'gen_boundary_region.gen_boundary_region->boundary_coordinates').
+yw_qualified_name(data,1,'[user_map_marker_pos]').
+yw_qualified_name(data,2,'[prism_data]').
+yw_qualified_name(data,3,'[boundary_coordinates]').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_description(EntityType, Id, Name, Description)).
+%...................................................................................................
+yw_description(port,1,user_map_marker_pos,'Coordinates of location for reconstruction of paleoclimate.').
+yw_description(port,2,prism_data,'file containing the precipitation values for the particular region').
+yw_description(port,3,boundary_coordinates,'the lat and long values of the boundary region.').
+yw_description(port,4,user_map_marker_pos,'Coordinates of location for reconstruction of paleoclimate.').
+yw_description(port,5,prism_data,'file containing the precipitation values for the particular region').
+yw_description(port,6,boundary_coordinates,'the lat and long values of the boundary region.').

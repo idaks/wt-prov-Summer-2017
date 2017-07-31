@@ -1,0 +1,32 @@
+digraph Workflow {
+rankdir=TB
+fontname=Helvetica; fontsize=18; labelloc=t
+label=""
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+extract_prism_data [shape=record rankdir=LR label="{<f0> extract_prism_data |<f1> Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.}"];
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{data_file\}.csv}"];
+coordinates
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:/data/\{data_file\}.nc}"];
+extract_prism_data -> prism_data_for_coordinates
+coordinates -> extract_prism_data
+prism_data -> extract_prism_data
+}}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+coordinates_input_port [label=""]
+prism_data_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+prism_data_for_coordinates_output_port [label=""]
+}}
+coordinates_input_port -> coordinates
+prism_data_input_port -> prism_data
+prism_data_for_coordinates -> prism_data_for_coordinates_output_port
+}

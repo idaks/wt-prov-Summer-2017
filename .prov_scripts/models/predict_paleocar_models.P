@@ -16,14 +16,14 @@ port(1, 'PARAM', 'meanvariance', 'exrtact_prediction_model<-meanvariance', 3, 1)
 port(2, 'param', 'floor', 'exrtact_prediction_model<-floor', 4, 2).
 port(3, 'IN', 'models', 'exrtact_prediction_model<-models', 5, 3).
 port(4, 'param', 'ceiling', 'exrtact_prediction_model<-ceiling', 7, 4).
-port(5, 'IN', 'prediction.years', 'exrtact_prediction_model<-prediction.years', 8, 5).
+port(5, 'IN', 'prediction_years', 'exrtact_prediction_model<-prediction_years', 8, 5).
 port(6, 'OUT', 'plot', 'exrtact_prediction_model->plot', 9, 6).
 port(7, 'OUT', 'predictions_model', 'exrtact_prediction_model->predictions_model', 12, 7).
 port(8, 'PARAM', 'meanvariance', 'exrtact_prediction_model.exrtact_prediction_model<-meanvariance', 3, 1).
 port(9, 'param', 'floor', 'exrtact_prediction_model.exrtact_prediction_model<-floor', 4, 2).
 port(10, 'IN', 'models', 'exrtact_prediction_model.exrtact_prediction_model<-models', 5, 3).
 port(11, 'param', 'ceiling', 'exrtact_prediction_model.exrtact_prediction_model<-ceiling', 7, 4).
-port(12, 'IN', 'prediction.years', 'exrtact_prediction_model.exrtact_prediction_model<-prediction.years', 8, 5).
+port(12, 'IN', 'prediction_years', 'exrtact_prediction_model.exrtact_prediction_model<-prediction_years', 8, 5).
 port(13, 'OUT', 'plot', 'exrtact_prediction_model.exrtact_prediction_model->plot', 9, 6).
 port(14, 'OUT', 'predictions_model', 'exrtact_prediction_model.exrtact_prediction_model->predictions_model', 12, 7).
 
@@ -62,7 +62,7 @@ data(1, 'meanvariance', '[meanvariance]').
 data(2, 'floor', '[floor]').
 data(3, 'models', '[models]').
 data(4, 'ceiling', '[ceiling]').
-data(5, 'prediction.years', '[prediction.years]').
+data(5, 'prediction_years', '[prediction_years]').
 data(6, 'timeseries_plot_prediction', '[timeseries_plot_prediction]').
 data(7, 'predictions_model', '[predictions_model]').
 

@@ -22,6 +22,7 @@ alias yw="java -jar /d/Study/Internship/WT_PaleoCar_2017/YesWorkflow/yesworkflow
 
 dir="/d/Study/Internship/WT_PaleoCar_2017/meteor_example/wt-prov-summer-2017/.Prov_Scripts/yw_scripts/"
 
+
 cd $dir
 
 

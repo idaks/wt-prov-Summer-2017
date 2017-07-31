@@ -13,11 +13,11 @@ has_subprogram(1, 2).
 
 % FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
 port(1, 'IN', 'models', 'extract_uncertainty_model<-models', 3, 1).
-port(2, 'IN', 'prediction.years', 'extract_uncertainty_model<-prediction.years', 5, 2).
+port(2, 'IN', 'prediction_years', 'extract_uncertainty_model<-prediction_years', 5, 2).
 port(3, 'OUT', 'plot', 'extract_uncertainty_model->plot', 6, 3).
 port(4, 'OUT', 'uncertainty_model', 'extract_uncertainty_model->uncertainty_model', 9, 4).
 port(5, 'IN', 'models', 'extract_uncertainty_model.extract_uncertainty_model<-models', 3, 1).
-port(6, 'IN', 'prediction.years', 'extract_uncertainty_model.extract_uncertainty_model<-prediction.years', 5, 2).
+port(6, 'IN', 'prediction_years', 'extract_uncertainty_model.extract_uncertainty_model<-prediction_years', 5, 2).
 port(7, 'OUT', 'plot', 'extract_uncertainty_model.extract_uncertainty_model->plot', 6, 3).
 port(8, 'OUT', 'uncertainty_model', 'extract_uncertainty_model.extract_uncertainty_model->uncertainty_model', 9, 4).
 
@@ -47,7 +47,7 @@ has_out_port(2, 8).
 
 % FACT: data(data_id, data_name, qualified_data_name).
 data(1, 'models', '[models]').
-data(2, 'prediction.years', '[prediction.years]').
+data(2, 'prediction_years', '[prediction_years]').
 data(3, 'timeseries_plot_uncertainty', '[timeseries_plot_uncertainty]').
 data(4, 'uncertainty_model', '[uncertainty_model]').
 

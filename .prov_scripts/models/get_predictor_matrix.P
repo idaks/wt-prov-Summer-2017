@@ -25,9 +25,9 @@ port(10, 'OUT', 'max.preds', 'get_predictor_matrix.get_predictor_matrix->max.pre
 
 % FACT: port_alias(port_id, alias).
 port_alias(1, 'itrdb').
-port_alias(2, 'calibration_year').
+port_alias(2, 'calibration_years').
 port_alias(6, 'itrdb').
-port_alias(7, 'calibration_year').
+port_alias(7, 'calibration_years').
 
 % FACT: port_uri_template(port_id, uri).
 
@@ -47,7 +47,7 @@ has_out_port(2, 10).
 
 % FACT: data(data_id, data_name, qualified_data_name).
 data(1, 'itrdb', '[itrdb]').
-data(2, 'calibration_year', '[calibration_year]').
+data(2, 'calibration_years', '[calibration_years]').
 data(3, 'min.width', '[min.width]').
 data(4, 'predictor.matrix', '[predictor.matrix]').
 data(5, 'max.preds', '[max.preds]').

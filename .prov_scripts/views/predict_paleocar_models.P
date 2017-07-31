@@ -43,8 +43,8 @@ yw_data(7,predictions_model,1,exrtact_prediction_model).
 yw_data(7,predictions_model,nil,nil).
 yw_data(6,timeseries_plot_prediction,1,exrtact_prediction_model).
 yw_data(6,timeseries_plot_prediction,nil,nil).
-yw_data(5,'prediction.years',1,exrtact_prediction_model).
-yw_data(5,'prediction.years',nil,nil).
+yw_data(5,prediction_years,1,exrtact_prediction_model).
+yw_data(5,prediction_years,nil,nil).
 yw_data(4,ceiling,1,exrtact_prediction_model).
 yw_data(4,ceiling,nil,nil).
 yw_data(3,models,1,exrtact_prediction_model).
@@ -95,21 +95,21 @@ yw_qualified_name(port,1,'exrtact_prediction_model<-meanvariance').
 yw_qualified_name(port,2,'exrtact_prediction_model<-floor').
 yw_qualified_name(port,3,'exrtact_prediction_model<-models').
 yw_qualified_name(port,4,'exrtact_prediction_model<-ceiling').
-yw_qualified_name(port,5,'exrtact_prediction_model<-prediction.years').
+yw_qualified_name(port,5,'exrtact_prediction_model<-prediction_years').
 yw_qualified_name(port,6,'exrtact_prediction_model->plot').
 yw_qualified_name(port,7,'exrtact_prediction_model->predictions_model').
 yw_qualified_name(port,8,'exrtact_prediction_model.exrtact_prediction_model<-meanvariance').
 yw_qualified_name(port,9,'exrtact_prediction_model.exrtact_prediction_model<-floor').
 yw_qualified_name(port,10,'exrtact_prediction_model.exrtact_prediction_model<-models').
 yw_qualified_name(port,11,'exrtact_prediction_model.exrtact_prediction_model<-ceiling').
-yw_qualified_name(port,12,'exrtact_prediction_model.exrtact_prediction_model<-prediction.years').
+yw_qualified_name(port,12,'exrtact_prediction_model.exrtact_prediction_model<-prediction_years').
 yw_qualified_name(port,13,'exrtact_prediction_model.exrtact_prediction_model->plot').
 yw_qualified_name(port,14,'exrtact_prediction_model.exrtact_prediction_model->predictions_model').
 yw_qualified_name(data,1,'[meanvariance]').
 yw_qualified_name(data,2,'[floor]').
 yw_qualified_name(data,3,'[models]').
 yw_qualified_name(data,4,'[ceiling]').
-yw_qualified_name(data,5,'[prediction.years]').
+yw_qualified_name(data,5,'[prediction_years]').
 yw_qualified_name(data,6,'[timeseries_plot_prediction]').
 yw_qualified_name(data,7,'[predictions_model]').
 

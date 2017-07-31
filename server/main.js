@@ -56,7 +56,7 @@ Meteor.startup(function () {
        // console.log(uuid);
     },
 
-    'srv_rd_pc_result': function (filedir,run_id,run_count) 
+    'srv_rd_pc_result': function (filedir,session_id,run_id) 
     {
         //console.log(filedir);
         var data = fs.readFileSync(filedir + '/predictions.jpg');
@@ -67,8 +67,8 @@ Meteor.startup(function () {
         uncertainty= new Buffer(data, 'binary').toString('base64');
         uncertainty = "data:image/jpg;base64,"+ uncertainty;
 
-        DataSource.insert({label: run_id, img_prediction: prediction, img_uncertainty: uncertainty,  dir_loc:filedir, run_count: run_count});
-        //Files.insert({label:run_id,})
+        DataSource.insert({label: session_id, img_prediction: prediction, img_uncertainty: uncertainty,  dir_loc:filedir, run_id: run_id});
+        //Files.insert({label:session_id,})
         folder = fs.readdirSync(filedir);
         var files=[] ;
         folder.forEach(function (file) {
@@ -76,10 +76,10 @@ Meteor.startup(function () {
         //filename= filedir+'\\' +file;
         files.push({filename:file,path: filedir.slice(72) + '\\' + file});
 
-         // Files.insert({label: run_id, counter: run_count, filename:file, path: filedir + '\\' + file, test_dir:filedir});  
+         // Files.insert({label: session_id, counter: run_id, filename:file, path: filedir + '\\' + file, test_dir:filedir});  
         })
         //console.log(files);
-        Files.insert({label: run_id, counter: run_count, files:files, test_dir:filedir.slice(72)});  
+        Files.insert({label: session_id, counter: run_id, files:files, test_dir:filedir.slice(72)});  
         
     },
 /*    prov_gen : function (test_dir) 
@@ -102,7 +102,7 @@ Meteor.startup(function () {
       
     },
 */
-    'insert_pros_prov_img' : function (graphs_dir,run_id,run_count) 
+    'insert_pros_prov_img' : function (graphs_dir,session_id,run_id) 
     {
       var res;
       //console.log("Called pros_prov_img.");
@@ -115,7 +115,7 @@ Meteor.startup(function () {
       data = "data:image/png;base64," + data;
       
 
-      DataSource.insert({label: run_id,name:file,image_data:data, dir_loc: curr_dir, counter: run_count});
+      DataSource.insert({label: session_id,name:file,image_data:data, dir_loc: curr_dir, counter: run_id});
 
       })
       //console.log ("completed");

@@ -10,7 +10,7 @@ node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname
 timeseries_plot_prediction [shape=record rankdir=LR label="{<f0> timeseries_plot_prediction |<f1> file\:/.output/\{session_id\}/\{run_id\}/prediction.jpg}"];
 predictions_model [shape=record rankdir=LR label="{<f0> predictions_model |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.prediction.rds}"];
 models [shape=record rankdir=LR label="{<f0> models |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.models.rds}"];
-"prediction.years"
+prediction_years
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
 meanvariance
 floor
@@ -21,7 +21,7 @@ meanvariance -> exrtact_prediction_model
 floor -> exrtact_prediction_model
 models -> exrtact_prediction_model
 ceiling -> exrtact_prediction_model
-"prediction.years" -> exrtact_prediction_model
+prediction_years -> exrtact_prediction_model
 }}
 subgraph cluster_input_ports_group_outer { label=""; penwidth=0
 subgraph cluster_input_ports_group_inner { label=""; penwidth=0
@@ -30,7 +30,7 @@ meanvariance_input_port [label=""]
 floor_input_port [label=""]
 models_input_port [label=""]
 ceiling_input_port [label=""]
-"prediction.years_input_port" [label=""]
+prediction_years_input_port [label=""]
 }}
 subgraph cluster_output_ports_group_outer { label=""; penwidth=0
 subgraph cluster_output_ports_group_inner { label=""; penwidth=0
@@ -42,7 +42,7 @@ meanvariance_input_port -> meanvariance
 floor_input_port -> floor
 models_input_port -> models
 ceiling_input_port -> ceiling
-"prediction.years_input_port" -> "prediction.years"
+prediction_years_input_port -> prediction_years
 timeseries_plot_prediction -> timeseries_plot_prediction_output_port
 predictions_model -> predictions_model_output_port
 }

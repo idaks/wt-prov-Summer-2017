@@ -1,0 +1,22 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'raster_extent.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 26, 'begin', '@begin', 'gen_boundary_region').
+annotation(2, 1, 27, 'in', '@in', 'user_map_marker_pos').
+annotation(3, 1, 27, 'desc', '@desc', 'Coordinates of location for reconstruction of paleoclimate.').
+annotation(4, 1, 28, 'param', '@param', 'prism_data').
+annotation(5, 1, 28, 'file', '@file', '{data_file}.nc').
+annotation(6, 1, 28, 'uri', '@uri', 'file:/data/{data_file}.nc').
+annotation(7, 1, 28, 'desc', '@desc', 'file containing the precipitation values for the particular region').
+annotation(8, 1, 31, 'out', '@out', 'boundary_coordinates').
+annotation(9, 1, 31, 'desc', '@desc', 'the lat and long values of the boundary region.').
+annotation(10, 1, 32, 'end', '@end', 'gen_boundary_region').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(3, 2).
+annotation_qualifies(5, 4).
+annotation_qualifies(6, 4).
+annotation_qualifies(7, 4).
+annotation_qualifies(9, 8).

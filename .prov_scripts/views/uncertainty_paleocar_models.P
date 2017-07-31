@@ -43,8 +43,8 @@ yw_data(4,uncertainty_model,1,extract_uncertainty_model).
 yw_data(4,uncertainty_model,nil,nil).
 yw_data(3,timeseries_plot_uncertainty,1,extract_uncertainty_model).
 yw_data(3,timeseries_plot_uncertainty,nil,nil).
-yw_data(2,'prediction.years',1,extract_uncertainty_model).
-yw_data(2,'prediction.years',nil,nil).
+yw_data(2,prediction_years,1,extract_uncertainty_model).
+yw_data(2,prediction_years,nil,nil).
 yw_data(1,models,1,extract_uncertainty_model).
 yw_data(1,models,nil,nil).
 
@@ -80,15 +80,15 @@ yw_data(1,models,nil,nil).
 yw_qualified_name(program,1,extract_uncertainty_model).
 yw_qualified_name(program,2,'extract_uncertainty_model.extract_uncertainty_model').
 yw_qualified_name(port,1,'extract_uncertainty_model<-models').
-yw_qualified_name(port,2,'extract_uncertainty_model<-prediction.years').
+yw_qualified_name(port,2,'extract_uncertainty_model<-prediction_years').
 yw_qualified_name(port,3,'extract_uncertainty_model->plot').
 yw_qualified_name(port,4,'extract_uncertainty_model->uncertainty_model').
 yw_qualified_name(port,5,'extract_uncertainty_model.extract_uncertainty_model<-models').
-yw_qualified_name(port,6,'extract_uncertainty_model.extract_uncertainty_model<-prediction.years').
+yw_qualified_name(port,6,'extract_uncertainty_model.extract_uncertainty_model<-prediction_years').
 yw_qualified_name(port,7,'extract_uncertainty_model.extract_uncertainty_model->plot').
 yw_qualified_name(port,8,'extract_uncertainty_model.extract_uncertainty_model->uncertainty_model').
 yw_qualified_name(data,1,'[models]').
-yw_qualified_name(data,2,'[prediction.years]').
+yw_qualified_name(data,2,'[prediction_years]').
 yw_qualified_name(data,3,'[timeseries_plot_uncertainty]').
 yw_qualified_name(data,4,'[uncertainty_model]').
 

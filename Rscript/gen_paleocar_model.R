@@ -61,6 +61,15 @@ verbose=args[7]
 input_data_type=args[8]
 
 
+#@begin gen_paleocar_model @desc execute paleocar model for reconstruction of paleoclimate of the study region. 
+#@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
+#@in prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/{data_file}.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+#@param itrdb @file {data_file}.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+#@param calibration_years @desc period for calibrating the information for predicting the climate. 
+#@param label @desc user entered label for the study region. 
+
+
+
 ## Check if input_data_type is a vector and execute the paleocar
 if(input_data_type=="v")
 {
@@ -79,7 +88,12 @@ if(input_data_type=="v")
   )
 }
 
-
+#@out prediction_model @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+#@out plot @as prediction_plot  @uri file:/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+#@out model @as uncertainty_model  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
+#@out plot @as uncertainty_plot  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+#@out paleocar_exec_log_file 
+#@end gen_paleocar_model
 ## Check if input_data_type is a matrix and execute the paleocar
 
 if(input_data_type=="m"){
