@@ -223,7 +223,7 @@
 <div class="container">
     {{> Nav}}
     <!-- <img src="paleocar_model.png"  style="width:800px;height:300px;"> -->
-    <p> <b> Session id : {{dis_run_id}} </b> </p>
+    <p> <b> Session id : {{dis_session_id}} </b> </p>
    <!--  {{> btn_show_provenance}}    -->
   <!--  <div  class="card-panel hoverable"> -->
     <table>
@@ -295,7 +295,7 @@
           {{#each show_image}}
           <li>
             <tr>
-            <p> <b> Result of the run: </b> {{run_count}} </p>
+            <p> <b> Result of the run: </b> {{run_id}} </p>
             </tr>
             <tr>            
             </tr>
@@ -348,16 +348,6 @@
     <p class="h5"> <b> Files generated during the execution of PaleoCar run: {{counter}} </b> </p>
     <p class="h5"> <b> Output File Location: {{test_dir}} </b> </p>
     <table>
-      <li>
-      <tr>
-        <td>
-          <strong >112W36N.csv </strong> 
-        </td>
-        <td>
-          <a href=/data/112W36N.csv target="_blank" download>Download</a>
-        </td>
-      </tr>
-      </li>
       {{#each files}}
       <li>
         <td>

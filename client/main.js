@@ -33,10 +33,11 @@ const prediction_years = new ReactiveVar("1850:2000");
 var uuid = Meteor.uuid();
 
 //Generate run counter for each run. 
-var run_count = 0; 
+var run_id = 0; 
 
-var run_id;
+var session_id;
 
+var user_label = "Grca_Region";
 // The current Project Directory,
 
 var curr_dir = "D:\\Study\\Internship\\WT_PaleoCar_2017\\meteor_example\\wt-prov-summer-2017\\";
@@ -61,13 +62,13 @@ var calibration_years="1924:1983";
 
 
 Meteor.startup(function() { 
-  run_id = uuid.slice(0,8); 
+  session_id = uuid.slice(0,8); 
   img_dir = curr_dir + '\\.prov_scripts\\graphs';
 
-/*  if(DataSource.find({label:run_id,run_count:0}).count() < 1 )
+/*  if(DataSource.find({label:run_id,run_id:0}).count() < 1 )
   {
     //alert(run_id);
-    Meteor.call('insert_pros_prov_img',img_dir,run_id,run_count,function(error, result)
+    Meteor.call('insert_pros_prov_img',img_dir,run_id,run_id,function(error, result)
       {
         if (error) 
         {
@@ -255,8 +256,8 @@ Template.pop_lat_lng.helpers({
   },
   txt_runid:function()
   { 
-    //run_id = uuid.slice(0,8); 
-    return run_id;
+    //session_id = uuid.slice(0,8); 
+    return session_id;
   }
 
 });
@@ -268,8 +269,8 @@ Template.btn_exec_paleocar.events({
   'click .exec_PaleoCar':function(){
 
   //Counter for maintaing the execution run.
-    run_count = run_count + 1 ;
-  
+    run_id = run_id + 1 ;
+   //alert(run_id);
   // start the Progress bar
     NProgress.start();
 
@@ -280,11 +281,11 @@ Template.btn_exec_paleocar.events({
     show_pros_prov_img.set(false);
   
     // sEt the test directory
-    test_dir= curr_dir + '.output\\' + run_id + '\\Run_output_'+ run_count ;
+    test_dir= curr_dir + '.output\\' + session_id + '\\Run_output_'+ run_id ;
   // Before execution of paleocar generate the prism data. 
-  //alert(g_Lat.get() + g_Lng.get());  
+    //alert(test_dir);  
  
-  var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' '  + out_file_prism_data  + ' ' + test_dir ;
+  var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\extract_prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' '  + out_file_prism_data  + ' ' + test_dir ;
   
   //alert(cmd_prism_data);
   // Display and Start loading of the Prgoress Bar. 
@@ -301,8 +302,8 @@ Template.btn_exec_paleocar.events({
     });
     
   // Execute  PaleoCAr for the Vector region for now. 
-  var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' + 
-                           test_dir + ' ' +  out_file_prism_data + ' ' + "Grca_Region "  +  calibration_years + ' ' +
+  var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\gen_paleocar_model.R ' + curr_dir + ' ' + 
+                           test_dir + ' ' +  out_file_prism_data + ' ' + user_label + ' ' +  calibration_years + ' ' +
                            prediction_years.get() + ' '+ 'T'+ ' ' + "v" ;
   
   Meteor.call('exec_Rscript',cmd_exe_paleocar,function(error, result)
@@ -317,7 +318,7 @@ Template.btn_exec_paleocar.events({
       }
     }); 
    
-    Meteor.call('srv_rd_pc_result',test_dir,run_id,run_count,function(error, result)
+    Meteor.call('srv_rd_pc_result',test_dir,session_id,run_id,function(error, result)
     {
       if (error) 
       {
@@ -355,11 +356,11 @@ Template.res_img.helpers({
   },
   show_image: function()
   {
-    return DataSource.find({label:run_id});
+    return DataSource.find({label:session_id});
   },
   files: function () {
-    //alert(run_count);
-    return Files.find({label: run_id});
+    //alert(run_id);
+    return Files.find({label: session_id});
   //return Files.find();
   }
 });
@@ -376,7 +377,7 @@ Template.run_result_tbl.helpers({
   },
   run_log_info: function()
   { 
-    return Run_Log.find({label:run_id});
+    return Run_Log.find({label:session_id});
   }
 });
 
@@ -397,18 +398,18 @@ Template.provenance.onCreated(function()
 
 Template.provenance.helpers({
   
-  dis_run_id:function()
+  dis_session_id:function()
   {
-    return run_id;
+    return session_id;
   },
   show_prov_img: function()
   {
-    return DataSource.find({label:run_id,run_count: run_count });
+    return DataSource.find({label:session_id,run_id: run_id });
   },
   show_dir_struture: function()
   { 
-    console.log(Dir_Structure.find({parent: run_id }).fetch());
-    return Dir_Structure.find({parent: run_id +'_' + run_count });
+    console.log(Dir_Structure.find({parent: session_id }).fetch());
+    return Dir_Structure.find({parent: session_id +'_' + run_id });
     //return "Pratik";
   }
 
@@ -446,8 +447,8 @@ Template.execpaleocar.events({
 Template.fileList.helpers({
 result_data: function () 
 {
-    //alert(run_count);
-    return Files.find({label: run_id});
+    //alert(run_id);
+    return Files.find({label: session_id});
   //return Files.find();
 },
 show_res_img:function()
@@ -461,7 +462,7 @@ show_tree_ring_data:function()
 },
 show_tree_ring_files:function()
 {
-  return Tree_Ring_Files.find({label:run_id});
+  return Tree_Ring_Files.find({label:session_id});
 }
 });
 
@@ -485,7 +486,7 @@ Template.fileList.events({
       else 
       {
         show_tree_ring_data.set(true);
-        Tree_Ring_Files.insert({label:run_id,filename:output_file, year:calibration_year, path:test_dir.slice(72) + '\\' + output_file});
+        Tree_Ring_Files.insert({label:session_id,filename:output_file, year:calibration_year, path:test_dir.slice(72) + '\\' + output_file});
       }
     });
   },
