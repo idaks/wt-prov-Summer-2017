@@ -19,7 +19,6 @@ library(raster)
 library(magrittr)
 library(tibble)
 library(readr)
-library(wrapperpaleocar)
 
 ## Create wrapper functions
 
