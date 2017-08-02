@@ -25,30 +25,29 @@ Follow the steps from the readme and execute it once on a local machine.
 wt-prov-summer-2017
    │
    ├── public
-   │     ├── images    // contains paleocar result images 
+   │     ├── images               // contains paleocar result images 
    │     ├── prospective_prov_img // contains provenance graphs images 
    └── server
-         └── main.js   // meteor server side file
-   └── Rscript       // Contains wrapper Rscripts for executing the paleocar. 
+         └── main.js              // meteor server side file
+   └── Rscript                    // Contains wrapper R scripts for executing the paleocar using web application. 
    ├── client  
-   │     ├── main.css     // Client side style sheet
-   │     ├── main.html    // Client side html file
-   │     └── main.js      // Client javascript file 
+   │     ├── main.css            // Client side style sheet
+   │     ├── main.html           // Client side html file
+   │     └── main.js             // Client javascript file 
    ├── data 
-   │     ├── DataSource.js //file containing the collection 
-   │     └── itrdb.rda         
+   │     ├── DataSource.js       // file containing the collection definition.
+   │     └── itrdb.rda           // tree-ring chronologies database.
    ├── lib
-   │     └── routes.js
+   │     └── routes.js           // Rounting information file. 
    ├── .prov_scripts
-         └── routes.js
-         ├── facts
-         ├── graphs
-         ├── gv_files
-         ├── models
-         ├── prov_pdf
-         ├── results
-         ├── retro_prov_facts_queries
-         ├── svg_files
-         ├── views
-         └── yw_scripts
+         ├── facts               // files containing datalog facts for the YW graphs
+         ├── graphs              // YW graphs for the paleocar
+         ├── gv_files            // Dot files for the YW graphs
+         ├── models              // files containing datalog facts for the models used in YW
+         ├── prov_pdf            // YW graphs in pdf format.
+         ├── results             // Results of the queries for each fo the graphs generated.
+         ├── retro_prov_facts_queries // Retrospective queries for the graphs generated. 
+         ├── svg_files           // YW graphs in svg format.
+         ├── views               // YW views 
+         └── yw_scripts          // R scripts with YW annotations.
 </pre> 

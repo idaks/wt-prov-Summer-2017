@@ -474,10 +474,10 @@ Template.fileList.events({
     var output_file =  calibration_year + "_tree_ring_data.csv" ;
     //alert(output_file)
    
-    var cmd_get_predict_val = 'Rscript  '+ curr_dir + 'Rscript\\get_prediction_val.R ' + test_dir + 
+    var cmd_get_tree_ring_val = 'Rscript  '+ curr_dir + 'Rscript\\get_tree_ring_values.R.R ' + test_dir + 
     ' ' +   test_dir + '\\' + event.currentTarget.id + ' ' + calibration_year +' ' + output_file ; 
 
-    Meteor.call('exec_Rscript',cmd_get_predict_val,function(error, result)
+    Meteor.call('exec_Rscript',cmd_get_tree_ring_val,function(error, result)
     {
       if (error) 
       {
