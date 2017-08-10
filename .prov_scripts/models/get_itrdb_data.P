@@ -1,9 +1,12 @@
 
 % FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
-program(1, 'get_itrdb_data', 'get_itrdb_data', 1, 44).
-program(2, 'get_shapefile', 'get_itrdb_data.get_shapefile', 13, 20).
-program(3, 'get_treepolygon', 'get_itrdb_data.get_treepolygon', 24, 32).
-program(4, 'get_tree_ring_data', 'get_itrdb_data.get_tree_ring_data', 33, 43).
+program(1, 'get_itrdb_data', 'get_itrdb_data', 1, 113).
+program(2, 'create_shapefile_dir', 'get_itrdb_data.create_shapefile_dir', 30, 36).
+program(3, 'download_shapefile_archive', 'get_itrdb_data.download_shapefile_archive', 37, 45).
+program(4, 'uncompress_shapefile', 'get_itrdb_data.uncompress_shapefile', 46, 65).
+program(5, 'read_shapefile', 'get_itrdb_data.read_shapefile', 66, 74).
+program(6, 'get_treepolygon', 'get_itrdb_data.get_treepolygon', 75, 85).
+program(7, 'extract_tree_ring_data', 'get_itrdb_data.extract_tree_ring_data', 86, 112).
 
 % FACT: workflow(program_id).
 workflow(1).
@@ -14,44 +17,97 @@ workflow(1).
 has_subprogram(1, 2).
 has_subprogram(1, 3).
 has_subprogram(1, 4).
+has_subprogram(1, 5).
+has_subprogram(1, 6).
+has_subprogram(1, 7).
 
 % FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
-port(1, 'in', 'prediction_year', 'get_itrdb_data<-prediction_year', 3, 1).
-port(2, 'in', 'shapefile_archive', 'get_itrdb_data<-shapefile_archive', 5, 2).
-port(3, 'in', 'user_label_itrdb', 'get_itrdb_data<-user_label_itrdb', 7, 3).
-port(4, 'param', 'calibration_year', 'get_itrdb_data<-calibration_year', 8, 4).
-port(5, 'param', 'tree_buffer', 'get_itrdb_data<-tree_buffer', 10, 5).
-port(9, 'param', 'label', 'get_itrdb_data<-label', 21, 9).
-port(10, 'param', 'measurement_type', 'get_itrdb_data<-measurement_type', 22, 10).
-port(11, 'param', 'chronology_type', 'get_itrdb_data<-chronology_type', 23, 11).
-port(6, 'out', 'ITRDB', 'get_itrdb_data->ITRDB', 12, 6).
-port(7, 'in', 'spatial_polygon', 'get_itrdb_data.get_shapefile<-spatial_polygon', 15, 7).
-port(8, 'out', 'polygon_shape', 'get_itrdb_data.get_shapefile->polygon_shape', 17, 8).
-port(12, 'in', 'width', 'get_itrdb_data.get_treepolygon<-width', 26, 12).
-port(13, 'in', 'polygon', 'get_itrdb_data.get_treepolygon<-polygon', 28, 8).
-port(14, 'out', 'treepolygon', 'get_itrdb_data.get_treepolygon->treepolygon', 30, 13).
-port(15, 'in', 'treepolygon', 'get_itrdb_data.get_tree_ring_data<-treepolygon', 35, 13).
-port(16, 'param', 'label', 'get_itrdb_data.get_tree_ring_data<-label', 36, 14).
-port(17, 'param', 'measurement_type', 'get_itrdb_data.get_tree_ring_data<-measurement_type', 38, 15).
-port(18, 'param', 'chronology_type', 'get_itrdb_data.get_tree_ring_data<-chronology_type', 39, 16).
-port(19, 'out', 'itrdb', 'get_itrdb_data.get_tree_ring_data->itrdb', 40, 17).
+port(1, 'in', 'shapefile_archive', 'get_itrdb_data<-shapefile_archive', 3, 1).
+port(2, 'in', 'study_region', 'get_itrdb_data<-study_region', 5, 2).
+port(3, 'in', 'prediction_years', 'get_itrdb_data<-prediction_years', 7, 3).
+port(4, 'param', 'calibration_years', 'get_itrdb_data<-calibration_years', 9, 4).
+port(5, 'param', 'label', 'get_itrdb_data<-label', 11, 5).
+port(6, 'param', 'raw_dir', 'get_itrdb_data<-raw_dir', 13, 6).
+port(7, 'param', 'extract_dir', 'get_itrdb_data<-extract_dir', 15, 7).
+port(8, 'param', 'chronology_type', 'get_itrdb_data<-chronology_type', 17, 8).
+port(9, 'param', 'measurement_type', 'get_itrdb_data<-measurement_type', 19, 9).
+port(10, 'param', 'tree_buffer', 'get_itrdb_data<-tree_buffer', 21, 10).
+port(11, 'param', 'quadsegs', 'get_itrdb_data<-quadsegs', 23, 11).
+port(12, 'out', 'itrdb', 'get_itrdb_data->itrdb', 25, 12).
+port(13, 'out', 'selected_itrdb', 'get_itrdb_data->selected_itrdb', 26, 13).
+port(14, 'out', 'tracts_files', 'get_itrdb_data->tracts_files', 27, 14).
+port(15, 'out', 'metadata_file', 'get_itrdb_data->metadata_file', 28, 15).
+port(16, 'out', 'tracts_xml', 'get_itrdb_data->tracts_xml', 29, 16).
+port(17, 'in', 'dir_name', 'get_itrdb_data.create_shapefile_dir<-dir_name', 32, 17).
+port(18, 'out', 'user_created_dir', 'get_itrdb_data.create_shapefile_dir->user_created_dir', 34, 18).
+port(19, 'in', 'file_archive', 'get_itrdb_data.download_shapefile_archive<-file_archive', 39, 19).
+port(20, 'in', 'dir', 'get_itrdb_data.download_shapefile_archive<-dir', 41, 18).
+port(21, 'out', 'compressed_shapefile', 'get_itrdb_data.download_shapefile_archive->compressed_shapefile', 43, 20).
+port(22, 'in', 'zipfile', 'get_itrdb_data.uncompress_shapefile<-zipfile', 48, 20).
+port(23, 'in', 'dir_name', 'get_itrdb_data.uncompress_shapefile<-dir_name', 50, 18).
+port(24, 'out', 'shapefiles_dir', 'get_itrdb_data.uncompress_shapefile->shapefiles_dir', 52, 21).
+port(25, 'out', 'layer_boundary', 'get_itrdb_data.uncompress_shapefile->layer_boundary', 54, 22).
+port(26, 'out', 'layer_tracts', 'get_itrdb_data.uncompress_shapefile->layer_tracts', 56, 23).
+port(27, 'out', 'metadata_xml_file', 'get_itrdb_data.uncompress_shapefile->metadata_xml_file', 59, 24).
+port(28, 'out', 'tracts_xml_file', 'get_itrdb_data.uncompress_shapefile->tracts_xml_file', 62, 25).
+port(29, 'in', 'layer', 'get_itrdb_data.read_shapefile<-layer', 68, 22).
+port(30, 'in', 'dir', 'get_itrdb_data.read_shapefile<-dir', 70, 21).
+port(31, 'out', 'dataobject', 'get_itrdb_data.read_shapefile->dataobject', 72, 26).
+port(32, 'in', 'width', 'get_itrdb_data.get_treepolygon<-width', 77, 27).
+port(33, 'in', 'polygon', 'get_itrdb_data.get_treepolygon<-polygon', 79, 26).
+port(34, 'param', 'segment_approx', 'get_itrdb_data.get_treepolygon<-segment_approx', 81, 28).
+port(35, 'out', 'template', 'get_itrdb_data.get_treepolygon->template', 83, 29).
+port(36, 'in', 'polygon', 'get_itrdb_data.extract_tree_ring_data<-polygon', 88, 29).
+port(37, 'param', 'label', 'get_itrdb_data.extract_tree_ring_data<-label', 90, 30).
+port(38, 'param', 'raw.dir', 'get_itrdb_data.extract_tree_ring_data<-raw.dir', 92, 31).
+port(39, 'param', 'extract.dir', 'get_itrdb_data.extract_tree_ring_data<-extract.dir', 95, 32).
+port(40, 'in', 'recon_year', 'get_itrdb_data.extract_tree_ring_data<-recon_year', 98, 33).
+port(41, 'param', 'calib.years', 'get_itrdb_data.extract_tree_ring_data<-calib.years', 100, 34).
+port(42, 'param', 'measurement', 'get_itrdb_data.extract_tree_ring_data<-measurement', 102, 35).
+port(43, 'param', 'filter', 'get_itrdb_data.extract_tree_ring_data<-filter', 104, 36).
+port(44, 'out', 'tree_ring_files', 'get_itrdb_data.extract_tree_ring_data->tree_ring_files', 106, 37).
+port(45, 'out', 'list', 'get_itrdb_data.extract_tree_ring_data->list', 109, 38).
 
 % FACT: port_alias(port_id, alias).
-port_alias(1, 'prediction.year').
-port_alias(4, 'calibration.year').
-port_alias(7, 'shapefile_archive').
-port_alias(8, 'shapefile').
-port_alias(12, 'tree_buffer').
-port_alias(13, 'shapefile').
-port_alias(14, 'treepolygon').
-port_alias(16, 'user_label_itrdb').
-port_alias(19, 'ITRDB').
+port_alias(17, 'study_region').
+port_alias(19, 'shapefile_archive').
+port_alias(20, 'user_created_dir').
+port_alias(22, 'compressed_shapefile').
+port_alias(23, 'user_created_dir').
+port_alias(26, 'tracts_files').
+port_alias(27, 'metadata_file').
+port_alias(28, 'tracts_xml').
+port_alias(29, 'layer_boundary').
+port_alias(30, 'shapefiles_dir').
+port_alias(31, 'spatial_dataframe').
+port_alias(32, 'tree_buffer').
+port_alias(33, 'spatial_dataframe').
+port_alias(34, 'quadsegs').
+port_alias(35, 'treepolygon').
+port_alias(36, 'treepolygon').
+port_alias(37, 'label').
+port_alias(38, 'raw_dir').
+port_alias(39, 'extract_dir').
+port_alias(40, 'prediction_years').
+port_alias(41, 'calibration_years').
+port_alias(42, 'measurement_type').
+port_alias(43, 'chronology_type').
+port_alias(44, 'itrdb').
+port_alias(45, 'selected_itrdb').
 
 % FACT: port_uri_template(port_id, uri).
-port_uri_template(2, 'http://nrdata.nps.gov/programs/Lands/grca_tracts.zip').
-port_uri_template(5, '10_degree_buffer_around_the_area').
-port_uri_template(8, 'file:/data-raw/grca.shx').
-port_uri_template(19, 'file:/data/itrdb.Rda').
+port_uri_template(1, 'http://nrdata.nps.gov/programs/Lands/{study_region}_tracts.zip').
+port_uri_template(18, 'file:./{study_region}').
+port_uri_template(21, 'file:./{study_region}/{study_region}_tracts.zip').
+port_uri_template(24, 'file:./{study_region}/{study_region}_tracts').
+port_uri_template(25, 'file:./{study_region}/{study_region}_tracts/{study_region}_boundary.{file_extensions}').
+port_uri_template(26, 'file:./{study_region}/{study_region}_tracts/{study_region}_tracts.{file_extensions}').
+port_uri_template(27, 'file:./{study_region}/{study_region}_tracts/{study_region}_metadata.xml').
+port_uri_template(28, 'file:./{study_region}/{study_region}_tracts/nps_tracts.xml').
+port_uri_template(38, 'file:./{study_region}/RAW').
+port_uri_template(39, 'file:./{study_region}/ITRDB').
+port_uri_template(44, 'file:./{region_name}/{raw.dir}/ITRDB/itrdb-v705-{var}-crn.zip').
+port_uri_template(45, 'file:./data/itrdb.Rda').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).
@@ -59,93 +115,230 @@ has_in_port(1, 2).
 has_in_port(1, 3).
 has_in_port(1, 4).
 has_in_port(1, 5).
+has_in_port(1, 6).
+has_in_port(1, 7).
+has_in_port(1, 8).
 has_in_port(1, 9).
 has_in_port(1, 10).
 has_in_port(1, 11).
-has_in_port(2, 7).
-has_in_port(3, 12).
-has_in_port(3, 13).
-has_in_port(4, 15).
-has_in_port(4, 16).
-has_in_port(4, 17).
-has_in_port(4, 18).
+has_in_port(2, 17).
+has_in_port(3, 19).
+has_in_port(3, 20).
+has_in_port(4, 22).
+has_in_port(4, 23).
+has_in_port(5, 29).
+has_in_port(5, 30).
+has_in_port(6, 32).
+has_in_port(6, 33).
+has_in_port(6, 34).
+has_in_port(7, 36).
+has_in_port(7, 37).
+has_in_port(7, 38).
+has_in_port(7, 39).
+has_in_port(7, 40).
+has_in_port(7, 41).
+has_in_port(7, 42).
+has_in_port(7, 43).
 
 % FACT: has_out_port(block_id, port_id).
-has_out_port(1, 6).
-has_out_port(2, 8).
-has_out_port(3, 14).
-has_out_port(4, 19).
+has_out_port(1, 12).
+has_out_port(1, 13).
+has_out_port(1, 14).
+has_out_port(1, 15).
+has_out_port(1, 16).
+has_out_port(2, 18).
+has_out_port(3, 21).
+has_out_port(4, 24).
+has_out_port(4, 25).
+has_out_port(4, 26).
+has_out_port(4, 27).
+has_out_port(4, 28).
+has_out_port(5, 31).
+has_out_port(6, 35).
+has_out_port(7, 44).
+has_out_port(7, 45).
 
 % FACT: data(data_id, data_name, qualified_data_name).
-data(1, 'prediction.year', '[prediction.year]').
-data(2, 'shapefile_archive', '[shapefile_archive]').
-data(3, 'user_label_itrdb', '[user_label_itrdb]').
-data(4, 'calibration.year', '[calibration.year]').
-data(5, 'tree_buffer', '[tree_buffer]').
-data(6, 'ITRDB', '[ITRDB]').
-data(9, 'label', '[label]').
-data(10, 'measurement_type', '[measurement_type]').
-data(11, 'chronology_type', '[chronology_type]').
-data(7, 'shapefile_archive', 'get_itrdb_data[shapefile_archive]').
-data(8, 'shapefile', 'get_itrdb_data[shapefile]').
-data(12, 'tree_buffer', 'get_itrdb_data[tree_buffer]').
-data(13, 'treepolygon', 'get_itrdb_data[treepolygon]').
-data(14, 'user_label_itrdb', 'get_itrdb_data[user_label_itrdb]').
-data(15, 'measurement_type', 'get_itrdb_data[measurement_type]').
-data(16, 'chronology_type', 'get_itrdb_data[chronology_type]').
-data(17, 'ITRDB', 'get_itrdb_data[ITRDB]').
+data(1, 'shapefile_archive', '[shapefile_archive]').
+data(2, 'study_region', '[study_region]').
+data(3, 'prediction_years', '[prediction_years]').
+data(4, 'calibration_years', '[calibration_years]').
+data(5, 'label', '[label]').
+data(6, 'raw_dir', '[raw_dir]').
+data(7, 'extract_dir', '[extract_dir]').
+data(8, 'chronology_type', '[chronology_type]').
+data(9, 'measurement_type', '[measurement_type]').
+data(10, 'tree_buffer', '[tree_buffer]').
+data(11, 'quadsegs', '[quadsegs]').
+data(12, 'itrdb', '[itrdb]').
+data(13, 'selected_itrdb', '[selected_itrdb]').
+data(14, 'tracts_files', '[tracts_files]').
+data(15, 'metadata_file', '[metadata_file]').
+data(16, 'tracts_xml', '[tracts_xml]').
+data(17, 'study_region', 'get_itrdb_data[study_region]').
+data(18, 'user_created_dir', 'get_itrdb_data[user_created_dir]').
+data(19, 'shapefile_archive', 'get_itrdb_data[shapefile_archive]').
+data(20, 'compressed_shapefile', 'get_itrdb_data[compressed_shapefile]').
+data(21, 'shapefiles_dir', 'get_itrdb_data[shapefiles_dir]').
+data(22, 'layer_boundary', 'get_itrdb_data[layer_boundary]').
+data(23, 'tracts_files', 'get_itrdb_data[tracts_files]').
+data(24, 'metadata_file', 'get_itrdb_data[metadata_file]').
+data(25, 'tracts_xml', 'get_itrdb_data[tracts_xml]').
+data(26, 'spatial_dataframe', 'get_itrdb_data[spatial_dataframe]').
+data(27, 'tree_buffer', 'get_itrdb_data[tree_buffer]').
+data(28, 'quadsegs', 'get_itrdb_data[quadsegs]').
+data(29, 'treepolygon', 'get_itrdb_data[treepolygon]').
+data(30, 'label', 'get_itrdb_data[label]').
+data(31, 'raw_dir', 'get_itrdb_data[raw_dir]').
+data(32, 'extract_dir', 'get_itrdb_data[extract_dir]').
+data(33, 'prediction_years', 'get_itrdb_data[prediction_years]').
+data(34, 'calibration_years', 'get_itrdb_data[calibration_years]').
+data(35, 'measurement_type', 'get_itrdb_data[measurement_type]').
+data(36, 'chronology_type', 'get_itrdb_data[chronology_type]').
+data(37, 'itrdb', 'get_itrdb_data[itrdb]').
+data(38, 'selected_itrdb', 'get_itrdb_data[selected_itrdb]').
 
 % FACT: channel(channel_id, data_id).
-channel(1, 6).
-channel(2, 7).
-channel(3, 12).
-channel(4, 8).
-channel(5, 13).
-channel(6, 14).
-channel(7, 15).
-channel(8, 16).
-channel(9, 2).
-channel(10, 3).
-channel(11, 5).
-channel(12, 10).
-channel(13, 11).
-channel(14, 17).
+channel(1, 12).
+channel(2, 13).
+channel(3, 14).
+channel(4, 15).
+channel(5, 16).
+channel(6, 17).
+channel(7, 19).
+channel(8, 18).
+channel(9, 18).
+channel(10, 20).
+channel(11, 22).
+channel(12, 21).
+channel(13, 27).
+channel(14, 26).
+channel(15, 28).
+channel(16, 29).
+channel(17, 30).
+channel(18, 31).
+channel(19, 32).
+channel(20, 33).
+channel(21, 34).
+channel(22, 35).
+channel(23, 36).
+channel(24, 1).
+channel(25, 2).
+channel(26, 3).
+channel(27, 4).
+channel(28, 5).
+channel(29, 6).
+channel(30, 7).
+channel(31, 8).
+channel(32, 9).
+channel(33, 10).
+channel(34, 11).
+channel(35, 37).
+channel(36, 38).
+channel(37, 23).
+channel(38, 24).
+channel(39, 25).
 
 % FACT: port_connects_to_channel(port_id, channel_id).
-port_connects_to_channel(19, 1).
-port_connects_to_channel(7, 2).
-port_connects_to_channel(12, 3).
-port_connects_to_channel(8, 4).
-port_connects_to_channel(13, 4).
-port_connects_to_channel(14, 5).
-port_connects_to_channel(15, 5).
-port_connects_to_channel(16, 6).
-port_connects_to_channel(17, 7).
+port_connects_to_channel(44, 1).
+port_connects_to_channel(45, 2).
+port_connects_to_channel(26, 3).
+port_connects_to_channel(27, 4).
+port_connects_to_channel(28, 5).
+port_connects_to_channel(17, 6).
+port_connects_to_channel(19, 7).
 port_connects_to_channel(18, 8).
-port_connects_to_channel(7, 9).
-port_connects_to_channel(16, 10).
-port_connects_to_channel(12, 11).
-port_connects_to_channel(17, 12).
-port_connects_to_channel(18, 13).
-port_connects_to_channel(19, 14).
+port_connects_to_channel(20, 8).
+port_connects_to_channel(18, 9).
+port_connects_to_channel(23, 9).
+port_connects_to_channel(21, 10).
+port_connects_to_channel(22, 10).
+port_connects_to_channel(25, 11).
+port_connects_to_channel(29, 11).
+port_connects_to_channel(24, 12).
+port_connects_to_channel(30, 12).
+port_connects_to_channel(32, 13).
+port_connects_to_channel(31, 14).
+port_connects_to_channel(33, 14).
+port_connects_to_channel(34, 15).
+port_connects_to_channel(35, 16).
+port_connects_to_channel(36, 16).
+port_connects_to_channel(37, 17).
+port_connects_to_channel(38, 18).
+port_connects_to_channel(39, 19).
+port_connects_to_channel(40, 20).
+port_connects_to_channel(41, 21).
+port_connects_to_channel(42, 22).
+port_connects_to_channel(43, 23).
+port_connects_to_channel(19, 24).
+port_connects_to_channel(17, 25).
+port_connects_to_channel(40, 26).
+port_connects_to_channel(41, 27).
+port_connects_to_channel(37, 28).
+port_connects_to_channel(38, 29).
+port_connects_to_channel(39, 30).
+port_connects_to_channel(43, 31).
+port_connects_to_channel(42, 32).
+port_connects_to_channel(32, 33).
+port_connects_to_channel(34, 34).
+port_connects_to_channel(44, 35).
+port_connects_to_channel(45, 36).
+port_connects_to_channel(26, 37).
+port_connects_to_channel(27, 38).
+port_connects_to_channel(28, 39).
 
 % FACT: inflow_connects_to_channel(port_id, channel_id).
-inflow_connects_to_channel(2, 2).
-inflow_connects_to_channel(5, 3).
-inflow_connects_to_channel(3, 6).
-inflow_connects_to_channel(10, 7).
-inflow_connects_to_channel(11, 8).
-inflow_connects_to_channel(2, 9).
-inflow_connects_to_channel(3, 10).
-inflow_connects_to_channel(5, 11).
-inflow_connects_to_channel(10, 12).
-inflow_connects_to_channel(11, 13).
+inflow_connects_to_channel(2, 6).
+inflow_connects_to_channel(1, 7).
+inflow_connects_to_channel(10, 13).
+inflow_connects_to_channel(11, 15).
+inflow_connects_to_channel(5, 17).
+inflow_connects_to_channel(6, 18).
+inflow_connects_to_channel(7, 19).
+inflow_connects_to_channel(3, 20).
+inflow_connects_to_channel(4, 21).
+inflow_connects_to_channel(9, 22).
+inflow_connects_to_channel(8, 23).
+inflow_connects_to_channel(1, 24).
+inflow_connects_to_channel(2, 25).
+inflow_connects_to_channel(3, 26).
+inflow_connects_to_channel(4, 27).
+inflow_connects_to_channel(5, 28).
+inflow_connects_to_channel(6, 29).
+inflow_connects_to_channel(7, 30).
+inflow_connects_to_channel(8, 31).
+inflow_connects_to_channel(9, 32).
+inflow_connects_to_channel(10, 33).
+inflow_connects_to_channel(11, 34).
 
 % FACT: outflow_connects_to_channel(port_id, channel_id).
-outflow_connects_to_channel(6, 1).
-outflow_connects_to_channel(6, 14).
+outflow_connects_to_channel(12, 1).
+outflow_connects_to_channel(13, 2).
+outflow_connects_to_channel(14, 3).
+outflow_connects_to_channel(15, 4).
+outflow_connects_to_channel(16, 5).
+outflow_connects_to_channel(12, 35).
+outflow_connects_to_channel(13, 36).
+outflow_connects_to_channel(14, 37).
+outflow_connects_to_channel(15, 38).
+outflow_connects_to_channel(16, 39).
 
 % FACT: uri_variable(uri_variable_id, variable_name, port_id).
+uri_variable(1, 'study_region', 1).
+uri_variable(2, 'study_region', 18).
+uri_variable(3, 'study_region', 21).
+uri_variable(4, 'study_region', 24).
+uri_variable(5, 'study_region', 25).
+uri_variable(6, 'file_extensions', 25).
+uri_variable(7, 'study_region', 26).
+uri_variable(8, 'file_extensions', 26).
+uri_variable(9, 'study_region', 27).
+uri_variable(10, 'study_region', 28).
+uri_variable(11, 'study_region', 38).
+uri_variable(12, 'study_region', 39).
+uri_variable(13, 'region_name', 44).
+uri_variable(14, 'raw.dir', 44).
+uri_variable(15, 'var', 44).
 
 % FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
 

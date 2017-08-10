@@ -56,14 +56,15 @@ Meteor.startup(function () {
        // console.log(uuid);
     },
 
-    'srv_rd_pc_result': function (filedir,session_id,run_id) 
+    'srv_rd_pc_result': function (filedir,session_id,run_id,user_label) 
     {
-        //console.log(filedir);
-        var data = fs.readFileSync(filedir + '/predictions.jpg');
+        prediction_file= '/' + user_label  + '.predictions.jpg' 
+        uncertainty_file= '/' + user_label + '.uncertainty.jpg'
+        var data = fs.readFileSync(filedir + prediction_file);
         prediction = new Buffer(data, 'binary').toString('base64');
         prediction = "data:image/jpg;base64,"+ prediction;
         
-        data = fs.readFileSync(filedir + '/uncertainty.jpg');
+        data = fs.readFileSync(filedir + uncertainty_file);
         uncertainty= new Buffer(data, 'binary').toString('base64');
         uncertainty = "data:image/jpg;base64,"+ uncertainty;
 

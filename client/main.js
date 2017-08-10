@@ -318,7 +318,7 @@ Template.btn_exec_paleocar.events({
       }
     }); 
    
-    Meteor.call('srv_rd_pc_result',test_dir,session_id,run_id,function(error, result)
+    Meteor.call('srv_rd_pc_result',test_dir,session_id,run_id,user_label,function(error, result)
     {
       if (error) 
       {

@@ -5,48 +5,104 @@ label=""
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
 subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
-get_shapefile [shape=record rankdir=LR label="{<f0> get_shapefile |<f1> download shapefile archive and extract the shapefile for the grca region.}"];
+create_shapefile_dir [shape=record rankdir=LR label="{<f0> create_shapefile_dir |<f1> create a direcorty for downloading the shapefiles for the study region.}"];
+download_shapefile_archive [shape=record rankdir=LR label="{<f0> download_shapefile_archive |<f1> download the zip file of the region which contains the boundary, tracts, metadata.xml and nps_tracts.xml files.}"];
+uncompress_shapefile [shape=record rankdir=LR label="{<f0> uncompress_shapefile |<f1> create a directory as the archive filename and extract the files.}"];
+read_shapefile [shape=record rankdir=LR label="{<f0> read_shapefile |<f1> read the shapefile for the region and save it as a spatial vector object.}"];
 get_treepolygon [shape=record rankdir=LR label="{<f0> get_treepolygon |<f1> Get Tree-ring data from the ITRDB for tree_buffer around GRCA}"];
-get_tree_ring_data [shape=record rankdir=LR label="{<f0> get_tree_ring_data |<f1> Extract tree ring data for the grca region using get_itrdb function and treepolygon template.}"];
+extract_tree_ring_data [shape=record rankdir=LR label="{<f0> extract_tree_ring_data |<f1> download all the tree ring chronologies and extract the values for the study region.}"];
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
-ITRDB [shape=record rankdir=LR label="{<f0> ITRDB |<f1> file\:/data/itrdb.Rda}"];
-shapefile_archive [shape=record rankdir=LR label="{<f0> shapefile_archive |<f1> http\://nrdata.nps.gov/programs/Lands/grca_tracts.zip}"];
-tree_buffer [shape=record rankdir=LR label="{<f0> tree_buffer |<f1> 10_degree_buffer_around_the_area}"];
-shapefile [shape=record rankdir=LR label="{<f0> shapefile |<f1> file\:/data-raw/grca.shx}"];
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:./\{region_name\}/\{raw.dir\}/ITRDB/itrdb-v705-\{var\}-crn.zip}"];
+selected_itrdb [shape=record rankdir=LR label="{<f0> selected_itrdb |<f1> file\:./data/itrdb.Rda}"];
+tracts_files [shape=record rankdir=LR label="{<f0> tracts_files |<f1> file\:./\{study_region\}/\{study_region\}_tracts/\{study_region\}_tracts.\{file_extensions\}}"];
+metadata_file [shape=record rankdir=LR label="{<f0> metadata_file |<f1> file\:./\{study_region\}/\{study_region\}_tracts/\{study_region\}_metadata.xml}"];
+tracts_xml [shape=record rankdir=LR label="{<f0> tracts_xml |<f1> file\:./\{study_region\}/\{study_region\}_tracts/nps_tracts.xml}"];
+study_region
+shapefile_archive [shape=record rankdir=LR label="{<f0> shapefile_archive |<f1> http\://nrdata.nps.gov/programs/Lands/\{study_region\}_tracts.zip}"];
+user_created_dir [shape=record rankdir=LR label="{<f0> user_created_dir |<f1> file\:./\{study_region\}}"];
+compressed_shapefile [shape=record rankdir=LR label="{<f0> compressed_shapefile |<f1> file\:./\{study_region\}/\{study_region\}_tracts.zip}"];
+layer_boundary [shape=record rankdir=LR label="{<f0> layer_boundary |<f1> file\:./\{study_region\}/\{study_region\}_tracts/\{study_region\}_boundary.\{file_extensions\}}"];
+shapefiles_dir [shape=record rankdir=LR label="{<f0> shapefiles_dir |<f1> file\:./\{study_region\}/\{study_region\}_tracts}"];
+tree_buffer
+spatial_dataframe
 treepolygon
+prediction_years
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
-user_label_itrdb
+quadsegs
+label
+raw_dir
+extract_dir
+calibration_years
 measurement_type
 chronology_type
-get_shapefile -> shapefile
-shapefile_archive -> get_shapefile
+create_shapefile_dir -> user_created_dir
+study_region -> create_shapefile_dir
+download_shapefile_archive -> compressed_shapefile
+shapefile_archive -> download_shapefile_archive
+user_created_dir -> download_shapefile_archive
+uncompress_shapefile -> shapefiles_dir
+uncompress_shapefile -> layer_boundary
+uncompress_shapefile -> tracts_files
+uncompress_shapefile -> metadata_file
+uncompress_shapefile -> tracts_xml
+compressed_shapefile -> uncompress_shapefile
+user_created_dir -> uncompress_shapefile
+read_shapefile -> spatial_dataframe
+layer_boundary -> read_shapefile
+shapefiles_dir -> read_shapefile
 get_treepolygon -> treepolygon
 tree_buffer -> get_treepolygon
-shapefile -> get_treepolygon
-get_tree_ring_data -> ITRDB
-treepolygon -> get_tree_ring_data
-user_label_itrdb -> get_tree_ring_data
-measurement_type -> get_tree_ring_data
-chronology_type -> get_tree_ring_data
+spatial_dataframe -> get_treepolygon
+quadsegs -> get_treepolygon
+extract_tree_ring_data -> itrdb
+extract_tree_ring_data -> selected_itrdb
+treepolygon -> extract_tree_ring_data
+label -> extract_tree_ring_data
+raw_dir -> extract_tree_ring_data
+extract_dir -> extract_tree_ring_data
+prediction_years -> extract_tree_ring_data
+calibration_years -> extract_tree_ring_data
+measurement_type -> extract_tree_ring_data
+chronology_type -> extract_tree_ring_data
 }}
 subgraph cluster_input_ports_group_outer { label=""; penwidth=0
 subgraph cluster_input_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 shapefile_archive_input_port [label=""]
-user_label_itrdb_input_port [label=""]
-tree_buffer_input_port [label=""]
-measurement_type_input_port [label=""]
+study_region_input_port [label=""]
+prediction_years_input_port [label=""]
+calibration_years_input_port [label=""]
+label_input_port [label=""]
+raw_dir_input_port [label=""]
+extract_dir_input_port [label=""]
 chronology_type_input_port [label=""]
+measurement_type_input_port [label=""]
+tree_buffer_input_port [label=""]
+quadsegs_input_port [label=""]
 }}
 subgraph cluster_output_ports_group_outer { label=""; penwidth=0
 subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
-ITRDB_output_port [label=""]
+itrdb_output_port [label=""]
+selected_itrdb_output_port [label=""]
+tracts_files_output_port [label=""]
+metadata_file_output_port [label=""]
+tracts_xml_output_port [label=""]
 }}
 shapefile_archive_input_port -> shapefile_archive
-user_label_itrdb_input_port -> user_label_itrdb
-tree_buffer_input_port -> tree_buffer
-measurement_type_input_port -> measurement_type
+study_region_input_port -> study_region
+prediction_years_input_port -> prediction_years
+calibration_years_input_port -> calibration_years
+label_input_port -> label
+raw_dir_input_port -> raw_dir
+extract_dir_input_port -> extract_dir
 chronology_type_input_port -> chronology_type
-ITRDB -> ITRDB_output_port
+measurement_type_input_port -> measurement_type
+tree_buffer_input_port -> tree_buffer
+quadsegs_input_port -> quadsegs
+itrdb -> itrdb_output_port
+selected_itrdb -> selected_itrdb_output_port
+tracts_files -> tracts_files_output_port
+metadata_file -> metadata_file_output_port
+tracts_xml -> tracts_xml_output_port
 }

@@ -18,16 +18,16 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
+eq3(prediction_model).
+eq3(plot).
+eq3(model).
 eq3(prism_data_for_coordinates).
-eq3(uncertainty_model).
+eq3(uncertainty_plot).
 eq3(paleocar_model_log_file).
+eq3(paleocar_models).
 eq3(prediction_plot).
 eq3(log_file).
-eq3(uncertainty_plot).
-eq3(plot).
-eq3(paleocar_models).
-eq3(model).
-eq3(prediction_model).
+eq3(uncertainty_model).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -78,8 +78,8 @@ YW_Q7 : What are the input data for the generation of the prediction plot in pal
 
 yw_q7(DataName,StepName)
 ...................................................................................................
-yw_q7(label,extract_uncertainty_model).
-yw_q7(calibration_year,extract_uncertainty_model).
-yw_q7(itrdb,extract_uncertainty_model).
-yw_q7(user_map_marker_pos,extract_uncertainty_model).
-yw_q7(user_prediction_years,extract_uncertainty_model).
+yw_q7(label,extract_prediction_model).
+yw_q7(calibration_year,extract_prediction_model).
+yw_q7(itrdb,extract_prediction_model).
+yw_q7(user_map_marker_pos,extract_prediction_model).
+yw_q7(user_prediction_years,extract_prediction_model).

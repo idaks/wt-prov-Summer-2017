@@ -5,9 +5,12 @@ EQ2 : What are the names N of all program blocks?
 
 eq2(ProgramName)
 ...................................................................................................
-eq2(get_tree_ring_data).
+eq2(extract_tree_ring_data).
 eq2(get_treepolygon).
-eq2(get_shapefile).
+eq2(read_shapefile).
+eq2(uncompress_shapefile).
+eq2(download_shapefile_archive).
+eq2(create_shapefile_dir).
 eq2(get_itrdb_data).
 
 
@@ -16,8 +19,15 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(itrdb).
-eq3(polygon_shape).
+eq3(shapefiles_dir).
+eq3(layer_tracts).
+eq3(list).
+eq3(compressed_shapefile).
+eq3(user_created_dir).
+eq3(layer_boundary).
+eq3(tree_ring_files).
+eq3(metadata_xml_file).
+eq3(tracts_xml_file).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -25,9 +35,18 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(get_tree_ring_data,'Extract tree ring data for the grca region using get_itrdb function and treepolygon template.').
+yw_q2(extract_tree_ring_data,'A character string indicating where the extracted and cropped ITRDB dataset should be put.').
+yw_q2(extract_tree_ring_data,'download all the tree ring chronologies and extract the values for the study region.').
+yw_q2(get_treepolygon,'A character string indicating where raw downloaded files should be put.').
 yw_q2(get_treepolygon,'Get Tree-ring data from the ITRDB for tree_buffer around GRCA').
-yw_q2(get_shapefile,'download shapefile archive and extract the shapefile for the grca region.').
+yw_q2(read_shapefile,'A character string naming the study area.').
+yw_q2(read_shapefile,'read the shapefile for the region and save it as a spatial vector object.').
+yw_q2(uncompress_shapefile,'A numeric vector of all required years').
+yw_q2(uncompress_shapefile,'create a directory as the archive filename and extract the files.').
+yw_q2(download_shapefile_archive,'a numeric vector of years over which reconstruction is needed.').
+yw_q2(download_shapefile_archive,'download the zip file of the region which contains the boundary, tracts, metadata.xml and nps_tracts.xml files.').
+yw_q2(create_shapefile_dir,'the name of the region os study is passed as input.').
+yw_q2(create_shapefile_dir,'create a direcorty for downloading the shapefiles for the study region.').
 
 
 ---------------------------------------------------------------------------------------------------

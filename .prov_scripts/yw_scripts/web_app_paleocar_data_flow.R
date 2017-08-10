@@ -23,10 +23,13 @@
     
     #@out coordinates  @desc Coordinates of location for reconstruction of paleoclimate. 
     #@out prediction_year @as prediction_years @desc Prediction years for reconstruction of paleoclimate. 
+    #@out session_id
+    #@out run_id 
     #@end get_user_input 
 
     #@begin extract_prism_data @desc Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.
-    
+    #@in session_id
+    #@in run_id 
     #@in coordinates @desc Coordinates of location for reconstruction of paleoclimate. 
     #@param spatial_file @as prism_data @desc file containing the precipitation values for the particular region.
     

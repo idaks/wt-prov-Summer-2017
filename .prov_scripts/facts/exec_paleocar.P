@@ -1,7 +1,0 @@
-
-% FACT: extract_source(source_id, source_path).
-extract_source(1, 'exec_paleocar.R').
-
-% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
-
-% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).

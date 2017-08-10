@@ -15,8 +15,7 @@ Follow the steps from the readme and execute it once on a local machine.
 4. Install meteor packages as below
    meteor npm install
 5. In the client/main.js file change the value of the variable "curr_dir" to the clone github folder. 
-6. Start meteor server as below from terminal 
-   meteor run
+6. Start meteor server by  executing "meteor run" command from the terminal or command prompt.
 7. Open the web application from browser as http://localhost:3000
 
 ![alt text](public/prospective_prov_img/web_app_paleocar_data_flow.png "YW Graph of PaleoCar.")

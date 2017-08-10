@@ -15,17 +15,17 @@
 <g id="clust2" class="cluster"><title>cluster_workflow_box_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="16,-70 16,-554 296,-554 296,-70 16,-70"/>
 </g>
-<g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="124,-8 124,-54 170,-54 170,-8 124,-8"/>
-</g>
-<g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="132,-16 132,-46 162,-46 162,-16 132,-16"/>
-</g>
 <g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="111,-570 111,-616 221,-616 221,-570 111,-570"/>
 </g>
 <g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="119,-578 119,-608 213,-608 213,-578 119,-578"/>
+</g>
+<g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="124,-8 124,-54 170,-54 170,-8 124,-8"/>
+</g>
+<g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="132,-16 132,-46 162,-46 162,-16 132,-16"/>
 </g>
 <!-- defineLinearModels -->
 <g id="node1" class="node"><title>defineLinearModels</title>

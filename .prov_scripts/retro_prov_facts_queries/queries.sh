@@ -95,8 +95,8 @@ banner( 'YW_Q7',
 [user].
 :- table yw_q7/2.
 yw_q7(DataName,StepName) :-
-			yw_outflow(_,StepName,_,_,_,_,_,uncertainty_plot), 
-			yw_flow(_, SourceProgramName, _, _, _,_, _, _, _, StepName),
+			yw_outflow(_,StepName,_,_,_,_,_,prediction_plot), 
+			yw_flow(_, SourceProgramName, _, _, _,_, _, _, _,StepName),
 			yw_inflow(_,_,_,DataName,_,SourceProgramName).
 end_of_file.
 printall(yw_q7(_,_)).

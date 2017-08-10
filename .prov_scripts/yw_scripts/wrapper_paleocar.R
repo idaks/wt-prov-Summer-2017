@@ -19,9 +19,19 @@ library(raster)
 library(magrittr)
 library(tibble)
 library(readr)
-library(wrapperpaleocar)
 
 ## Create wrapper functions
+
+#@begin exec_paleocar
+#@in user_map_marker_pos  @desc Coordinates of location for reconstruction of paleoclimate. 
+#@in user_prediction_years @desc Prediction years for reconstruction of paleoclimate. 
+
+#@param prism_data @desc file containing the precipitation values for the particular region.@uri file:/data/112W36N.nc @desc file containing the precipitation values for the particular region
+#@param itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+#@param calibration_year @desc period for calibrating the information for predicting the climate. 
+#@param label @desc a user label for the generated paleocar model of the study region. 
+
+
 
 
 ############################################################
@@ -29,6 +39,17 @@ library(wrapperpaleocar)
 ## using the NetCDF file, location coordinates.            #
 ## The output is a csv file                                #
 ############################################################
+
+
+#@begin extract_prism_data @desc Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.
+
+#@in lat_long @as user_map_marker_pos
+#@param data @as prism_data
+
+#@out session_id
+#@out run_id 
+#@out prism_data_for_coordinates @uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region.
+#@end extract_prism_data
 
 prism_data <- function(coordinates,   #Longitude and latitude.
                        in_file_name,  # the NetCDF file format.
@@ -70,14 +91,6 @@ prism_data <- function(coordinates,   #Longitude and latitude.
 
 
     
-#@begin exec_paleocar
-#@in user_map_marker_pos  @desc Coordinates of location for reconstruction of paleoclimate. 
-#@in user_prediction_years @desc Prediction years for reconstruction of paleoclimate. 
-#@in prism_data_for_coordinates @uri file:/.output/{session_id}/{run_id}/{data_file}.csv @desc file containing the precipitation values for the selected region.
-#@param itrdb @file {data_file}.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
-#@param calibration_year @desc period for calibrating the information for predicting the climate. 
-#@param label @desc a user label for the generated paleocar model of the study region. 
-
 
 
 run_paleocar <- function (testDir,
@@ -104,9 +117,10 @@ run_paleocar <- function (testDir,
 #@param label @desc user entered label for the study region. 
 #@param cal_year @as calibration_year @desc period for calibrating the information for predicting the climate. 
 #@param itrdb @file {data_file}.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
-#@in prediction_years  @as user_prediction_years  @desc An optional integer vector of years for the reconstruction.
+#@in prediction_years  @as user_prediction_years @desc An optional integer vector of years for the reconstruction.
 #@in predictands  @as prism_data_for_coordinates  @uri file:/.output/{session_id}/{run_id}/{data_file}.csv @desc file containing the precipitation values for the selected region.
-
+#@in session_id
+#@in run_id
 
 
   if(input_data_type=="v"){
@@ -132,10 +146,10 @@ run_paleocar <- function (testDir,
  
 #@begin extract_prediction_model @desc extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.
 #@in paleocar_models @uri  file:/.output/{session_id}/{run_id}/{label}.models.rds  @desc R model of the paleocar reconstruction.
-#@in prediction.year @as prediction_years  @desc Prediction years for reconstruction of paleoclimate. 
+#@in prediction_years @as user_prediction_years  @desc Prediction years for reconstruction of paleoclimate. 
 
 #@out prediction_model @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
-#@out plot @as prediction_plot  @uri file:/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.
+#@out plot @as prediction_plot  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.
 #@end gen_prediction_model
 
     recon_predict <-predict_paleocar_models(models = recon_vector,
@@ -145,7 +159,7 @@ run_paleocar <- function (testDir,
                      path = paste0(testDir,label,".prediction.Rds"),
                      compress = "gz")
     
-    jpeg(paste0(testDir,'predictions.jpg'))
+    jpeg(paste0(testDir,label,'.predictions.jpg'))
     
     plot(x = as.numeric(names(recon_predict)),
            y = recon_predict,
@@ -166,7 +180,7 @@ run_paleocar <- function (testDir,
 #@begin extract_uncertainty_model @desc extract the LOOCV uncertainty information from the set of Paleocar models for specified period.
 #@in paleocar_models @uri  rds:/.output/{session_id}/{run_id}/{label}.models.rds  @desc R model of the paleocar reconstruction.
 #                    @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds$predictands @desc R model of the paleocar reconstruction.
-#@in prediction.year @as prediction_years @desc Prediction years for reconstruction of paleoclimate. 
+#@in prediction_years @as user_prediction_years @desc Prediction years for reconstruction of paleoclimate. 
 
 #@out model @as uncertainty_model  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
 #@out plot @as uncertainty_plot  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
@@ -181,7 +195,7 @@ run_paleocar <- function (testDir,
 
     #save the ouput of the graph as jpeg image. 
 
-    jpeg(paste0(testDir,'uncertainty.jpg'));
+    jpeg(paste0(testDir,label,'.uncertainty.jpg'));
 
       plot(x = as.numeric(names(recon_uncertain)),
            y = recon_uncertain,
