@@ -1,0 +1,70 @@
+digraph Workflow {
+rankdir=TB
+fontname=Helvetica; fontsize=18; labelloc=t
+label=""
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+get_predictor_matrix [shape=record rankdir=LR label="{<f0> get_predictor_matrix |<f1> create a matrix of tree ring chronologies for the calibration year.}"];
+get_reconstruction_matrix [shape=record rankdir=LR label="{<f0> get_reconstruction_matrix |<f1> get reconstruction matrix for chronologies for the prediction year.}"];
+get_predlist [shape=record rankdir=LR label="{<f0> get_predlist |<f1> create list of prediction values.}"];
+get_carscores [shape=record rankdir=LR label="{<f0> get_carscores |<f1> get the carscores for reconstruction of paleoclimate.}"];
+optimizeModels
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=2 fontname=Helvetica]
+calculate_Models
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:/data/itrdb.Rda}"];
+calibration_years
+prediction_years
+"reconstruction.matrix"
+prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:/.output/\{session_id\}/\{run_id\}/112W36N.csv}"];
+"predictor.matrix"
+predlist
+carscores
+"max.preds"
+"linear.models"
+paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{label\}.model.rds}"];
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+min_width
+get_predictor_matrix -> "predictor.matrix"
+get_predictor_matrix -> "max.preds"
+itrdb -> get_predictor_matrix
+calibration_years -> get_predictor_matrix
+min_width -> get_predictor_matrix
+get_reconstruction_matrix -> "reconstruction.matrix"
+itrdb -> get_reconstruction_matrix
+prediction_years -> get_reconstruction_matrix
+min_width -> get_reconstruction_matrix
+get_predlist -> predlist
+"reconstruction.matrix" -> get_predlist
+get_carscores -> carscores
+prism_data_for_coordinates -> get_carscores
+"predictor.matrix" -> get_carscores
+calculate_Models -> "linear.models"
+predlist -> calculate_Models
+carscores -> calculate_Models
+"max.preds" -> calculate_Models
+optimizeModels -> paleocar_models
+"linear.models" -> optimizeModels
+}}
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+prediction_years_input_port [label=""]
+prism_data_for_coordinates_input_port [label=""]
+itrdb_input_port [label=""]
+calibration_years_input_port [label=""]
+min_width_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+paleocar_models_output_port [label=""]
+}}
+prediction_years_input_port -> prediction_years
+prism_data_for_coordinates_input_port -> prism_data_for_coordinates
+itrdb_input_port -> itrdb
+calibration_years_input_port -> calibration_years
+min_width_input_port -> min_width
+paleocar_models -> paleocar_models_output_port
+}

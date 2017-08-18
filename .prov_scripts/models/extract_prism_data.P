@@ -22,9 +22,9 @@ port(6, 'out', 'prism_data_for_coordinates', 'extract_prism_data.extract_prism_d
 % FACT: port_alias(port_id, alias).
 
 % FACT: port_uri_template(port_id, uri).
-port_uri_template(2, 'file:/data/{data_file}.nc').
+port_uri_template(2, 'file:/data/112W36N.nc').
 port_uri_template(3, 'file:/.output/{session_id}/{run_id}/{data_file}.csv').
-port_uri_template(5, 'file:/data/{data_file}.nc').
+port_uri_template(5, 'file:/data/112W36N.nc').
 port_uri_template(6, 'file:/.output/{session_id}/{run_id}/{data_file}.csv').
 
 % FACT: has_in_port(block_id, port_id).
@@ -60,14 +60,12 @@ inflow_connects_to_channel(2, 3).
 outflow_connects_to_channel(3, 1).
 
 % FACT: uri_variable(uri_variable_id, variable_name, port_id).
-uri_variable(1, 'data_file', 2).
-uri_variable(2, 'session_id', 3).
-uri_variable(3, 'run_id', 3).
-uri_variable(4, 'data_file', 3).
-uri_variable(5, 'data_file', 5).
-uri_variable(6, 'session_id', 6).
-uri_variable(7, 'run_id', 6).
-uri_variable(8, 'data_file', 6).
+uri_variable(1, 'session_id', 3).
+uri_variable(2, 'run_id', 3).
+uri_variable(3, 'data_file', 3).
+uri_variable(4, 'session_id', 6).
+uri_variable(5, 'run_id', 6).
+uri_variable(6, 'data_file', 6).
 
 % FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
 

@@ -10,7 +10,7 @@ node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname
 prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:/.output/\{session_id\}/\{run_id\}/\{data_file\}.csv}"];
 coordinates
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
-prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:/data/\{data_file\}.nc}"];
+prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:/data/112W36N.nc}"];
 extract_prism_data -> prism_data_for_coordinates
 coordinates -> extract_prism_data
 prism_data -> extract_prism_data

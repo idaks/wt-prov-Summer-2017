@@ -1,7 +1,12 @@
 
 % FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
-program(1, 'get_tree_ring_values', 'get_tree_ring_values', 1, 11).
-program(2, 'get_tree_ring_values', 'get_tree_ring_values.get_tree_ring_values', 1, 11).
+program(1, 'tree_ring_data', 'tree_ring_data', 1, 81).
+program(2, 'create_shapefile_dir', 'tree_ring_data.create_shapefile_dir', 8, 14).
+program(3, 'download_shapefile_archive', 'tree_ring_data.download_shapefile_archive', 15, 23).
+program(4, 'uncompress_shapefile', 'tree_ring_data.uncompress_shapefile', 24, 40).
+program(5, 'read_shapefile', 'tree_ring_data.read_shapefile', 41, 49).
+program(6, 'get_treepolygon', 'tree_ring_data.get_treepolygon', 50, 60).
+program(7, 'extract_tree_ring_data', 'tree_ring_data.extract_tree_ring_data', 61, 80).
 
 % FACT: workflow(program_id).
 workflow(1).
@@ -10,72 +15,209 @@ workflow(1).
 
 % FACT: has_subprogram(program_id, subprogram_id).
 has_subprogram(1, 2).
+has_subprogram(1, 3).
+has_subprogram(1, 4).
+has_subprogram(1, 5).
+has_subprogram(1, 6).
+has_subprogram(1, 7).
 
 % FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
-port(1, 'in', 'models', 'get_tree_ring_values<-models', 3, 1).
-port(2, 'in', 'prediction_year', 'get_tree_ring_values<-prediction_year', 7, 2).
-port(3, 'out', 'tree_ring_values', 'get_tree_ring_values->tree_ring_values', 9, 3).
-port(4, 'in', 'models', 'get_tree_ring_values.get_tree_ring_values<-models', 3, 1).
-port(5, 'in', 'prediction_year', 'get_tree_ring_values.get_tree_ring_values<-prediction_year', 7, 2).
-port(6, 'out', 'tree_ring_values', 'get_tree_ring_values.get_tree_ring_values->tree_ring_values', 9, 3).
+port(1, 'in', 'shapefile_archive', 'tree_ring_data<-shapefile_archive', 3, 1).
+port(2, 'in', 'study_region', 'tree_ring_data<-study_region', 5, 2).
+port(3, 'in', 'prediction_years', 'tree_ring_data<-prediction_years', 6, 3).
+port(4, 'out', 'itrdb', 'tree_ring_data->itrdb', 7, 4).
+port(5, 'in', 'dir_name', 'tree_ring_data.create_shapefile_dir<-dir_name', 10, 5).
+port(6, 'out', 'user_created_dir', 'tree_ring_data.create_shapefile_dir->user_created_dir', 12, 6).
+port(7, 'in', 'file_archive', 'tree_ring_data.download_shapefile_archive<-file_archive', 17, 7).
+port(8, 'in', 'dir', 'tree_ring_data.download_shapefile_archive<-dir', 19, 6).
+port(9, 'out', 'compressed_shapefile', 'tree_ring_data.download_shapefile_archive->compressed_shapefile', 21, 8).
+port(10, 'in', 'zipfile', 'tree_ring_data.uncompress_shapefile<-zipfile', 26, 8).
+port(11, 'in', 'dir_name', 'tree_ring_data.uncompress_shapefile<-dir_name', 28, 6).
+port(12, 'out', 'shapefiles_dir', 'tree_ring_data.uncompress_shapefile->shapefiles_dir', 30, 9).
+port(13, 'out', 'layer_boundary', 'tree_ring_data.uncompress_shapefile->layer_boundary', 32, 10).
+port(14, 'out', 'layer_tracts', 'tree_ring_data.uncompress_shapefile->layer_tracts', 34, 11).
+port(15, 'out', 'metadata_xml_file', 'tree_ring_data.uncompress_shapefile->metadata_xml_file', 36, 12).
+port(16, 'out', 'tracts_xml_file', 'tree_ring_data.uncompress_shapefile->tracts_xml_file', 38, 13).
+port(17, 'in', 'layer', 'tree_ring_data.read_shapefile<-layer', 43, 10).
+port(18, 'in', 'dir', 'tree_ring_data.read_shapefile<-dir', 45, 9).
+port(19, 'out', 'dataobject', 'tree_ring_data.read_shapefile->dataobject', 47, 14).
+port(20, 'in', 'width', 'tree_ring_data.get_treepolygon<-width', 52, 15).
+port(21, 'in', 'polygon', 'tree_ring_data.get_treepolygon<-polygon', 54, 14).
+port(22, 'in', 'quadsegs', 'tree_ring_data.get_treepolygon<-quadsegs', 56, 16).
+port(23, 'out', 'template', 'tree_ring_data.get_treepolygon->template', 58, 17).
+port(24, 'in', 'polygon', 'tree_ring_data.extract_tree_ring_data<-polygon', 63, 17).
+port(25, 'param', 'label', 'tree_ring_data.extract_tree_ring_data<-label', 65, 18).
+port(26, 'param', 'raw.dir', 'tree_ring_data.extract_tree_ring_data<-raw.dir', 66, 19).
+port(27, 'param', 'extract.dir', 'tree_ring_data.extract_tree_ring_data<-extract.dir', 68, 20).
+port(28, 'in', 'recon_year', 'tree_ring_data.extract_tree_ring_data<-recon_year', 70, 21).
+port(29, 'param', 'calib.years', 'tree_ring_data.extract_tree_ring_data<-calib.years', 72, 22).
+port(30, 'param', 'measurement_type', 'tree_ring_data.extract_tree_ring_data<-measurement_type', 74, 23).
+port(31, 'param', 'chronology_type', 'tree_ring_data.extract_tree_ring_data<-chronology_type', 75, 24).
+port(32, 'param', 'force.redo', 'tree_ring_data.extract_tree_ring_data<-force.redo', 76, 25).
+port(33, 'out', 'list', 'tree_ring_data.extract_tree_ring_data->list', 77, 26).
 
 % FACT: port_alias(port_id, alias).
-port_alias(1, 'paleocar_models').
-port_alias(2, 'user_input_year').
-port_alias(4, 'paleocar_models').
-port_alias(5, 'user_input_year').
+port_alias(5, 'study_region').
+port_alias(7, 'shapefile_archive').
+port_alias(8, 'user_created_dir').
+port_alias(10, 'compressed_shapefile').
+port_alias(11, 'user_created_dir').
+port_alias(17, 'layer_boundary').
+port_alias(18, 'shapefiles_dir').
+port_alias(19, 'dataframe').
+port_alias(20, 'tree_buffer').
+port_alias(21, 'dataframe').
+port_alias(22, 'segments_approx_quarter_circle').
+port_alias(23, 'treepolygon').
+port_alias(24, 'treepolygon').
+port_alias(28, 'prediction_years').
+port_alias(29, 'calibration_years').
+port_alias(33, 'itrdb').
 
 % FACT: port_uri_template(port_id, uri).
-port_uri_template(1, 'file:/.output/{session_id}{run_id}/{label}.models.rds').
-port_uri_template(3, 'file:/.output/{session_id}/{run_id}/{user_input_year}_tree_ring_data.csv').
-port_uri_template(4, 'file:/.output/{session_id}{run_id}/{label}.models.rds').
-port_uri_template(6, 'file:/.output/{session_id}/{run_id}/{user_input_year}_tree_ring_data.csv').
+port_uri_template(1, 'http://nrdata.nps.gov/programs/Lands/{study_region}_tracts.zip').
+port_uri_template(6, 'file:./{study_region}').
+port_uri_template(9, 'file:./{study_region}/{study_region}_tracts.zip').
+port_uri_template(12, 'file:./{study_region}/{study_region}_tracts').
+port_uri_template(13, 'file:./{study_region}/{study_region}_tracts/{study_region}_boundary.{file_extensions}').
+port_uri_template(14, 'file:./{study_region}/{study_region}_tracts/{study_region}_tracts.{file_extensions}').
+port_uri_template(15, 'file:./{study_region}/{study_region}_tracts/{study_region}_metadata.xml').
+port_uri_template(16, 'file:./{study_region}/{study_region}_tracts/nps_tracts.xml').
+port_uri_template(26, 'file:./{study_region}/RAW').
+port_uri_template(27, 'file:./{study_region}/ITRDB').
+port_uri_template(33, 'file:itrdb.Rda').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).
 has_in_port(1, 2).
-has_in_port(2, 4).
+has_in_port(1, 3).
 has_in_port(2, 5).
+has_in_port(3, 7).
+has_in_port(3, 8).
+has_in_port(4, 10).
+has_in_port(4, 11).
+has_in_port(5, 17).
+has_in_port(5, 18).
+has_in_port(6, 20).
+has_in_port(6, 21).
+has_in_port(6, 22).
+has_in_port(7, 24).
+has_in_port(7, 25).
+has_in_port(7, 26).
+has_in_port(7, 27).
+has_in_port(7, 28).
+has_in_port(7, 29).
+has_in_port(7, 30).
+has_in_port(7, 31).
+has_in_port(7, 32).
 
 % FACT: has_out_port(block_id, port_id).
-has_out_port(1, 3).
+has_out_port(1, 4).
 has_out_port(2, 6).
+has_out_port(3, 9).
+has_out_port(4, 12).
+has_out_port(4, 13).
+has_out_port(4, 14).
+has_out_port(4, 15).
+has_out_port(4, 16).
+has_out_port(5, 19).
+has_out_port(6, 23).
+has_out_port(7, 33).
 
 % FACT: data(data_id, data_name, qualified_data_name).
-data(1, 'paleocar_models', '[paleocar_models]').
-data(2, 'user_input_year', '[user_input_year]').
-data(3, 'tree_ring_values', '[tree_ring_values]').
+data(1, 'shapefile_archive', '[shapefile_archive]').
+data(2, 'study_region', '[study_region]').
+data(3, 'prediction_years', '[prediction_years]').
+data(4, 'itrdb', '[itrdb]').
+data(5, 'study_region', 'tree_ring_data[study_region]').
+data(6, 'user_created_dir', 'tree_ring_data[user_created_dir]').
+data(7, 'shapefile_archive', 'tree_ring_data[shapefile_archive]').
+data(8, 'compressed_shapefile', 'tree_ring_data[compressed_shapefile]').
+data(9, 'shapefiles_dir', 'tree_ring_data[shapefiles_dir]').
+data(10, 'layer_boundary', 'tree_ring_data[layer_boundary]').
+data(11, 'layer_tracts', 'tree_ring_data[layer_tracts]').
+data(12, 'metadata_xml_file', 'tree_ring_data[metadata_xml_file]').
+data(13, 'tracts_xml_file', 'tree_ring_data[tracts_xml_file]').
+data(14, 'dataframe', 'tree_ring_data[dataframe]').
+data(15, 'tree_buffer', 'tree_ring_data[tree_buffer]').
+data(16, 'segments_approx_quarter_circle', 'tree_ring_data[segments_approx_quarter_circle]').
+data(17, 'treepolygon', 'tree_ring_data[treepolygon]').
+data(18, 'label', 'tree_ring_data[label]').
+data(19, 'raw.dir', 'tree_ring_data[raw.dir]').
+data(20, 'extract.dir', 'tree_ring_data[extract.dir]').
+data(21, 'prediction_years', 'tree_ring_data[prediction_years]').
+data(22, 'calibration_years', 'tree_ring_data[calibration_years]').
+data(23, 'measurement_type', 'tree_ring_data[measurement_type]').
+data(24, 'chronology_type', 'tree_ring_data[chronology_type]').
+data(25, 'force.redo', 'tree_ring_data[force.redo]').
+data(26, 'itrdb', 'tree_ring_data[itrdb]').
 
 % FACT: channel(channel_id, data_id).
-channel(1, 3).
-channel(2, 1).
-channel(3, 2).
+channel(1, 4).
+channel(2, 5).
+channel(3, 7).
+channel(4, 6).
+channel(5, 6).
+channel(6, 8).
+channel(7, 10).
+channel(8, 9).
+channel(9, 14).
+channel(10, 17).
+channel(11, 21).
+channel(12, 1).
+channel(13, 2).
+channel(14, 3).
+channel(15, 26).
 
 % FACT: port_connects_to_channel(port_id, channel_id).
-port_connects_to_channel(6, 1).
-port_connects_to_channel(4, 2).
-port_connects_to_channel(5, 3).
+port_connects_to_channel(33, 1).
+port_connects_to_channel(5, 2).
+port_connects_to_channel(7, 3).
+port_connects_to_channel(6, 4).
+port_connects_to_channel(8, 4).
+port_connects_to_channel(6, 5).
+port_connects_to_channel(11, 5).
+port_connects_to_channel(9, 6).
+port_connects_to_channel(10, 6).
+port_connects_to_channel(13, 7).
+port_connects_to_channel(17, 7).
+port_connects_to_channel(12, 8).
+port_connects_to_channel(18, 8).
+port_connects_to_channel(19, 9).
+port_connects_to_channel(21, 9).
+port_connects_to_channel(23, 10).
+port_connects_to_channel(24, 10).
+port_connects_to_channel(28, 11).
+port_connects_to_channel(7, 12).
+port_connects_to_channel(5, 13).
+port_connects_to_channel(28, 14).
+port_connects_to_channel(33, 15).
 
 % FACT: inflow_connects_to_channel(port_id, channel_id).
-inflow_connects_to_channel(1, 2).
-inflow_connects_to_channel(2, 3).
+inflow_connects_to_channel(2, 2).
+inflow_connects_to_channel(1, 3).
+inflow_connects_to_channel(3, 11).
+inflow_connects_to_channel(1, 12).
+inflow_connects_to_channel(2, 13).
+inflow_connects_to_channel(3, 14).
 
 % FACT: outflow_connects_to_channel(port_id, channel_id).
-outflow_connects_to_channel(3, 1).
+outflow_connects_to_channel(4, 1).
+outflow_connects_to_channel(4, 15).
 
 % FACT: uri_variable(uri_variable_id, variable_name, port_id).
-uri_variable(1, 'session_id', 1).
-uri_variable(2, 'run_id', 1).
-uri_variable(3, 'label', 1).
-uri_variable(4, 'session_id', 3).
-uri_variable(5, 'run_id', 3).
-uri_variable(6, 'user_input_year', 3).
-uri_variable(7, 'session_id', 4).
-uri_variable(8, 'run_id', 4).
-uri_variable(9, 'label', 4).
-uri_variable(10, 'session_id', 6).
-uri_variable(11, 'run_id', 6).
-uri_variable(12, 'user_input_year', 6).
+uri_variable(1, 'study_region', 1).
+uri_variable(2, 'study_region', 6).
+uri_variable(3, 'study_region', 9).
+uri_variable(4, 'study_region', 12).
+uri_variable(5, 'study_region', 13).
+uri_variable(6, 'file_extensions', 13).
+uri_variable(7, 'study_region', 14).
+uri_variable(8, 'file_extensions', 14).
+uri_variable(9, 'study_region', 15).
+uri_variable(10, 'study_region', 16).
+uri_variable(11, 'study_region', 26).
+uri_variable(12, 'study_region', 27).
 
 % FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
 

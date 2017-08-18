@@ -9,7 +9,7 @@ annotation(3, 1, 37, 'in', '@in', 'coordinates').
 annotation(4, 1, 37, 'desc', '@desc', 'Coordinates of location for reconstruction of paleoclimate.').
 annotation(5, 1, 38, 'param', '@param', 'prism_data').
 annotation(6, 1, 38, 'desc', '@desc', 'file containing the precipitation values for the particular region.').
-annotation(7, 1, 38, 'uri', '@uri', 'file:/data/{data_file}.nc').
+annotation(7, 1, 38, 'uri', '@uri', 'file:/data/112W36N.nc').
 annotation(8, 1, 38, 'desc', '@desc', 'file containing the precipitation values for the particular region').
 annotation(9, 1, 43, 'out', '@out', 'prism_data_for_coordinates').
 annotation(10, 1, 43, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{data_file}.csv').

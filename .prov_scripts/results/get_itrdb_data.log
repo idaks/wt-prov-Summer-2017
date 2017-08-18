@@ -19,15 +19,21 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(shapefiles_dir).
-eq3(layer_tracts).
 eq3(list).
+eq3(tracts_xml_file).
+eq3(metadata_xml_file).
+eq3(layer_tracts).
+eq3(layer_boundary).
+eq3(shapefiles_dir).
 eq3(compressed_shapefile).
 eq3(user_created_dir).
-eq3(layer_boundary).
-eq3(tree_ring_files).
-eq3(metadata_xml_file).
-eq3(tracts_xml_file).
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q1 : What program blocks provide input to gen_paleocar_model?
+
+yw_q1(ProgramName)
+...................................................................................................
 
 
 ---------------------------------------------------------------------------------------------------
@@ -35,18 +41,19 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(extract_tree_ring_data,'A character string indicating where the extracted and cropped ITRDB dataset should be put.').
-yw_q2(extract_tree_ring_data,'download all the tree ring chronologies and extract the values for the study region.').
-yw_q2(get_treepolygon,'A character string indicating where raw downloaded files should be put.').
+yw_q2(extract_tree_ring_data,'get all the tree ring chronologies and extract the values for the study region.').
 yw_q2(get_treepolygon,'Get Tree-ring data from the ITRDB for tree_buffer around GRCA').
-yw_q2(read_shapefile,'A character string naming the study area.').
 yw_q2(read_shapefile,'read the shapefile for the region and save it as a spatial vector object.').
-yw_q2(uncompress_shapefile,'A numeric vector of all required years').
 yw_q2(uncompress_shapefile,'create a directory as the archive filename and extract the files.').
-yw_q2(download_shapefile_archive,'a numeric vector of years over which reconstruction is needed.').
 yw_q2(download_shapefile_archive,'download the zip file of the region which contains the boundary, tracts, metadata.xml and nps_tracts.xml files.').
-yw_q2(create_shapefile_dir,'the name of the region os study is passed as input.').
 yw_q2(create_shapefile_dir,'create a direcorty for downloading the shapefiles for the study region.').
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q3 : What programs have input ports that receive data user_prediction_years?
+
+yw_q3(ProgramName)
+...................................................................................................
 
 
 ---------------------------------------------------------------------------------------------------
@@ -67,4 +74,11 @@ yw_q6(DataName)
 YW_Q7 : What are the input data for the generation of the prediction plot in paleocar?
 
 yw_q7(DataName,StepName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q5 : What are the input data for the generation of the uncertainty plot in paleocar?
+
+yw_q5(DataName)
 ...................................................................................................

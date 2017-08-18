@@ -3,22 +3,120 @@
 extract_source(1, 'get_tree_ring_values.R').
 
 % FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
-annotation(1, 1, 21, 'begin', '@begin', 'get_tree_ring_values').
-annotation(2, 1, 21, 'desc', '@desc', 'extract the values of the tree ring chronologies used for reconstruction for a given year').
-annotation(3, 1, 22, 'in', '@in', 'models').
-annotation(4, 1, 22, 'as', '@as', 'paleocar_models').
-annotation(5, 1, 22, 'uri', '@uri', 'file:/.output/{session_id}{run_id}/{label}.models.rds').
-annotation(6, 1, 22, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
-annotation(7, 1, 23, 'in', '@in', 'prediction_year').
-annotation(8, 1, 23, 'as', '@as', 'user_input_year').
-annotation(9, 1, 44, 'out', '@out', 'tree_ring_values').
-annotation(10, 1, 44, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{user_input_year}_tree_ring_data.csv').
-annotation(11, 1, 45, 'end', '@end', 'get_tree_ring_chronologies').
+annotation(1, 1, 23, 'begin', '@begin', 'tree_ring_data').
+annotation(2, 1, 23, 'desc', '@desc', 'get the tree ring chronologies for reconstruction of the paleoclimate.').
+annotation(3, 1, 24, 'in', '@in', 'shapefile_archive').
+annotation(4, 1, 24, 'uri', '@uri', 'http://nrdata.nps.gov/programs/Lands/{study_region}_tracts.zip').
+annotation(5, 1, 25, 'in', '@in', 'study_region').
+annotation(6, 1, 26, 'in', '@in', 'prediction_years').
+annotation(7, 1, 27, 'out', '@out', 'itrdb').
+annotation(8, 1, 30, 'begin', '@begin', 'create_shapefile_dir').
+annotation(9, 1, 30, 'desc', '@desc', 'create a direcorty for downloading the shapefiles for the study region.').
+annotation(10, 1, 31, 'in', '@in', 'dir_name').
+annotation(11, 1, 31, 'as', '@as', 'study_region').
+annotation(12, 1, 33, 'out', '@out', 'user_created_dir').
+annotation(13, 1, 33, 'uri', '@uri', 'file:./{study_region}').
+annotation(14, 1, 34, 'end', '@end', 'create_dir_shapefiles').
+annotation(15, 1, 38, 'begin', '@begin', 'download_shapefile_archive').
+annotation(16, 1, 38, 'desc', '@desc', 'download the zip file of the region which contains the boundary, tracts, metadata.xml and nps_tracts.xml files.').
+annotation(17, 1, 39, 'in', '@in', 'file_archive').
+annotation(18, 1, 39, 'as', '@as', 'shapefile_archive').
+annotation(19, 1, 40, 'in', '@in', 'dir').
+annotation(20, 1, 40, 'as', '@as', 'user_created_dir').
+annotation(21, 1, 44, 'out', '@out', 'compressed_shapefile').
+annotation(22, 1, 44, 'uri', '@uri', 'file:./{study_region}/{study_region}_tracts.zip').
+annotation(23, 1, 45, 'end', '@end', 'download_shape_files').
+annotation(24, 1, 48, 'begin', '@begin', 'uncompress_shapefile').
+annotation(25, 1, 48, 'desc', '@desc', 'create a directory as the archive filename and extract the files.').
+annotation(26, 1, 49, 'in', '@in', 'zipfile').
+annotation(27, 1, 49, 'as', '@as', 'compressed_shapefile').
+annotation(28, 1, 50, 'in', '@in', 'dir_name').
+annotation(29, 1, 50, 'as', '@as', 'user_created_dir').
+annotation(30, 1, 54, 'out', '@out', 'shapefiles_dir').
+annotation(31, 1, 54, 'uri', '@uri', 'file:./{study_region}/{study_region}_tracts').
+annotation(32, 1, 55, 'out', '@out', 'layer_boundary').
+annotation(33, 1, 55, 'uri', '@uri', 'file:./{study_region}/{study_region}_tracts/{study_region}_boundary.{file_extensions}').
+annotation(34, 1, 56, 'out', '@out', 'layer_tracts').
+annotation(35, 1, 56, 'uri', '@uri', 'file:./{study_region}/{study_region}_tracts/{study_region}_tracts.{file_extensions}').
+annotation(36, 1, 57, 'out', '@out', 'metadata_xml_file').
+annotation(37, 1, 57, 'uri', '@uri', 'file:./{study_region}/{study_region}_tracts/{study_region}_metadata.xml').
+annotation(38, 1, 58, 'out', '@out', 'tracts_xml_file').
+annotation(39, 1, 58, 'uri', '@uri', 'file:./{study_region}/{study_region}_tracts/nps_tracts.xml').
+annotation(40, 1, 59, 'end', '@end', 'extract_shape_files').
+annotation(41, 1, 63, 'begin', '@begin', 'read_shapefile').
+annotation(42, 1, 63, 'desc', '@desc', 'read the shapefile for the region and save it as a spatial vector object.').
+annotation(43, 1, 64, 'in', '@in', 'layer').
+annotation(44, 1, 64, 'as', '@as', 'layer_boundary').
+annotation(45, 1, 65, 'in', '@in', 'dir').
+annotation(46, 1, 65, 'as', '@as', 'shapefiles_dir').
+annotation(47, 1, 70, 'out', '@out', 'dataobject').
+annotation(48, 1, 70, 'as', '@as', 'dataframe').
+annotation(49, 1, 71, 'end', '@end', 'read_shapefile').
+annotation(50, 1, 93, 'begin', '@begin', 'get_treepolygon').
+annotation(51, 1, 93, 'desc', '@desc', 'Get Tree-ring data from the ITRDB for tree_buffer around GRCA').
+annotation(52, 1, 94, 'in', '@in', 'width').
+annotation(53, 1, 94, 'as', '@as', 'tree_buffer').
+annotation(54, 1, 95, 'in', '@in', 'polygon').
+annotation(55, 1, 95, 'as', '@as', 'dataframe').
+annotation(56, 1, 96, 'in', '@in', 'quadsegs').
+annotation(57, 1, 96, 'as', '@as', 'segments_approx_quarter_circle').
+annotation(58, 1, 97, 'out', '@out', 'template').
+annotation(59, 1, 97, 'as', '@as', 'treepolygon').
+annotation(60, 1, 105, 'end', '@end', 'get_treepolygon').
+annotation(61, 1, 108, 'begin', '@begin', 'extract_tree_ring_data').
+annotation(62, 1, 108, 'desc', '@desc', 'get all the tree ring chronologies and extract the values for the study region.').
+annotation(63, 1, 109, 'in', '@in', 'polygon').
+annotation(64, 1, 109, 'as', '@as', 'treepolygon').
+annotation(65, 1, 110, 'param', '@param', 'label').
+annotation(66, 1, 111, 'param', '@param', 'raw.dir').
+annotation(67, 1, 111, 'uri', '@uri', 'file:./{study_region}/RAW/').
+annotation(68, 1, 112, 'param', '@param', 'extract.dir').
+annotation(69, 1, 112, 'uri', '@uri', 'file:./{study_region}/ITRDB/').
+annotation(70, 1, 113, 'in', '@in', 'recon_year').
+annotation(71, 1, 113, 'as', '@as', 'prediction_years').
+annotation(72, 1, 114, 'param', '@param', 'calib.years').
+annotation(73, 1, 114, 'as', '@as', 'calibration_years').
+annotation(74, 1, 115, 'param', '@param', 'measurement_type').
+annotation(75, 1, 116, 'param', '@param', 'chronology_type').
+annotation(76, 1, 117, 'param', '@param', 'force.redo').
+annotation(77, 1, 145, 'out', '@out', 'list').
+annotation(78, 1, 145, 'as', '@as', 'itrdb').
+annotation(79, 1, 145, 'uri', '@uri', 'file:itrdb.Rda').
+annotation(80, 1, 146, 'end', '@end', 'extract_tree_ring_data').
+annotation(81, 1, 149, 'end', '@end', 'get_itrdb_data').
 
 % FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
 annotation_qualifies(2, 1).
 annotation_qualifies(4, 3).
-annotation_qualifies(5, 3).
-annotation_qualifies(6, 3).
-annotation_qualifies(8, 7).
-annotation_qualifies(10, 9).
+annotation_qualifies(9, 8).
+annotation_qualifies(11, 10).
+annotation_qualifies(13, 12).
+annotation_qualifies(16, 15).
+annotation_qualifies(18, 17).
+annotation_qualifies(20, 19).
+annotation_qualifies(22, 21).
+annotation_qualifies(25, 24).
+annotation_qualifies(27, 26).
+annotation_qualifies(29, 28).
+annotation_qualifies(31, 30).
+annotation_qualifies(33, 32).
+annotation_qualifies(35, 34).
+annotation_qualifies(37, 36).
+annotation_qualifies(39, 38).
+annotation_qualifies(42, 41).
+annotation_qualifies(44, 43).
+annotation_qualifies(46, 45).
+annotation_qualifies(48, 47).
+annotation_qualifies(51, 50).
+annotation_qualifies(53, 52).
+annotation_qualifies(55, 54).
+annotation_qualifies(57, 56).
+annotation_qualifies(59, 58).
+annotation_qualifies(62, 61).
+annotation_qualifies(64, 63).
+annotation_qualifies(67, 66).
+annotation_qualifies(69, 68).
+annotation_qualifies(71, 70).
+annotation_qualifies(73, 72).
+annotation_qualifies(78, 77).
+annotation_qualifies(79, 77).

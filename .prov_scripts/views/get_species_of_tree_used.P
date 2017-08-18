@@ -1,0 +1,106 @@
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_source_file(SourceId, SourceFile).
+%...................................................................................................
+yw_source_file(1,'get_species_of_tree_used.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_script(WorkflowId, WorkflowName, SourceId, SourceFile).
+%...................................................................................................
+yw_workflow_script(1,get_tree_ring_chronologies,1,'get_species_of_tree_used.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_program(1,get_tree_ring_chronologies,nil,1,21,47).
+yw_program(2,get_tree_ring_chronologies,1,1,21,47).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow(1,get_tree_ring_chronologies,nil,1,21,47).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow_step(2,get_tree_ring_chronologies,1,1,21,47).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_function(FunctionId, FunctionName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
+%...................................................................................................
+yw_data(3,tree_ring_chronologies,1,get_tree_ring_chronologies).
+yw_data(3,tree_ring_chronologies,nil,nil).
+yw_data(2,user_input_year,1,get_tree_ring_chronologies).
+yw_data(2,user_input_year,nil,nil).
+yw_data(1,paleocar_models,1,get_tree_ring_chronologies).
+yw_data(1,paleocar_models,nil,nil).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_input(2,get_tree_ring_chronologies,in,5,prediction_year,2,user_input_year).
+yw_step_input(2,get_tree_ring_chronologies,in,4,models,1,paleocar_models).
+yw_step_input(1,get_tree_ring_chronologies,in,2,prediction_year,2,user_input_year).
+yw_step_input(1,get_tree_ring_chronologies,in,1,models,1,paleocar_models).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_output(1,get_tree_ring_chronologies,out,3,tree_ring_chronologies,3,tree_ring_chronologies).
+yw_step_output(2,get_tree_ring_chronologies,out,6,tree_ring_chronologies,3,tree_ring_chronologies).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
+%...................................................................................................
+yw_inflow(1,get_tree_ring_chronologies,2,user_input_year,2,get_tree_ring_chronologies).
+yw_inflow(1,get_tree_ring_chronologies,1,paleocar_models,2,get_tree_ring_chronologies).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
+%...................................................................................................
+yw_outflow(2,get_tree_ring_chronologies,3,tree_ring_chronologies,1,get_tree_ring_chronologies,3,tree_ring_chronologies).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_qualified_name(EntityType, Id, QualifiedName).
+%...................................................................................................
+yw_qualified_name(program,1,get_tree_ring_chronologies).
+yw_qualified_name(program,2,'get_tree_ring_chronologies.get_tree_ring_chronologies').
+yw_qualified_name(port,1,'get_tree_ring_chronologies<-models').
+yw_qualified_name(port,2,'get_tree_ring_chronologies<-prediction_year').
+yw_qualified_name(port,3,'get_tree_ring_chronologies->tree_ring_chronologies').
+yw_qualified_name(port,4,'get_tree_ring_chronologies.get_tree_ring_chronologies<-models').
+yw_qualified_name(port,5,'get_tree_ring_chronologies.get_tree_ring_chronologies<-prediction_year').
+yw_qualified_name(port,6,'get_tree_ring_chronologies.get_tree_ring_chronologies->tree_ring_chronologies').
+yw_qualified_name(data,1,'[paleocar_models]').
+yw_qualified_name(data,2,'[user_input_year]').
+yw_qualified_name(data,3,'[tree_ring_chronologies]').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_description(EntityType, Id, Name, Description)).
+%...................................................................................................
+yw_description(program,1,get_tree_ring_chronologies,'extract the values of the tree ring chronologies used for reconstruction for a given year').
+yw_description(program,2,get_tree_ring_chronologies,'extract the values of the tree ring chronologies used for reconstruction for a given year').
+yw_description(port,1,models,'R model of the paleocar reconstruction of prediction.').
+yw_description(port,4,models,'R model of the paleocar reconstruction of prediction.').

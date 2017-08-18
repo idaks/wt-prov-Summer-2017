@@ -1,0 +1,86 @@
+
+
+---------------------------------------------------------------------------------------------------
+EQ2 : What are the names N of all program blocks?
+
+eq2(ProgramName)
+...................................................................................................
+eq2(get_carscores).
+eq2(calculateLinearModels).
+eq2(optimizeModels).
+eq2(gen_paleocar_model).
+eq2(get_reconstruction_matrix).
+eq2(get_predlist).
+eq2(calculate_Models).
+eq2(get_predictor_matrix).
+eq2(simplifyLinearModels).
+eq2(defineLinearModels).
+
+
+---------------------------------------------------------------------------------------------------
+EQ3 : What out ports are qualified with URIs
+
+eq3(PortName)
+...................................................................................................
+eq3(paleocar_models).
+eq3('final.models').
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q1 : What program blocks provide input to gen_paleocar_model?
+
+yw_q1(ProgramName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q2 : What workflow steps comprise the top-level workflow?
+
+yw_q2(StepName, Description)
+...................................................................................................
+yw_q2(calculate_Models,'min width of the tree rings.').
+yw_q2(get_carscores,'user entered label for the study region.').
+yw_q2(get_carscores,'get the carscores for reconstruction of paleoclimate.').
+yw_q2(get_predlist,'period for calibrating the information for predicting the climate.').
+yw_q2(get_predlist,'create list of prediction values.').
+yw_q2(get_reconstruction_matrix,'tree ring chronologies database').
+yw_q2(get_reconstruction_matrix,'get reconstruction matrix for chronologies for the prediction year.').
+yw_q2(get_predictor_matrix,'file containing the precipitation values for the particular region').
+yw_q2(get_predictor_matrix,'file containing the precipitation values for the selected region.').
+yw_q2(get_predictor_matrix,'create a matrix of tree ring chronologies for the calibration year.').
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q3 : What programs have input ports that receive data user_prediction_years?
+
+yw_q3(ProgramName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q4 : What are the names and descriptions of any outputs of the workflow?
+
+yw_q4(OutputName, Description)
+...................................................................................................
+yw_q4(paleocar_models,'R model generated for the paleoclimatic reconstruction.').
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q6 : What are the output data for the paleocar?
+
+yw_q6(DataName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q7 : What are the input data for the generation of the prediction plot in paleocar?
+
+yw_q7(DataName,StepName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q5 : What are the input data for the generation of the uncertainty plot in paleocar?
+
+yw_q5(DataName)
+...................................................................................................

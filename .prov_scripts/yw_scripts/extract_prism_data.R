@@ -35,7 +35,7 @@ coord <- c(as.numeric(args[3]),as.numeric(args[2])) %>% # Longitude before latit
 #@begin extract_prism_data @desc Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.
 
 #@in coordinates @desc Coordinates of location for reconstruction of paleoclimate. 
-#@param prism_data  @desc file containing the precipitation values for the particular region.@uri file:/data/{data_file}.nc @desc file containing the precipitation values for the particular region
+#@param prism_data  @desc file containing the precipitation values for the particular region.@uri file:/data/112W36N.nc @desc file containing the precipitation values for the particular region
 
 ## Call the prism_Data function for creating the csv file for the vectors
 prism_data(coord,paste0("data/",args[4]),paste0(testDir,args[5]))

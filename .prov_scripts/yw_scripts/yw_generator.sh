@@ -25,16 +25,20 @@ dir="/d/Study/Internship/WT_PaleoCar_2017/meteor_example/wt-prov-summer-2017/.Pr
 
 cd $dir
 
+rm -rf ../prov_pdf/* ../svg_files/* ../gv_files/* ../graphs/* 
 
-for file in `ls -a *.R` ;
+for file in `ls -1  *.R *.java ` ;
 do
- echo $file 
- yw graph $file > ../gv_files/${file:0:${#file}-2}.gv
- yw graph $file | dot -Tpdf -o ../prov_pdf/${file:0:${#file}-2}.pdf
- yw graph $file | dot -Tpng -o ../graphs/${file:0:${#file}-2}.png
- yw graph $file | dot -Tsvg -o ../svg_files/${file:0:${#file}-2}.svg
 
- yw extract -c extract.factsfile $file > ../facts/${file:0:${#file}-2}.P
- yw model   -c model.factsfile   $file > ../models/${file:0:${#file}-2}.P
+ echo $file 
+ filename=`ls -1 $file | sed -e 's/\..*$//' `
+ yw graph $file > ../gv_files/${filename}.gv
+ yw graph $file | dot -Tpdf -o ../prov_pdf/${filename}.pdf
+ yw graph $file | dot -Tpng -o ../graphs/${filename}.png
+ yw graph $file | dot -Tsvg -o ../svg_files/${filename}.svg
+
+ yw extract -c extract.factsfile $file > ../facts/${filename}.P
+ yw model   -c model.factsfile   $file > ../models/${filename}.P
+ 
 done
 #yw graph   | doT -Tpng -o ${1}.png 

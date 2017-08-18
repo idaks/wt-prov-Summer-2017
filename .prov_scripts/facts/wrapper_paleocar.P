@@ -3,135 +3,127 @@
 extract_source(1, 'wrapper_paleocar.R').
 
 % FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
-annotation(1, 1, 25, 'begin', '@begin', 'exec_paleocar').
-annotation(2, 1, 26, 'in', '@in', 'user_map_marker_pos').
-annotation(3, 1, 26, 'desc', '@desc', 'Coordinates of location for reconstruction of paleoclimate.').
-annotation(4, 1, 27, 'in', '@in', 'user_prediction_years').
-annotation(5, 1, 27, 'desc', '@desc', 'Prediction years for reconstruction of paleoclimate.').
-annotation(6, 1, 29, 'param', '@param', 'prism_data').
-annotation(7, 1, 29, 'desc', '@desc', 'file containing the precipitation values for the particular region.').
-annotation(8, 1, 29, 'uri', '@uri', 'file:/data/112W36N.nc').
-annotation(9, 1, 29, 'desc', '@desc', 'file containing the precipitation values for the particular region').
-annotation(10, 1, 30, 'param', '@param', 'itrdb').
-annotation(11, 1, 30, 'file', '@file', '112W36N.nc').
-annotation(12, 1, 30, 'uri', '@uri', 'file:/data/itrdb.Rda').
-annotation(13, 1, 30, 'desc', '@desc', 'tree ring chronologies database').
-annotation(14, 1, 31, 'param', '@param', 'calibration_year').
-annotation(15, 1, 31, 'desc', '@desc', 'period for calibrating the information for predicting the climate.').
-annotation(16, 1, 32, 'param', '@param', 'label').
-annotation(17, 1, 32, 'desc', '@desc', 'a user label for the generated paleocar model of the study region.').
-annotation(18, 1, 44, 'begin', '@begin', 'extract_prism_data').
-annotation(19, 1, 44, 'desc', '@desc', 'Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.').
-annotation(20, 1, 46, 'in', '@in', 'lat_long').
-annotation(21, 1, 46, 'as', '@as', 'user_map_marker_pos').
-annotation(22, 1, 47, 'param', '@param', 'data').
-annotation(23, 1, 47, 'as', '@as', 'prism_data').
-annotation(24, 1, 49, 'out', '@out', 'session_id').
-annotation(25, 1, 50, 'out', '@out', 'run_id').
-annotation(26, 1, 51, 'out', '@out', 'prism_data_for_coordinates').
-annotation(27, 1, 51, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/112W36N.csv').
-annotation(28, 1, 51, 'desc', '@desc', 'file containing the precipitation values for the selected region.').
-annotation(29, 1, 52, 'end', '@end', 'extract_prism_data').
-annotation(30, 1, 116, 'begin', '@begin', 'gen_paleocar_model').
-annotation(31, 1, 116, 'desc', '@desc', 'generate paleocar models for predicting the climate for the given years.').
-annotation(32, 1, 117, 'param', '@param', 'label').
-annotation(33, 1, 117, 'desc', '@desc', 'user entered label for the study region.').
-annotation(34, 1, 118, 'param', '@param', 'cal_year').
-annotation(35, 1, 118, 'as', '@as', 'calibration_year').
-annotation(36, 1, 118, 'desc', '@desc', 'period for calibrating the information for predicting the climate.').
-annotation(37, 1, 119, 'param', '@param', 'itrdb').
-annotation(38, 1, 119, 'file', '@file', '{data_file}.nc').
-annotation(39, 1, 119, 'uri', '@uri', 'file:/data/itrdb.Rda').
-annotation(40, 1, 119, 'desc', '@desc', 'tree ring chronologies database').
-annotation(41, 1, 120, 'in', '@in', 'prediction_years').
-annotation(42, 1, 120, 'as', '@as', 'user_prediction_years').
-annotation(43, 1, 120, 'desc', '@desc', 'An optional integer vector of years for the reconstruction.').
-annotation(44, 1, 121, 'in', '@in', 'predictands').
-annotation(45, 1, 121, 'as', '@as', 'prism_data_for_coordinates').
-annotation(46, 1, 121, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{data_file}.csv').
-annotation(47, 1, 121, 'desc', '@desc', 'file containing the precipitation values for the selected region.').
-annotation(48, 1, 122, 'in', '@in', 'session_id').
-annotation(49, 1, 123, 'in', '@in', 'run_id').
-annotation(50, 1, 134, 'out', '@out', 'paleocar_models').
-annotation(51, 1, 134, 'uri', '@uri', 'file:/.output/{session_id}{run_id}/{label}.models.rds').
-annotation(52, 1, 134, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
-annotation(53, 1, 135, 'out', '@out', 'log_file').
-annotation(54, 1, 135, 'as', '@as', 'paleocar_model_log_file').
-annotation(55, 1, 135, 'uri', '@uri', 'file:/.output/{session_id}{run_id}/paleocar_model_log.txt').
-annotation(56, 1, 135, 'desc', '@desc', 'a log file containing information about the execution of paleocar reconstruction.').
-annotation(57, 1, 137, 'end', '@end', 'gen_paleocar_model').
-annotation(58, 1, 147, 'begin', '@begin', 'extract_prediction_model').
-annotation(59, 1, 147, 'desc', '@desc', 'extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.').
-annotation(60, 1, 148, 'in', '@in', 'paleocar_models').
-annotation(61, 1, 148, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.models.rds').
-annotation(62, 1, 148, 'desc', '@desc', 'R model of the paleocar reconstruction.').
-annotation(63, 1, 149, 'in', '@in', 'prediction_years').
-annotation(64, 1, 149, 'as', '@as', 'user_prediction_years').
-annotation(65, 1, 149, 'desc', '@desc', 'Prediction years for reconstruction of paleoclimate.').
-annotation(66, 1, 151, 'out', '@out', 'prediction_model').
-annotation(67, 1, 151, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
-annotation(68, 1, 151, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
-annotation(69, 1, 152, 'out', '@out', 'plot').
-annotation(70, 1, 152, 'as', '@as', 'prediction_plot').
-annotation(71, 1, 152, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.jpg').
-annotation(72, 1, 152, 'desc', '@desc', 'timeseries plot of prediction model of the paleocar reconstruction.').
-annotation(73, 1, 153, 'end', '@end', 'gen_prediction_model').
-annotation(74, 1, 180, 'begin', '@begin', 'extract_uncertainty_model').
-annotation(75, 1, 180, 'desc', '@desc', 'extract the LOOCV uncertainty information from the set of Paleocar models for specified period.').
-annotation(76, 1, 181, 'in', '@in', 'paleocar_models').
-annotation(77, 1, 181, 'uri', '@uri', 'rds:/.output/{session_id}/{run_id}/{label}.models.rds').
-annotation(78, 1, 181, 'desc', '@desc', 'R model of the paleocar reconstruction.').
-annotation(79, 1, 182, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds$predictands').
-annotation(80, 1, 182, 'desc', '@desc', 'R model of the paleocar reconstruction.').
-annotation(81, 1, 183, 'in', '@in', 'prediction_years').
-annotation(82, 1, 183, 'as', '@as', 'user_prediction_years').
-annotation(83, 1, 183, 'desc', '@desc', 'Prediction years for reconstruction of paleoclimate.').
-annotation(84, 1, 185, 'out', '@out', 'model').
-annotation(85, 1, 185, 'as', '@as', 'uncertainty_model').
-annotation(86, 1, 185, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds').
-annotation(87, 1, 185, 'desc', '@desc', 'R model of the paleocar reconstruction of uncertainties.').
-annotation(88, 1, 186, 'out', '@out', 'plot').
-annotation(89, 1, 186, 'as', '@as', 'uncertainty_plot').
-annotation(90, 1, 186, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg').
-annotation(91, 1, 186, 'desc', '@desc', 'timeseries plot of uncertainty model of the paleocar reconstruction.').
-annotation(92, 1, 187, 'end', '@end', 'gen_uncertainty_model').
-annotation(93, 1, 319, 'out', '@out', 'paleocar_models').
-annotation(94, 1, 319, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.models.rds').
-annotation(95, 1, 319, 'desc', '@desc', 'R model of the paleocar reconstruction.').
-annotation(96, 1, 320, 'out', '@out', 'prediction_model').
-annotation(97, 1, 320, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
-annotation(98, 1, 320, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
-annotation(99, 1, 321, 'out', '@out', 'uncertainty_model').
-annotation(100, 1, 321, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds').
-annotation(101, 1, 321, 'desc', '@desc', 'R model of the paleocar reconstruction of uncertainties.').
-annotation(102, 1, 322, 'out', '@out', 'prediction_plot').
-annotation(103, 1, 322, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.jpg').
-annotation(104, 1, 322, 'desc', '@desc', 'timeseries plot of prediction model of the paleocar reconstruction.').
-annotation(105, 1, 323, 'out', '@out', 'uncertainty_plot').
-annotation(106, 1, 323, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg').
-annotation(107, 1, 323, 'desc', '@desc', 'timeseries plot of uncertainty model of the paleocar reconstruction.').
-annotation(108, 1, 324, 'out', '@out', 'paleocar_model_log_file').
-annotation(109, 1, 324, 'uri', '@uri', 'file:/.output/{session_id}{run_id}/paleocar_model_log.txt').
-annotation(110, 1, 324, 'desc', '@desc', 'a log file containing information about the execution of paleocar reconstruction.').
-annotation(111, 1, 326, 'end', '@end', 'exec_paleocar').
+annotation(1, 1, 74, 'begin', '@begin', 'exec_paleocar_model').
+annotation(2, 1, 75, 'in', '@in', 'prediction_years').
+annotation(3, 1, 75, 'desc', '@desc', 'period for reconstruction of the paleoclimate using paleocar.').
+annotation(4, 1, 76, 'in', '@in', 'prism_data_for_coordinates').
+annotation(5, 1, 76, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/112W36N.csv').
+annotation(6, 1, 76, 'desc', '@desc', 'file containing the precipitation values for the selected region.').
+annotation(7, 1, 76, 'desc', '@desc', 'file containing the precipitation values for the particular region').
+annotation(8, 1, 77, 'param', '@param', 'itrdb').
+annotation(9, 1, 77, 'file', '@file', '112W36N.nc').
+annotation(10, 1, 77, 'uri', '@uri', 'file:/data/itrdb.Rda').
+annotation(11, 1, 77, 'desc', '@desc', 'tree ring chronologies database').
+annotation(12, 1, 78, 'param', '@param', 'calibration_years').
+annotation(13, 1, 78, 'desc', '@desc', 'period for calibrating the information for predicting the climate.').
+annotation(14, 1, 79, 'param', '@param', 'label').
+annotation(15, 1, 79, 'desc', '@desc', 'user entered label for the study region.').
+annotation(16, 1, 80, 'param', '@param', 'min_width').
+annotation(17, 1, 80, 'desc', '@desc', 'min width of the tree rings.').
+annotation(18, 1, 81, 'param', '@param', 'verbose').
+annotation(19, 1, 81, 'desc', '@desc', 'set to true for writing output to a logfile.').
+annotation(20, 1, 84, 'begin', '@begin', 'create_paleocar_model').
+annotation(21, 1, 84, 'desc', '@desc', 'generate paleocar models for predicting the climate for the given years.').
+annotation(22, 1, 85, 'param', '@param', 'label').
+annotation(23, 1, 85, 'as', '@as', 'label').
+annotation(24, 1, 85, 'desc', '@desc', 'user entered label for the study region.').
+annotation(25, 1, 86, 'param', '@param', 'cal_year').
+annotation(26, 1, 86, 'as', '@as', 'calibration_years').
+annotation(27, 1, 86, 'desc', '@desc', 'period for calibrating the information for predicting the climate.').
+annotation(28, 1, 87, 'param', '@param', 'itrdb').
+annotation(29, 1, 87, 'file', '@file', '{data_file}.nc').
+annotation(30, 1, 87, 'uri', '@uri', 'file:/data/itrdb.Rda').
+annotation(31, 1, 87, 'desc', '@desc', 'tree ring chronologies database.').
+annotation(32, 1, 88, 'param', '@param', 'min.width').
+annotation(33, 1, 88, 'as', '@as', 'min_width').
+annotation(34, 1, 89, 'in', '@in', 'pred_year').
+annotation(35, 1, 89, 'as', '@as', 'prediction_years').
+annotation(36, 1, 89, 'desc', '@desc', 'An optional integer vector of years for the reconstruction.').
+annotation(37, 1, 90, 'in', '@in', 'predictands').
+annotation(38, 1, 90, 'as', '@as', 'prism_data_for_coordinates').
+annotation(39, 1, 90, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{data_file}.csv').
+annotation(40, 1, 90, 'desc', '@desc', 'file containing the precipitation values for the selected region.').
+annotation(41, 1, 93, 'out', '@out', 'model').
+annotation(42, 1, 93, 'as', '@as', 'paleocar_models').
+annotation(43, 1, 93, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.model.rds').
+annotation(44, 1, 93, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
+annotation(45, 1, 94, 'out', '@out', 'log_file').
+annotation(46, 1, 94, 'as', '@as', 'paleocar_log_file').
+annotation(47, 1, 94, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/paleocar_model_log.txt').
+annotation(48, 1, 94, 'desc', '@desc', 'text file containing information of the execution of the run.').
+annotation(49, 1, 95, 'end', '@end', 'paleocar_model').
+annotation(50, 1, 99, 'begin', '@begin', 'extract_prediction_model').
+annotation(51, 1, 99, 'desc', '@desc', 'generate paleocar models for predicting the climate for the given years.').
+annotation(52, 1, 100, 'in', '@in', 'pred_year').
+annotation(53, 1, 100, 'as', '@as', 'prediction_years').
+annotation(54, 1, 100, 'desc', '@desc', 'An optional integer vector of years for the reconstruction.').
+annotation(55, 1, 101, 'in', '@in', 'models').
+annotation(56, 1, 101, 'as', '@as', 'paleocar_models').
+annotation(57, 1, 101, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.model.rds').
+annotation(58, 1, 101, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
+annotation(59, 1, 104, 'out', '@out', 'prediction_graph').
+annotation(60, 1, 104, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.jpg').
+annotation(61, 1, 104, 'desc', '@desc', 'timeseries plot of prediction model of the paleocar reconstruction.').
+annotation(62, 1, 105, 'out', '@out', 'prediction_model').
+annotation(63, 1, 105, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
+annotation(64, 1, 105, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
+annotation(65, 1, 107, 'end', '@end', 'extract_prediction_model').
+annotation(66, 1, 110, 'begin', '@begin', 'extract_uncertainty_model').
+annotation(67, 1, 110, 'desc', '@desc', 'generate paleocar models for predicting the climate for the given years.').
+annotation(68, 1, 111, 'in', '@in', 'pred_year').
+annotation(69, 1, 111, 'as', '@as', 'prediction_years').
+annotation(70, 1, 111, 'desc', '@desc', 'An optional integer vector of years for the reconstruction.').
+annotation(71, 1, 112, 'in', '@in', 'models').
+annotation(72, 1, 112, 'as', '@as', 'paleocar_models').
+annotation(73, 1, 112, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.model.rds').
+annotation(74, 1, 112, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
+annotation(75, 1, 115, 'out', '@out', 'uncertainty_graph').
+annotation(76, 1, 115, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.jpg').
+annotation(77, 1, 115, 'desc', '@desc', 'timeseries plot of prediction model of the paleocar reconstruction.').
+annotation(78, 1, 116, 'out', '@out', 'uncertainty_model').
+annotation(79, 1, 116, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
+annotation(80, 1, 116, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
+annotation(81, 1, 118, 'end', '@end', 'extract_uncertainty_model').
+annotation(82, 1, 121, 'out', '@out', 'prediction_graph').
+annotation(83, 1, 121, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.jpg').
+annotation(84, 1, 121, 'desc', '@desc', 'timeseries plot of prediction model of the paleocar reconstruction.').
+annotation(85, 1, 122, 'out', '@out', 'prediction_model').
+annotation(86, 1, 122, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
+annotation(87, 1, 122, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
+annotation(88, 1, 123, 'out', '@out', 'paleocar_log_file').
+annotation(89, 1, 123, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/paleocar_model_log.txt').
+annotation(90, 1, 123, 'desc', '@desc', 'text file containing information of the execution of the run.').
+annotation(91, 1, 124, 'out', '@out', 'uncertainty_model').
+annotation(92, 1, 124, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds').
+annotation(93, 1, 124, 'desc', '@desc', 'R model of the paleocar reconstruction of uncertainties.').
+annotation(94, 1, 125, 'out', '@out', 'uncertainty_graph').
+annotation(95, 1, 125, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg').
+annotation(96, 1, 125, 'desc', '@desc', 'timeseries plot of uncertainty model of the paleocar reconstruction.').
+annotation(97, 1, 126, 'out', '@out', 'paleocar_models').
+annotation(98, 1, 126, 'uri', '@uri', 'file:/.output/{session_id}/{run_id}/{label}.model.rds').
+annotation(99, 1, 126, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
+annotation(100, 1, 127, 'end', '@end', 'gen_paleocar_model').
 
 % FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
 annotation_qualifies(3, 2).
 annotation_qualifies(5, 4).
-annotation_qualifies(7, 6).
-annotation_qualifies(8, 6).
-annotation_qualifies(9, 6).
-annotation_qualifies(11, 10).
-annotation_qualifies(12, 10).
-annotation_qualifies(13, 10).
+annotation_qualifies(6, 4).
+annotation_qualifies(7, 4).
+annotation_qualifies(9, 8).
+annotation_qualifies(10, 8).
+annotation_qualifies(11, 8).
+annotation_qualifies(13, 12).
 annotation_qualifies(15, 14).
 annotation_qualifies(17, 16).
 annotation_qualifies(19, 18).
 annotation_qualifies(21, 20).
 annotation_qualifies(23, 22).
-annotation_qualifies(27, 26).
-annotation_qualifies(28, 26).
-annotation_qualifies(31, 30).
+annotation_qualifies(24, 22).
+annotation_qualifies(26, 25).
+annotation_qualifies(27, 25).
+annotation_qualifies(29, 28).
+annotation_qualifies(30, 28).
+annotation_qualifies(31, 28).
 annotation_qualifies(33, 32).
 annotation_qualifies(35, 34).
 annotation_qualifies(36, 34).
@@ -140,46 +132,39 @@ annotation_qualifies(39, 37).
 annotation_qualifies(40, 37).
 annotation_qualifies(42, 41).
 annotation_qualifies(43, 41).
-annotation_qualifies(45, 44).
-annotation_qualifies(46, 44).
-annotation_qualifies(47, 44).
+annotation_qualifies(44, 41).
+annotation_qualifies(46, 45).
+annotation_qualifies(47, 45).
+annotation_qualifies(48, 45).
 annotation_qualifies(51, 50).
-annotation_qualifies(52, 50).
-annotation_qualifies(54, 53).
-annotation_qualifies(55, 53).
-annotation_qualifies(56, 53).
-annotation_qualifies(59, 58).
-annotation_qualifies(61, 60).
-annotation_qualifies(62, 60).
-annotation_qualifies(64, 63).
-annotation_qualifies(65, 63).
+annotation_qualifies(53, 52).
+annotation_qualifies(54, 52).
+annotation_qualifies(56, 55).
+annotation_qualifies(57, 55).
+annotation_qualifies(58, 55).
+annotation_qualifies(60, 59).
+annotation_qualifies(61, 59).
+annotation_qualifies(63, 62).
+annotation_qualifies(64, 62).
 annotation_qualifies(67, 66).
-annotation_qualifies(68, 66).
-annotation_qualifies(70, 69).
-annotation_qualifies(71, 69).
-annotation_qualifies(72, 69).
-annotation_qualifies(75, 74).
-annotation_qualifies(77, 76).
-annotation_qualifies(78, 76).
-annotation_qualifies(79, 76).
-annotation_qualifies(80, 76).
-annotation_qualifies(82, 81).
-annotation_qualifies(83, 81).
-annotation_qualifies(85, 84).
-annotation_qualifies(86, 84).
-annotation_qualifies(87, 84).
+annotation_qualifies(69, 68).
+annotation_qualifies(70, 68).
+annotation_qualifies(72, 71).
+annotation_qualifies(73, 71).
+annotation_qualifies(74, 71).
+annotation_qualifies(76, 75).
+annotation_qualifies(77, 75).
+annotation_qualifies(79, 78).
+annotation_qualifies(80, 78).
+annotation_qualifies(83, 82).
+annotation_qualifies(84, 82).
+annotation_qualifies(86, 85).
+annotation_qualifies(87, 85).
 annotation_qualifies(89, 88).
 annotation_qualifies(90, 88).
-annotation_qualifies(91, 88).
-annotation_qualifies(94, 93).
-annotation_qualifies(95, 93).
-annotation_qualifies(97, 96).
-annotation_qualifies(98, 96).
-annotation_qualifies(100, 99).
-annotation_qualifies(101, 99).
-annotation_qualifies(103, 102).
-annotation_qualifies(104, 102).
-annotation_qualifies(106, 105).
-annotation_qualifies(107, 105).
-annotation_qualifies(109, 108).
-annotation_qualifies(110, 108).
+annotation_qualifies(92, 91).
+annotation_qualifies(93, 91).
+annotation_qualifies(95, 94).
+annotation_qualifies(96, 94).
+annotation_qualifies(98, 97).
+annotation_qualifies(99, 97).

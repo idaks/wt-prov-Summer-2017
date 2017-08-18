@@ -1,0 +1,81 @@
+
+
+---------------------------------------------------------------------------------------------------
+EQ2 : What are the names N of all program blocks?
+
+eq2(ProgramName)
+...................................................................................................
+eq2(gen_paleocar_model).
+eq2(exec_paleocar).
+
+
+---------------------------------------------------------------------------------------------------
+EQ3 : What out ports are qualified with URIs
+
+eq3(PortName)
+...................................................................................................
+eq3(paleocar_log_file).
+eq3(model).
+eq3(plot).
+eq3(prediction_model).
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q1 : What program blocks provide input to gen_paleocar_model?
+
+yw_q1(ProgramName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q2 : What workflow steps comprise the top-level workflow?
+
+yw_q2(StepName, Description)
+...................................................................................................
+yw_q2(gen_paleocar_model,'file containing the precipitation values for the particular region').
+yw_q2(gen_paleocar_model,'file containing the precipitation values for the selected region.').
+yw_q2(gen_paleocar_model,'execute paleocar for reconstruction of paleoclimate of the study region.').
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q3 : What programs have input ports that receive data user_prediction_years?
+
+yw_q3(ProgramName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q4 : What are the names and descriptions of any outputs of the workflow?
+
+yw_q4(OutputName, Description)
+...................................................................................................
+yw_q4(uncertainty_plot,'timeseries plot of uncertainty model of the paleocar reconstruction.').
+yw_q4(uncertainty_model,'R model of the paleocar reconstruction of uncertainties.').
+yw_q4(prediction_plot,'timeseries plot of prediction model of the paleocar reconstruction.').
+yw_q4(prediction_model,'R model of the paleocar reconstruction of prediction.').
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q6 : What are the output data for the paleocar?
+
+yw_q6(DataName)
+...................................................................................................
+yw_q6(paleocar_log_file).
+yw_q6(uncertainty_plot).
+yw_q6(uncertainty_model).
+yw_q6(prediction_plot).
+yw_q6(prediction_model).
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q7 : What are the input data for the generation of the prediction plot in paleocar?
+
+yw_q7(DataName,StepName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q5 : What are the input data for the generation of the uncertainty plot in paleocar?
+
+yw_q5(DataName)
+...................................................................................................

@@ -15,30 +15,30 @@ yw_workflow_script(1,get_itrdb_data,1,'get_itrdb_data.R').
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_program(1,get_itrdb_data,nil,1,23,162).
-yw_program(2,create_shapefile_dir,1,1,43,47).
-yw_program(3,download_shapefile_archive,1,1,51,58).
-yw_program(4,uncompress_shapefile,1,1,61,72).
-yw_program(5,read_shapefile,1,1,76,84).
-yw_program(6,get_treepolygon,1,1,106,118).
-yw_program(7,extract_tree_ring_data,1,1,121,159).
+yw_program(1,get_itrdb_data,nil,1,23,149).
+yw_program(2,create_shapefile_dir,1,1,30,34).
+yw_program(3,download_shapefile_archive,1,1,38,45).
+yw_program(4,uncompress_shapefile,1,1,48,59).
+yw_program(5,read_shapefile,1,1,63,71).
+yw_program(6,get_treepolygon,1,1,93,105).
+yw_program(7,extract_tree_ring_data,1,1,108,146).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow(1,get_itrdb_data,nil,1,23,162).
+yw_workflow(1,get_itrdb_data,nil,1,23,149).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow_step(2,create_shapefile_dir,1,1,43,47).
-yw_workflow_step(3,download_shapefile_archive,1,1,51,58).
-yw_workflow_step(4,uncompress_shapefile,1,1,61,72).
-yw_workflow_step(5,read_shapefile,1,1,76,84).
-yw_workflow_step(6,get_treepolygon,1,1,106,118).
-yw_workflow_step(7,extract_tree_ring_data,1,1,121,159).
+yw_workflow_step(2,create_shapefile_dir,1,1,30,34).
+yw_workflow_step(3,download_shapefile_archive,1,1,38,45).
+yw_workflow_step(4,uncompress_shapefile,1,1,48,59).
+yw_workflow_step(5,read_shapefile,1,1,63,71).
+yw_workflow_step(6,get_treepolygon,1,1,93,105).
+yw_workflow_step(7,extract_tree_ring_data,1,1,108,146).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -52,72 +52,53 @@ yw_workflow_step(7,extract_tree_ring_data,1,1,121,159).
 yw_data(1,shapefile_archive,nil,nil).
 yw_data(2,study_region,nil,nil).
 yw_data(3,prediction_years,nil,nil).
-yw_data(4,calibration_years,nil,nil).
-yw_data(5,label,nil,nil).
-yw_data(6,raw_dir,nil,nil).
-yw_data(7,extract_dir,nil,nil).
-yw_data(8,chronology_type,nil,nil).
-yw_data(9,measurement_type,nil,nil).
-yw_data(10,tree_buffer,nil,nil).
-yw_data(11,quadsegs,nil,nil).
-yw_data(12,itrdb,nil,nil).
-yw_data(13,selected_itrdb,nil,nil).
-yw_data(14,tracts_files,nil,nil).
-yw_data(15,metadata_file,nil,nil).
-yw_data(16,tracts_xml,nil,nil).
-yw_data(17,study_region,1,get_itrdb_data).
-yw_data(18,user_created_dir,1,get_itrdb_data).
-yw_data(19,shapefile_archive,1,get_itrdb_data).
-yw_data(20,compressed_shapefile,1,get_itrdb_data).
-yw_data(21,shapefiles_dir,1,get_itrdb_data).
-yw_data(22,layer_boundary,1,get_itrdb_data).
-yw_data(23,tracts_files,1,get_itrdb_data).
-yw_data(24,metadata_file,1,get_itrdb_data).
-yw_data(25,tracts_xml,1,get_itrdb_data).
-yw_data(26,spatial_dataframe,1,get_itrdb_data).
-yw_data(27,tree_buffer,1,get_itrdb_data).
-yw_data(28,quadsegs,1,get_itrdb_data).
-yw_data(29,treepolygon,1,get_itrdb_data).
-yw_data(30,label,1,get_itrdb_data).
-yw_data(31,raw_dir,1,get_itrdb_data).
-yw_data(32,extract_dir,1,get_itrdb_data).
-yw_data(33,prediction_years,1,get_itrdb_data).
-yw_data(34,calibration_years,1,get_itrdb_data).
-yw_data(35,measurement_type,1,get_itrdb_data).
-yw_data(36,chronology_type,1,get_itrdb_data).
-yw_data(37,itrdb,1,get_itrdb_data).
-yw_data(38,selected_itrdb,1,get_itrdb_data).
+yw_data(4,itrdb,nil,nil).
+yw_data(5,study_region,1,get_itrdb_data).
+yw_data(6,user_created_dir,1,get_itrdb_data).
+yw_data(7,shapefile_archive,1,get_itrdb_data).
+yw_data(8,compressed_shapefile,1,get_itrdb_data).
+yw_data(9,shapefiles_dir,1,get_itrdb_data).
+yw_data(10,layer_boundary,1,get_itrdb_data).
+yw_data(11,layer_tracts,1,get_itrdb_data).
+yw_data(12,metadata_xml_file,1,get_itrdb_data).
+yw_data(13,tracts_xml_file,1,get_itrdb_data).
+yw_data(14,dataframe,1,get_itrdb_data).
+yw_data(15,tree_buffer,1,get_itrdb_data).
+yw_data(16,segments_approx_quarter_circle,1,get_itrdb_data).
+yw_data(17,treepolygon,1,get_itrdb_data).
+yw_data(18,label,1,get_itrdb_data).
+yw_data(19,'raw.dir',1,get_itrdb_data).
+yw_data(20,'extract.dir',1,get_itrdb_data).
+yw_data(21,prediction_years,1,get_itrdb_data).
+yw_data(22,calibration_years,1,get_itrdb_data).
+yw_data(23,measurement_type,1,get_itrdb_data).
+yw_data(24,chronology_type,1,get_itrdb_data).
+yw_data(25,'force.redo',1,get_itrdb_data).
+yw_data(26,itrdb,1,get_itrdb_data).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
-yw_step_input(7,extract_tree_ring_data,param,43,filter,36,chronology_type).
-yw_step_input(7,extract_tree_ring_data,param,42,measurement,35,measurement_type).
-yw_step_input(7,extract_tree_ring_data,param,41,'calib.years',34,calibration_years).
-yw_step_input(7,extract_tree_ring_data,param,39,'extract.dir',32,extract_dir).
-yw_step_input(7,extract_tree_ring_data,param,38,'raw.dir',31,raw_dir).
-yw_step_input(7,extract_tree_ring_data,param,37,label,30,label).
-yw_step_input(7,extract_tree_ring_data,in,40,recon_year,33,prediction_years).
-yw_step_input(7,extract_tree_ring_data,in,36,polygon,29,treepolygon).
-yw_step_input(6,get_treepolygon,param,34,segment_approx,28,quadsegs).
-yw_step_input(6,get_treepolygon,in,33,polygon,26,spatial_dataframe).
-yw_step_input(6,get_treepolygon,in,32,width,27,tree_buffer).
-yw_step_input(5,read_shapefile,in,30,dir,21,shapefiles_dir).
-yw_step_input(5,read_shapefile,in,29,layer,22,layer_boundary).
-yw_step_input(4,uncompress_shapefile,in,23,dir_name,18,user_created_dir).
-yw_step_input(4,uncompress_shapefile,in,22,zipfile,20,compressed_shapefile).
-yw_step_input(3,download_shapefile_archive,in,20,dir,18,user_created_dir).
-yw_step_input(3,download_shapefile_archive,in,19,file_archive,19,shapefile_archive).
-yw_step_input(2,create_shapefile_dir,in,17,dir_name,17,study_region).
-yw_step_input(1,get_itrdb_data,param,11,quadsegs,11,quadsegs).
-yw_step_input(1,get_itrdb_data,param,10,tree_buffer,10,tree_buffer).
-yw_step_input(1,get_itrdb_data,param,9,measurement_type,9,measurement_type).
-yw_step_input(1,get_itrdb_data,param,8,chronology_type,8,chronology_type).
-yw_step_input(1,get_itrdb_data,param,7,extract_dir,7,extract_dir).
-yw_step_input(1,get_itrdb_data,param,6,raw_dir,6,raw_dir).
-yw_step_input(1,get_itrdb_data,param,5,label,5,label).
-yw_step_input(1,get_itrdb_data,param,4,calibration_years,4,calibration_years).
+yw_step_input(7,extract_tree_ring_data,param,32,'force.redo',25,'force.redo').
+yw_step_input(7,extract_tree_ring_data,param,31,chronology_type,24,chronology_type).
+yw_step_input(7,extract_tree_ring_data,param,30,measurement_type,23,measurement_type).
+yw_step_input(7,extract_tree_ring_data,param,29,'calib.years',22,calibration_years).
+yw_step_input(7,extract_tree_ring_data,param,27,'extract.dir',20,'extract.dir').
+yw_step_input(7,extract_tree_ring_data,param,26,'raw.dir',19,'raw.dir').
+yw_step_input(7,extract_tree_ring_data,param,25,label,18,label).
+yw_step_input(7,extract_tree_ring_data,in,28,recon_year,21,prediction_years).
+yw_step_input(7,extract_tree_ring_data,in,24,polygon,17,treepolygon).
+yw_step_input(6,get_treepolygon,in,22,quadsegs,16,segments_approx_quarter_circle).
+yw_step_input(6,get_treepolygon,in,21,polygon,14,dataframe).
+yw_step_input(6,get_treepolygon,in,20,width,15,tree_buffer).
+yw_step_input(5,read_shapefile,in,18,dir,9,shapefiles_dir).
+yw_step_input(5,read_shapefile,in,17,layer,10,layer_boundary).
+yw_step_input(4,uncompress_shapefile,in,11,dir_name,6,user_created_dir).
+yw_step_input(4,uncompress_shapefile,in,10,zipfile,8,compressed_shapefile).
+yw_step_input(3,download_shapefile_archive,in,8,dir,6,user_created_dir).
+yw_step_input(3,download_shapefile_archive,in,7,file_archive,7,shapefile_archive).
+yw_step_input(2,create_shapefile_dir,in,5,dir_name,5,study_region).
 yw_step_input(1,get_itrdb_data,in,3,prediction_years,3,prediction_years).
 yw_step_input(1,get_itrdb_data,in,2,study_region,2,study_region).
 yw_step_input(1,get_itrdb_data,in,1,shapefile_archive,1,shapefile_archive).
@@ -126,60 +107,43 @@ yw_step_input(1,get_itrdb_data,in,1,shapefile_archive,1,shapefile_archive).
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
-yw_step_output(1,get_itrdb_data,out,12,itrdb,12,itrdb).
-yw_step_output(1,get_itrdb_data,out,13,selected_itrdb,13,selected_itrdb).
-yw_step_output(1,get_itrdb_data,out,14,tracts_files,14,tracts_files).
-yw_step_output(1,get_itrdb_data,out,15,metadata_file,15,metadata_file).
-yw_step_output(1,get_itrdb_data,out,16,tracts_xml,16,tracts_xml).
-yw_step_output(2,create_shapefile_dir,out,18,user_created_dir,18,user_created_dir).
-yw_step_output(3,download_shapefile_archive,out,21,compressed_shapefile,20,compressed_shapefile).
-yw_step_output(4,uncompress_shapefile,out,24,shapefiles_dir,21,shapefiles_dir).
-yw_step_output(4,uncompress_shapefile,out,25,layer_boundary,22,layer_boundary).
-yw_step_output(4,uncompress_shapefile,out,26,layer_tracts,23,tracts_files).
-yw_step_output(4,uncompress_shapefile,out,27,metadata_xml_file,24,metadata_file).
-yw_step_output(4,uncompress_shapefile,out,28,tracts_xml_file,25,tracts_xml).
-yw_step_output(5,read_shapefile,out,31,dataobject,26,spatial_dataframe).
-yw_step_output(6,get_treepolygon,out,35,template,29,treepolygon).
-yw_step_output(7,extract_tree_ring_data,out,44,tree_ring_files,37,itrdb).
-yw_step_output(7,extract_tree_ring_data,out,45,list,38,selected_itrdb).
+yw_step_output(1,get_itrdb_data,out,4,itrdb,4,itrdb).
+yw_step_output(2,create_shapefile_dir,out,6,user_created_dir,6,user_created_dir).
+yw_step_output(3,download_shapefile_archive,out,9,compressed_shapefile,8,compressed_shapefile).
+yw_step_output(4,uncompress_shapefile,out,12,shapefiles_dir,9,shapefiles_dir).
+yw_step_output(4,uncompress_shapefile,out,13,layer_boundary,10,layer_boundary).
+yw_step_output(4,uncompress_shapefile,out,14,layer_tracts,11,layer_tracts).
+yw_step_output(4,uncompress_shapefile,out,15,metadata_xml_file,12,metadata_xml_file).
+yw_step_output(4,uncompress_shapefile,out,16,tracts_xml_file,13,tracts_xml_file).
+yw_step_output(5,read_shapefile,out,19,dataobject,14,dataframe).
+yw_step_output(6,get_treepolygon,out,23,template,17,treepolygon).
+yw_step_output(7,extract_tree_ring_data,out,33,list,26,itrdb).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
-yw_inflow(1,get_itrdb_data,36,chronology_type,7,extract_tree_ring_data).
-yw_inflow(1,get_itrdb_data,35,measurement_type,7,extract_tree_ring_data).
-yw_inflow(1,get_itrdb_data,34,calibration_years,7,extract_tree_ring_data).
-yw_inflow(1,get_itrdb_data,32,extract_dir,7,extract_tree_ring_data).
-yw_inflow(1,get_itrdb_data,31,raw_dir,7,extract_tree_ring_data).
-yw_inflow(1,get_itrdb_data,30,label,7,extract_tree_ring_data).
-yw_inflow(1,get_itrdb_data,33,prediction_years,7,extract_tree_ring_data).
-yw_inflow(1,get_itrdb_data,28,quadsegs,6,get_treepolygon).
-yw_inflow(1,get_itrdb_data,27,tree_buffer,6,get_treepolygon).
-yw_inflow(1,get_itrdb_data,19,shapefile_archive,3,download_shapefile_archive).
-yw_inflow(1,get_itrdb_data,17,study_region,2,create_shapefile_dir).
+yw_inflow(1,get_itrdb_data,21,prediction_years,7,extract_tree_ring_data).
+yw_inflow(1,get_itrdb_data,7,shapefile_archive,3,download_shapefile_archive).
+yw_inflow(1,get_itrdb_data,5,study_region,2,create_shapefile_dir).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
 %...................................................................................................
-yw_flow(2,create_shapefile_dir,18,user_created_dir,18,user_created_dir,23,dir_name,4,uncompress_shapefile).
-yw_flow(2,create_shapefile_dir,18,user_created_dir,18,user_created_dir,20,dir,3,download_shapefile_archive).
-yw_flow(3,download_shapefile_archive,21,compressed_shapefile,20,compressed_shapefile,22,zipfile,4,uncompress_shapefile).
-yw_flow(4,uncompress_shapefile,24,shapefiles_dir,21,shapefiles_dir,30,dir,5,read_shapefile).
-yw_flow(4,uncompress_shapefile,25,layer_boundary,22,layer_boundary,29,layer,5,read_shapefile).
-yw_flow(5,read_shapefile,31,dataobject,26,spatial_dataframe,33,polygon,6,get_treepolygon).
-yw_flow(6,get_treepolygon,35,template,29,treepolygon,36,polygon,7,extract_tree_ring_data).
+yw_flow(2,create_shapefile_dir,6,user_created_dir,6,user_created_dir,11,dir_name,4,uncompress_shapefile).
+yw_flow(2,create_shapefile_dir,6,user_created_dir,6,user_created_dir,8,dir,3,download_shapefile_archive).
+yw_flow(3,download_shapefile_archive,9,compressed_shapefile,8,compressed_shapefile,10,zipfile,4,uncompress_shapefile).
+yw_flow(4,uncompress_shapefile,12,shapefiles_dir,9,shapefiles_dir,18,dir,5,read_shapefile).
+yw_flow(4,uncompress_shapefile,13,layer_boundary,10,layer_boundary,17,layer,5,read_shapefile).
+yw_flow(5,read_shapefile,19,dataobject,14,dataframe,21,polygon,6,get_treepolygon).
+yw_flow(6,get_treepolygon,23,template,17,treepolygon,24,polygon,7,extract_tree_ring_data).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
 %...................................................................................................
-yw_outflow(7,extract_tree_ring_data,37,itrdb,1,get_itrdb_data,12,itrdb).
-yw_outflow(7,extract_tree_ring_data,38,selected_itrdb,1,get_itrdb_data,13,selected_itrdb).
-yw_outflow(4,uncompress_shapefile,23,tracts_files,1,get_itrdb_data,14,tracts_files).
-yw_outflow(4,uncompress_shapefile,24,metadata_file,1,get_itrdb_data,15,metadata_file).
-yw_outflow(4,uncompress_shapefile,25,tracts_xml,1,get_itrdb_data,16,tracts_xml).
+yw_outflow(7,extract_tree_ring_data,26,itrdb,1,get_itrdb_data,4,itrdb).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -195,86 +159,62 @@ yw_qualified_name(program,7,'get_itrdb_data.extract_tree_ring_data').
 yw_qualified_name(port,1,'get_itrdb_data<-shapefile_archive').
 yw_qualified_name(port,2,'get_itrdb_data<-study_region').
 yw_qualified_name(port,3,'get_itrdb_data<-prediction_years').
-yw_qualified_name(port,4,'get_itrdb_data<-calibration_years').
-yw_qualified_name(port,5,'get_itrdb_data<-label').
-yw_qualified_name(port,6,'get_itrdb_data<-raw_dir').
-yw_qualified_name(port,7,'get_itrdb_data<-extract_dir').
-yw_qualified_name(port,8,'get_itrdb_data<-chronology_type').
-yw_qualified_name(port,9,'get_itrdb_data<-measurement_type').
-yw_qualified_name(port,10,'get_itrdb_data<-tree_buffer').
-yw_qualified_name(port,11,'get_itrdb_data<-quadsegs').
-yw_qualified_name(port,12,'get_itrdb_data->itrdb').
-yw_qualified_name(port,13,'get_itrdb_data->selected_itrdb').
-yw_qualified_name(port,14,'get_itrdb_data->tracts_files').
-yw_qualified_name(port,15,'get_itrdb_data->metadata_file').
-yw_qualified_name(port,16,'get_itrdb_data->tracts_xml').
-yw_qualified_name(port,17,'get_itrdb_data.create_shapefile_dir<-dir_name').
-yw_qualified_name(port,18,'get_itrdb_data.create_shapefile_dir->user_created_dir').
-yw_qualified_name(port,19,'get_itrdb_data.download_shapefile_archive<-file_archive').
-yw_qualified_name(port,20,'get_itrdb_data.download_shapefile_archive<-dir').
-yw_qualified_name(port,21,'get_itrdb_data.download_shapefile_archive->compressed_shapefile').
-yw_qualified_name(port,22,'get_itrdb_data.uncompress_shapefile<-zipfile').
-yw_qualified_name(port,23,'get_itrdb_data.uncompress_shapefile<-dir_name').
-yw_qualified_name(port,24,'get_itrdb_data.uncompress_shapefile->shapefiles_dir').
-yw_qualified_name(port,25,'get_itrdb_data.uncompress_shapefile->layer_boundary').
-yw_qualified_name(port,26,'get_itrdb_data.uncompress_shapefile->layer_tracts').
-yw_qualified_name(port,27,'get_itrdb_data.uncompress_shapefile->metadata_xml_file').
-yw_qualified_name(port,28,'get_itrdb_data.uncompress_shapefile->tracts_xml_file').
-yw_qualified_name(port,29,'get_itrdb_data.read_shapefile<-layer').
-yw_qualified_name(port,30,'get_itrdb_data.read_shapefile<-dir').
-yw_qualified_name(port,31,'get_itrdb_data.read_shapefile->dataobject').
-yw_qualified_name(port,32,'get_itrdb_data.get_treepolygon<-width').
-yw_qualified_name(port,33,'get_itrdb_data.get_treepolygon<-polygon').
-yw_qualified_name(port,34,'get_itrdb_data.get_treepolygon<-segment_approx').
-yw_qualified_name(port,35,'get_itrdb_data.get_treepolygon->template').
-yw_qualified_name(port,36,'get_itrdb_data.extract_tree_ring_data<-polygon').
-yw_qualified_name(port,37,'get_itrdb_data.extract_tree_ring_data<-label').
-yw_qualified_name(port,38,'get_itrdb_data.extract_tree_ring_data<-raw.dir').
-yw_qualified_name(port,39,'get_itrdb_data.extract_tree_ring_data<-extract.dir').
-yw_qualified_name(port,40,'get_itrdb_data.extract_tree_ring_data<-recon_year').
-yw_qualified_name(port,41,'get_itrdb_data.extract_tree_ring_data<-calib.years').
-yw_qualified_name(port,42,'get_itrdb_data.extract_tree_ring_data<-measurement').
-yw_qualified_name(port,43,'get_itrdb_data.extract_tree_ring_data<-filter').
-yw_qualified_name(port,44,'get_itrdb_data.extract_tree_ring_data->tree_ring_files').
-yw_qualified_name(port,45,'get_itrdb_data.extract_tree_ring_data->list').
+yw_qualified_name(port,4,'get_itrdb_data->itrdb').
+yw_qualified_name(port,5,'get_itrdb_data.create_shapefile_dir<-dir_name').
+yw_qualified_name(port,6,'get_itrdb_data.create_shapefile_dir->user_created_dir').
+yw_qualified_name(port,7,'get_itrdb_data.download_shapefile_archive<-file_archive').
+yw_qualified_name(port,8,'get_itrdb_data.download_shapefile_archive<-dir').
+yw_qualified_name(port,9,'get_itrdb_data.download_shapefile_archive->compressed_shapefile').
+yw_qualified_name(port,10,'get_itrdb_data.uncompress_shapefile<-zipfile').
+yw_qualified_name(port,11,'get_itrdb_data.uncompress_shapefile<-dir_name').
+yw_qualified_name(port,12,'get_itrdb_data.uncompress_shapefile->shapefiles_dir').
+yw_qualified_name(port,13,'get_itrdb_data.uncompress_shapefile->layer_boundary').
+yw_qualified_name(port,14,'get_itrdb_data.uncompress_shapefile->layer_tracts').
+yw_qualified_name(port,15,'get_itrdb_data.uncompress_shapefile->metadata_xml_file').
+yw_qualified_name(port,16,'get_itrdb_data.uncompress_shapefile->tracts_xml_file').
+yw_qualified_name(port,17,'get_itrdb_data.read_shapefile<-layer').
+yw_qualified_name(port,18,'get_itrdb_data.read_shapefile<-dir').
+yw_qualified_name(port,19,'get_itrdb_data.read_shapefile->dataobject').
+yw_qualified_name(port,20,'get_itrdb_data.get_treepolygon<-width').
+yw_qualified_name(port,21,'get_itrdb_data.get_treepolygon<-polygon').
+yw_qualified_name(port,22,'get_itrdb_data.get_treepolygon<-quadsegs').
+yw_qualified_name(port,23,'get_itrdb_data.get_treepolygon->template').
+yw_qualified_name(port,24,'get_itrdb_data.extract_tree_ring_data<-polygon').
+yw_qualified_name(port,25,'get_itrdb_data.extract_tree_ring_data<-label').
+yw_qualified_name(port,26,'get_itrdb_data.extract_tree_ring_data<-raw.dir').
+yw_qualified_name(port,27,'get_itrdb_data.extract_tree_ring_data<-extract.dir').
+yw_qualified_name(port,28,'get_itrdb_data.extract_tree_ring_data<-recon_year').
+yw_qualified_name(port,29,'get_itrdb_data.extract_tree_ring_data<-calib.years').
+yw_qualified_name(port,30,'get_itrdb_data.extract_tree_ring_data<-measurement_type').
+yw_qualified_name(port,31,'get_itrdb_data.extract_tree_ring_data<-chronology_type').
+yw_qualified_name(port,32,'get_itrdb_data.extract_tree_ring_data<-force.redo').
+yw_qualified_name(port,33,'get_itrdb_data.extract_tree_ring_data->list').
 yw_qualified_name(data,1,'[shapefile_archive]').
 yw_qualified_name(data,2,'[study_region]').
 yw_qualified_name(data,3,'[prediction_years]').
-yw_qualified_name(data,4,'[calibration_years]').
-yw_qualified_name(data,5,'[label]').
-yw_qualified_name(data,6,'[raw_dir]').
-yw_qualified_name(data,7,'[extract_dir]').
-yw_qualified_name(data,8,'[chronology_type]').
-yw_qualified_name(data,9,'[measurement_type]').
-yw_qualified_name(data,10,'[tree_buffer]').
-yw_qualified_name(data,11,'[quadsegs]').
-yw_qualified_name(data,12,'[itrdb]').
-yw_qualified_name(data,13,'[selected_itrdb]').
-yw_qualified_name(data,14,'[tracts_files]').
-yw_qualified_name(data,15,'[metadata_file]').
-yw_qualified_name(data,16,'[tracts_xml]').
-yw_qualified_name(data,17,'get_itrdb_data[study_region]').
-yw_qualified_name(data,18,'get_itrdb_data[user_created_dir]').
-yw_qualified_name(data,19,'get_itrdb_data[shapefile_archive]').
-yw_qualified_name(data,20,'get_itrdb_data[compressed_shapefile]').
-yw_qualified_name(data,21,'get_itrdb_data[shapefiles_dir]').
-yw_qualified_name(data,22,'get_itrdb_data[layer_boundary]').
-yw_qualified_name(data,23,'get_itrdb_data[tracts_files]').
-yw_qualified_name(data,24,'get_itrdb_data[metadata_file]').
-yw_qualified_name(data,25,'get_itrdb_data[tracts_xml]').
-yw_qualified_name(data,26,'get_itrdb_data[spatial_dataframe]').
-yw_qualified_name(data,27,'get_itrdb_data[tree_buffer]').
-yw_qualified_name(data,28,'get_itrdb_data[quadsegs]').
-yw_qualified_name(data,29,'get_itrdb_data[treepolygon]').
-yw_qualified_name(data,30,'get_itrdb_data[label]').
-yw_qualified_name(data,31,'get_itrdb_data[raw_dir]').
-yw_qualified_name(data,32,'get_itrdb_data[extract_dir]').
-yw_qualified_name(data,33,'get_itrdb_data[prediction_years]').
-yw_qualified_name(data,34,'get_itrdb_data[calibration_years]').
-yw_qualified_name(data,35,'get_itrdb_data[measurement_type]').
-yw_qualified_name(data,36,'get_itrdb_data[chronology_type]').
-yw_qualified_name(data,37,'get_itrdb_data[itrdb]').
-yw_qualified_name(data,38,'get_itrdb_data[selected_itrdb]').
+yw_qualified_name(data,4,'[itrdb]').
+yw_qualified_name(data,5,'get_itrdb_data[study_region]').
+yw_qualified_name(data,6,'get_itrdb_data[user_created_dir]').
+yw_qualified_name(data,7,'get_itrdb_data[shapefile_archive]').
+yw_qualified_name(data,8,'get_itrdb_data[compressed_shapefile]').
+yw_qualified_name(data,9,'get_itrdb_data[shapefiles_dir]').
+yw_qualified_name(data,10,'get_itrdb_data[layer_boundary]').
+yw_qualified_name(data,11,'get_itrdb_data[layer_tracts]').
+yw_qualified_name(data,12,'get_itrdb_data[metadata_xml_file]').
+yw_qualified_name(data,13,'get_itrdb_data[tracts_xml_file]').
+yw_qualified_name(data,14,'get_itrdb_data[dataframe]').
+yw_qualified_name(data,15,'get_itrdb_data[tree_buffer]').
+yw_qualified_name(data,16,'get_itrdb_data[segments_approx_quarter_circle]').
+yw_qualified_name(data,17,'get_itrdb_data[treepolygon]').
+yw_qualified_name(data,18,'get_itrdb_data[label]').
+yw_qualified_name(data,19,'get_itrdb_data[raw.dir]').
+yw_qualified_name(data,20,'get_itrdb_data[extract.dir]').
+yw_qualified_name(data,21,'get_itrdb_data[prediction_years]').
+yw_qualified_name(data,22,'get_itrdb_data[calibration_years]').
+yw_qualified_name(data,23,'get_itrdb_data[measurement_type]').
+yw_qualified_name(data,24,'get_itrdb_data[chronology_type]').
+yw_qualified_name(data,25,'get_itrdb_data[force.redo]').
+yw_qualified_name(data,26,'get_itrdb_data[itrdb]').
 
 
 %---------------------------------------------------------------------------------------------------
@@ -286,14 +226,4 @@ yw_description(program,3,download_shapefile_archive,'download the zip file of th
 yw_description(program,4,uncompress_shapefile,'create a directory as the archive filename and extract the files.').
 yw_description(program,5,read_shapefile,'read the shapefile for the region and save it as a spatial vector object.').
 yw_description(program,6,get_treepolygon,'Get Tree-ring data from the ITRDB for tree_buffer around GRCA').
-yw_description(program,7,extract_tree_ring_data,'download all the tree ring chronologies and extract the values for the study region.').
-yw_description(port,2,study_region,'the name of the region os study is passed as input.').
-yw_description(port,3,prediction_years,'a numeric vector of years over which reconstruction is needed.').
-yw_description(port,4,calibration_years,'A numeric vector of all required years').
-yw_description(port,5,label,'A character string naming the study area.').
-yw_description(port,6,raw_dir,'A character string indicating where raw downloaded files should be put.').
-yw_description(port,7,extract_dir,'A character string indicating where the extracted and cropped ITRDB dataset should be put.').
-yw_description(port,8,chronology_type,'A character vector of chronology type identifiers.').
-yw_description(port,9,measurement_type,'A character vector of measurement type identifiers').
-yw_description(port,10,tree_buffer,'Distance from original geometry to include in the new geometry.').
-yw_description(port,11,quadsegs,'Number of line segments to use to approximate a quarter circle').
+yw_description(program,7,extract_tree_ring_data,'get all the tree ring chronologies and extract the values for the study region.').

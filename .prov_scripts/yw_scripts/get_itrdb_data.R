@@ -22,23 +22,10 @@ setwd("D:\\Study\\Internship\\WT_PaleoCar_2017\\meteor_example\\wt-prov-summer-2
 
 #@begin get_itrdb_data @desc get the tree ring chronologies for reconstruction of the paleoclimate. 
 #@in shapefile_archive   @uri http://nrdata.nps.gov/programs/Lands/{study_region}_tracts.zip 
-#@in study_region @desc the name of the region os study is passed as input.
-#@in prediction_years @desc a numeric vector of years over which reconstruction is needed.
-
-#@param calibration_years @desc A numeric vector of all required years
-#@param label  @desc A character string naming the study area.
-#@param raw_dir @desc A character string indicating where raw downloaded files should be put.
-#@param extract_dir @desc A character string indicating where the extracted and cropped ITRDB dataset should be put.
-#@param chronology_type @desc A character vector of chronology type identifiers. 
-#@param measurement_type @desc A character vector of measurement type identifiers
-#@param tree_buffer @desc Distance from original geometry to include in the new geometry.
-#@param quadsegs @desc Number of line segments to use to approximate a quarter circle
-
+#@in study_region
+#@in prediction_years
 #@out itrdb 
-#@out selected_itrdb
-#@out tracts_files
-#@out metadata_file
-#@out tracts_xml
+
 
 #@begin create_shapefile_dir @desc create a direcorty for downloading the shapefiles for the study region.
 #@in dir_name @as study_region
@@ -66,9 +53,9 @@ utils::unzip("./GRCA/GRCA_tracts.zip", exdir="./GRCA/grca_tracts")
 
 #@out shapefiles_dir @uri file:./{study_region}/{study_region}_tracts
 #@out layer_boundary @uri file:./{study_region}/{study_region}_tracts/{study_region}_boundary.{file_extensions}
-#@out layer_tracts @as tracts_files @uri file:./{study_region}/{study_region}_tracts/{study_region}_tracts.{file_extensions}
-#@out metadata_xml_file @as metadata_file @uri file:./{study_region}/{study_region}_tracts/{study_region}_metadata.xml
-#@out tracts_xml_file @as tracts_xml  @uri file:./{study_region}/{study_region}_tracts/nps_tracts.xml 
+#@out layer_tracts @uri file:./{study_region}/{study_region}_tracts/{study_region}_tracts.{file_extensions}
+#@out metadata_xml_file @uri file:./{study_region}/{study_region}_tracts/{study_region}_metadata.xml
+#@out tracts_xml_file @uri file:./{study_region}/{study_region}_tracts/nps_tracts.xml 
 #@end extract_shape_files
 
 
@@ -80,7 +67,7 @@ utils::unzip("./GRCA/GRCA_tracts.zip", exdir="./GRCA/grca_tracts")
 grca <- rgdal::readOGR("./GRCA/grca_tracts", layer='GRCA_boundary')
 
 
-#@out dataobject @as spatial_dataframe 
+#@out dataobject @as dataframe 
 #@end read_shapefile 
 
 #grca <- rgdal::writeOGR(grca, dsn = "./GRCA", layer = "grca", driver = "ESRI Shapefile", overwrite_layer = TRUE)
@@ -105,8 +92,8 @@ tree.buffer <- 10
 
 #@begin get_treepolygon @desc Get Tree-ring data from the ITRDB for tree_buffer around GRCA
 #@in width @as tree_buffer
-#@in polygon @as spatial_dataframe 
-#@param segment_approx @as quadsegs
+#@in polygon @as dataframe 
+#@in quadsegs @as segments_approx_quarter_circle
 #@out template  @as treepolygon 
 
 
@@ -118,19 +105,19 @@ treePoly <- suppressWarnings(rgeos::gBuffer(grca, width=tree.buffer, quadsegs=10
 #@end get_treepolygon
 
 
-#@begin extract_tree_ring_data @desc download all the tree ring chronologies and extract the values for the study region.
-
+#@begin extract_tree_ring_data @desc get all the tree ring chronologies and extract the values for the study region.
 #@in polygon @as treepolygon
-#@param label @as label
-#@param raw.dir @as raw_dir @uri file:./{study_region}/RAW/
-#@param extract.dir @as extract_dir @uri file:./{study_region}/ITRDB/
+#@param label 
+#@param raw.dir @uri file:./{study_region}/RAW/
+#@param extract.dir @uri file:./{study_region}/ITRDB/
 #@in recon_year @as prediction_years
 #@param calib.years @as calibration_years
-#@param measurement @as measurement_type
-#@param filter  @as chronology_type
+#@param measurement_type 
+#@param chronology_type 
+#@param force.redo 
 
 itrdb <- FedData::get_itrdb(template=treePoly, label="GRCA_PLUS_10DEG", raw.dir = "./GRCA/RAW/ITRDB/", extraction.dir = "./GRCA/ITRDB/", recon.years=prediction.years, 
-                            calib.years=calibration.years, measurement.type="Ring Width", chronology.type="ARSTND")
+                            calib.years=calibration.years, measurement.type="Ring Width", chronology.type="ARSTND", force.redo = TRUE)
 
 #unlink("./data-raw/ITRDB_GRCA", recursive = T)
 
@@ -154,8 +141,8 @@ readr::write_rds(itrdb,
                  "itrdb.Rda",
                  compress = "gz")
 
-#@out tree_ring_files @as itrdb @uri file:./{region_name}/{raw.dir}/ITRDB/itrdb-v705-{var}-crn.zip
-#@out list @as selected_itrdb @uri file:./data/itrdb.Rda
+
+#@out list @as itrdb @uri file:itrdb.Rda
 #@end  extract_tree_ring_data
 
  

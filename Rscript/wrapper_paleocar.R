@@ -22,18 +22,6 @@ library(readr)
 
 ## Create wrapper functions
 
-#@begin exec_paleocar
-#@in user_map_marker_pos  @desc Coordinates of location for reconstruction of paleoclimate. 
-#@in user_prediction_years @desc Prediction years for reconstruction of paleoclimate. 
-#@in prism_data_for_coordinates @uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region.
-
-#@param prism_data @desc file containing the precipitation values for the particular region.@uri file:/data/112W36N.nc @desc file containing the precipitation values for the particular region
-#@param itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
-#@param calibration_year @desc period for calibrating the information for predicting the climate. 
-#@param label @desc a user label for the generated paleocar model of the study region. 
-#@in session_id
-#@in run_id 
-
 
 
 ############################################################
@@ -41,17 +29,6 @@ library(readr)
 ## using the NetCDF file, location coordinates.            #
 ## The output is a csv file                                #
 ############################################################
-
-
-#@begin extract_prism_data @desc Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.
-
-#@in lat_long @as user_map_marker_pos
-#@param data @as prism_data
-#@in session_id
-#@in run_id 
-
-#@out prism_data_for_coordinates @uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region.
-#@end extract_prism_data
 
 prism_data <- function(coordinates,   #Longitude and latitude.
                        in_file_name,  # the NetCDF file format.
@@ -92,7 +69,62 @@ prism_data <- function(coordinates,   #Longitude and latitude.
 
 
 
-    
+
+
+#@begin exec_paleocar_model
+#@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
+#@in prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+#@param itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+#@param calibration_years @desc period for calibrating the information for predicting the climate. 
+#@param label @desc user entered label for the study region. 
+#@param min_width @desc min width of the tree rings. 
+#@param verbose @desc set to true for writing output to a logfile. 
+
+
+#@begin create_paleocar_model @desc generate paleocar models for predicting the climate for the given years. 
+#@param label @as label @desc user entered label for the study region. 
+#@param cal_year @as calibration_years @desc period for calibrating the information for predicting the climate. 
+#@param itrdb @file {data_file}.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database. 
+#@param min.width @as min_width
+#@in pred_year @as  prediction_years  @desc An optional integer vector of years for the reconstruction.
+#@in predictands  @as prism_data_for_coordinates  @uri file:/.output/{session_id}/{run_id}/{data_file}.csv @desc file containing the precipitation values for the selected region.
+
+
+#@out model @as paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+#@out log_file @as paleocar_log_file @uri file:/.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
+#@end paleocar_model 
+
+
+
+#@begin extract_prediction_model @desc generate paleocar models for predicting the climate for the given years. 
+#@in pred_year @as  prediction_years  @desc An optional integer vector of years for the reconstruction.
+#@in models  @as paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+
+
+# @out prediction_graph  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
+# @out prediction_model  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+
+#@end extract_prediction_model 
+
+
+#@begin extract_uncertainty_model @desc generate paleocar models for predicting the climate for the given years. 
+#@in pred_year @as  prediction_years  @desc An optional integer vector of years for the reconstruction.
+#@in models  @as paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+
+
+# @out uncertainty_graph  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
+# @out uncertainty_model  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+
+#@end extract_uncertainty_model 
+
+
+#@out prediction_graph  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
+#@out prediction_model  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+#@out paleocar_log_file @uri file:/.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
+#@out uncertainty_model @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
+#@out uncertainty_graph @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+#@out paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+#@end gen_paleocar_model
 
 
 run_paleocar <- function (testDir,
@@ -103,6 +135,7 @@ run_paleocar <- function (testDir,
                           prediction.years,
                           verbose,
                           input_data_type,
+						  min_width,
                           ...){
 
   
@@ -111,16 +144,8 @@ run_paleocar <- function (testDir,
   chronologies <- itrdb
   calibration.years <- calibration.years
   prediction.years <- prediction.years
+  min.width <- min_width
   verbose = T
-
-  ## log the hisotry of execution into  a file
-
-#@begin gen_paleocar_model @desc generate paleocar models for predicting the climate for the given years. 
-#@param label @desc user entered label for the study region. 
-#@param cal_year @as calibration_year @desc period for calibrating the information for predicting the climate. 
-#@param itrdb @file {data_file}.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
-#@in prediction_years   @desc An optional integer vector of years for the reconstruction.
-#@in predictands  @as prism_data_for_coordinates  @uri file:/.output/{session_id}/{run_id}/{data_file}.csv @desc file containing the precipitation values for the selected region.
 
 
 
@@ -130,28 +155,16 @@ run_paleocar <- function (testDir,
                                     chronologies = itrdb,
                                     calibration.years = calibration.years,
                                     prediction.years = prediction.years,
-                                    verbose = verbose)
+                                    verbose = verbose,
+									min.width
+									)
     
-#@out paleocar_models @uri  file:/.output/{session_id}{run_id}/{label}.models.rds @desc  R model of the paleocar reconstruction of prediction.
-#@out log_file @as paleocar_model_log_file @uri file:/.output/{session_id}{run_id}/paleocar_model_log.txt   @desc a log file containing information about the execution of paleocar reconstruction.
-
-#@end gen_paleocar_model
 
     ## Save the output of the paleocar model 
     ## it contains a list as ouput and hasa CAR values, AIC's Coeffecients etc.  
     readr::write_rds(recon_vector,
                      path = paste0(testDir,label,".model.Rds"),
                      compress = "gz")
-
-    # Generate predictions and uncertainty (and plot timeseries of each)
- 
-#@begin extract_prediction_model @desc extract the rasterbrick reconstruction from a PaleoCAR batch model for the specified prediction period.
-#@in paleocar_models @uri  file:/.output/{session_id}/{run_id}/{label}.models.rds  @desc R model of the paleocar reconstruction.
-#@in prediction.year @as prediction_years  @desc Prediction years for reconstruction of paleoclimate. 
-
-#@out prediction_model @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
-#@out plot @as prediction_plot  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.
-#@end gen_prediction_model
 
     recon_predict <-predict_paleocar_models(models = recon_vector,
                             meanVar = 'none',
@@ -175,18 +188,7 @@ run_paleocar <- function (testDir,
     # data.frame(x = as.numeric(names(recon_predict)),y = recon_predict)%>%
     #   readr::write_csv(paste0(testDir,"/recon_vector_predict.csv"))
     
-    
-## Generating Uncertainty in the model 
 
-#@begin extract_uncertainty_model @desc extract the LOOCV uncertainty information from the set of Paleocar models for specified period.
-#@in paleocar_models @uri  rds:/.output/{session_id}/{run_id}/{label}.models.rds  @desc R model of the paleocar reconstruction.
-#                    @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds$predictands @desc R model of the paleocar reconstruction.
-#@in prediction.year @as prediction_years @desc Prediction years for reconstruction of paleoclimate. 
-
-#@out model @as uncertainty_model  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
-#@out plot @as uncertainty_plot  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
-#@end gen_uncertainty_model
- 
     recon_uncertain <- uncertainty_paleocar_models(recon_vector,
                                 prediction.years = prediction.years) 
     
@@ -316,12 +318,4 @@ reg_boundary <- function(in_file_name,
   y<-as.vector(y)
   return(cat(trimws(y[1:4])))
 }
-
-#@out paleocar_models @uri  file:/.output/{session_id}/{run_id}/{label}.models.rds @desc R model of the paleocar reconstruction.
-#@out prediction_model @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds   @desc  R model of the paleocar reconstruction of prediction.
-#@out uncertainty_model @uri  file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
-#@out prediction_plot @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.
-#@out uncertainty_plot @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
-#@out paleocar_model_log_file  @uri file:/.output/{session_id}{run_id}/paleocar_model_log.txt @desc a log file containing information about the execution of paleocar reconstruction.
-
-#@end exec_paleocar 
+ 

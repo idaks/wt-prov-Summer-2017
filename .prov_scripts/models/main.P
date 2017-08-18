@@ -1,0 +1,367 @@
+
+% FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
+program(1, 'paleocar_web-app_data_flow', 'paleocar_web-app_data_flow', 1, 130).
+program(2, 'get_client_data', 'paleocar_web-app_data_flow.get_client_data', 45, 55).
+program(3, 'acccess_static_server_files', 'paleocar_web-app_data_flow.acccess_static_server_files', 56, 70).
+program(4, 'extract_prism_data', 'paleocar_web-app_data_flow.extract_prism_data', 71, 83).
+program(5, 'exec_paleocar', 'paleocar_web-app_data_flow.exec_paleocar', 84, 129).
+
+% FACT: workflow(program_id).
+workflow(1).
+
+% FACT: function(program_id).
+
+% FACT: has_subprogram(program_id, subprogram_id).
+has_subprogram(1, 2).
+has_subprogram(1, 3).
+has_subprogram(1, 4).
+has_subprogram(1, 5).
+
+% FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
+port(1, 'in', 'user_map_marker_pos', 'paleocar_web-app_data_flow<-user_map_marker_pos', 2, 1).
+port(2, 'in', 'user_prediction_years', 'paleocar_web-app_data_flow<-user_prediction_years', 4, 2).
+port(3, 'param', 'prism_data_for_coordinates', 'paleocar_web-app_data_flow<-prism_data_for_coordinates', 6, 3).
+port(4, 'param', 'calibration_years', 'paleocar_web-app_data_flow<-calibration_years', 10, 4).
+port(5, 'param', 'label', 'paleocar_web-app_data_flow<-label', 12, 5).
+port(6, 'param', 'verbose', 'paleocar_web-app_data_flow<-verbose', 14, 6).
+port(7, 'param', 'min_width', 'paleocar_web-app_data_flow<-min_width', 16, 7).
+port(8, 'param', 'historical_precip_data', 'paleocar_web-app_data_flow<-historical_precip_data', 17, 8).
+port(9, 'param', 'tree_ring_data', 'paleocar_web-app_data_flow<-tree_ring_data', 18, 9).
+port(10, 'out', 'prism_data', 'paleocar_web-app_data_flow->prism_data', 19, 10).
+port(11, 'out', 'itrdb', 'paleocar_web-app_data_flow->itrdb', 23, 11).
+port(12, 'out', 'prediction_graph', 'paleocar_web-app_data_flow->prediction_graph', 27, 12).
+port(13, 'out', 'prediction_model', 'paleocar_web-app_data_flow->prediction_model', 30, 13).
+port(14, 'out', 'paleocar_log_file', 'paleocar_web-app_data_flow->paleocar_log_file', 33, 14).
+port(15, 'out', 'uncertainty_model', 'paleocar_web-app_data_flow->uncertainty_model', 36, 15).
+port(16, 'out', 'uncertainty_graph', 'paleocar_web-app_data_flow->uncertainty_graph', 39, 16).
+port(17, 'out', 'paleocar_model', 'paleocar_web-app_data_flow->paleocar_model', 42, 17).
+port(18, 'in', 'coord', 'paleocar_web-app_data_flow.get_client_data<-coord', 47, 18).
+port(19, 'in', 'pred_year', 'paleocar_web-app_data_flow.get_client_data<-pred_year', 49, 19).
+port(20, 'out', 'session_id', 'paleocar_web-app_data_flow.get_client_data->session_id', 51, 20).
+port(21, 'out', 'run_id', 'paleocar_web-app_data_flow.get_client_data->run_id', 52, 21).
+port(22, 'out', 'coordinates', 'paleocar_web-app_data_flow.get_client_data->coordinates', 53, 22).
+port(23, 'out', 'prediction_years', 'paleocar_web-app_data_flow.get_client_data->prediction_years', 54, 23).
+port(24, 'param', 'historical_precip_data', 'paleocar_web-app_data_flow.acccess_static_server_files<-historical_precip_data', 58, 24).
+port(25, 'param', 'tree_ring_data', 'paleocar_web-app_data_flow.acccess_static_server_files<-tree_ring_data', 59, 25).
+port(26, 'out', 'data', 'paleocar_web-app_data_flow.acccess_static_server_files->data', 60, 26).
+port(27, 'out', 'tree_ring', 'paleocar_web-app_data_flow.acccess_static_server_files->tree_ring', 65, 27).
+port(28, 'in', 'coord', 'paleocar_web-app_data_flow.extract_prism_data<-coord', 73, 22).
+port(29, 'in', 'session_id', 'paleocar_web-app_data_flow.extract_prism_data<-session_id', 76, 20).
+port(30, 'in', 'run_id', 'paleocar_web-app_data_flow.extract_prism_data<-run_id', 77, 21).
+port(31, 'param', 'input_file', 'paleocar_web-app_data_flow.extract_prism_data<-input_file', 78, 26).
+port(32, 'out', 'prism_data_for_coordinates', 'paleocar_web-app_data_flow.extract_prism_data->prism_data_for_coordinates', 80, 28).
+port(33, 'in', 'prediction_years', 'paleocar_web-app_data_flow.exec_paleocar<-prediction_years', 86, 23).
+port(34, 'in', 'data', 'paleocar_web-app_data_flow.exec_paleocar<-data', 88, 28).
+port(35, 'param', 'tree_ring', 'paleocar_web-app_data_flow.exec_paleocar<-tree_ring', 93, 27).
+port(36, 'param', 'calib_year', 'paleocar_web-app_data_flow.exec_paleocar<-calib_year', 98, 29).
+port(37, 'param', 'label', 'paleocar_web-app_data_flow.exec_paleocar<-label', 101, 30).
+port(38, 'param', 'min_width', 'paleocar_web-app_data_flow.exec_paleocar<-min_width', 103, 31).
+port(39, 'param', 'verbose', 'paleocar_web-app_data_flow.exec_paleocar<-verbose', 104, 32).
+port(40, 'out', 'model', 'paleocar_web-app_data_flow.exec_paleocar->model', 105, 33).
+port(41, 'out', 'plot', 'paleocar_web-app_data_flow.exec_paleocar->plot', 109, 34).
+port(42, 'out', 'model', 'paleocar_web-app_data_flow.exec_paleocar->model', 113, 35).
+port(43, 'out', 'model', 'paleocar_web-app_data_flow.exec_paleocar->model', 117, 36).
+port(44, 'out', 'plot', 'paleocar_web-app_data_flow.exec_paleocar->plot', 121, 37).
+port(45, 'out', 'log_file', 'paleocar_web-app_data_flow.exec_paleocar->log_file', 125, 38).
+
+% FACT: port_alias(port_id, alias).
+port_alias(18, 'user_map_marker_pos').
+port_alias(19, 'user_prediction_years').
+port_alias(26, 'prism_data').
+port_alias(27, 'itrdb').
+port_alias(28, 'coordinates').
+port_alias(31, 'prism_data').
+port_alias(34, 'prism_data_for_coordinates').
+port_alias(35, 'itrdb').
+port_alias(36, 'calibration_years').
+port_alias(40, 'prediction_model').
+port_alias(41, 'prediction_graph').
+port_alias(42, 'uncertainty_model').
+port_alias(43, 'paleocar_model').
+port_alias(44, 'uncertainty_graph').
+port_alias(45, 'paleocar_log_file').
+
+% FACT: port_uri_template(port_id, uri).
+port_uri_template(3, 'file:/.output/{session_id}/{run_id}/112W36N.csv').
+port_uri_template(10, 'file:/data/112W36N.nc').
+port_uri_template(11, 'file:/data/itrdb.Rda').
+port_uri_template(12, 'file:/.output/{session_id}/{run_id}/{label}.prediction.jpg').
+port_uri_template(13, 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
+port_uri_template(14, 'file:/.output/{session_id}/{run_id}/paleocar_model_log.txt').
+port_uri_template(15, 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds').
+port_uri_template(16, 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg').
+port_uri_template(17, 'file:/.output/{session_id}/{run_id}/{label}.model.rds').
+port_uri_template(26, 'file:/data/112W36N.nc').
+port_uri_template(27, 'file:/data/itrdb.Rda').
+port_uri_template(32, 'file:/.output/{session_id}/{run_id}/112W36N.csv').
+port_uri_template(34, 'file:/.output/{session_id}/{run_id}/112W36N.csv').
+port_uri_template(35, 'file:/data/itrdb.Rda').
+port_uri_template(40, 'file:/.output/{session_id}/{run_id}/{label}.prediction.rds').
+port_uri_template(41, 'file:/{session_id}/{run_id}/{label}.prediction.jpg').
+port_uri_template(42, 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds').
+port_uri_template(43, 'file:/.output/{session_id}/{run_id}/{label}.model.rds').
+port_uri_template(44, 'file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg').
+port_uri_template(45, 'file:/.output/{session_id}/{run_id}/paleocar_model_log.txt').
+
+% FACT: has_in_port(block_id, port_id).
+has_in_port(1, 1).
+has_in_port(1, 2).
+has_in_port(1, 3).
+has_in_port(1, 4).
+has_in_port(1, 5).
+has_in_port(1, 6).
+has_in_port(1, 7).
+has_in_port(1, 8).
+has_in_port(1, 9).
+has_in_port(2, 18).
+has_in_port(2, 19).
+has_in_port(3, 24).
+has_in_port(3, 25).
+has_in_port(4, 28).
+has_in_port(4, 29).
+has_in_port(4, 30).
+has_in_port(4, 31).
+has_in_port(5, 33).
+has_in_port(5, 34).
+has_in_port(5, 35).
+has_in_port(5, 36).
+has_in_port(5, 37).
+has_in_port(5, 38).
+has_in_port(5, 39).
+
+% FACT: has_out_port(block_id, port_id).
+has_out_port(1, 10).
+has_out_port(1, 11).
+has_out_port(1, 12).
+has_out_port(1, 13).
+has_out_port(1, 14).
+has_out_port(1, 15).
+has_out_port(1, 16).
+has_out_port(1, 17).
+has_out_port(2, 20).
+has_out_port(2, 21).
+has_out_port(2, 22).
+has_out_port(2, 23).
+has_out_port(3, 26).
+has_out_port(3, 27).
+has_out_port(4, 32).
+has_out_port(5, 40).
+has_out_port(5, 41).
+has_out_port(5, 42).
+has_out_port(5, 43).
+has_out_port(5, 44).
+has_out_port(5, 45).
+
+% FACT: data(data_id, data_name, qualified_data_name).
+data(1, 'user_map_marker_pos', '[user_map_marker_pos]').
+data(2, 'user_prediction_years', '[user_prediction_years]').
+data(3, 'prism_data_for_coordinates', '[prism_data_for_coordinates]').
+data(4, 'calibration_years', '[calibration_years]').
+data(5, 'label', '[label]').
+data(6, 'verbose', '[verbose]').
+data(7, 'min_width', '[min_width]').
+data(8, 'historical_precip_data', '[historical_precip_data]').
+data(9, 'tree_ring_data', '[tree_ring_data]').
+data(10, 'prism_data', '[prism_data]').
+data(11, 'itrdb', '[itrdb]').
+data(12, 'prediction_graph', '[prediction_graph]').
+data(13, 'prediction_model', '[prediction_model]').
+data(14, 'paleocar_log_file', '[paleocar_log_file]').
+data(15, 'uncertainty_model', '[uncertainty_model]').
+data(16, 'uncertainty_graph', '[uncertainty_graph]').
+data(17, 'paleocar_model', '[paleocar_model]').
+data(18, 'user_map_marker_pos', 'paleocar_web-app_data_flow[user_map_marker_pos]').
+data(19, 'user_prediction_years', 'paleocar_web-app_data_flow[user_prediction_years]').
+data(20, 'session_id', 'paleocar_web-app_data_flow[session_id]').
+data(21, 'run_id', 'paleocar_web-app_data_flow[run_id]').
+data(22, 'coordinates', 'paleocar_web-app_data_flow[coordinates]').
+data(23, 'prediction_years', 'paleocar_web-app_data_flow[prediction_years]').
+data(24, 'historical_precip_data', 'paleocar_web-app_data_flow[historical_precip_data]').
+data(25, 'tree_ring_data', 'paleocar_web-app_data_flow[tree_ring_data]').
+data(26, 'prism_data', 'paleocar_web-app_data_flow[prism_data]').
+data(27, 'itrdb', 'paleocar_web-app_data_flow[itrdb]').
+data(28, 'prism_data_for_coordinates', 'paleocar_web-app_data_flow[prism_data_for_coordinates]').
+data(29, 'calibration_years', 'paleocar_web-app_data_flow[calibration_years]').
+data(30, 'label', 'paleocar_web-app_data_flow[label]').
+data(31, 'min_width', 'paleocar_web-app_data_flow[min_width]').
+data(32, 'verbose', 'paleocar_web-app_data_flow[verbose]').
+data(33, 'prediction_model', 'paleocar_web-app_data_flow[prediction_model]').
+data(34, 'prediction_graph', 'paleocar_web-app_data_flow[prediction_graph]').
+data(35, 'uncertainty_model', 'paleocar_web-app_data_flow[uncertainty_model]').
+data(36, 'paleocar_model', 'paleocar_web-app_data_flow[paleocar_model]').
+data(37, 'uncertainty_graph', 'paleocar_web-app_data_flow[uncertainty_graph]').
+data(38, 'paleocar_log_file', 'paleocar_web-app_data_flow[paleocar_log_file]').
+
+% FACT: channel(channel_id, data_id).
+channel(1, 10).
+channel(2, 26).
+channel(3, 11).
+channel(4, 27).
+channel(5, 12).
+channel(6, 13).
+channel(7, 14).
+channel(8, 15).
+channel(9, 16).
+channel(10, 17).
+channel(11, 18).
+channel(12, 19).
+channel(13, 24).
+channel(14, 25).
+channel(15, 22).
+channel(16, 20).
+channel(17, 21).
+channel(18, 23).
+channel(19, 28).
+channel(20, 29).
+channel(21, 30).
+channel(22, 31).
+channel(23, 32).
+channel(24, 1).
+channel(25, 2).
+channel(26, 3).
+channel(27, 4).
+channel(28, 5).
+channel(29, 6).
+channel(30, 7).
+channel(31, 8).
+channel(32, 9).
+channel(33, 26).
+channel(34, 27).
+channel(35, 34).
+channel(36, 33).
+channel(37, 38).
+channel(38, 35).
+channel(39, 37).
+channel(40, 36).
+
+% FACT: port_connects_to_channel(port_id, channel_id).
+port_connects_to_channel(26, 1).
+port_connects_to_channel(26, 2).
+port_connects_to_channel(31, 2).
+port_connects_to_channel(27, 3).
+port_connects_to_channel(27, 4).
+port_connects_to_channel(35, 4).
+port_connects_to_channel(41, 5).
+port_connects_to_channel(40, 6).
+port_connects_to_channel(45, 7).
+port_connects_to_channel(42, 8).
+port_connects_to_channel(44, 9).
+port_connects_to_channel(43, 10).
+port_connects_to_channel(18, 11).
+port_connects_to_channel(19, 12).
+port_connects_to_channel(24, 13).
+port_connects_to_channel(25, 14).
+port_connects_to_channel(22, 15).
+port_connects_to_channel(28, 15).
+port_connects_to_channel(20, 16).
+port_connects_to_channel(29, 16).
+port_connects_to_channel(21, 17).
+port_connects_to_channel(30, 17).
+port_connects_to_channel(23, 18).
+port_connects_to_channel(33, 18).
+port_connects_to_channel(32, 19).
+port_connects_to_channel(34, 19).
+port_connects_to_channel(36, 20).
+port_connects_to_channel(37, 21).
+port_connects_to_channel(38, 22).
+port_connects_to_channel(39, 23).
+port_connects_to_channel(18, 24).
+port_connects_to_channel(19, 25).
+port_connects_to_channel(34, 26).
+port_connects_to_channel(36, 27).
+port_connects_to_channel(37, 28).
+port_connects_to_channel(39, 29).
+port_connects_to_channel(38, 30).
+port_connects_to_channel(24, 31).
+port_connects_to_channel(25, 32).
+port_connects_to_channel(26, 33).
+port_connects_to_channel(27, 34).
+port_connects_to_channel(41, 35).
+port_connects_to_channel(40, 36).
+port_connects_to_channel(45, 37).
+port_connects_to_channel(42, 38).
+port_connects_to_channel(44, 39).
+port_connects_to_channel(43, 40).
+
+% FACT: inflow_connects_to_channel(port_id, channel_id).
+inflow_connects_to_channel(1, 11).
+inflow_connects_to_channel(2, 12).
+inflow_connects_to_channel(8, 13).
+inflow_connects_to_channel(9, 14).
+inflow_connects_to_channel(4, 20).
+inflow_connects_to_channel(5, 21).
+inflow_connects_to_channel(7, 22).
+inflow_connects_to_channel(6, 23).
+inflow_connects_to_channel(1, 24).
+inflow_connects_to_channel(2, 25).
+inflow_connects_to_channel(3, 26).
+inflow_connects_to_channel(4, 27).
+inflow_connects_to_channel(5, 28).
+inflow_connects_to_channel(6, 29).
+inflow_connects_to_channel(7, 30).
+inflow_connects_to_channel(8, 31).
+inflow_connects_to_channel(9, 32).
+
+% FACT: outflow_connects_to_channel(port_id, channel_id).
+outflow_connects_to_channel(10, 1).
+outflow_connects_to_channel(11, 3).
+outflow_connects_to_channel(12, 5).
+outflow_connects_to_channel(13, 6).
+outflow_connects_to_channel(14, 7).
+outflow_connects_to_channel(15, 8).
+outflow_connects_to_channel(16, 9).
+outflow_connects_to_channel(17, 10).
+outflow_connects_to_channel(10, 33).
+outflow_connects_to_channel(11, 34).
+outflow_connects_to_channel(12, 35).
+outflow_connects_to_channel(13, 36).
+outflow_connects_to_channel(14, 37).
+outflow_connects_to_channel(15, 38).
+outflow_connects_to_channel(16, 39).
+outflow_connects_to_channel(17, 40).
+
+% FACT: uri_variable(uri_variable_id, variable_name, port_id).
+uri_variable(1, 'session_id', 3).
+uri_variable(2, 'run_id', 3).
+uri_variable(3, 'session_id', 12).
+uri_variable(4, 'run_id', 12).
+uri_variable(5, 'label', 12).
+uri_variable(6, 'session_id', 13).
+uri_variable(7, 'run_id', 13).
+uri_variable(8, 'label', 13).
+uri_variable(9, 'session_id', 14).
+uri_variable(10, 'run_id', 14).
+uri_variable(11, 'session_id', 15).
+uri_variable(12, 'run_id', 15).
+uri_variable(13, 'label', 15).
+uri_variable(14, 'session_id', 16).
+uri_variable(15, 'run_id', 16).
+uri_variable(16, 'label', 16).
+uri_variable(17, 'session_id', 17).
+uri_variable(18, 'run_id', 17).
+uri_variable(19, 'label', 17).
+uri_variable(20, 'session_id', 32).
+uri_variable(21, 'run_id', 32).
+uri_variable(22, 'session_id', 34).
+uri_variable(23, 'run_id', 34).
+uri_variable(24, 'session_id', 40).
+uri_variable(25, 'run_id', 40).
+uri_variable(26, 'label', 40).
+uri_variable(27, 'session_id', 41).
+uri_variable(28, 'run_id', 41).
+uri_variable(29, 'label', 41).
+uri_variable(30, 'session_id', 42).
+uri_variable(31, 'run_id', 42).
+uri_variable(32, 'label', 42).
+uri_variable(33, 'session_id', 43).
+uri_variable(34, 'run_id', 43).
+uri_variable(35, 'label', 43).
+uri_variable(36, 'session_id', 44).
+uri_variable(37, 'run_id', 44).
+uri_variable(38, 'label', 44).
+uri_variable(39, 'session_id', 45).
+uri_variable(40, 'run_id', 45).
+
+% FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
+
+% FACT: log_template_variable(log_variable_id, variable_name, log_template_id).

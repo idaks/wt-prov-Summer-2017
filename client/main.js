@@ -5,6 +5,31 @@ import { Meteor } from 'meteor/meteor';
 import './main.html';
 
 
+
+
+ 
+ // @begin paleocar_web-app_data_flow 
+ // @in user_map_marker_pos  @desc Coordinates of location for reconstruction of paleoclimate. 
+ // @in user_prediction_years @desc Prediction years for reconstruction of paleoclimate. 
+ 
+ // // // @param prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+ // // // @param calibration_years @desc period for calibrating the information for predicting the climate. 
+ // // // @param label @desc a user labe
+ // // @param verbose @desc set to true for writing output to a logfile.
+ // // @param min_width
+ // // @param historical_precip_data 
+ // // @param tree_ring_data
+ 
+
+ // @out prism_data @desc file containing the precipitation values for the particular region.@uri file:/data/112W36N.nc @desc file containing the precipitation values for the particular region
+ // @out itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+ // @out prediction_graph  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
+ // @out prediction_model  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+ // @out paleocar_log_file @uri file:/.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
+ // @out uncertainty_model @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
+ // @out uncertainty_graph @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+ // @out paleocar_model   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+ 
 var map_zoom=6; 
 
 // global reactive var for storing lat and long values. 
@@ -57,7 +82,7 @@ var test_dir='';
 
 // Calibration year 
 
-var calibration_years="1924:1983";
+var calibration_yearss="1924:1983";
 
 
 
@@ -136,6 +161,28 @@ Template.map.onCreated(function() {
     // make the marker draggable 
     // position the marker to the 
     // Used animation to drop the marker. 
+    
+ 
+    // @begin get_client_data @desc get the data from the user and generate the client side metadata for storing the information of each run.
+    // @in coord @as user_map_marker_pos 
+    // @in pred_year @as user_prediction_years 
+    
+    
+    // @out session_id 
+    // @out run_id 
+    // @out coordinates 
+    // @out prediction_years 
+    //@end get_client_values
+    
+    //@begin acccess_static_server_files @desc the static files available and required for execution of PaleoCAR on the server.
+    // @param historical_precip_data 
+    // @param tree_ring_data 
+    
+    // @out data @as prism_data @desc file containing the precipitation values for the particular region.@uri file:/data/112W36N.nc @desc file containing the precipitation values for the particular region
+     
+    // @out tree_ring @as itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+    //@end get_static_server_side_files
+ 
     marker = new google.maps.Marker
     ({
       position: latLng,
@@ -285,6 +332,16 @@ Template.btn_exec_paleocar.events({
   // Before execution of paleocar generate the prism data. 
     //alert(test_dir);  
  
+ 
+   // @begin extract_prism_data  @desc get the prism data file on the server with precipitation values and extract the data for the input coordinates and save as a csv file.
+    // @in coord @as coordinates @desc Coordinates of location for reconstruction of paleoclimate. 
+    // @in session_id
+    // @in run_id 
+    // @param input_file @as prism_data 
+    
+    // @out prism_data_for_coordinates @uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region.
+ //    @end  extract_prism_data
+ 
   var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\extract_prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' '  + out_file_prism_data  + ' ' + test_dir ;
   
   //alert(cmd_prism_data);
@@ -301,9 +358,28 @@ Template.btn_exec_paleocar.events({
       }
     });
     
+ 
+    // @begin exec_paleocar @desc execute paleocar for reconstruction of paleoclimate of the study region. Generate the timeseries graphs, and  paleocar models of paleoclimatic reconstruction. 
+    // @in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
+    // @in data @as prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+    // @param tree_ring @as itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+    // @param calib_year @as calibration_years  @desc period for calibrating the information for predicting the climate. 
+    // @param label @desc user entered label for the study region. 
+    // @param min_width 
+    // @param verbose 
+    
+    
+    // @out model @as prediction_model @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+    // @out plot @as prediction_graph  @uri file:/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+    // @out model @as uncertainty_model @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
+    // @out model @as paleocar_model   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+    // @out plot @as uncertainty_graph  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+    // @out log_file @as paleocar_log_file @uri file:/.output/{session_id}/{run_id}/paleocar_model_log.txt  @desc timeseries plot of uncertainty model of the paleocar reconstruction.  
+    // @end exec_paleocar
+ 
   // Execute  PaleoCAr for the Vector region for now. 
-  var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\gen_paleocar_model.R ' + curr_dir + ' ' + 
-                           test_dir + ' ' +  out_file_prism_data + ' ' + user_label + ' ' +  calibration_years + ' ' +
+  var cmd_exe_paleocar = 'Rscript  '+ curr_dir + 'Rscript\\exec_paleocar.R ' + curr_dir + ' ' + 
+                           test_dir + ' ' +  out_file_prism_data + ' ' + user_label + ' ' +  calibration_yearss + ' ' +
                            prediction_years.get() + ' '+ 'T'+ ' ' + "v" ;
   
   Meteor.call('exec_Rscript',cmd_exe_paleocar,function(error, result)
@@ -365,23 +441,6 @@ Template.res_img.helpers({
   }
 });
 
-/*
-Template.run_result_tbl.onCreated(function(){
-    show_res_tbl.set(false);
-});
-
-Template.run_result_tbl.helpers({
-  show_res_tbl: function()
-  {
-    return show_res_tbl.get();
-  },
-  run_log_info: function()
-  { 
-    return Run_Log.find({label:session_id});
-  }
-});
-
-*/
 
 Template.btn_show_provenance.events({
 'click .dis_prov_img': function()
@@ -470,12 +529,12 @@ Template.fileList.events({
 
   'click .button': function(event)
   { 
-    var calibration_year =  Template.instance().$("#chronological_year").val() ; 
-    var output_file =  calibration_year + "_tree_ring_data.csv" ;
+    var calibration_years =  Template.instance().$("#chronological_year").val() ; 
+    var output_file =  calibration_years + "_tree_ring_data.csv" ;
     //alert(output_file)
    
-    var cmd_get_tree_ring_val = 'Rscript  '+ curr_dir + 'Rscript\\get_tree_ring_values.R.R ' + test_dir + 
-    ' ' +   test_dir + '\\' + event.currentTarget.id + ' ' + calibration_year +' ' + output_file ; 
+    var cmd_get_tree_ring_val = 'Rscript  '+ curr_dir + 'Rscript\\get_tree_ring_values.R ' + test_dir + 
+    ' ' +   test_dir + '\\' + event.currentTarget.id + ' ' + calibration_years +' ' + output_file ; 
 
     Meteor.call('exec_Rscript',cmd_get_tree_ring_val,function(error, result)
     {
@@ -486,7 +545,7 @@ Template.fileList.events({
       else 
       {
         show_tree_ring_data.set(true);
-        Tree_Ring_Files.insert({label:session_id,filename:output_file, year:calibration_year, path:test_dir.slice(72) + '\\' + output_file});
+        Tree_Ring_Files.insert({label:session_id,filename:output_file, year:calibration_years, path:test_dir.slice(72) + '\\' + output_file});
       }
     });
   },
@@ -494,5 +553,7 @@ Template.fileList.events({
   {
   }
 })
+
+// @end paleocar_web_flow_model
 
 
