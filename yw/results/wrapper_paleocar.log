@@ -8,7 +8,7 @@ eq2(ProgramName)
 eq2(extract_uncertainty_model).
 eq2(extract_prediction_model).
 eq2(create_paleocar_model).
-eq2(exec_paleocar_model).
+eq2(exec_paleocar).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ YW_Q1 : What program blocks provide input to gen_paleocar_model?
 yw_q1(ProgramName)
 ...................................................................................................
 yw_q1(create_paleocar_model).
-yw_q1(exec_paleocar_model).
+yw_q1(exec_paleocar).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -74,6 +74,12 @@ YW_Q6 : What are the output data for the paleocar?
 
 yw_q6(DataName)
 ...................................................................................................
+yw_q6(paleocar_models).
+yw_q6(uncertainty_graph).
+yw_q6(uncertainty_model).
+yw_q6(paleocar_log_file).
+yw_q6(prediction_model).
+yw_q6(prediction_graph).
 
 
 ---------------------------------------------------------------------------------------------------

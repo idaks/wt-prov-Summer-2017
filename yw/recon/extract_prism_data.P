@@ -4,16 +4,31 @@ resource(1, 'data/112W36N.nc').
 resource(2, '.output/3aa1442c/Run_output_1/112W36N.csv').
 resource(3, '.output/4e05ed23/Run_output_1/112W36N.csv').
 resource(4, '.output/6355972d/Run_output_1/112W36N.csv').
+resource(5, '.output/f2f1e1a6/Run_output_1/112W36N.csv').
+resource(6, '.output/f2f1e1a6/Run_output_2/112W36N.csv').
+resource(7, '.output/f2f1e1a6/Run_output_3/112W36N.csv').
+resource(8, '.output/f2f1e1a6/Run_output_4/112W36N.csv').
+resource(9, '.output/f2f1e1a6/Run_output_5/112W36N.csv').
 
 % FACT: data_resource(data_id, resource_id).
 data_resource(2, 1).
 data_resource(3, 2).
 data_resource(3, 3).
 data_resource(3, 4).
+data_resource(3, 5).
+data_resource(3, 6).
+data_resource(3, 7).
+data_resource(3, 8).
+data_resource(3, 9).
 data_resource(2, 1).
 data_resource(3, 2).
 data_resource(3, 3).
 data_resource(3, 4).
+data_resource(3, 5).
+data_resource(3, 6).
+data_resource(3, 7).
+data_resource(3, 8).
+data_resource(3, 9).
 
 % FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
 uri_variable_value(2, 1, '3aa1442c').
@@ -22,11 +37,31 @@ uri_variable_value(3, 1, '4e05ed23').
 uri_variable_value(3, 2, 'Run_output_1').
 uri_variable_value(4, 1, '6355972d').
 uri_variable_value(4, 2, 'Run_output_1').
+uri_variable_value(5, 1, 'f2f1e1a6').
+uri_variable_value(5, 2, 'Run_output_1').
+uri_variable_value(6, 1, 'f2f1e1a6').
+uri_variable_value(6, 2, 'Run_output_2').
+uri_variable_value(7, 1, 'f2f1e1a6').
+uri_variable_value(7, 2, 'Run_output_3').
+uri_variable_value(8, 1, 'f2f1e1a6').
+uri_variable_value(8, 2, 'Run_output_4').
+uri_variable_value(9, 1, 'f2f1e1a6').
+uri_variable_value(9, 2, 'Run_output_5').
 uri_variable_value(2, 3, '3aa1442c').
 uri_variable_value(2, 4, 'Run_output_1').
 uri_variable_value(3, 3, '4e05ed23').
 uri_variable_value(3, 4, 'Run_output_1').
 uri_variable_value(4, 3, '6355972d').
 uri_variable_value(4, 4, 'Run_output_1').
+uri_variable_value(5, 3, 'f2f1e1a6').
+uri_variable_value(5, 4, 'Run_output_1').
+uri_variable_value(6, 3, 'f2f1e1a6').
+uri_variable_value(6, 4, 'Run_output_2').
+uri_variable_value(7, 3, 'f2f1e1a6').
+uri_variable_value(7, 4, 'Run_output_3').
+uri_variable_value(8, 3, 'f2f1e1a6').
+uri_variable_value(8, 4, 'Run_output_4').
+uri_variable_value(9, 3, 'f2f1e1a6').
+uri_variable_value(9, 4, 'Run_output_5').
 
 % FACT: log_variable_value(resource_id, log_entry_id, log_variable_id, log_variable_value).

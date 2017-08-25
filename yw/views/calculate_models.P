@@ -15,24 +15,24 @@ yw_workflow_script(1,calculate_Models,1,'calculate_models.R').
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_program(1,calculate_Models,nil,1,1,237).
-yw_program(2,defineLinearModels,1,1,9,110).
-yw_program(3,calculateLinearModels,1,1,112,159).
-yw_program(4,simplifyLinearModels,1,1,161,225).
+yw_program(1,calculate_Models,nil,1,1,238).
+yw_program(2,defineLinearModels,1,1,9,111).
+yw_program(3,calculateLinearModels,1,1,113,160).
+yw_program(4,simplifyLinearModels,1,1,162,226).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow(1,calculate_Models,nil,1,1,237).
+yw_workflow(1,calculate_Models,nil,1,1,238).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow_step(2,defineLinearModels,1,1,9,110).
-yw_workflow_step(3,calculateLinearModels,1,1,112,159).
-yw_workflow_step(4,simplifyLinearModels,1,1,161,225).
+yw_workflow_step(2,defineLinearModels,1,1,9,111).
+yw_workflow_step(3,calculateLinearModels,1,1,113,160).
+yw_workflow_step(4,simplifyLinearModels,1,1,162,226).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -49,16 +49,19 @@ yw_data(3,'max.preds',nil,nil).
 yw_data(4,'linear.models',nil,nil).
 yw_data(5,predlist,1,calculate_Models).
 yw_data(6,carscores,1,calculate_Models).
-yw_data(7,models,1,calculate_Models).
-yw_data(8,matches,1,calculate_Models).
-yw_data(9,coefficients,1,calculate_Models).
-yw_data(10,'model.errors',1,calculate_Models).
-yw_data(11,'linear.models',1,calculate_Models).
+yw_data(7,'max.preds',1,calculate_Models).
+yw_data(8,models,1,calculate_Models).
+yw_data(9,matches,1,calculate_Models).
+yw_data(10,coefficients,1,calculate_Models).
+yw_data(11,'model.errors',1,calculate_Models).
+yw_data(12,'linear.models',1,calculate_Models).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
+yw_step_input(2,defineLinearModels,in,7,'max.preds',7,'max.preds').
+yw_step_input(1,calculate_Models,in,3,'max.preds',3,'max.preds').
 
 
 %---------------------------------------------------------------------------------------------------
@@ -69,6 +72,7 @@ yw_data(11,'linear.models',1,calculate_Models).
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
+yw_inflow(1,calculate_Models,7,'max.preds',2,defineLinearModels).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -94,26 +98,28 @@ yw_qualified_name(port,3,'calculate_Models<-max.preds').
 yw_qualified_name(port,4,'calculate_Models->linear.models').
 yw_qualified_name(port,5,'calculate_Models.defineLinearModels<-predlist').
 yw_qualified_name(port,6,'calculate_Models.defineLinearModels<-carscores').
-yw_qualified_name(port,7,'calculate_Models.defineLinearModels->models').
-yw_qualified_name(port,8,'calculate_Models.defineLinearModels->matches').
-yw_qualified_name(port,9,'calculate_Models.calculateLinearModels<-models').
-yw_qualified_name(port,10,'calculate_Models.calculateLinearModels<-matches').
-yw_qualified_name(port,11,'calculate_Models.calculateLinearModels->coefficients').
-yw_qualified_name(port,12,'calculate_Models.calculateLinearModels->model.errors').
-yw_qualified_name(port,13,'calculate_Models.simplifyLinearModels<-coefficients').
-yw_qualified_name(port,14,'calculate_Models.simplifyLinearModels<-model.errors').
-yw_qualified_name(port,15,'calculate_Models.simplifyLinearModels->final.models').
+yw_qualified_name(port,7,'calculate_Models.defineLinearModels<-max.preds').
+yw_qualified_name(port,8,'calculate_Models.defineLinearModels->models').
+yw_qualified_name(port,9,'calculate_Models.defineLinearModels->matches').
+yw_qualified_name(port,10,'calculate_Models.calculateLinearModels<-models').
+yw_qualified_name(port,11,'calculate_Models.calculateLinearModels<-matches').
+yw_qualified_name(port,12,'calculate_Models.calculateLinearModels->coefficients').
+yw_qualified_name(port,13,'calculate_Models.calculateLinearModels->model.errors').
+yw_qualified_name(port,14,'calculate_Models.simplifyLinearModels<-coefficients').
+yw_qualified_name(port,15,'calculate_Models.simplifyLinearModels<-model.errors').
+yw_qualified_name(port,16,'calculate_Models.simplifyLinearModels->final.models').
 yw_qualified_name(data,1,'[predlist]').
 yw_qualified_name(data,2,'[carscores]').
 yw_qualified_name(data,3,'[max.preds]').
 yw_qualified_name(data,4,'[linear.models]').
 yw_qualified_name(data,5,'calculate_Models[predlist]').
 yw_qualified_name(data,6,'calculate_Models[carscores]').
-yw_qualified_name(data,7,'calculate_Models[models]').
-yw_qualified_name(data,8,'calculate_Models[matches]').
-yw_qualified_name(data,9,'calculate_Models[coefficients]').
-yw_qualified_name(data,10,'calculate_Models[model.errors]').
-yw_qualified_name(data,11,'calculate_Models[linear.models]').
+yw_qualified_name(data,7,'calculate_Models[max.preds]').
+yw_qualified_name(data,8,'calculate_Models[models]').
+yw_qualified_name(data,9,'calculate_Models[matches]').
+yw_qualified_name(data,10,'calculate_Models[coefficients]').
+yw_qualified_name(data,11,'calculate_Models[model.errors]').
+yw_qualified_name(data,12,'calculate_Models[linear.models]').
 
 
 %---------------------------------------------------------------------------------------------------

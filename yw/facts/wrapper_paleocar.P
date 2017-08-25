@@ -3,7 +3,7 @@
 extract_source(1, 'wrapper_paleocar.R').
 
 % FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
-annotation(1, 1, 74, 'begin', '@begin', 'exec_paleocar_model').
+annotation(1, 1, 74, 'begin', '@begin', 'exec_paleocar').
 annotation(2, 1, 75, 'in', '@in', 'prediction_years').
 annotation(3, 1, 75, 'desc', '@desc', 'period for reconstruction of the paleoclimate using paleocar.').
 annotation(4, 1, 76, 'in', '@in', 'prism_data_for_coordinates').

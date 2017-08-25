@@ -17,15 +17,15 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(pred_plot).
-eq3(pred_model).
-eq3(data).
-eq3(uncertain_model).
-eq3(tree_ring).
-eq3(prism_data_for_coordinates).
 eq3(log_file).
-eq3(pal_model).
+eq3(pred_model).
+eq3(uncertain_model).
+eq3(pred_plot).
 eq3(uncertain_plot).
+eq3(pal_model).
+eq3(prism_data_for_coordinates).
+eq3(data).
+eq3(tree_ring).
 
 
 ---------------------------------------------------------------------------------------------------

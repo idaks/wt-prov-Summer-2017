@@ -4,42 +4,102 @@ resource(1, 'data/112W36N.nc').
 resource(2, '.output/3aa1442c/Run_output_1/112W36N.csv').
 resource(3, '.output/4e05ed23/Run_output_1/112W36N.csv').
 resource(4, '.output/6355972d/Run_output_1/112W36N.csv').
-resource(5, '.output/3aa1442c/Run_output_1/GRCA_prediction.Rds').
-resource(6, '.output/4e05ed23/Run_output_1/GRCA_prediction.Rds').
-resource(7, '.output/6355972d/Run_output_1/GRCA_prediction.Rds').
-resource(8, '.output/3aa1442c/Run_output_1/GRCA_uncertainty.Rds').
-resource(9, '.output/4e05ed23/Run_output_1/GRCA_uncertainty.Rds').
-resource(10, '.output/6355972d/Run_output_1/GRCA_uncertainty.Rds').
-resource(11, '.output/3aa1442c/Run_output_1/GRCA_model.Rds').
-resource(12, '.output/4e05ed23/Run_output_1/GRCA_model.Rds').
-resource(13, '.output/6355972d/Run_output_1/GRCA_model.Rds').
-resource(14, '.output/3aa1442c/Run_output_1/GRCA_uncertainty.jpg').
-resource(15, '.output/4e05ed23/Run_output_1/GRCA_uncertainty.jpg').
-resource(16, '.output/6355972d/Run_output_1/GRCA_uncertainty.jpg').
-resource(17, '.output/3aa1442c/Run_output_1/paleocar_model_log.txt').
-resource(18, '.output/4e05ed23/Run_output_1/paleocar_model_log.txt').
-resource(19, '.output/6355972d/Run_output_1/paleocar_model_log.txt').
+resource(5, '.output/f2f1e1a6/Run_output_1/112W36N.csv').
+resource(6, '.output/f2f1e1a6/Run_output_2/112W36N.csv').
+resource(7, '.output/f2f1e1a6/Run_output_3/112W36N.csv').
+resource(8, '.output/f2f1e1a6/Run_output_4/112W36N.csv').
+resource(9, '.output/f2f1e1a6/Run_output_5/112W36N.csv').
+resource(10, '.output/3aa1442c/Run_output_1/GRCA_prediction.Rds').
+resource(11, '.output/4e05ed23/Run_output_1/GRCA_prediction.Rds').
+resource(12, '.output/6355972d/Run_output_1/GRCA_prediction.Rds').
+resource(13, '.output/f2f1e1a6/Run_output_1/GRCA_prediction.Rds').
+resource(14, '.output/f2f1e1a6/Run_output_2/GRCA_prediction.Rds').
+resource(15, '.output/f2f1e1a6/Run_output_3/GRCA_prediction.Rds').
+resource(16, '.output/f2f1e1a6/Run_output_4/GRCA_prediction.Rds').
+resource(17, '.output/f2f1e1a6/Run_output_5/GRCA_prediction.Rds').
+resource(18, '.output/3aa1442c/Run_output_1/GRCA_uncertainty.Rds').
+resource(19, '.output/4e05ed23/Run_output_1/GRCA_uncertainty.Rds').
+resource(20, '.output/6355972d/Run_output_1/GRCA_uncertainty.Rds').
+resource(21, '.output/f2f1e1a6/Run_output_1/GRCA_uncertainty.Rds').
+resource(22, '.output/f2f1e1a6/Run_output_2/GRCA_uncertainty.Rds').
+resource(23, '.output/f2f1e1a6/Run_output_3/GRCA_uncertainty.Rds').
+resource(24, '.output/f2f1e1a6/Run_output_4/GRCA_uncertainty.Rds').
+resource(25, '.output/f2f1e1a6/Run_output_5/GRCA_uncertainty.Rds').
+resource(26, '.output/3aa1442c/Run_output_1/GRCA_model.Rds').
+resource(27, '.output/4e05ed23/Run_output_1/GRCA_model.Rds').
+resource(28, '.output/6355972d/Run_output_1/GRCA_model.Rds').
+resource(29, '.output/f2f1e1a6/Run_output_1/GRCA_model.Rds').
+resource(30, '.output/f2f1e1a6/Run_output_2/GRCA_model.Rds').
+resource(31, '.output/f2f1e1a6/Run_output_3/GRCA_model.Rds').
+resource(32, '.output/f2f1e1a6/Run_output_4/GRCA_model.Rds').
+resource(33, '.output/f2f1e1a6/Run_output_5/GRCA_model.Rds').
+resource(34, '.output/3aa1442c/Run_output_1/GRCA_uncertainty.jpg').
+resource(35, '.output/4e05ed23/Run_output_1/GRCA_uncertainty.jpg').
+resource(36, '.output/6355972d/Run_output_1/GRCA_uncertainty.jpg').
+resource(37, '.output/f2f1e1a6/Run_output_1/GRCA_uncertainty.jpg').
+resource(38, '.output/f2f1e1a6/Run_output_2/GRCA_uncertainty.jpg').
+resource(39, '.output/f2f1e1a6/Run_output_3/GRCA_uncertainty.jpg').
+resource(40, '.output/f2f1e1a6/Run_output_4/GRCA_uncertainty.jpg').
+resource(41, '.output/f2f1e1a6/Run_output_5/GRCA_uncertainty.jpg').
+resource(42, '.output/3aa1442c/Run_output_1/paleocar_model_log.txt').
+resource(43, '.output/4e05ed23/Run_output_1/paleocar_model_log.txt').
+resource(44, '.output/6355972d/Run_output_1/paleocar_model_log.txt').
+resource(45, '.output/f2f1e1a6/Run_output_1/paleocar_model_log.txt').
+resource(46, '.output/f2f1e1a6/Run_output_2/paleocar_model_log.txt').
+resource(47, '.output/f2f1e1a6/Run_output_3/paleocar_model_log.txt').
+resource(48, '.output/f2f1e1a6/Run_output_4/paleocar_model_log.txt').
+resource(49, '.output/f2f1e1a6/Run_output_5/paleocar_model_log.txt').
 
 % FACT: data_resource(data_id, resource_id).
 data_resource(26, 1).
 data_resource(28, 2).
 data_resource(28, 3).
 data_resource(28, 4).
-data_resource(33, 5).
-data_resource(33, 6).
-data_resource(33, 7).
-data_resource(35, 8).
-data_resource(35, 9).
-data_resource(35, 10).
-data_resource(36, 11).
-data_resource(36, 12).
-data_resource(36, 13).
-data_resource(37, 14).
-data_resource(37, 15).
-data_resource(37, 16).
-data_resource(38, 17).
-data_resource(38, 18).
-data_resource(38, 19).
+data_resource(28, 5).
+data_resource(28, 6).
+data_resource(28, 7).
+data_resource(28, 8).
+data_resource(28, 9).
+data_resource(33, 10).
+data_resource(33, 11).
+data_resource(33, 12).
+data_resource(33, 13).
+data_resource(33, 14).
+data_resource(33, 15).
+data_resource(33, 16).
+data_resource(33, 17).
+data_resource(35, 18).
+data_resource(35, 19).
+data_resource(35, 20).
+data_resource(35, 21).
+data_resource(35, 22).
+data_resource(35, 23).
+data_resource(35, 24).
+data_resource(35, 25).
+data_resource(36, 26).
+data_resource(36, 27).
+data_resource(36, 28).
+data_resource(36, 29).
+data_resource(36, 30).
+data_resource(36, 31).
+data_resource(36, 32).
+data_resource(36, 33).
+data_resource(37, 34).
+data_resource(37, 35).
+data_resource(37, 36).
+data_resource(37, 37).
+data_resource(37, 38).
+data_resource(37, 39).
+data_resource(37, 40).
+data_resource(37, 41).
+data_resource(38, 42).
+data_resource(38, 43).
+data_resource(38, 44).
+data_resource(38, 45).
+data_resource(38, 46).
+data_resource(38, 47).
+data_resource(38, 48).
+data_resource(38, 49).
 
 % FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
 uri_variable_value(2, 1, '3aa1442c').
@@ -48,47 +108,127 @@ uri_variable_value(3, 1, '4e05ed23').
 uri_variable_value(3, 2, 'Run_output_1').
 uri_variable_value(4, 1, '6355972d').
 uri_variable_value(4, 2, 'Run_output_1').
-uri_variable_value(5, 3, '3aa1442c').
-uri_variable_value(5, 4, 'Run_output_1').
-uri_variable_value(5, 5, 'GRCA').
-uri_variable_value(6, 3, '4e05ed23').
-uri_variable_value(6, 4, 'Run_output_1').
-uri_variable_value(6, 5, 'GRCA').
-uri_variable_value(7, 3, '6355972d').
-uri_variable_value(7, 4, 'Run_output_1').
-uri_variable_value(7, 5, 'GRCA').
-uri_variable_value(8, 9, '3aa1442c').
-uri_variable_value(8, 10, 'Run_output_1').
-uri_variable_value(8, 11, 'GRCA').
-uri_variable_value(9, 9, '4e05ed23').
-uri_variable_value(9, 10, 'Run_output_1').
-uri_variable_value(9, 11, 'GRCA').
-uri_variable_value(10, 9, '6355972d').
-uri_variable_value(10, 10, 'Run_output_1').
-uri_variable_value(10, 11, 'GRCA').
-uri_variable_value(11, 12, '3aa1442c').
-uri_variable_value(11, 13, 'Run_output_1').
-uri_variable_value(11, 14, 'GRCA').
-uri_variable_value(12, 12, '4e05ed23').
-uri_variable_value(12, 13, 'Run_output_1').
-uri_variable_value(12, 14, 'GRCA').
-uri_variable_value(13, 12, '6355972d').
-uri_variable_value(13, 13, 'Run_output_1').
-uri_variable_value(13, 14, 'GRCA').
-uri_variable_value(14, 15, '3aa1442c').
-uri_variable_value(14, 16, 'Run_output_1').
-uri_variable_value(14, 17, 'GRCA').
-uri_variable_value(15, 15, '4e05ed23').
-uri_variable_value(15, 16, 'Run_output_1').
-uri_variable_value(15, 17, 'GRCA').
-uri_variable_value(16, 15, '6355972d').
-uri_variable_value(16, 16, 'Run_output_1').
-uri_variable_value(16, 17, 'GRCA').
-uri_variable_value(17, 18, '3aa1442c').
-uri_variable_value(17, 19, 'Run_output_1').
-uri_variable_value(18, 18, '4e05ed23').
-uri_variable_value(18, 19, 'Run_output_1').
-uri_variable_value(19, 18, '6355972d').
-uri_variable_value(19, 19, 'Run_output_1').
+uri_variable_value(5, 1, 'f2f1e1a6').
+uri_variable_value(5, 2, 'Run_output_1').
+uri_variable_value(6, 1, 'f2f1e1a6').
+uri_variable_value(6, 2, 'Run_output_2').
+uri_variable_value(7, 1, 'f2f1e1a6').
+uri_variable_value(7, 2, 'Run_output_3').
+uri_variable_value(8, 1, 'f2f1e1a6').
+uri_variable_value(8, 2, 'Run_output_4').
+uri_variable_value(9, 1, 'f2f1e1a6').
+uri_variable_value(9, 2, 'Run_output_5').
+uri_variable_value(10, 3, '3aa1442c').
+uri_variable_value(10, 4, 'Run_output_1').
+uri_variable_value(10, 5, 'GRCA').
+uri_variable_value(11, 3, '4e05ed23').
+uri_variable_value(11, 4, 'Run_output_1').
+uri_variable_value(11, 5, 'GRCA').
+uri_variable_value(12, 3, '6355972d').
+uri_variable_value(12, 4, 'Run_output_1').
+uri_variable_value(12, 5, 'GRCA').
+uri_variable_value(13, 3, 'f2f1e1a6').
+uri_variable_value(13, 4, 'Run_output_1').
+uri_variable_value(13, 5, 'GRCA').
+uri_variable_value(14, 3, 'f2f1e1a6').
+uri_variable_value(14, 4, 'Run_output_2').
+uri_variable_value(14, 5, 'GRCA').
+uri_variable_value(15, 3, 'f2f1e1a6').
+uri_variable_value(15, 4, 'Run_output_3').
+uri_variable_value(15, 5, 'GRCA').
+uri_variable_value(16, 3, 'f2f1e1a6').
+uri_variable_value(16, 4, 'Run_output_4').
+uri_variable_value(16, 5, 'GRCA').
+uri_variable_value(17, 3, 'f2f1e1a6').
+uri_variable_value(17, 4, 'Run_output_5').
+uri_variable_value(17, 5, 'GRCA').
+uri_variable_value(18, 9, '3aa1442c').
+uri_variable_value(18, 10, 'Run_output_1').
+uri_variable_value(18, 11, 'GRCA').
+uri_variable_value(19, 9, '4e05ed23').
+uri_variable_value(19, 10, 'Run_output_1').
+uri_variable_value(19, 11, 'GRCA').
+uri_variable_value(20, 9, '6355972d').
+uri_variable_value(20, 10, 'Run_output_1').
+uri_variable_value(20, 11, 'GRCA').
+uri_variable_value(21, 9, 'f2f1e1a6').
+uri_variable_value(21, 10, 'Run_output_1').
+uri_variable_value(21, 11, 'GRCA').
+uri_variable_value(22, 9, 'f2f1e1a6').
+uri_variable_value(22, 10, 'Run_output_2').
+uri_variable_value(22, 11, 'GRCA').
+uri_variable_value(23, 9, 'f2f1e1a6').
+uri_variable_value(23, 10, 'Run_output_3').
+uri_variable_value(23, 11, 'GRCA').
+uri_variable_value(24, 9, 'f2f1e1a6').
+uri_variable_value(24, 10, 'Run_output_4').
+uri_variable_value(24, 11, 'GRCA').
+uri_variable_value(25, 9, 'f2f1e1a6').
+uri_variable_value(25, 10, 'Run_output_5').
+uri_variable_value(25, 11, 'GRCA').
+uri_variable_value(26, 12, '3aa1442c').
+uri_variable_value(26, 13, 'Run_output_1').
+uri_variable_value(26, 14, 'GRCA').
+uri_variable_value(27, 12, '4e05ed23').
+uri_variable_value(27, 13, 'Run_output_1').
+uri_variable_value(27, 14, 'GRCA').
+uri_variable_value(28, 12, '6355972d').
+uri_variable_value(28, 13, 'Run_output_1').
+uri_variable_value(28, 14, 'GRCA').
+uri_variable_value(29, 12, 'f2f1e1a6').
+uri_variable_value(29, 13, 'Run_output_1').
+uri_variable_value(29, 14, 'GRCA').
+uri_variable_value(30, 12, 'f2f1e1a6').
+uri_variable_value(30, 13, 'Run_output_2').
+uri_variable_value(30, 14, 'GRCA').
+uri_variable_value(31, 12, 'f2f1e1a6').
+uri_variable_value(31, 13, 'Run_output_3').
+uri_variable_value(31, 14, 'GRCA').
+uri_variable_value(32, 12, 'f2f1e1a6').
+uri_variable_value(32, 13, 'Run_output_4').
+uri_variable_value(32, 14, 'GRCA').
+uri_variable_value(33, 12, 'f2f1e1a6').
+uri_variable_value(33, 13, 'Run_output_5').
+uri_variable_value(33, 14, 'GRCA').
+uri_variable_value(34, 15, '3aa1442c').
+uri_variable_value(34, 16, 'Run_output_1').
+uri_variable_value(34, 17, 'GRCA').
+uri_variable_value(35, 15, '4e05ed23').
+uri_variable_value(35, 16, 'Run_output_1').
+uri_variable_value(35, 17, 'GRCA').
+uri_variable_value(36, 15, '6355972d').
+uri_variable_value(36, 16, 'Run_output_1').
+uri_variable_value(36, 17, 'GRCA').
+uri_variable_value(37, 15, 'f2f1e1a6').
+uri_variable_value(37, 16, 'Run_output_1').
+uri_variable_value(37, 17, 'GRCA').
+uri_variable_value(38, 15, 'f2f1e1a6').
+uri_variable_value(38, 16, 'Run_output_2').
+uri_variable_value(38, 17, 'GRCA').
+uri_variable_value(39, 15, 'f2f1e1a6').
+uri_variable_value(39, 16, 'Run_output_3').
+uri_variable_value(39, 17, 'GRCA').
+uri_variable_value(40, 15, 'f2f1e1a6').
+uri_variable_value(40, 16, 'Run_output_4').
+uri_variable_value(40, 17, 'GRCA').
+uri_variable_value(41, 15, 'f2f1e1a6').
+uri_variable_value(41, 16, 'Run_output_5').
+uri_variable_value(41, 17, 'GRCA').
+uri_variable_value(42, 18, '3aa1442c').
+uri_variable_value(42, 19, 'Run_output_1').
+uri_variable_value(43, 18, '4e05ed23').
+uri_variable_value(43, 19, 'Run_output_1').
+uri_variable_value(44, 18, '6355972d').
+uri_variable_value(44, 19, 'Run_output_1').
+uri_variable_value(45, 18, 'f2f1e1a6').
+uri_variable_value(45, 19, 'Run_output_1').
+uri_variable_value(46, 18, 'f2f1e1a6').
+uri_variable_value(46, 19, 'Run_output_2').
+uri_variable_value(47, 18, 'f2f1e1a6').
+uri_variable_value(47, 19, 'Run_output_3').
+uri_variable_value(48, 18, 'f2f1e1a6').
+uri_variable_value(48, 19, 'Run_output_4').
+uri_variable_value(49, 18, 'f2f1e1a6').
+uri_variable_value(49, 19, 'Run_output_5').
 
 % FACT: log_variable_value(resource_id, log_entry_id, log_variable_id, log_variable_value).

@@ -5,7 +5,7 @@ rankdir=TB
 
 /* Title for graph */
 fontname=Helvetica; fontsize=18; labelloc=t
-label=exec_paleocar_model
+label=exec_paleocar
 
 /* Start of double cluster for drawing box around nodes in workflow */
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2

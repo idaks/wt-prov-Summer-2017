@@ -1,17 +1,44 @@
 
 % FACT: resource(resource_id, resource_uri).
 resource(1, '.output/4e05ed23/Run_output_1/1982_tree_ring_data.csv').
+resource(2, '.output/f2f1e1a6/Run_output_2/1943_tree_ring_data.csv').
+resource(3, '.output/f2f1e1a6/Run_output_2/1976_tree_ring_data.csv').
+resource(4, '.output/f2f1e1a6/Run_output_5/1950_tree_ring_data.csv').
 
 % FACT: data_resource(data_id, resource_id).
 data_resource(3, 1).
+data_resource(3, 2).
+data_resource(3, 3).
+data_resource(3, 4).
 data_resource(3, 1).
+data_resource(3, 2).
+data_resource(3, 3).
+data_resource(3, 4).
 
 % FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
 uri_variable_value(1, 4, '4e05ed23').
 uri_variable_value(1, 5, 'Run_output_1').
 uri_variable_value(1, 6, '1982').
+uri_variable_value(2, 4, 'f2f1e1a6').
+uri_variable_value(2, 5, 'Run_output_2').
+uri_variable_value(2, 6, '1943').
+uri_variable_value(3, 4, 'f2f1e1a6').
+uri_variable_value(3, 5, 'Run_output_2').
+uri_variable_value(3, 6, '1976').
+uri_variable_value(4, 4, 'f2f1e1a6').
+uri_variable_value(4, 5, 'Run_output_5').
+uri_variable_value(4, 6, '1950').
 uri_variable_value(1, 10, '4e05ed23').
 uri_variable_value(1, 11, 'Run_output_1').
 uri_variable_value(1, 12, '1982').
+uri_variable_value(2, 10, 'f2f1e1a6').
+uri_variable_value(2, 11, 'Run_output_2').
+uri_variable_value(2, 12, '1943').
+uri_variable_value(3, 10, 'f2f1e1a6').
+uri_variable_value(3, 11, 'Run_output_2').
+uri_variable_value(3, 12, '1976').
+uri_variable_value(4, 10, 'f2f1e1a6').
+uri_variable_value(4, 11, 'Run_output_5').
+uri_variable_value(4, 12, '1950').
 
 % FACT: log_variable_value(resource_id, log_entry_id, log_variable_id, log_variable_value).

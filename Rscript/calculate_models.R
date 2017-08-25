@@ -1,14 +1,15 @@
-  # @BEGIN calculate_Models
+  # @BEGIN calculate_Models 
   # @IN predlist
   # @IN carscores
-  # @IN max.preds
-  # @OUT linear.models 
+  # @in max.preds 
+  # @OUT linear.models
   allModels <- data.table::data.table(cell=numeric(),year=numeric(),model=numeric(),numPreds=numeric(),CV=numeric(),AICc=numeric(),coefs=numeric())
   complete.cell.years <- data.table::data.table(cell=numeric(),year=numeric())
   times <- vector('numeric',max(prednums))
   # @BEGIN defineLinearModels
   # @IN predlist
   # @IN carscores
+  # @in max.preds
   # @OUT models
   # @OUT matches
   for(i in 1:maxPreds){
@@ -161,7 +162,7 @@
     # @BEGIN simplifyLinearModels
     # @IN coefficients
     # @IN model.errors
-    # @OUT final.models @as linear.models 
+    # @OUT final.models @as linear.models
     ## LMS SIMPLIFY PREP
     new.t <- Sys.time()
     

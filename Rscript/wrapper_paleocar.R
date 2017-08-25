@@ -71,7 +71,7 @@ prism_data <- function(coordinates,   #Longitude and latitude.
 
 
 
-#@begin exec_paleocar_model
+#@begin exec_paleocar
 #@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
 #@in prism_data_for_coordinates @file .output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
 #@param itrdb @file data/ITRDB.Rda @desc tree ring chronologies database
