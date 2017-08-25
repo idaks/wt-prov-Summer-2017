@@ -1,0 +1,76 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=extract_prism_data
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+extract_prism_data [shape=record rankdir=LR label="{<f0> extract_prism_data |<f1> Load the prism data file with precipitation values and extract the data for the input coordinates and save as a csv file.}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:.output/\{session_id\}/\{run_id\}/112W36N.csv}"];
+coordinates
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:}"];
+
+/* Edges representing connections between programs and channels */
+extract_prism_data -> prism_data_for_coordinates
+coordinates -> extract_prism_data
+prism_data -> extract_prism_data
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* Hidden double-cluster for grouping workflow input ports */
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow input ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+coordinates_input_port [label=""]
+prism_data_input_port [label=""]
+
+/* End of double-cluster for grouping workflow input ports */
+}}
+
+/* Hidden double-cluster for grouping workflow output ports */
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow output ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+prism_data_for_coordinates_output_port [label=""]
+
+/* End of double-cluster for grouping workflow output ports */
+}}
+
+/* Edges from input ports to channels */
+coordinates_input_port -> coordinates
+prism_data_input_port -> prism_data
+
+/* Edges from channels to output ports */
+prism_data_for_coordinates -> prism_data_for_coordinates_output_port
+
+/* End of top-level graph */
+}

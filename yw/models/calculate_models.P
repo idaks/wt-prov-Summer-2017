@@ -1,0 +1,114 @@
+
+% FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
+program(1, 'calculate_Models', 'calculate_Models', 1, 24).
+program(2, 'defineLinearModels', 'calculate_Models.defineLinearModels', 6, 11).
+program(3, 'calculateLinearModels', 'calculate_Models.calculateLinearModels', 12, 17).
+program(4, 'simplifyLinearModels', 'calculate_Models.simplifyLinearModels', 18, 23).
+
+% FACT: workflow(program_id).
+workflow(1).
+
+% FACT: function(program_id).
+
+% FACT: has_subprogram(program_id, subprogram_id).
+has_subprogram(1, 2).
+has_subprogram(1, 3).
+has_subprogram(1, 4).
+
+% FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
+port(1, 'IN', 'predlist', 'calculate_Models<-predlist', 2, 1).
+port(2, 'IN', 'carscores', 'calculate_Models<-carscores', 3, 2).
+port(3, 'IN', 'max.preds', 'calculate_Models<-max.preds', 4, 3).
+port(4, 'OUT', 'linear.models', 'calculate_Models->linear.models', 5, 4).
+port(5, 'IN', 'predlist', 'calculate_Models.defineLinearModels<-predlist', 7, 5).
+port(6, 'IN', 'carscores', 'calculate_Models.defineLinearModels<-carscores', 8, 6).
+port(7, 'OUT', 'models', 'calculate_Models.defineLinearModels->models', 9, 7).
+port(8, 'OUT', 'matches', 'calculate_Models.defineLinearModels->matches', 10, 8).
+port(9, 'IN', 'models', 'calculate_Models.calculateLinearModels<-models', 13, 7).
+port(10, 'IN', 'matches', 'calculate_Models.calculateLinearModels<-matches', 14, 8).
+port(11, 'OUT', 'coefficients', 'calculate_Models.calculateLinearModels->coefficients', 15, 9).
+port(12, 'OUT', 'model.errors', 'calculate_Models.calculateLinearModels->model.errors', 16, 10).
+port(13, 'IN', 'coefficients', 'calculate_Models.simplifyLinearModels<-coefficients', 19, 9).
+port(14, 'IN', 'model.errors', 'calculate_Models.simplifyLinearModels<-model.errors', 20, 10).
+port(15, 'OUT', 'final.models', 'calculate_Models.simplifyLinearModels->final.models', 21, 11).
+
+% FACT: port_alias(port_id, alias).
+port_alias(15, 'linear.models').
+
+% FACT: port_uri_template(port_id, uri).
+
+% FACT: has_in_port(block_id, port_id).
+has_in_port(1, 1).
+has_in_port(1, 2).
+has_in_port(1, 3).
+has_in_port(2, 5).
+has_in_port(2, 6).
+has_in_port(3, 9).
+has_in_port(3, 10).
+has_in_port(4, 13).
+has_in_port(4, 14).
+
+% FACT: has_out_port(block_id, port_id).
+has_out_port(1, 4).
+has_out_port(2, 7).
+has_out_port(2, 8).
+has_out_port(3, 11).
+has_out_port(3, 12).
+has_out_port(4, 15).
+
+% FACT: data(data_id, data_name, qualified_data_name).
+data(1, 'predlist', '[predlist]').
+data(2, 'carscores', '[carscores]').
+data(3, 'max.preds', '[max.preds]').
+data(4, 'linear.models', '[linear.models]').
+data(5, 'predlist', 'calculate_Models[predlist]').
+data(6, 'carscores', 'calculate_Models[carscores]').
+data(7, 'models', 'calculate_Models[models]').
+data(8, 'matches', 'calculate_Models[matches]').
+data(9, 'coefficients', 'calculate_Models[coefficients]').
+data(10, 'model.errors', 'calculate_Models[model.errors]').
+data(11, 'linear.models', 'calculate_Models[linear.models]').
+
+% FACT: channel(channel_id, data_id).
+channel(1, 4).
+channel(2, 5).
+channel(3, 6).
+channel(4, 7).
+channel(5, 8).
+channel(6, 9).
+channel(7, 10).
+channel(8, 1).
+channel(9, 2).
+channel(10, 11).
+
+% FACT: port_connects_to_channel(port_id, channel_id).
+port_connects_to_channel(15, 1).
+port_connects_to_channel(5, 2).
+port_connects_to_channel(6, 3).
+port_connects_to_channel(7, 4).
+port_connects_to_channel(9, 4).
+port_connects_to_channel(8, 5).
+port_connects_to_channel(10, 5).
+port_connects_to_channel(11, 6).
+port_connects_to_channel(13, 6).
+port_connects_to_channel(12, 7).
+port_connects_to_channel(14, 7).
+port_connects_to_channel(5, 8).
+port_connects_to_channel(6, 9).
+port_connects_to_channel(15, 10).
+
+% FACT: inflow_connects_to_channel(port_id, channel_id).
+inflow_connects_to_channel(1, 2).
+inflow_connects_to_channel(2, 3).
+inflow_connects_to_channel(1, 8).
+inflow_connects_to_channel(2, 9).
+
+% FACT: outflow_connects_to_channel(port_id, channel_id).
+outflow_connects_to_channel(4, 1).
+outflow_connects_to_channel(4, 10).
+
+% FACT: uri_variable(uri_variable_id, variable_name, port_id).
+
+% FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
+
+% FACT: log_template_variable(log_variable_id, variable_name, log_template_id).

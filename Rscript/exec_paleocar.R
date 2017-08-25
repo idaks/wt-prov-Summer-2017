@@ -67,9 +67,9 @@ input_data_type=args[8]
 
 #@begin exec_paleocar @desc execute paleocar for reconstruction of paleoclimate of the study region. 
 #@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
-#@in prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
-#@param itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
-#@param calibration_yearss @desc period for calibrating the information for predicting the climate. 
+#@in prism_data_for_coordinates @uri file:.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+#@param itrdb @file 112W36N.nc @uri file:data/itrdb.Rda @desc tree ring chronologies database
+#@param calibration_years @desc period for calibrating the information for predicting the climate. 
 #@param label @desc user entered label for the study region. 
 #@param min_width @desc min width of the tree rings. 
 #@param verbose @desc set to true for writing output to a logfile. 
@@ -78,19 +78,19 @@ input_data_type=args[8]
 
 #@begin gen_paleocar_model @desc execute paleocar for reconstruction of paleoclimate of the study region. 
 #@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
-#@in prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
-#@param itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
-#@param calibration_yearss @desc period for calibrating the information for predicting the climate. 
+#@in prism_data_for_coordinates@uri file:.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+#@param itrdb @file 112W36N.nc @uri file:data/itrdb.Rda @desc tree ring chronologies database
+#@param calibration_years @desc period for calibrating the information for predicting the climate. 
 #@param label @desc user entered label for the study region. 
 #@param min_width @desc min width of the tree rings. 
 #@param verbose @desc set to true for writing output to a logfile. 
 
 
-#@out prediction_model @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
-#@out plot @as prediction_plot  @uri file:/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
-#@out model @as uncertainty_model  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
-#@out plot @as uncertainty_plot  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
-#@out paleocar_log_file @uri file:/.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
+#@out prediction_model @uri  file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
+#@out plot @as prediction_plot  @uri file:.ouptut/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+#@out model @as uncertainty_model  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
+#@out plot @as uncertainty_plot  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+#@out paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
 #@end gen_paleocar_model
 
 
@@ -114,10 +114,10 @@ if(input_data_type=="v")
   )
 }
 
-#@out prediction_model @uri  file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
-#@out plot @as prediction_plot  @uri file:/{session_id}/{run_id}/{label}.prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
-#@out model @as uncertainty_model  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
-#@out plot @as uncertainty_plot  @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+#@out prediction_model @uri  file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
+#@out plot @as prediction_plot  @uri file:.output/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+#@out model @as uncertainty_model  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
+#@out plot @as uncertainty_plot  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
 #@out paleocar_log_file 
 #@end exec_paleocar
 ## Check if input_data_type is a matrix and execute the paleocar

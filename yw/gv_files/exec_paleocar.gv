@@ -1,0 +1,112 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=exec_paleocar
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+gen_paleocar_model [shape=record rankdir=LR label="{<f0> gen_paleocar_model |<f1> execute paleocar for reconstruction of paleoclimate of the study region.}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+prediction_years
+prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:.output/\{session_id\}/\{run_id\}/112W36N.csv}"];
+prediction_model [shape=record rankdir=LR label="{<f0> prediction_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_prediction.Rds}"];
+prediction_plot [shape=record rankdir=LR label="{<f0> prediction_plot |<f1> file\:.ouptut/\{session_id\}/\{run_id\}/\{label\}_prediction.jpg}"];
+uncertainty_model [shape=record rankdir=LR label="{<f0> uncertainty_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.Rds}"];
+uncertainty_plot [shape=record rankdir=LR label="{<f0> uncertainty_plot |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.jpg}"];
+paleocar_log_file [shape=record rankdir=LR label="{<f0> paleocar_log_file |<f1> file\:.output/\{session_id\}/\{run_id\}/paleocar_model_log.txt}"];
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/itrdb.Rda}"];
+calibration_years
+label
+min_width
+verbose
+
+/* Edges representing connections between programs and channels */
+gen_paleocar_model -> prediction_model
+gen_paleocar_model -> prediction_plot
+gen_paleocar_model -> uncertainty_model
+gen_paleocar_model -> uncertainty_plot
+gen_paleocar_model -> paleocar_log_file
+prediction_years -> gen_paleocar_model
+prism_data_for_coordinates -> gen_paleocar_model
+itrdb -> gen_paleocar_model
+calibration_years -> gen_paleocar_model
+label -> gen_paleocar_model
+min_width -> gen_paleocar_model
+verbose -> gen_paleocar_model
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* Hidden double-cluster for grouping workflow input ports */
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow input ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+prediction_years_input_port [label=""]
+prism_data_for_coordinates_input_port [label=""]
+itrdb_input_port [label=""]
+calibration_years_input_port [label=""]
+label_input_port [label=""]
+min_width_input_port [label=""]
+verbose_input_port [label=""]
+
+/* End of double-cluster for grouping workflow input ports */
+}}
+
+/* Hidden double-cluster for grouping workflow output ports */
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow output ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+prediction_model_output_port [label=""]
+prediction_plot_output_port [label=""]
+uncertainty_model_output_port [label=""]
+uncertainty_plot_output_port [label=""]
+paleocar_log_file_output_port [label=""]
+
+/* End of double-cluster for grouping workflow output ports */
+}}
+
+/* Edges from input ports to channels */
+prediction_years_input_port -> prediction_years
+prism_data_for_coordinates_input_port -> prism_data_for_coordinates
+itrdb_input_port -> itrdb
+calibration_years_input_port -> calibration_years
+label_input_port -> label
+min_width_input_port -> min_width
+verbose_input_port -> verbose
+
+/* Edges from channels to output ports */
+prediction_model -> prediction_model_output_port
+prediction_plot -> prediction_plot_output_port
+uncertainty_model -> uncertainty_model_output_port
+uncertainty_plot -> uncertainty_plot_output_port
+paleocar_log_file -> paleocar_log_file_output_port
+
+/* End of top-level graph */
+}

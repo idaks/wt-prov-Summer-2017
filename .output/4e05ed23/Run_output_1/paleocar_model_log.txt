@@ -1,0 +1,34 @@
+Calculating PaleoCAR models
+
+Prepare data and calculate CAR scores: 0.01 minutes
+
+Calculating models of with 1 input vectors.
+Define models: 0.01 minutes
+Calculate 2 linear models: 0 minutes
+Clean linear models: 0 minutes
+Total modeling time: 0.01 minutes
+14 cell-years remaining
+
+Calculating models of with 2 input vectors.
+Define models: 0.01 minutes
+Calculate 3 linear models: 0 minutes
+Clean linear models: 0 minutes
+Total modeling time: 0.01 minutes
+14 cell-years remaining
+
+Calculating models of with 3 input vectors.
+Define models: 0.01 minutes
+Calculate 3 linear models: 0 minutes
+Clean linear models: 0 minutes
+Total modeling time: 0.01 minutes
+13 cell-years remaining
+
+Calculating models of with 4 input vectors.
+Define models: 0.01 minutes
+Calculate 2 linear models: 0 minutes
+Clean linear models: 0 minutes
+Total modeling time: 0.01 minutes
+
+Total Modeling Time: 0.04712962 minutes
+
+Optimizing models: 0 minutes

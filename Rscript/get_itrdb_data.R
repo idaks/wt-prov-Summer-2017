@@ -30,7 +30,7 @@ setwd("D:\\Study\\Internship\\WT_PaleoCar_2017\\meteor_example\\wt-prov-summer-2
 #@begin create_shapefile_dir @desc create a direcorty for downloading the shapefiles for the study region.
 #@in dir_name @as study_region
 dir.create("GRCA", showWarnings = T, recursive = T)
-#@out user_created_dir  @uri file:./{study_region}
+#@out user_created_dir  @uri file:data/{study_region}
 #@end create_dir_shapefiles 
 
 # download shapefile directory
@@ -41,7 +41,7 @@ dir.create("GRCA", showWarnings = T, recursive = T)
 
 FedData::download_data("http://nrdata.nps.gov/programs/Lands/GRCA_tracts.zip", destdir="./GRCA")
 
-#@out compressed_shapefile   @uri file:./{study_region}/{study_region}_tracts.zip  
+#@out compressed_shapefile   @uri file:data/{study_region}/{study_region}_tracts.zip  
 #@end download_shape_files
 
 
@@ -51,11 +51,11 @@ FedData::download_data("http://nrdata.nps.gov/programs/Lands/GRCA_tracts.zip", d
 # uncompress shapefile directory
 utils::unzip("./GRCA/GRCA_tracts.zip", exdir="./GRCA/grca_tracts")
 
-#@out shapefiles_dir @uri file:./{study_region}/{study_region}_tracts
-#@out layer_boundary @uri file:./{study_region}/{study_region}_tracts/{study_region}_boundary.{file_extensions}
-#@out layer_tracts @uri file:./{study_region}/{study_region}_tracts/{study_region}_tracts.{file_extensions}
-#@out metadata_xml_file @uri file:./{study_region}/{study_region}_tracts/{study_region}_metadata.xml
-#@out tracts_xml_file @uri file:./{study_region}/{study_region}_tracts/nps_tracts.xml 
+#@out shapefiles_dir @uri file:data/{study_region}/{study_region}_tracts
+#@out layer_boundary @uri file:data/{study_region}/{study_region}_tracts/{study_region}_boundary.{file_extensions}
+#@out layer_tracts @uri file:data/{study_region}/{study_region}_tracts/{study_region}_tracts.{file_extensions}
+#@out metadata_xml_file @uri file:data/{study_region}/{study_region}_tracts/{study_region}_metadata.xml
+#@out tracts_xml_file @uri file:data/{study_region}/{study_region}_tracts/nps_tracts.xml 
 #@end extract_shape_files
 
 
@@ -108,8 +108,8 @@ treePoly <- suppressWarnings(rgeos::gBuffer(grca, width=tree.buffer, quadsegs=10
 #@begin extract_tree_ring_data @desc get all the tree ring chronologies and extract the values for the study region.
 #@in polygon @as treepolygon
 #@param label 
-#@param raw.dir @uri file:./{study_region}/RAW/
-#@param extract.dir @uri file:./{study_region}/ITRDB/
+#@param raw.dir @uri file:data/{study_region}/RAW/
+#@param extract.dir @uri file:data/{study_region}/ITRDB/
 #@in recon_year @as prediction_years
 #@param calib.years @as calibration_years
 #@param measurement_type 
@@ -142,7 +142,7 @@ readr::write_rds(itrdb,
                  compress = "gz")
 
 
-#@out list @as itrdb @uri file:itrdb.Rda
+#@out list @as itrdb @uri file:data/IRTDB.Rda
 #@end  extract_tree_ring_data
 
  

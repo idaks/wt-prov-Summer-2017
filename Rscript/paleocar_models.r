@@ -1,9 +1,9 @@
 ## YesWorkflow markup!
 #@BEGIN  gen_paleocar_model @desc generate paleocar models for predicting the climate for the given years. 
 #@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
-#@in prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+#@in prism_data_for_coordinates @uri file:.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. 
 
-#@param itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+#@param itrdb @file data/ITRDB.Rda @uri file:data/ITRDB.Rda @desc tree ring chronologies database
 #@param calibration_years @desc period for calibrating the information for predicting the climate. 
 #@param label @desc user entered label for the study region. 
 #@param min_width @desc min width of the tree rings. 
@@ -341,7 +341,7 @@ paleocar_models <- function(chronologies,
   
   # @BEGIN optimizeModels
   # @IN linear.models
-  # @OUT final.models  @as paleocar_models @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction. 
+  # @OUT final.models  @as paleocar_models @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction. 
   t <- Sys.time()
   get.coef.names <- function(year,model,coefs,numPreds,CV,AICc){
     the.coefs <- lapply(coefs,function(x){names(x)[-1]})
@@ -370,7 +370,7 @@ paleocar_models <- function(chronologies,
   
   # @END optimizeModels
   return(allModels)
-  #@out paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction. 
+  #@out paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction. 
   # @END main
 }
 

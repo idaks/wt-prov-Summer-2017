@@ -58,8 +58,8 @@ Meteor.startup(function () {
 
     'srv_rd_pc_result': function (filedir,session_id,run_id,user_label) 
     {
-        prediction_file= '/' + user_label  + '.predictions.jpg' 
-        uncertainty_file= '/' + user_label + '.uncertainty.jpg'
+        prediction_file= '/' + user_label  + '_predictions.jpg' 
+        uncertainty_file= '/' + user_label + '_uncertainty.jpg'
         var data = fs.readFileSync(filedir + prediction_file);
         prediction = new Buffer(data, 'binary').toString('base64');
         prediction = "data:image/jpg;base64,"+ prediction;

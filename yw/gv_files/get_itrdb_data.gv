@@ -1,0 +1,116 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=get_itrdb_data
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+create_shapefile_dir [shape=record rankdir=LR label="{<f0> create_shapefile_dir |<f1> create a direcorty for downloading the shapefiles for the study region.}"];
+download_shapefile_archive [shape=record rankdir=LR label="{<f0> download_shapefile_archive |<f1> download the zip file of the region which contains the boundary, tracts, metadata.xml and nps_tracts.xml files.}"];
+uncompress_shapefile [shape=record rankdir=LR label="{<f0> uncompress_shapefile |<f1> create a directory as the archive filename and extract the files.}"];
+read_shapefile [shape=record rankdir=LR label="{<f0> read_shapefile |<f1> read the shapefile for the region and save it as a spatial vector object.}"];
+get_treepolygon [shape=record rankdir=LR label="{<f0> get_treepolygon |<f1> Get Tree-ring data from the ITRDB for tree_buffer around GRCA}"];
+extract_tree_ring_data [shape=record rankdir=LR label="{<f0> extract_tree_ring_data |<f1> get all the tree ring chronologies and extract the values for the study region.}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/IRTDB.Rda}"];
+study_region
+shapefile_archive [shape=record rankdir=LR label="{<f0> shapefile_archive |<f1> http\://nrdata.nps.gov/programs/Lands/\{study_region\}_tracts.zip}"];
+user_created_dir [shape=record rankdir=LR label="{<f0> user_created_dir |<f1> file\:data/\{study_region\}}"];
+compressed_shapefile [shape=record rankdir=LR label="{<f0> compressed_shapefile |<f1> file\:data/\{study_region\}/\{study_region\}_tracts.zip}"];
+layer_boundary [shape=record rankdir=LR label="{<f0> layer_boundary |<f1> file\:data/\{study_region\}/\{study_region\}_tracts/\{study_region\}_boundary.\{file_extensions\}}"];
+shapefiles_dir [shape=record rankdir=LR label="{<f0> shapefiles_dir |<f1> file\:data/\{study_region\}/\{study_region\}_tracts}"];
+dataframe
+treepolygon
+prediction_years
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+
+/* Edges representing connections between programs and channels */
+create_shapefile_dir -> user_created_dir
+study_region -> create_shapefile_dir
+download_shapefile_archive -> compressed_shapefile
+shapefile_archive -> download_shapefile_archive
+user_created_dir -> download_shapefile_archive
+uncompress_shapefile -> shapefiles_dir
+uncompress_shapefile -> layer_boundary
+uncompress_shapefile -> layer_tracts
+uncompress_shapefile -> metadata_xml_file
+uncompress_shapefile -> tracts_xml_file
+compressed_shapefile -> uncompress_shapefile
+user_created_dir -> uncompress_shapefile
+read_shapefile -> dataframe
+layer_boundary -> read_shapefile
+shapefiles_dir -> read_shapefile
+get_treepolygon -> treepolygon
+tree_buffer -> get_treepolygon
+dataframe -> get_treepolygon
+segments_approx_quarter_circle -> get_treepolygon
+extract_tree_ring_data -> itrdb
+treepolygon -> extract_tree_ring_data
+label -> extract_tree_ring_data
+"raw.dir" -> extract_tree_ring_data
+"extract.dir" -> extract_tree_ring_data
+prediction_years -> extract_tree_ring_data
+calibration_years -> extract_tree_ring_data
+measurement_type -> extract_tree_ring_data
+chronology_type -> extract_tree_ring_data
+"force.redo" -> extract_tree_ring_data
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* Hidden double-cluster for grouping workflow input ports */
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow input ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+shapefile_archive_input_port [label=""]
+study_region_input_port [label=""]
+prediction_years_input_port [label=""]
+
+/* End of double-cluster for grouping workflow input ports */
+}}
+
+/* Hidden double-cluster for grouping workflow output ports */
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow output ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+itrdb_output_port [label=""]
+
+/* End of double-cluster for grouping workflow output ports */
+}}
+
+/* Edges from input ports to channels */
+shapefile_archive_input_port -> shapefile_archive
+study_region_input_port -> study_region
+prediction_years_input_port -> prediction_years
+
+/* Edges from channels to output ports */
+itrdb -> itrdb_output_port
+
+/* End of top-level graph */
+}

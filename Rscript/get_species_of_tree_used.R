@@ -19,7 +19,7 @@ library(tibble)
 library(readr)
 
 #@begin get_tree_ring_chronologies @desc extract the values of the tree ring chronologies used for reconstruction for a given year
-#@in models @as paleocar_models   @uri  file:/.output/{session_id}{run_id}/{label}.models.rds @desc  R model of the paleocar reconstruction of prediction.
+#@in models @as paleocar_models   @uri  file:.output/{session_id}{run_id}/{label}_models.rds @desc  R model of the paleocar reconstruction of prediction.
 #@in prediction_year @as user_input_year
 
 ## get the rds file 

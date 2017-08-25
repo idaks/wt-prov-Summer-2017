@@ -1,0 +1,32 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'calculate_models.R').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 1, 'begin', '@BEGIN', 'calculate_Models').
+annotation(2, 1, 2, 'in', '@IN', 'predlist').
+annotation(3, 1, 3, 'in', '@IN', 'carscores').
+annotation(4, 1, 4, 'in', '@IN', 'max.preds').
+annotation(5, 1, 5, 'out', '@OUT', 'linear.models').
+annotation(6, 1, 9, 'begin', '@BEGIN', 'defineLinearModels').
+annotation(7, 1, 10, 'in', '@IN', 'predlist').
+annotation(8, 1, 11, 'in', '@IN', 'carscores').
+annotation(9, 1, 12, 'out', '@OUT', 'models').
+annotation(10, 1, 13, 'out', '@OUT', 'matches').
+annotation(11, 1, 110, 'end', '@END', 'defineLinearModels').
+annotation(12, 1, 112, 'begin', '@BEGIN', 'calculateLinearModels').
+annotation(13, 1, 113, 'in', '@IN', 'models').
+annotation(14, 1, 114, 'in', '@IN', 'matches').
+annotation(15, 1, 115, 'out', '@OUT', 'coefficients').
+annotation(16, 1, 116, 'out', '@OUT', 'model.errors').
+annotation(17, 1, 159, 'end', '@END', 'calculateLinearModels').
+annotation(18, 1, 161, 'begin', '@BEGIN', 'simplifyLinearModels').
+annotation(19, 1, 162, 'in', '@IN', 'coefficients').
+annotation(20, 1, 163, 'in', '@IN', 'model.errors').
+annotation(21, 1, 164, 'out', '@OUT', 'final.models').
+annotation(22, 1, 164, 'as', '@as', 'linear.models').
+annotation(23, 1, 225, 'end', '@END', 'simplifyLinearModels').
+annotation(24, 1, 237, 'end', '@END', 'calculateModels').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(22, 21).

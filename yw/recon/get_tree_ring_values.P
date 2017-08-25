@@ -1,0 +1,17 @@
+
+% FACT: resource(resource_id, resource_uri).
+resource(1, '.output/4e05ed23/Run_output_1/1982_tree_ring_data.csv').
+
+% FACT: data_resource(data_id, resource_id).
+data_resource(3, 1).
+data_resource(3, 1).
+
+% FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
+uri_variable_value(1, 4, '4e05ed23').
+uri_variable_value(1, 5, 'Run_output_1').
+uri_variable_value(1, 6, '1982').
+uri_variable_value(1, 10, '4e05ed23').
+uri_variable_value(1, 11, 'Run_output_1').
+uri_variable_value(1, 12, '1982').
+
+% FACT: log_variable_value(resource_id, log_entry_id, log_variable_id, log_variable_value).

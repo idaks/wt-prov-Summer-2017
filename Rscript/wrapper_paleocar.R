@@ -73,8 +73,8 @@ prism_data <- function(coordinates,   #Longitude and latitude.
 
 #@begin exec_paleocar_model
 #@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
-#@in prism_data_for_coordinates@uri file:/.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
-#@param itrdb @file 112W36N.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database
+#@in prism_data_for_coordinates @file .output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. @desc file containing the precipitation values for the particular region
+#@param itrdb @file data/ITRDB.Rda @desc tree ring chronologies database
 #@param calibration_years @desc period for calibrating the information for predicting the climate. 
 #@param label @desc user entered label for the study region. 
 #@param min_width @desc min width of the tree rings. 
@@ -82,48 +82,48 @@ prism_data <- function(coordinates,   #Longitude and latitude.
 
 
 #@begin create_paleocar_model @desc generate paleocar models for predicting the climate for the given years. 
-#@param label @as label @desc user entered label for the study region. 
+#@param region_label @as label  
 #@param cal_year @as calibration_years @desc period for calibrating the information for predicting the climate. 
-#@param itrdb @file {data_file}.nc @uri file:/data/itrdb.Rda @desc tree ring chronologies database. 
+#@param itrdb  @file data/ITRDB.Rda @uri file:data/ITRDB.Rda 
 #@param min.width @as min_width
 #@in pred_year @as  prediction_years  @desc An optional integer vector of years for the reconstruction.
-#@in predictands  @as prism_data_for_coordinates  @uri file:/.output/{session_id}/{run_id}/{data_file}.csv @desc file containing the precipitation values for the selected region.
+#@in predictands  @as prism_data_for_coordinates  @uri file:.output/{session_id}/{run_id}/112W36N.csv @ 
 
 
-#@out model @as paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
-#@out log_file @as paleocar_log_file @uri file:/.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
+#@out pal_model @as paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction.
+#@out log_file @as paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
 #@end paleocar_model 
 
 
 
 #@begin extract_prediction_model @desc generate paleocar models for predicting the climate for the given years. 
 #@in pred_year @as  prediction_years  @desc An optional integer vector of years for the reconstruction.
-#@in models  @as paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+#@in models  @as paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}.model.Rds 
 
 
-# @out prediction_graph  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
-# @out prediction_model  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+# @out prediction_graph  @uri file:.output/{session_id}/{run_id}/{label}_prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
+# @out prediction_model  @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
 
 #@end extract_prediction_model 
 
 
 #@begin extract_uncertainty_model @desc generate paleocar models for predicting the climate for the given years. 
 #@in pred_year @as  prediction_years  @desc An optional integer vector of years for the reconstruction.
-#@in models  @as paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+#@in models  @as paleocar_models  
 
 
-# @out uncertainty_graph  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
-# @out uncertainty_model  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
+# @out uncertainty_graph  @uri file:.output/{session_id}/{run_id}/{label}_prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
+# @out uncertainty_model  @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
 
 #@end extract_uncertainty_model 
 
 
-#@out prediction_graph  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
-#@out prediction_model  @uri file:/.output/{session_id}/{run_id}/{label}.prediction.rds @desc  R model of the paleocar reconstruction of prediction.
-#@out paleocar_log_file @uri file:/.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
-#@out uncertainty_model @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.rds  @desc R model of the paleocar reconstruction of uncertainties.
-#@out uncertainty_graph @uri file:/.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
-#@out paleocar_models   @uri file:/.output/{session_id}/{run_id}/{label}.model.rds  @desc R model generated for the paleoclimatic reconstruction.
+#@out prediction_graph  @uri file:.output/{session_id}/{run_id}/{label}.prediction.jpg @desc  timeseries plot of prediction model of the paleocar reconstruction.
+#@out prediction_model  @uri file:.output/{session_id}/{run_id}/{label}.prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
+#@out paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
+#@out uncertainty_model @uri file:.output/{session_id}/{run_id}/{label}.uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
+#@out uncertainty_graph @uri file:.output/{session_id}/{run_id}/{label}.uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+#@out paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}.model.Rds  @desc R model generated for the paleoclimatic reconstruction.
 #@end gen_paleocar_model
 
 
@@ -163,17 +163,17 @@ run_paleocar <- function (testDir,
     ## Save the output of the paleocar model 
     ## it contains a list as ouput and hasa CAR values, AIC's Coeffecients etc.  
     readr::write_rds(recon_vector,
-                     path = paste0(testDir,label,".model.Rds"),
+                     path = paste0(testDir,label,"_model.Rds"),
                      compress = "gz")
 
     recon_predict <-predict_paleocar_models(models = recon_vector,
                             meanVar = 'none',
                             prediction.years = prediction.years)  
     readr::write_rds(recon_predict,
-                     path = paste0(testDir,label,".prediction.Rds"),
+                     path = paste0(testDir,label,"_prediction.Rds"),
                      compress = "gz")
     
-    jpeg(paste0(testDir,label,'.predictions.jpg'))
+    jpeg(paste0(testDir,label,'_predictions.jpg'))
     
     plot(x = as.numeric(names(recon_predict)),
            y = recon_predict,
@@ -193,12 +193,12 @@ run_paleocar <- function (testDir,
                                 prediction.years = prediction.years) 
     
     readr::write_rds(recon_uncertain,
-                     path = paste0(testDir,label,".uncertainty.Rds"),
+                     path = paste0(testDir,label,"_uncertainty.Rds"),
                      compress = "gz")
 
     #save the ouput of the graph as jpeg image. 
 
-    jpeg(paste0(testDir,label,'.uncertainty.jpg'));
+    jpeg(paste0(testDir,label,'_uncertainty.jpg'));
 
       plot(x = as.numeric(names(recon_uncertain)),
            y = recon_uncertain,

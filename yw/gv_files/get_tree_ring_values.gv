@@ -1,0 +1,76 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=get_tree_ring_values
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+get_tree_ring_values [shape=record rankdir=LR label="{<f0> get_tree_ring_values |<f1> extract the values of the tree ring chronologies used for reconstruction for a given year}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+tree_ring_values [shape=record rankdir=LR label="{<f0> tree_ring_values |<f1> file\:.output/\{session_id\}/\{run_id\}/\{user_input_year\}_tree_ring_data.csv}"];
+paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:.output/\{session_id\}\{run_id\}/\{label\}_models.Rds}"];
+user_input_year
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+
+/* Edges representing connections between programs and channels */
+get_tree_ring_values -> tree_ring_values
+paleocar_models -> get_tree_ring_values
+user_input_year -> get_tree_ring_values
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* Hidden double-cluster for grouping workflow input ports */
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow input ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+paleocar_models_input_port [label=""]
+user_input_year_input_port [label=""]
+
+/* End of double-cluster for grouping workflow input ports */
+}}
+
+/* Hidden double-cluster for grouping workflow output ports */
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow output ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+tree_ring_values_output_port [label=""]
+
+/* End of double-cluster for grouping workflow output ports */
+}}
+
+/* Edges from input ports to channels */
+paleocar_models_input_port -> paleocar_models
+user_input_year_input_port -> user_input_year
+
+/* Edges from channels to output ports */
+tree_ring_values -> tree_ring_values_output_port
+
+/* End of top-level graph */
+}
