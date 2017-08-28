@@ -1,10 +1,10 @@
 
 % FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
-program(1, 'paleocar_web-app_data_flow', 'paleocar_web-app_data_flow', 1, 105).
+program(1, 'paleocar_web-app_data_flow', 'paleocar_web-app_data_flow', 1, 95).
 program(2, 'get_client_data', 'paleocar_web-app_data_flow.get_client_data', 27, 37).
-program(3, 'access_static_server_files', 'paleocar_web-app_data_flow.access_static_server_files', 38, 50).
-program(4, 'extract_prism_data', 'paleocar_web-app_data_flow.extract_prism_data', 51, 64).
-program(5, 'exec_paleocar', 'paleocar_web-app_data_flow.exec_paleocar', 65, 104).
+program(3, 'access_static_server_files', 'paleocar_web-app_data_flow.access_static_server_files', 38, 48).
+program(4, 'extract_prism_data', 'paleocar_web-app_data_flow.extract_prism_data', 49, 62).
+program(5, 'exec_paleocar', 'paleocar_web-app_data_flow.exec_paleocar', 63, 94).
 
 % FACT: workflow(program_id).
 workflow(1).
@@ -43,43 +43,33 @@ port(22, 'out', 'coordinates', 'paleocar_web-app_data_flow.get_client_data->coor
 port(23, 'out', 'prediction_years', 'paleocar_web-app_data_flow.get_client_data->prediction_years', 36, 23).
 port(24, 'param', 'historical_precip_data', 'paleocar_web-app_data_flow.access_static_server_files<-historical_precip_data', 40, 24).
 port(25, 'param', 'tree_ring_data', 'paleocar_web-app_data_flow.access_static_server_files<-tree_ring_data', 41, 25).
-port(26, 'out', 'data', 'paleocar_web-app_data_flow.access_static_server_files->data', 42, 26).
-port(27, 'out', 'tree_ring', 'paleocar_web-app_data_flow.access_static_server_files->tree_ring', 46, 27).
-port(28, 'in', 'coord', 'paleocar_web-app_data_flow.extract_prism_data<-coord', 53, 22).
-port(29, 'in', 'session_id', 'paleocar_web-app_data_flow.extract_prism_data<-session_id', 56, 20).
-port(30, 'in', 'run_id', 'paleocar_web-app_data_flow.extract_prism_data<-run_id', 57, 21).
-port(31, 'param', 'input_file', 'paleocar_web-app_data_flow.extract_prism_data<-input_file', 58, 26).
-port(32, 'out', 'prism_data_for_coordinates', 'paleocar_web-app_data_flow.extract_prism_data->prism_data_for_coordinates', 60, 28).
-port(33, 'in', 'prediction_years', 'paleocar_web-app_data_flow.exec_paleocar<-prediction_years', 67, 23).
-port(34, 'in', 'data', 'paleocar_web-app_data_flow.exec_paleocar<-data', 69, 28).
-port(35, 'param', 'tree_ring', 'paleocar_web-app_data_flow.exec_paleocar<-tree_ring', 71, 27).
-port(36, 'param', 'calib_year', 'paleocar_web-app_data_flow.exec_paleocar<-calib_year', 73, 29).
-port(37, 'param', 'label', 'paleocar_web-app_data_flow.exec_paleocar<-label', 76, 30).
-port(38, 'param', 'min_width', 'paleocar_web-app_data_flow.exec_paleocar<-min_width', 78, 31).
-port(39, 'param', 'verbose', 'paleocar_web-app_data_flow.exec_paleocar<-verbose', 79, 32).
-port(40, 'out', 'pred_model', 'paleocar_web-app_data_flow.exec_paleocar->pred_model', 80, 33).
-port(41, 'out', 'pred_plot', 'paleocar_web-app_data_flow.exec_paleocar->pred_plot', 84, 34).
-port(42, 'out', 'uncertain_model', 'paleocar_web-app_data_flow.exec_paleocar->uncertain_model', 88, 35).
-port(43, 'out', 'pal_model', 'paleocar_web-app_data_flow.exec_paleocar->pal_model', 92, 36).
-port(44, 'out', 'uncertain_plot', 'paleocar_web-app_data_flow.exec_paleocar->uncertain_plot', 96, 37).
-port(45, 'out', 'log_file', 'paleocar_web-app_data_flow.exec_paleocar->log_file', 100, 38).
+port(26, 'out', 'prism_data', 'paleocar_web-app_data_flow.access_static_server_files->prism_data', 42, 26).
+port(27, 'out', 'itrdb', 'paleocar_web-app_data_flow.access_static_server_files->itrdb', 45, 27).
+port(28, 'in', 'coord', 'paleocar_web-app_data_flow.extract_prism_data<-coord', 51, 22).
+port(29, 'in', 'session_id', 'paleocar_web-app_data_flow.extract_prism_data<-session_id', 54, 20).
+port(30, 'in', 'run_id', 'paleocar_web-app_data_flow.extract_prism_data<-run_id', 55, 21).
+port(31, 'param', 'input_file', 'paleocar_web-app_data_flow.extract_prism_data<-input_file', 56, 26).
+port(32, 'out', 'prism_data_for_coordinates', 'paleocar_web-app_data_flow.extract_prism_data->prism_data_for_coordinates', 58, 28).
+port(33, 'in', 'prediction_years', 'paleocar_web-app_data_flow.exec_paleocar<-prediction_years', 65, 23).
+port(34, 'in', 'prism_data_for_coordinates', 'paleocar_web-app_data_flow.exec_paleocar<-prism_data_for_coordinates', 67, 28).
+port(35, 'param', 'itrdb', 'paleocar_web-app_data_flow.exec_paleocar<-itrdb', 68, 27).
+port(36, 'param', 'calib_year', 'paleocar_web-app_data_flow.exec_paleocar<-calib_year', 69, 29).
+port(37, 'param', 'label', 'paleocar_web-app_data_flow.exec_paleocar<-label', 72, 30).
+port(38, 'param', 'min_width', 'paleocar_web-app_data_flow.exec_paleocar<-min_width', 74, 31).
+port(39, 'param', 'verbose', 'paleocar_web-app_data_flow.exec_paleocar<-verbose', 75, 32).
+port(40, 'out', 'prediction_model', 'paleocar_web-app_data_flow.exec_paleocar->prediction_model', 76, 33).
+port(41, 'out', 'prediction_graph', 'paleocar_web-app_data_flow.exec_paleocar->prediction_graph', 79, 34).
+port(42, 'out', 'uncertainty_model', 'paleocar_web-app_data_flow.exec_paleocar->uncertainty_model', 82, 35).
+port(43, 'out', 'paleocar_models', 'paleocar_web-app_data_flow.exec_paleocar->paleocar_models', 85, 36).
+port(44, 'out', 'uncertainty_graph', 'paleocar_web-app_data_flow.exec_paleocar->uncertainty_graph', 88, 37).
+port(45, 'out', 'paleocar_log_file', 'paleocar_web-app_data_flow.exec_paleocar->paleocar_log_file', 91, 38).
 
 % FACT: port_alias(port_id, alias).
 port_alias(18, 'user_map_marker_pos').
 port_alias(19, 'user_prediction_years').
-port_alias(26, 'prism_data').
-port_alias(27, 'itrdb').
 port_alias(28, 'coordinates').
 port_alias(31, 'prism_data').
-port_alias(34, 'prism_data_for_coordinates').
-port_alias(35, 'itrdb').
 port_alias(36, 'calibration_years').
-port_alias(40, 'prediction_model').
-port_alias(41, 'prediction_graph').
-port_alias(42, 'uncertainty_model').
-port_alias(43, 'paleocar_models').
-port_alias(44, 'uncertainty_graph').
-port_alias(45, 'paleocar_log_file').
 
 % FACT: port_uri_template(port_id, uri).
 port_uri_template(10, 'data/ITRDB.rda').

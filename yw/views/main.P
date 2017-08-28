@@ -94,8 +94,8 @@ yw_step_input(5,exec_paleocar,param,39,verbose,32,verbose).
 yw_step_input(5,exec_paleocar,param,38,min_width,31,min_width).
 yw_step_input(5,exec_paleocar,param,37,label,30,label).
 yw_step_input(5,exec_paleocar,param,36,calib_year,29,calibration_years).
-yw_step_input(5,exec_paleocar,param,35,tree_ring,27,itrdb).
-yw_step_input(5,exec_paleocar,in,34,data,28,prism_data_for_coordinates).
+yw_step_input(5,exec_paleocar,param,35,itrdb,27,itrdb).
+yw_step_input(5,exec_paleocar,in,34,prism_data_for_coordinates,28,prism_data_for_coordinates).
 yw_step_input(5,exec_paleocar,in,33,prediction_years,23,prediction_years).
 yw_step_input(4,extract_prism_data,param,31,input_file,26,prism_data).
 yw_step_input(4,extract_prism_data,in,30,run_id,21,run_id).
@@ -129,15 +129,15 @@ yw_step_output(2,get_client_data,out,20,session_id,20,session_id).
 yw_step_output(2,get_client_data,out,21,run_id,21,run_id).
 yw_step_output(2,get_client_data,out,22,coordinates,22,coordinates).
 yw_step_output(2,get_client_data,out,23,prediction_years,23,prediction_years).
-yw_step_output(3,access_static_server_files,out,26,data,26,prism_data).
-yw_step_output(3,access_static_server_files,out,27,tree_ring,27,itrdb).
+yw_step_output(3,access_static_server_files,out,26,prism_data,26,prism_data).
+yw_step_output(3,access_static_server_files,out,27,itrdb,27,itrdb).
 yw_step_output(4,extract_prism_data,out,32,prism_data_for_coordinates,28,prism_data_for_coordinates).
-yw_step_output(5,exec_paleocar,out,40,pred_model,33,prediction_model).
-yw_step_output(5,exec_paleocar,out,41,pred_plot,34,prediction_graph).
-yw_step_output(5,exec_paleocar,out,42,uncertain_model,35,uncertainty_model).
-yw_step_output(5,exec_paleocar,out,43,pal_model,36,paleocar_models).
-yw_step_output(5,exec_paleocar,out,44,uncertain_plot,37,uncertainty_graph).
-yw_step_output(5,exec_paleocar,out,45,log_file,38,paleocar_log_file).
+yw_step_output(5,exec_paleocar,out,40,prediction_model,33,prediction_model).
+yw_step_output(5,exec_paleocar,out,41,prediction_graph,34,prediction_graph).
+yw_step_output(5,exec_paleocar,out,42,uncertainty_model,35,uncertainty_model).
+yw_step_output(5,exec_paleocar,out,43,paleocar_models,36,paleocar_models).
+yw_step_output(5,exec_paleocar,out,44,uncertainty_graph,37,uncertainty_graph).
+yw_step_output(5,exec_paleocar,out,45,paleocar_log_file,38,paleocar_log_file).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -161,9 +161,9 @@ yw_flow(2,get_client_data,20,session_id,20,session_id,29,session_id,4,extract_pr
 yw_flow(2,get_client_data,21,run_id,21,run_id,30,run_id,4,extract_prism_data).
 yw_flow(2,get_client_data,22,coordinates,22,coordinates,28,coord,4,extract_prism_data).
 yw_flow(2,get_client_data,23,prediction_years,23,prediction_years,33,prediction_years,5,exec_paleocar).
-yw_flow(3,access_static_server_files,26,data,26,prism_data,31,input_file,4,extract_prism_data).
-yw_flow(3,access_static_server_files,27,tree_ring,27,itrdb,35,tree_ring,5,exec_paleocar).
-yw_flow(4,extract_prism_data,32,prism_data_for_coordinates,28,prism_data_for_coordinates,34,data,5,exec_paleocar).
+yw_flow(3,access_static_server_files,26,prism_data,26,prism_data,31,input_file,4,extract_prism_data).
+yw_flow(3,access_static_server_files,27,itrdb,27,itrdb,35,itrdb,5,exec_paleocar).
+yw_flow(4,extract_prism_data,32,prism_data_for_coordinates,28,prism_data_for_coordinates,34,prism_data_for_coordinates,5,exec_paleocar).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -212,26 +212,26 @@ yw_qualified_name(port,22,'paleocar_web-app_data_flow.get_client_data->coordinat
 yw_qualified_name(port,23,'paleocar_web-app_data_flow.get_client_data->prediction_years').
 yw_qualified_name(port,24,'paleocar_web-app_data_flow.access_static_server_files<-historical_precip_data').
 yw_qualified_name(port,25,'paleocar_web-app_data_flow.access_static_server_files<-tree_ring_data').
-yw_qualified_name(port,26,'paleocar_web-app_data_flow.access_static_server_files->data').
-yw_qualified_name(port,27,'paleocar_web-app_data_flow.access_static_server_files->tree_ring').
+yw_qualified_name(port,26,'paleocar_web-app_data_flow.access_static_server_files->prism_data').
+yw_qualified_name(port,27,'paleocar_web-app_data_flow.access_static_server_files->itrdb').
 yw_qualified_name(port,28,'paleocar_web-app_data_flow.extract_prism_data<-coord').
 yw_qualified_name(port,29,'paleocar_web-app_data_flow.extract_prism_data<-session_id').
 yw_qualified_name(port,30,'paleocar_web-app_data_flow.extract_prism_data<-run_id').
 yw_qualified_name(port,31,'paleocar_web-app_data_flow.extract_prism_data<-input_file').
 yw_qualified_name(port,32,'paleocar_web-app_data_flow.extract_prism_data->prism_data_for_coordinates').
 yw_qualified_name(port,33,'paleocar_web-app_data_flow.exec_paleocar<-prediction_years').
-yw_qualified_name(port,34,'paleocar_web-app_data_flow.exec_paleocar<-data').
-yw_qualified_name(port,35,'paleocar_web-app_data_flow.exec_paleocar<-tree_ring').
+yw_qualified_name(port,34,'paleocar_web-app_data_flow.exec_paleocar<-prism_data_for_coordinates').
+yw_qualified_name(port,35,'paleocar_web-app_data_flow.exec_paleocar<-itrdb').
 yw_qualified_name(port,36,'paleocar_web-app_data_flow.exec_paleocar<-calib_year').
 yw_qualified_name(port,37,'paleocar_web-app_data_flow.exec_paleocar<-label').
 yw_qualified_name(port,38,'paleocar_web-app_data_flow.exec_paleocar<-min_width').
 yw_qualified_name(port,39,'paleocar_web-app_data_flow.exec_paleocar<-verbose').
-yw_qualified_name(port,40,'paleocar_web-app_data_flow.exec_paleocar->pred_model').
-yw_qualified_name(port,41,'paleocar_web-app_data_flow.exec_paleocar->pred_plot').
-yw_qualified_name(port,42,'paleocar_web-app_data_flow.exec_paleocar->uncertain_model').
-yw_qualified_name(port,43,'paleocar_web-app_data_flow.exec_paleocar->pal_model').
-yw_qualified_name(port,44,'paleocar_web-app_data_flow.exec_paleocar->uncertain_plot').
-yw_qualified_name(port,45,'paleocar_web-app_data_flow.exec_paleocar->log_file').
+yw_qualified_name(port,40,'paleocar_web-app_data_flow.exec_paleocar->prediction_model').
+yw_qualified_name(port,41,'paleocar_web-app_data_flow.exec_paleocar->prediction_graph').
+yw_qualified_name(port,42,'paleocar_web-app_data_flow.exec_paleocar->uncertainty_model').
+yw_qualified_name(port,43,'paleocar_web-app_data_flow.exec_paleocar->paleocar_models').
+yw_qualified_name(port,44,'paleocar_web-app_data_flow.exec_paleocar->uncertainty_graph').
+yw_qualified_name(port,45,'paleocar_web-app_data_flow.exec_paleocar->paleocar_log_file').
 yw_qualified_name(data,1,'[user_map_marker_pos]').
 yw_qualified_name(data,2,'[user_prediction_years]').
 yw_qualified_name(data,3,'[prism_data_for_coordinates]').
@@ -285,17 +285,17 @@ yw_description(port,3,prism_data_for_coordinates,'file containing the precipitat
 yw_description(port,4,calibration_years,'period for calibrating the information for predicting the climate.').
 yw_description(port,5,label,'a user label').
 yw_description(port,6,verbose,'set to true for writing output to a logfile.').
-yw_description(port,26,data,'file containing the precipitation values for the particular region.').
-yw_description(port,27,tree_ring,'tree ring chronologies database').
+yw_description(port,26,prism_data,'file containing the precipitation values for the particular region.').
+yw_description(port,27,itrdb,'tree ring chronologies database').
 yw_description(port,28,coord,'Coordinates of location for reconstruction of paleoclimate.').
 yw_description(port,32,prism_data_for_coordinates,'file containing the precipitation values for the selected region.').
 yw_description(port,32,prism_data_for_coordinates,'file containing the precipitation values for the selected region.').
 yw_description(port,33,prediction_years,'period for reconstruction of the paleoclimate using paleocar.').
 yw_description(port,36,calib_year,'period for calibrating the information for predicting the climate.').
 yw_description(port,37,label,'user entered label for the study region.').
-yw_description(port,40,pred_model,'R model of the paleocar reconstruction of prediction.').
-yw_description(port,41,pred_plot,'timeseries plot of prediction model of the paleocar reconstruction.').
-yw_description(port,42,uncertain_model,'R model of the paleocar reconstruction of uncertainties.').
-yw_description(port,43,pal_model,'R model generated for the paleoclimatic reconstruction.').
-yw_description(port,44,uncertain_plot,'timeseries plot of uncertainty model of the paleocar reconstruction.').
-yw_description(port,45,log_file,'timeseries plot of uncertainty model of the paleocar reconstruction.').
+yw_description(port,40,prediction_model,'R model of the paleocar reconstruction of prediction.').
+yw_description(port,41,prediction_graph,'timeseries plot of prediction model of the paleocar reconstruction.').
+yw_description(port,42,uncertainty_model,'R model of the paleocar reconstruction of uncertainties.').
+yw_description(port,43,paleocar_models,'R model generated for the paleoclimatic reconstruction.').
+yw_description(port,44,uncertainty_graph,'timeseries plot of uncertainty model of the paleocar reconstruction.').
+yw_description(port,45,paleocar_log_file,'timeseries plot of uncertainty model of the paleocar reconstruction.').

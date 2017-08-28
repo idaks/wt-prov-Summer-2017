@@ -179,8 +179,8 @@ Template.map.onCreated(function() {
     // @param historical_precip_data 
     // @param tree_ring_data 
     
-    // @out data @as prism_data @uri file:data/112W36N.nc @desc file containing the precipitation values for the particular region.
-    // @out tree_ring @as itrdb @uri file:data/ITRDB.rda @desc tree ring chronologies database
+    // @out prism_data @uri file:data/112W36N.nc @desc file containing the precipitation values for the particular region.
+    // @out itrdb @uri file:data/ITRDB.rda @desc tree ring chronologies database
     // @end get_static_server_side_files
  
     marker = new google.maps.Marker
@@ -361,20 +361,20 @@ Template.btn_exec_paleocar.events({
  
     // @begin exec_paleocar @desc execute paleocar for reconstruction of paleoclimate of the study region. Generate the timeseries graphs, and  paleocar models of paleoclimatic reconstruction. 
     // @in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
-    // @in data @as prism_data_for_coordinates
-    // @param tree_ring @as itrdb 
+    // @in prism_data_for_coordinates
+    // @param itrdb 
     // @param calib_year @as calibration_years  @desc period for calibrating the information for predicting the climate. 
     // @param label @desc user entered label for the study region. 
     // @param min_width 
     // @param verbose 
     
     
-    // @out pred_model @as prediction_model @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
-    // @out pred_plot @as prediction_graph  @uri file:/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
-    // @out uncertain_model @as uncertainty_model @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
-    // @out pal_model @as paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction.
-    // @out uncertain_plot @as uncertainty_graph  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
-    // @out log_file @as paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt  @desc timeseries plot of uncertainty model of the paleocar reconstruction.  
+    // @out prediction_model @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
+    // @out prediction_graph  @uri file:/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+    // @out uncertainty_model @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
+    // @out paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction.
+    // @out uncertainty_graph  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+    // @out paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt  @desc timeseries plot of uncertainty model of the paleocar reconstruction.  
     // @end exec_paleocar
  
   // Execute  PaleoCAr for the Vector region for now. 
