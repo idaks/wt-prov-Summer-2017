@@ -1,0 +1,137 @@
+
+% FACT: extract_source(source_id, source_path).
+extract_source(1, 'yw_generator.sh').
+
+% FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
+annotation(1, 1, 27, 'begin', '@begin', 'yw_artifacts').
+annotation(2, 1, 27, 'desc', '@desc', 'YW artifacts creating script using YW annotations.').
+annotation(3, 1, 29, 'in', '@in', 'script_dir').
+annotation(4, 1, 30, 'param', '@param', 'yw.properties').
+annotation(5, 1, 31, 'param', '@param', 'yw_graph_rules.P').
+annotation(6, 1, 32, 'param', '@param', 'gv_rules.P').
+annotation(7, 1, 33, 'param', '@param', 'general_rules.P').
+annotation(8, 1, 34, 'param', '@param', 'yw_rules.P').
+annotation(9, 1, 35, 'param', '@param', 'yw_views.P').
+annotation(10, 1, 36, 'param', '@param', 'yw_views.sh').
+annotation(11, 1, 37, 'param', '@param', 'yw_queries.sh').
+annotation(12, 1, 38, 'param', '@param', 'yw_jar_file').
+annotation(13, 1, 38, 'file', '@file', 'yesworkflow-0.2.1.1-jar-with-dependencies.jar').
+annotation(14, 1, 46, 'begin', '@begin', 'get_filenames').
+annotation(15, 1, 46, 'desc', '@desc', 'get the filenames from the scripts directory.').
+annotation(16, 1, 47, 'in', '@in', 'script_dir').
+annotation(17, 1, 49, 'out', '@out', 'filename').
+annotation(18, 1, 50, 'end', '@end', 'get_filenames').
+annotation(19, 1, 52, 'begin', '@begin', 'gen_dot_files').
+annotation(20, 1, 52, 'desc', '@desc', 'generate yeskworkflow graph files.').
+annotation(21, 1, 53, 'in', '@in', 'filename').
+annotation(22, 1, 54, 'param', '@param', 'yw_jar_file').
+annotation(23, 1, 55, 'param', '@param', 'yw.properties').
+annotation(24, 1, 57, 'out', '@out', 'gv_files').
+annotation(25, 1, 57, 'uri', '@uri', 'file:gv_files/{filename}.gv').
+annotation(26, 1, 58, 'end', '@end', 'gen_yw_files').
+annotation(27, 1, 60, 'begin', '@begin', 'gen_png_files').
+annotation(28, 1, 60, 'desc', '@desc', 'generate png files from doT files').
+annotation(29, 1, 61, 'in', '@in', 'gv_files').
+annotation(30, 1, 62, 'param', '@param', 'yw.properties').
+annotation(31, 1, 63, 'param', '@param', 'yw_jar_file').
+annotation(32, 1, 64, 'out', '@out', 'graphs').
+annotation(33, 1, 64, 'uri', '@uri', 'file:graphs/{filename}.png').
+annotation(34, 1, 65, 'end', '@end', 'gen_png_files').
+annotation(35, 1, 67, 'begin', '@begin', 'gen_pdf_files').
+annotation(36, 1, 67, 'desc', '@desc', 'generate pdf files from doT files').
+annotation(37, 1, 68, 'in', '@in', 'gv_files').
+annotation(38, 1, 69, 'param', '@param', 'yw_jar_file').
+annotation(39, 1, 70, 'param', '@param', 'yw.properties').
+annotation(40, 1, 71, 'out', '@out', 'prov_pdf').
+annotation(41, 1, 71, 'uri', '@uri', 'file:prov_pdf/{filename}.pdf').
+annotation(42, 1, 72, 'end', '@end', 'gen_pdf_files').
+annotation(43, 1, 74, 'begin', '@begin', 'gen_svg_files').
+annotation(44, 1, 74, 'desc', '@desc', 'generate svg files from doT files').
+annotation(45, 1, 75, 'in', '@in', 'gv_files').
+annotation(46, 1, 76, 'param', '@param', 'yw_jar_file').
+annotation(47, 1, 77, 'param', '@param', 'yw.properties').
+annotation(48, 1, 78, 'out', '@out', 'svg_files').
+annotation(49, 1, 78, 'uri', '@uri', 'file:svg_files/{filename}.svg').
+annotation(50, 1, 79, 'end', '@end', 'gen_svg_files').
+annotation(51, 1, 81, 'begin', '@begin', 'extract_graph_facts').
+annotation(52, 1, 81, 'desc', '@desc', 'extract datalog facts from the graphs').
+annotation(53, 1, 82, 'param', '@param', 'yw.properties').
+annotation(54, 1, 83, 'param', '@param', 'yw_jar_file').
+annotation(55, 1, 84, 'in', '@in', 'filename').
+annotation(56, 1, 86, 'out', '@out', 'facts').
+annotation(57, 1, 86, 'uri', '@uri', 'file:facts/{filename}.P').
+annotation(58, 1, 87, 'end', '@end', 'extract_graph_facts').
+annotation(59, 1, 89, 'begin', '@begin', 'extract_model_facts').
+annotation(60, 1, 89, 'desc', '@desc', 'extract datalog facts from the model.').
+annotation(61, 1, 90, 'in', '@in', 'filename').
+annotation(62, 1, 91, 'param', '@param', 'yw_jar_file').
+annotation(63, 1, 92, 'param', '@param', 'yw.properties').
+annotation(64, 1, 93, 'out', '@out', 'models').
+annotation(65, 1, 93, 'uri', '@uri', 'file:models/{filename}.P').
+annotation(66, 1, 94, 'end', '@end', 'extract_model_facts').
+annotation(67, 1, 117, 'begin', '@begin', 'gen_views').
+annotation(68, 1, 117, 'desc', '@desc', 'create datalog facts views from the models files.').
+annotation(69, 1, 118, 'in', '@in', 'filename').
+annotation(70, 1, 119, 'in', '@in', 'models').
+annotation(71, 1, 120, 'in', '@in', 'facts').
+annotation(72, 1, 122, 'param', '@param', 'general_rules.P').
+annotation(73, 1, 123, 'param', '@param', 'yw_views.P').
+annotation(74, 1, 124, 'param', '@param', 'yw_graph_rules.P').
+annotation(75, 1, 125, 'param', '@param', 'yw_jar_file').
+annotation(76, 1, 127, 'out', '@out', 'views').
+annotation(77, 1, 127, 'uri', '@uri', 'file:views/{filename}.P').
+annotation(78, 1, 128, 'end', '@end', 'gen_views').
+annotation(79, 1, 134, 'begin', '@begin', 'exec_queries').
+annotation(80, 1, 134, 'desc', '@desc', 'execute prospective provenance queries.').
+annotation(81, 1, 135, 'in', '@in', 'filename').
+annotation(82, 1, 136, 'in', '@in', 'models').
+annotation(83, 1, 137, 'in', '@in', 'facts').
+annotation(84, 1, 138, 'in', '@in', 'views').
+annotation(85, 1, 140, 'param', '@param', 'general_rules.P').
+annotation(86, 1, 141, 'param', '@param', 'yw_views.P').
+annotation(87, 1, 142, 'param', '@param', 'yw_graph_rules.P').
+annotation(88, 1, 143, 'param', '@param', 'yw_jar_file').
+annotation(89, 1, 145, 'out', '@out', 'results').
+annotation(90, 1, 145, 'uri', '@uri', 'file:results/{filename}.log').
+annotation(91, 1, 146, 'end', '@end', 'exec_queries').
+annotation(92, 1, 153, 'begin', '@begin', 'exec_yw_recon').
+annotation(93, 1, 153, 'desc', '@desc', 'execute yw recon for the run').
+annotation(94, 1, 154, 'in', '@in', 'filename').
+annotation(95, 1, 155, 'param', '@param', 'yw.properties').
+annotation(96, 1, 156, 'param', '@param', 'yw_jar_file').
+annotation(97, 1, 158, 'out', '@out', 'recon').
+annotation(98, 1, 158, 'uri', '@uri', 'file:recon/{filename}.P').
+annotation(99, 1, 159, 'end', '@end', 'exec_yw_recon').
+annotation(100, 1, 173, 'out', '@out', 'graphs').
+annotation(101, 1, 174, 'out', '@out', 'models').
+annotation(102, 1, 175, 'out', '@out', 'facts').
+annotation(103, 1, 176, 'out', '@out', 'results').
+annotation(104, 1, 177, 'out', '@out', 'recon').
+annotation(105, 1, 178, 'out', '@out', 'svg_files').
+annotation(106, 1, 179, 'out', '@out', 'prov_pdf').
+annotation(107, 1, 180, 'out', '@out', 'views').
+annotation(108, 1, 181, 'out', '@out', 'gv_files').
+annotation(109, 1, 182, 'end', '@end', 'yw_artifacts').
+
+% FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
+annotation_qualifies(2, 1).
+annotation_qualifies(13, 12).
+annotation_qualifies(15, 14).
+annotation_qualifies(20, 19).
+annotation_qualifies(25, 24).
+annotation_qualifies(28, 27).
+annotation_qualifies(33, 32).
+annotation_qualifies(36, 35).
+annotation_qualifies(41, 40).
+annotation_qualifies(44, 43).
+annotation_qualifies(49, 48).
+annotation_qualifies(52, 51).
+annotation_qualifies(57, 56).
+annotation_qualifies(60, 59).
+annotation_qualifies(65, 64).
+annotation_qualifies(68, 67).
+annotation_qualifies(77, 76).
+annotation_qualifies(80, 79).
+annotation_qualifies(90, 89).
+annotation_qualifies(93, 92).
+annotation_qualifies(98, 97).

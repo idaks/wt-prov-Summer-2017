@@ -26,7 +26,7 @@ yw_dir="/d/Study/Internship/WT_PaleoCar_2017/meteor_example/wt-prov-summer-2017/
 
 #@begin yw_artifacts @desc YW artifacts creating script using YW annotations.
 
-#@in dir
+#@in script_dir
 #@param yw.properties
 #@param yw_graph_rules.P
 #@param gv_rules.P

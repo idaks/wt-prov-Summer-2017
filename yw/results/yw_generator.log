@@ -5,10 +5,17 @@ EQ2 : What are the names N of all program blocks?
 
 eq2(ProgramName)
 ...................................................................................................
-eq2(extract_uncertainty_model).
-eq2(extract_prediction_model).
-eq2(create_paleocar_model).
-eq2(exec_paleocar).
+eq2(gen_views).
+eq2(extract_model_facts).
+eq2(exec_queries).
+eq2(exec_yw_recon).
+eq2(gen_pdf_files).
+eq2(get_filenames).
+eq2(extract_graph_facts).
+eq2(gen_png_files).
+eq2(gen_svg_files).
+eq2(yw_artifacts).
+eq2(gen_dot_files).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -16,14 +23,15 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(paleocar_models).
-eq3(paleocar_log_file).
-eq3(uncertainty_model).
-eq3(uncertainty_graph).
-eq3(prediction_model).
-eq3(prediction_graph).
-eq3(log_file).
-eq3(pal_model).
+eq3(prov_pdf).
+eq3(views).
+eq3(graphs).
+eq3(models).
+eq3(results).
+eq3(gv_files).
+eq3(svg_files).
+eq3(facts).
+eq3(recon).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -31,10 +39,6 @@ YW_Q1 : What program blocks provide input to gen_paleocar_model?
 
 yw_q1(ProgramName)
 ...................................................................................................
-yw_q1(extract_uncertainty_model).
-yw_q1(extract_prediction_model).
-yw_q1(create_paleocar_model).
-yw_q1(exec_paleocar).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -42,13 +46,16 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(extract_uncertainty_model,'period for calibrating the information for predicting the climate.').
-yw_q2(extract_uncertainty_model,'generate paleocar models for predicting the climate for the given years.').
-yw_q2(extract_prediction_model,'tree ring chronologies database').
-yw_q2(extract_prediction_model,'generate paleocar models for predicting the climate for the given years.').
-yw_q2(create_paleocar_model,'file containing the precipitation values for the particular region').
-yw_q2(create_paleocar_model,'file containing the precipitation values for the selected region.').
-yw_q2(create_paleocar_model,'generate paleocar models for predicting the climate for the given years.').
+yw_q2(gen_views,'create datalog facts views from the models files.').
+yw_q2(extract_model_facts,'extract datalog facts from the model.').
+yw_q2(exec_queries,'execute prospective provenance queries.').
+yw_q2(exec_yw_recon,'execute yw recon for the run').
+yw_q2(gen_pdf_files,'generate pdf files from doT files').
+yw_q2(get_filenames,'get the filenames from the scripts directory.').
+yw_q2(extract_graph_facts,'extract datalog facts from the graphs').
+yw_q2(gen_png_files,'generate png files from doT files').
+yw_q2(gen_svg_files,'generate svg files from doT files').
+yw_q2(gen_dot_files,'generate yeskworkflow graph files.').
 
 
 ---------------------------------------------------------------------------------------------------
@@ -63,12 +70,6 @@ YW_Q4 : What are the names and descriptions of any outputs of the workflow?
 
 yw_q4(OutputName, Description)
 ...................................................................................................
-yw_q4(paleocar_models,'R model generated for the paleoclimatic reconstruction.').
-yw_q4(uncertainty_graph,'timeseries plot of uncertainty model of the paleocar reconstruction.').
-yw_q4(uncertainty_model,'R model of the paleocar reconstruction of uncertainties.').
-yw_q4(paleocar_log_file,'text file containing information of the execution of the run.').
-yw_q4(prediction_model,'R model of the paleocar reconstruction of prediction.').
-yw_q4(prediction_graph,'timeseries plot of prediction model of the paleocar reconstruction.').
 
 
 ---------------------------------------------------------------------------------------------------
@@ -76,12 +77,6 @@ YW_Q6 : What are the output data for the paleocar?
 
 yw_q6(DataName)
 ...................................................................................................
-yw_q6(paleocar_models).
-yw_q6(uncertainty_graph).
-yw_q6(uncertainty_model).
-yw_q6(paleocar_log_file).
-yw_q6(prediction_model).
-yw_q6(prediction_graph).
 
 
 ---------------------------------------------------------------------------------------------------

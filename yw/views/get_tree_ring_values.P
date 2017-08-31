@@ -52,8 +52,20 @@ yw_data(1,paleocar_models,nil,nil).
 %...................................................................................................
 yw_step_input(2,get_tree_ring_values,in,5,prediction_year,2,user_input_year).
 yw_step_input(2,get_tree_ring_values,in,4,models,1,paleocar_models).
+yw_step_input(2,get_tree_ring_values,_h213,5,_h249,3,tree_ring_values).
+yw_step_input(2,get_tree_ring_values,_h213,5,_h249,2,user_input_year).
+yw_step_input(2,get_tree_ring_values,_h213,5,_h249,1,paleocar_models).
+yw_step_input(2,get_tree_ring_values,_h213,4,_h249,3,tree_ring_values).
+yw_step_input(2,get_tree_ring_values,_h213,4,_h249,2,user_input_year).
+yw_step_input(2,get_tree_ring_values,_h213,4,_h249,1,paleocar_models).
 yw_step_input(1,get_tree_ring_values,in,2,prediction_year,2,user_input_year).
 yw_step_input(1,get_tree_ring_values,in,1,models,1,paleocar_models).
+yw_step_input(1,get_tree_ring_values,_h213,2,_h249,3,tree_ring_values).
+yw_step_input(1,get_tree_ring_values,_h213,2,_h249,2,user_input_year).
+yw_step_input(1,get_tree_ring_values,_h213,2,_h249,1,paleocar_models).
+yw_step_input(1,get_tree_ring_values,_h213,1,_h249,3,tree_ring_values).
+yw_step_input(1,get_tree_ring_values,_h213,1,_h249,2,user_input_year).
+yw_step_input(1,get_tree_ring_values,_h213,1,_h249,1,paleocar_models).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -67,12 +79,40 @@ yw_step_output(2,get_tree_ring_values,out,6,tree_ring_values,3,tree_ring_values)
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
 yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,3,tree_ring_values,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,3,tree_ring_values,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,3,tree_ring_values,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,3,tree_ring_values,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,2,user_input_year,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
+yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
 yw_inflow(1,get_tree_ring_values,1,paleocar_models,2,get_tree_ring_values).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
 %...................................................................................................
+yw_flow(1,get_tree_ring_values,3,tree_ring_values,3,tree_ring_values,5,_h303,2,get_tree_ring_values).
+yw_flow(1,get_tree_ring_values,3,tree_ring_values,3,tree_ring_values,4,_h303,2,get_tree_ring_values).
+yw_flow(1,get_tree_ring_values,3,tree_ring_values,3,tree_ring_values,2,_h303,1,get_tree_ring_values).
+yw_flow(1,get_tree_ring_values,3,tree_ring_values,3,tree_ring_values,1,_h303,1,get_tree_ring_values).
+yw_flow(2,get_tree_ring_values,6,tree_ring_values,3,tree_ring_values,5,_h303,2,get_tree_ring_values).
+yw_flow(2,get_tree_ring_values,6,tree_ring_values,3,tree_ring_values,4,_h303,2,get_tree_ring_values).
+yw_flow(2,get_tree_ring_values,6,tree_ring_values,3,tree_ring_values,2,_h303,1,get_tree_ring_values).
+yw_flow(2,get_tree_ring_values,6,tree_ring_values,3,tree_ring_values,1,_h303,1,get_tree_ring_values).
 
 
 %---------------------------------------------------------------------------------------------------

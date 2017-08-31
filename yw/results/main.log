@@ -17,15 +17,15 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
-eq3(uncertainty_model).
 eq3(paleocar_models).
-eq3(uncertainty_graph).
 eq3(prediction_model).
+eq3(uncertainty_graph).
 eq3(paleocar_log_file).
-eq3(prism_data).
-eq3(prism_data_for_coordinates).
 eq3(itrdb).
+eq3(prism_data_for_coordinates).
+eq3(prism_data).
 eq3(prediction_graph).
+eq3(uncertainty_model).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -57,6 +57,9 @@ yw_q3(ProgramName)
 ...................................................................................................
 yw_q3('paleocar_web-app_data_flow').
 yw_q3(get_client_data).
+yw_q3(access_static_server_files).
+yw_q3(extract_prism_data).
+yw_q3(exec_paleocar).
 
 
 ---------------------------------------------------------------------------------------------------

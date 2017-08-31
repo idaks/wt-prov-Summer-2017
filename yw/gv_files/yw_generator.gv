@@ -1,0 +1,166 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=yw_artifacts
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+get_filenames [shape=record rankdir=LR label="{<f0> get_filenames |<f1> get the filenames from the scripts directory.}"];
+gen_dot_files [shape=record rankdir=LR label="{<f0> gen_dot_files |<f1> generate yeskworkflow graph files.}"];
+gen_png_files [shape=record rankdir=LR label="{<f0> gen_png_files |<f1> generate png files from doT files}"];
+gen_pdf_files [shape=record rankdir=LR label="{<f0> gen_pdf_files |<f1> generate pdf files from doT files}"];
+gen_svg_files [shape=record rankdir=LR label="{<f0> gen_svg_files |<f1> generate svg files from doT files}"];
+extract_graph_facts [shape=record rankdir=LR label="{<f0> extract_graph_facts |<f1> extract datalog facts from the graphs}"];
+extract_model_facts [shape=record rankdir=LR label="{<f0> extract_model_facts |<f1> extract datalog facts from the model.}"];
+gen_views [shape=record rankdir=LR label="{<f0> gen_views |<f1> create datalog facts views from the models files.}"];
+exec_queries [shape=record rankdir=LR label="{<f0> exec_queries |<f1> execute prospective provenance queries.}"];
+exec_yw_recon [shape=record rankdir=LR label="{<f0> exec_yw_recon |<f1> execute yw recon for the run}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+script_dir
+filename
+gv_files [shape=record rankdir=LR label="{<f0> gv_files |<f1> file\:gv_files/\{filename\}.gv}"];
+models [shape=record rankdir=LR label="{<f0> models |<f1> file\:models/\{filename\}.P}"];
+facts [shape=record rankdir=LR label="{<f0> facts |<f1> file\:facts/\{filename\}.P}"];
+views [shape=record rankdir=LR label="{<f0> views |<f1> file\:views/\{filename\}.P}"];
+graphs [shape=record rankdir=LR label="{<f0> graphs |<f1> file\:graphs/\{filename\}.png}"];
+results [shape=record rankdir=LR label="{<f0> results |<f1> file\:results/\{filename\}.log}"];
+recon [shape=record rankdir=LR label="{<f0> recon |<f1> file\:recon/\{filename\}.P}"];
+svg_files [shape=record rankdir=LR label="{<f0> svg_files |<f1> file\:svg_files/\{filename\}.svg}"];
+prov_pdf [shape=record rankdir=LR label="{<f0> prov_pdf |<f1> file\:prov_pdf/\{filename\}.pdf}"];
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+yw_jar_file [shape=record rankdir=LR label="{<f0> yw_jar_file |<f1> yesworkflow-0.2.1.1-jar-with-dependencies.jar}"];
+"yw.properties"
+"general_rules.P"
+"yw_views.P"
+"yw_graph_rules.P"
+
+/* Edges representing connections between programs and channels */
+get_filenames -> filename
+script_dir -> get_filenames
+gen_dot_files -> gv_files
+filename -> gen_dot_files
+yw_jar_file -> gen_dot_files
+"yw.properties" -> gen_dot_files
+gen_png_files -> graphs
+gv_files -> gen_png_files
+"yw.properties" -> gen_png_files
+yw_jar_file -> gen_png_files
+gen_pdf_files -> prov_pdf
+gv_files -> gen_pdf_files
+yw_jar_file -> gen_pdf_files
+"yw.properties" -> gen_pdf_files
+gen_svg_files -> svg_files
+gv_files -> gen_svg_files
+yw_jar_file -> gen_svg_files
+"yw.properties" -> gen_svg_files
+extract_graph_facts -> facts
+"yw.properties" -> extract_graph_facts
+yw_jar_file -> extract_graph_facts
+filename -> extract_graph_facts
+extract_model_facts -> models
+filename -> extract_model_facts
+yw_jar_file -> extract_model_facts
+"yw.properties" -> extract_model_facts
+gen_views -> views
+filename -> gen_views
+models -> gen_views
+facts -> gen_views
+"general_rules.P" -> gen_views
+"yw_views.P" -> gen_views
+"yw_graph_rules.P" -> gen_views
+yw_jar_file -> gen_views
+exec_queries -> results
+filename -> exec_queries
+models -> exec_queries
+facts -> exec_queries
+views -> exec_queries
+"general_rules.P" -> exec_queries
+"yw_views.P" -> exec_queries
+"yw_graph_rules.P" -> exec_queries
+yw_jar_file -> exec_queries
+exec_yw_recon -> recon
+filename -> exec_yw_recon
+"yw.properties" -> exec_yw_recon
+yw_jar_file -> exec_yw_recon
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* Hidden double-cluster for grouping workflow input ports */
+subgraph cluster_input_ports_group_outer { label=""; penwidth=0
+subgraph cluster_input_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow input ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+script_dir_input_port [label=""]
+"yw.properties_input_port" [label=""]
+"yw_graph_rules.P_input_port" [label=""]
+"general_rules.P_input_port" [label=""]
+"yw_views.P_input_port" [label=""]
+yw_jar_file_input_port [label=""]
+
+/* End of double-cluster for grouping workflow input ports */
+}}
+
+/* Hidden double-cluster for grouping workflow output ports */
+subgraph cluster_output_ports_group_outer { label=""; penwidth=0
+subgraph cluster_output_ports_group_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow output ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+graphs_output_port [label=""]
+models_output_port [label=""]
+facts_output_port [label=""]
+results_output_port [label=""]
+recon_output_port [label=""]
+svg_files_output_port [label=""]
+prov_pdf_output_port [label=""]
+views_output_port [label=""]
+gv_files_output_port [label=""]
+
+/* End of double-cluster for grouping workflow output ports */
+}}
+
+/* Edges from input ports to channels */
+script_dir_input_port -> script_dir
+"yw.properties_input_port" -> "yw.properties"
+"yw_graph_rules.P_input_port" -> "yw_graph_rules.P"
+"general_rules.P_input_port" -> "general_rules.P"
+"yw_views.P_input_port" -> "yw_views.P"
+yw_jar_file_input_port -> yw_jar_file
+
+/* Edges from channels to output ports */
+graphs -> graphs_output_port
+models -> models_output_port
+facts -> facts_output_port
+results -> results_output_port
+recon -> recon_output_port
+svg_files -> svg_files_output_port
+prov_pdf -> prov_pdf_output_port
+views -> views_output_port
+gv_files -> gv_files_output_port
+
+/* End of top-level graph */
+}

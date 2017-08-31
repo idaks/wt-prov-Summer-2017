@@ -13,7 +13,7 @@ do
 filename=`ls -1 $file | sed -e 's/\..*$//' `
 
 xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN > ../results/${filename}.log
-
+['../yw_graph_rules.P'].
 ['../facts/${file}'].
 ['../models/${file}'].
 ['../views/${file}'].

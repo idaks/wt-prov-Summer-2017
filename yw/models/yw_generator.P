@@ -1,0 +1,476 @@
+
+% FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
+program(1, 'yw_artifacts', 'yw_artifacts', 1, 109).
+program(2, 'get_filenames', 'yw_artifacts.get_filenames', 14, 18).
+program(3, 'gen_dot_files', 'yw_artifacts.gen_dot_files', 19, 26).
+program(4, 'gen_png_files', 'yw_artifacts.gen_png_files', 27, 34).
+program(5, 'gen_pdf_files', 'yw_artifacts.gen_pdf_files', 35, 42).
+program(6, 'gen_svg_files', 'yw_artifacts.gen_svg_files', 43, 50).
+program(7, 'extract_graph_facts', 'yw_artifacts.extract_graph_facts', 51, 58).
+program(8, 'extract_model_facts', 'yw_artifacts.extract_model_facts', 59, 66).
+program(9, 'gen_views', 'yw_artifacts.gen_views', 67, 78).
+program(10, 'exec_queries', 'yw_artifacts.exec_queries', 79, 91).
+program(11, 'exec_yw_recon', 'yw_artifacts.exec_yw_recon', 92, 99).
+
+% FACT: workflow(program_id).
+workflow(1).
+
+% FACT: function(program_id).
+
+% FACT: has_subprogram(program_id, subprogram_id).
+has_subprogram(1, 2).
+has_subprogram(1, 3).
+has_subprogram(1, 4).
+has_subprogram(1, 5).
+has_subprogram(1, 6).
+has_subprogram(1, 7).
+has_subprogram(1, 8).
+has_subprogram(1, 9).
+has_subprogram(1, 10).
+has_subprogram(1, 11).
+
+% FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
+port(1, 'in', 'script_dir', 'yw_artifacts<-script_dir', 3, 1).
+port(2, 'param', 'yw.properties', 'yw_artifacts<-yw.properties', 4, 2).
+port(3, 'param', 'yw_graph_rules.P', 'yw_artifacts<-yw_graph_rules.P', 5, 3).
+port(4, 'param', 'gv_rules.P', 'yw_artifacts<-gv_rules.P', 6, 4).
+port(5, 'param', 'general_rules.P', 'yw_artifacts<-general_rules.P', 7, 5).
+port(6, 'param', 'yw_rules.P', 'yw_artifacts<-yw_rules.P', 8, 6).
+port(7, 'param', 'yw_views.P', 'yw_artifacts<-yw_views.P', 9, 7).
+port(8, 'param', 'yw_views.sh', 'yw_artifacts<-yw_views.sh', 10, 8).
+port(9, 'param', 'yw_queries.sh', 'yw_artifacts<-yw_queries.sh', 11, 9).
+port(10, 'param', 'yw_jar_file', 'yw_artifacts<-yw_jar_file', 12, 10).
+port(58, 'out', 'graphs', 'yw_artifacts->graphs', 100, 27).
+port(59, 'out', 'models', 'yw_artifacts->models', 101, 28).
+port(60, 'out', 'facts', 'yw_artifacts->facts', 102, 29).
+port(61, 'out', 'results', 'yw_artifacts->results', 103, 30).
+port(62, 'out', 'recon', 'yw_artifacts->recon', 104, 31).
+port(63, 'out', 'svg_files', 'yw_artifacts->svg_files', 105, 32).
+port(64, 'out', 'prov_pdf', 'yw_artifacts->prov_pdf', 106, 33).
+port(65, 'out', 'views', 'yw_artifacts->views', 107, 34).
+port(66, 'out', 'gv_files', 'yw_artifacts->gv_files', 108, 35).
+port(11, 'in', 'script_dir', 'yw_artifacts.get_filenames<-script_dir', 16, 11).
+port(12, 'out', 'filename', 'yw_artifacts.get_filenames->filename', 17, 12).
+port(13, 'in', 'filename', 'yw_artifacts.gen_dot_files<-filename', 21, 12).
+port(14, 'param', 'yw_jar_file', 'yw_artifacts.gen_dot_files<-yw_jar_file', 22, 13).
+port(15, 'param', 'yw.properties', 'yw_artifacts.gen_dot_files<-yw.properties', 23, 14).
+port(16, 'out', 'gv_files', 'yw_artifacts.gen_dot_files->gv_files', 24, 15).
+port(17, 'in', 'gv_files', 'yw_artifacts.gen_png_files<-gv_files', 29, 15).
+port(18, 'param', 'yw.properties', 'yw_artifacts.gen_png_files<-yw.properties', 30, 14).
+port(19, 'param', 'yw_jar_file', 'yw_artifacts.gen_png_files<-yw_jar_file', 31, 13).
+port(20, 'out', 'graphs', 'yw_artifacts.gen_png_files->graphs', 32, 16).
+port(21, 'in', 'gv_files', 'yw_artifacts.gen_pdf_files<-gv_files', 37, 15).
+port(22, 'param', 'yw_jar_file', 'yw_artifacts.gen_pdf_files<-yw_jar_file', 38, 13).
+port(23, 'param', 'yw.properties', 'yw_artifacts.gen_pdf_files<-yw.properties', 39, 14).
+port(24, 'out', 'prov_pdf', 'yw_artifacts.gen_pdf_files->prov_pdf', 40, 17).
+port(25, 'in', 'gv_files', 'yw_artifacts.gen_svg_files<-gv_files', 45, 15).
+port(26, 'param', 'yw_jar_file', 'yw_artifacts.gen_svg_files<-yw_jar_file', 46, 13).
+port(27, 'param', 'yw.properties', 'yw_artifacts.gen_svg_files<-yw.properties', 47, 14).
+port(28, 'out', 'svg_files', 'yw_artifacts.gen_svg_files->svg_files', 48, 18).
+port(29, 'param', 'yw.properties', 'yw_artifacts.extract_graph_facts<-yw.properties', 53, 14).
+port(30, 'param', 'yw_jar_file', 'yw_artifacts.extract_graph_facts<-yw_jar_file', 54, 13).
+port(31, 'in', 'filename', 'yw_artifacts.extract_graph_facts<-filename', 55, 12).
+port(32, 'out', 'facts', 'yw_artifacts.extract_graph_facts->facts', 56, 19).
+port(33, 'in', 'filename', 'yw_artifacts.extract_model_facts<-filename', 61, 12).
+port(34, 'param', 'yw_jar_file', 'yw_artifacts.extract_model_facts<-yw_jar_file', 62, 13).
+port(35, 'param', 'yw.properties', 'yw_artifacts.extract_model_facts<-yw.properties', 63, 14).
+port(36, 'out', 'models', 'yw_artifacts.extract_model_facts->models', 64, 20).
+port(37, 'in', 'filename', 'yw_artifacts.gen_views<-filename', 69, 12).
+port(38, 'in', 'models', 'yw_artifacts.gen_views<-models', 70, 20).
+port(39, 'in', 'facts', 'yw_artifacts.gen_views<-facts', 71, 19).
+port(40, 'param', 'general_rules.P', 'yw_artifacts.gen_views<-general_rules.P', 72, 21).
+port(41, 'param', 'yw_views.P', 'yw_artifacts.gen_views<-yw_views.P', 73, 22).
+port(42, 'param', 'yw_graph_rules.P', 'yw_artifacts.gen_views<-yw_graph_rules.P', 74, 23).
+port(43, 'param', 'yw_jar_file', 'yw_artifacts.gen_views<-yw_jar_file', 75, 13).
+port(44, 'out', 'views', 'yw_artifacts.gen_views->views', 76, 24).
+port(45, 'in', 'filename', 'yw_artifacts.exec_queries<-filename', 81, 12).
+port(46, 'in', 'models', 'yw_artifacts.exec_queries<-models', 82, 20).
+port(47, 'in', 'facts', 'yw_artifacts.exec_queries<-facts', 83, 19).
+port(48, 'in', 'views', 'yw_artifacts.exec_queries<-views', 84, 24).
+port(49, 'param', 'general_rules.P', 'yw_artifacts.exec_queries<-general_rules.P', 85, 21).
+port(50, 'param', 'yw_views.P', 'yw_artifacts.exec_queries<-yw_views.P', 86, 22).
+port(51, 'param', 'yw_graph_rules.P', 'yw_artifacts.exec_queries<-yw_graph_rules.P', 87, 23).
+port(52, 'param', 'yw_jar_file', 'yw_artifacts.exec_queries<-yw_jar_file', 88, 13).
+port(53, 'out', 'results', 'yw_artifacts.exec_queries->results', 89, 25).
+port(54, 'in', 'filename', 'yw_artifacts.exec_yw_recon<-filename', 94, 12).
+port(55, 'param', 'yw.properties', 'yw_artifacts.exec_yw_recon<-yw.properties', 95, 14).
+port(56, 'param', 'yw_jar_file', 'yw_artifacts.exec_yw_recon<-yw_jar_file', 96, 13).
+port(57, 'out', 'recon', 'yw_artifacts.exec_yw_recon->recon', 97, 26).
+
+% FACT: port_alias(port_id, alias).
+
+% FACT: port_uri_template(port_id, uri).
+port_uri_template(10, 'yesworkflow-0.2.1.1-jar-with-dependencies.jar').
+port_uri_template(16, 'file:gv_files/{filename}.gv').
+port_uri_template(20, 'file:graphs/{filename}.png').
+port_uri_template(24, 'file:prov_pdf/{filename}.pdf').
+port_uri_template(28, 'file:svg_files/{filename}.svg').
+port_uri_template(32, 'file:facts/{filename}.P').
+port_uri_template(36, 'file:models/{filename}.P').
+port_uri_template(44, 'file:views/{filename}.P').
+port_uri_template(53, 'file:results/{filename}.log').
+port_uri_template(57, 'file:recon/{filename}.P').
+
+% FACT: has_in_port(block_id, port_id).
+has_in_port(1, 1).
+has_in_port(1, 2).
+has_in_port(1, 3).
+has_in_port(1, 4).
+has_in_port(1, 5).
+has_in_port(1, 6).
+has_in_port(1, 7).
+has_in_port(1, 8).
+has_in_port(1, 9).
+has_in_port(1, 10).
+has_in_port(2, 11).
+has_in_port(3, 13).
+has_in_port(3, 14).
+has_in_port(3, 15).
+has_in_port(4, 17).
+has_in_port(4, 18).
+has_in_port(4, 19).
+has_in_port(5, 21).
+has_in_port(5, 22).
+has_in_port(5, 23).
+has_in_port(6, 25).
+has_in_port(6, 26).
+has_in_port(6, 27).
+has_in_port(7, 29).
+has_in_port(7, 30).
+has_in_port(7, 31).
+has_in_port(8, 33).
+has_in_port(8, 34).
+has_in_port(8, 35).
+has_in_port(9, 37).
+has_in_port(9, 38).
+has_in_port(9, 39).
+has_in_port(9, 40).
+has_in_port(9, 41).
+has_in_port(9, 42).
+has_in_port(9, 43).
+has_in_port(10, 45).
+has_in_port(10, 46).
+has_in_port(10, 47).
+has_in_port(10, 48).
+has_in_port(10, 49).
+has_in_port(10, 50).
+has_in_port(10, 51).
+has_in_port(10, 52).
+has_in_port(11, 54).
+has_in_port(11, 55).
+has_in_port(11, 56).
+
+% FACT: has_out_port(block_id, port_id).
+has_out_port(1, 58).
+has_out_port(1, 59).
+has_out_port(1, 60).
+has_out_port(1, 61).
+has_out_port(1, 62).
+has_out_port(1, 63).
+has_out_port(1, 64).
+has_out_port(1, 65).
+has_out_port(1, 66).
+has_out_port(2, 12).
+has_out_port(3, 16).
+has_out_port(4, 20).
+has_out_port(5, 24).
+has_out_port(6, 28).
+has_out_port(7, 32).
+has_out_port(8, 36).
+has_out_port(9, 44).
+has_out_port(10, 53).
+has_out_port(11, 57).
+
+% FACT: data(data_id, data_name, qualified_data_name).
+data(1, 'script_dir', '[script_dir]').
+data(2, 'yw.properties', '[yw.properties]').
+data(3, 'yw_graph_rules.P', '[yw_graph_rules.P]').
+data(4, 'gv_rules.P', '[gv_rules.P]').
+data(5, 'general_rules.P', '[general_rules.P]').
+data(6, 'yw_rules.P', '[yw_rules.P]').
+data(7, 'yw_views.P', '[yw_views.P]').
+data(8, 'yw_views.sh', '[yw_views.sh]').
+data(9, 'yw_queries.sh', '[yw_queries.sh]').
+data(10, 'yw_jar_file', '[yw_jar_file]').
+data(27, 'graphs', '[graphs]').
+data(28, 'models', '[models]').
+data(29, 'facts', '[facts]').
+data(30, 'results', '[results]').
+data(31, 'recon', '[recon]').
+data(32, 'svg_files', '[svg_files]').
+data(33, 'prov_pdf', '[prov_pdf]').
+data(34, 'views', '[views]').
+data(35, 'gv_files', '[gv_files]').
+data(11, 'script_dir', 'yw_artifacts[script_dir]').
+data(12, 'filename', 'yw_artifacts[filename]').
+data(13, 'yw_jar_file', 'yw_artifacts[yw_jar_file]').
+data(14, 'yw.properties', 'yw_artifacts[yw.properties]').
+data(15, 'gv_files', 'yw_artifacts[gv_files]').
+data(16, 'graphs', 'yw_artifacts[graphs]').
+data(17, 'prov_pdf', 'yw_artifacts[prov_pdf]').
+data(18, 'svg_files', 'yw_artifacts[svg_files]').
+data(19, 'facts', 'yw_artifacts[facts]').
+data(20, 'models', 'yw_artifacts[models]').
+data(21, 'general_rules.P', 'yw_artifacts[general_rules.P]').
+data(22, 'yw_views.P', 'yw_artifacts[yw_views.P]').
+data(23, 'yw_graph_rules.P', 'yw_artifacts[yw_graph_rules.P]').
+data(24, 'views', 'yw_artifacts[views]').
+data(25, 'results', 'yw_artifacts[results]').
+data(26, 'recon', 'yw_artifacts[recon]').
+
+% FACT: channel(channel_id, data_id).
+channel(1, 11).
+channel(2, 12).
+channel(3, 12).
+channel(4, 12).
+channel(5, 12).
+channel(6, 12).
+channel(7, 12).
+channel(8, 13).
+channel(9, 13).
+channel(10, 13).
+channel(11, 13).
+channel(12, 13).
+channel(13, 13).
+channel(14, 13).
+channel(15, 13).
+channel(16, 13).
+channel(17, 14).
+channel(18, 14).
+channel(19, 14).
+channel(20, 14).
+channel(21, 14).
+channel(22, 14).
+channel(23, 14).
+channel(24, 15).
+channel(25, 15).
+channel(26, 15).
+channel(27, 35).
+channel(28, 20).
+channel(29, 20).
+channel(30, 28).
+channel(31, 19).
+channel(32, 19).
+channel(33, 29).
+channel(34, 21).
+channel(35, 21).
+channel(36, 22).
+channel(37, 22).
+channel(38, 23).
+channel(39, 23).
+channel(40, 24).
+channel(41, 34).
+channel(42, 27).
+channel(43, 30).
+channel(44, 31).
+channel(45, 32).
+channel(46, 33).
+channel(47, 1).
+channel(48, 2).
+channel(49, 2).
+channel(50, 2).
+channel(51, 2).
+channel(52, 2).
+channel(53, 2).
+channel(54, 2).
+channel(55, 3).
+channel(56, 3).
+channel(57, 5).
+channel(58, 5).
+channel(59, 7).
+channel(60, 7).
+channel(61, 10).
+channel(62, 10).
+channel(63, 10).
+channel(64, 10).
+channel(65, 10).
+channel(66, 10).
+channel(67, 10).
+channel(68, 10).
+channel(69, 10).
+channel(70, 16).
+channel(71, 20).
+channel(72, 19).
+channel(73, 25).
+channel(74, 26).
+channel(75, 18).
+channel(76, 17).
+channel(77, 24).
+channel(78, 15).
+
+% FACT: port_connects_to_channel(port_id, channel_id).
+port_connects_to_channel(11, 1).
+port_connects_to_channel(12, 2).
+port_connects_to_channel(13, 2).
+port_connects_to_channel(12, 3).
+port_connects_to_channel(31, 3).
+port_connects_to_channel(12, 4).
+port_connects_to_channel(33, 4).
+port_connects_to_channel(12, 5).
+port_connects_to_channel(37, 5).
+port_connects_to_channel(12, 6).
+port_connects_to_channel(45, 6).
+port_connects_to_channel(12, 7).
+port_connects_to_channel(54, 7).
+port_connects_to_channel(14, 8).
+port_connects_to_channel(19, 9).
+port_connects_to_channel(22, 10).
+port_connects_to_channel(26, 11).
+port_connects_to_channel(30, 12).
+port_connects_to_channel(34, 13).
+port_connects_to_channel(43, 14).
+port_connects_to_channel(52, 15).
+port_connects_to_channel(56, 16).
+port_connects_to_channel(15, 17).
+port_connects_to_channel(18, 18).
+port_connects_to_channel(23, 19).
+port_connects_to_channel(27, 20).
+port_connects_to_channel(29, 21).
+port_connects_to_channel(35, 22).
+port_connects_to_channel(55, 23).
+port_connects_to_channel(16, 24).
+port_connects_to_channel(17, 24).
+port_connects_to_channel(16, 25).
+port_connects_to_channel(21, 25).
+port_connects_to_channel(16, 26).
+port_connects_to_channel(25, 26).
+port_connects_to_channel(16, 27).
+port_connects_to_channel(36, 28).
+port_connects_to_channel(38, 28).
+port_connects_to_channel(36, 29).
+port_connects_to_channel(46, 29).
+port_connects_to_channel(36, 30).
+port_connects_to_channel(32, 31).
+port_connects_to_channel(39, 31).
+port_connects_to_channel(32, 32).
+port_connects_to_channel(47, 32).
+port_connects_to_channel(32, 33).
+port_connects_to_channel(40, 34).
+port_connects_to_channel(49, 35).
+port_connects_to_channel(41, 36).
+port_connects_to_channel(50, 37).
+port_connects_to_channel(42, 38).
+port_connects_to_channel(51, 39).
+port_connects_to_channel(44, 40).
+port_connects_to_channel(48, 40).
+port_connects_to_channel(44, 41).
+port_connects_to_channel(20, 42).
+port_connects_to_channel(53, 43).
+port_connects_to_channel(57, 44).
+port_connects_to_channel(28, 45).
+port_connects_to_channel(24, 46).
+port_connects_to_channel(11, 47).
+port_connects_to_channel(15, 48).
+port_connects_to_channel(18, 49).
+port_connects_to_channel(23, 50).
+port_connects_to_channel(27, 51).
+port_connects_to_channel(29, 52).
+port_connects_to_channel(35, 53).
+port_connects_to_channel(55, 54).
+port_connects_to_channel(42, 55).
+port_connects_to_channel(51, 56).
+port_connects_to_channel(40, 57).
+port_connects_to_channel(49, 58).
+port_connects_to_channel(41, 59).
+port_connects_to_channel(50, 60).
+port_connects_to_channel(14, 61).
+port_connects_to_channel(19, 62).
+port_connects_to_channel(22, 63).
+port_connects_to_channel(26, 64).
+port_connects_to_channel(30, 65).
+port_connects_to_channel(34, 66).
+port_connects_to_channel(43, 67).
+port_connects_to_channel(52, 68).
+port_connects_to_channel(56, 69).
+port_connects_to_channel(20, 70).
+port_connects_to_channel(36, 71).
+port_connects_to_channel(32, 72).
+port_connects_to_channel(53, 73).
+port_connects_to_channel(57, 74).
+port_connects_to_channel(28, 75).
+port_connects_to_channel(24, 76).
+port_connects_to_channel(44, 77).
+port_connects_to_channel(16, 78).
+
+% FACT: inflow_connects_to_channel(port_id, channel_id).
+inflow_connects_to_channel(1, 1).
+inflow_connects_to_channel(10, 8).
+inflow_connects_to_channel(10, 9).
+inflow_connects_to_channel(10, 10).
+inflow_connects_to_channel(10, 11).
+inflow_connects_to_channel(10, 12).
+inflow_connects_to_channel(10, 13).
+inflow_connects_to_channel(10, 14).
+inflow_connects_to_channel(10, 15).
+inflow_connects_to_channel(10, 16).
+inflow_connects_to_channel(2, 17).
+inflow_connects_to_channel(2, 18).
+inflow_connects_to_channel(2, 19).
+inflow_connects_to_channel(2, 20).
+inflow_connects_to_channel(2, 21).
+inflow_connects_to_channel(2, 22).
+inflow_connects_to_channel(2, 23).
+inflow_connects_to_channel(5, 34).
+inflow_connects_to_channel(5, 35).
+inflow_connects_to_channel(7, 36).
+inflow_connects_to_channel(7, 37).
+inflow_connects_to_channel(3, 38).
+inflow_connects_to_channel(3, 39).
+inflow_connects_to_channel(1, 47).
+inflow_connects_to_channel(2, 48).
+inflow_connects_to_channel(2, 49).
+inflow_connects_to_channel(2, 50).
+inflow_connects_to_channel(2, 51).
+inflow_connects_to_channel(2, 52).
+inflow_connects_to_channel(2, 53).
+inflow_connects_to_channel(2, 54).
+inflow_connects_to_channel(3, 55).
+inflow_connects_to_channel(3, 56).
+inflow_connects_to_channel(5, 57).
+inflow_connects_to_channel(5, 58).
+inflow_connects_to_channel(7, 59).
+inflow_connects_to_channel(7, 60).
+inflow_connects_to_channel(10, 61).
+inflow_connects_to_channel(10, 62).
+inflow_connects_to_channel(10, 63).
+inflow_connects_to_channel(10, 64).
+inflow_connects_to_channel(10, 65).
+inflow_connects_to_channel(10, 66).
+inflow_connects_to_channel(10, 67).
+inflow_connects_to_channel(10, 68).
+inflow_connects_to_channel(10, 69).
+
+% FACT: outflow_connects_to_channel(port_id, channel_id).
+outflow_connects_to_channel(66, 27).
+outflow_connects_to_channel(59, 30).
+outflow_connects_to_channel(60, 33).
+outflow_connects_to_channel(65, 41).
+outflow_connects_to_channel(58, 42).
+outflow_connects_to_channel(61, 43).
+outflow_connects_to_channel(62, 44).
+outflow_connects_to_channel(63, 45).
+outflow_connects_to_channel(64, 46).
+outflow_connects_to_channel(58, 70).
+outflow_connects_to_channel(59, 71).
+outflow_connects_to_channel(60, 72).
+outflow_connects_to_channel(61, 73).
+outflow_connects_to_channel(62, 74).
+outflow_connects_to_channel(63, 75).
+outflow_connects_to_channel(64, 76).
+outflow_connects_to_channel(65, 77).
+outflow_connects_to_channel(66, 78).
+
+% FACT: uri_variable(uri_variable_id, variable_name, port_id).
+uri_variable(1, 'filename', 16).
+uri_variable(2, 'filename', 20).
+uri_variable(3, 'filename', 24).
+uri_variable(4, 'filename', 28).
+uri_variable(5, 'filename', 32).
+uri_variable(6, 'filename', 36).
+uri_variable(7, 'filename', 44).
+uri_variable(8, 'filename', 53).
+uri_variable(9, 'filename', 57).
+
+% FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
+
+% FACT: log_template_variable(log_variable_id, variable_name, log_template_id).

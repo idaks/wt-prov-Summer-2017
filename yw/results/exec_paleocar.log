@@ -72,6 +72,18 @@ YW_Q7 : What are the input data for the generation of the prediction plot in pal
 
 yw_q7(DataName,StepName)
 ...................................................................................................
+yw_q7(paleocar_log_file,gen_paleocar_model).
+yw_q7(verbose,gen_paleocar_model).
+yw_q7(prism_data_for_coordinates,gen_paleocar_model).
+yw_q7(prediction_years,gen_paleocar_model).
+yw_q7(min_width,gen_paleocar_model).
+yw_q7(prediction_plot,gen_paleocar_model).
+yw_q7(label,gen_paleocar_model).
+yw_q7(calibration_years,gen_paleocar_model).
+yw_q7(uncertainty_plot,gen_paleocar_model).
+yw_q7(itrdb,gen_paleocar_model).
+yw_q7(uncertainty_model,gen_paleocar_model).
+yw_q7(prediction_model,gen_paleocar_model).
 
 
 ---------------------------------------------------------------------------------------------------

@@ -5,16 +5,16 @@ EQ2 : What are the names N of all program blocks?
 
 eq2(ProgramName)
 ...................................................................................................
-eq2(optimizeModels).
-eq2(calculateLinearModels).
-eq2(get_carscores).
 eq2(defineLinearModels).
 eq2(gen_paleocar_model).
-eq2(simplifyLinearModels).
-eq2(get_predictor_matrix).
-eq2(get_reconstruction_matrix).
 eq2(get_predlist).
+eq2(optimizeModels).
+eq2(calculateLinearModels).
+eq2(simplifyLinearModels).
+eq2(get_reconstruction_matrix).
+eq2(get_carscores).
 eq2(calculate_Models).
+eq2(get_predictor_matrix).
 
 
 ---------------------------------------------------------------------------------------------------
