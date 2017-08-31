@@ -5,14 +5,14 @@ EQ2 : What are the names N of all program blocks?
 
 eq2(ProgramName)
 ...................................................................................................
-eq2(gen_views).
-eq2(extract_model_facts).
-eq2(exec_queries).
-eq2(exec_yw_recon).
 eq2(gen_pdf_files).
+eq2(extract_model_facts).
+eq2(exec_yw_recon).
 eq2(get_filenames).
-eq2(extract_graph_facts).
+eq2(gen_views).
 eq2(gen_png_files).
+eq2(exec_queries).
+eq2(extract_graph_facts).
 eq2(gen_svg_files).
 eq2(yw_artifacts).
 eq2(gen_dot_files).
@@ -23,15 +23,15 @@ EQ3 : What out ports are qualified with URIs
 
 eq3(PortName)
 ...................................................................................................
+eq3(models).
 eq3(prov_pdf).
 eq3(views).
 eq3(graphs).
-eq3(models).
-eq3(results).
 eq3(gv_files).
-eq3(svg_files).
-eq3(facts).
 eq3(recon).
+eq3(svg_files).
+eq3(results).
+eq3(facts).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -46,14 +46,14 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(gen_views,'create datalog facts views from the models files.').
-yw_q2(extract_model_facts,'extract datalog facts from the model.').
-yw_q2(exec_queries,'execute prospective provenance queries.').
-yw_q2(exec_yw_recon,'execute yw recon for the run').
 yw_q2(gen_pdf_files,'generate pdf files from doT files').
+yw_q2(extract_model_facts,'extract datalog facts from the model.').
+yw_q2(exec_yw_recon,'execute yw recon for the run').
 yw_q2(get_filenames,'get the filenames from the scripts directory.').
-yw_q2(extract_graph_facts,'extract datalog facts from the graphs').
+yw_q2(gen_views,'create datalog facts views from the models files.').
 yw_q2(gen_png_files,'generate png files from doT files').
+yw_q2(extract_graph_facts,'extract datalog facts from the graphs').
+yw_q2(exec_queries,'execute prospective provenance queries.').
 yw_q2(gen_svg_files,'generate svg files from doT files').
 yw_q2(gen_dot_files,'generate yeskworkflow graph files.').
 

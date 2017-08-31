@@ -16,17 +16,17 @@
 <g id="clust2" class="cluster"><title>cluster_workflow_box_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="16,-70 16,-299 1906,-299 1906,-70 16,-70"/>
 </g>
-<g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="867,-8 867,-54 1041,-54 1041,-8 867,-8"/>
-</g>
-<g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
-<polygon fill="none" stroke="black" stroke-width="0" points="875,-16 875,-46 1033,-46 1033,-16 875,-16"/>
-</g>
 <g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="835,-315 835,-361 1073,-361 1073,-315 835,-315"/>
 </g>
 <g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="843,-323 843,-353 1065,-353 1065,-323 843,-323"/>
+</g>
+<g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="867,-8 867,-54 1041,-54 1041,-8 867,-8"/>
+</g>
+<g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="875,-16 875,-46 1033,-46 1033,-16 875,-16"/>
 </g>
 <!-- gen_paleocar_model -->
 <g id="node1" class="node"><title>gen_paleocar_model</title>
