@@ -337,7 +337,7 @@ paleocar_models <- function(chronologies,
   }
   
   if(verbose) cat("\nTotal Modeling Time:",sum(times),"minutes\n")
-  # @END calculateModels
+  # @END calculate_Models
   
   # @BEGIN optimizeModels
   # @IN linear.models

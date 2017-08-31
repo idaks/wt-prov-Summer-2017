@@ -18,7 +18,7 @@ Follow the steps from the readme and execute it once on a local machine.
 6. Start meteor server by  executing "meteor run" command from the terminal or command prompt.
 7. Open the web application from browser as http://localhost:3000
 
-![alt text](public/prospective_prov_img/web_app_paleocar_data_flow.png "YW Graph of PaleoCar.")
+![alt text](public/prospective_prov_img/main.png "YW Graph of PaleoCar.")
 
 <pre>
 wt-prov-summer-2017
