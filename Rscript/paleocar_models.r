@@ -112,6 +112,7 @@ paleocar_models <- function(chronologies,
   # @BEGIN defineLinearModels
   # @IN predlist
   # @IN carscores
+  # @IN max.preds
   # @OUT models
   # @OUT matches
   for(i in 1:maxPreds){
@@ -264,7 +265,7 @@ paleocar_models <- function(chronologies,
     # @BEGIN simplifyLinearModels
     # @IN coefficients
     # @IN model.errors
-    # @OUT final.models
+    # @OUT final.models @as linear.models
     ## LMS SIMPLIFY PREP
     new.t <- Sys.time()
     
