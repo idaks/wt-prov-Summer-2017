@@ -26,6 +26,14 @@ data_resource(2, 5).
 data_resource(2, 6).
 data_resource(2, 7).
 data_resource(2, 8).
+data_resource(28, 9).
+data_resource(28, 10).
+data_resource(28, 11).
+data_resource(28, 12).
+data_resource(28, 13).
+data_resource(28, 14).
+data_resource(28, 15).
+data_resource(28, 16).
 data_resource(27, 9).
 data_resource(27, 10).
 data_resource(27, 11).
@@ -34,14 +42,6 @@ data_resource(27, 13).
 data_resource(27, 14).
 data_resource(27, 15).
 data_resource(27, 16).
-data_resource(26, 9).
-data_resource(26, 10).
-data_resource(26, 11).
-data_resource(26, 12).
-data_resource(26, 13).
-data_resource(26, 14).
-data_resource(26, 15).
-data_resource(26, 16).
 
 % FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
 uri_variable_value(1, 1, '3aa1442c').

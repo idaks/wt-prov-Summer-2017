@@ -11,12 +11,10 @@ cd $dir
 for file in `ls -a *.P` ;
 do
 xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN > ../views/${file}
-['../yw_graph_rules.P'].
 ['../facts/${file}'].
 ['../models/${file}'].
 ['../general_rules.P'].
 ['../yw_views.P'].
-
 
 set_prolog_flag(unknown, fail).
 

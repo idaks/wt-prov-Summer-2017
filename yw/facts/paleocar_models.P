@@ -63,32 +63,34 @@ annotation(57, 1, 108, 'out', '@OUT', 'linear.models').
 annotation(58, 1, 112, 'begin', '@BEGIN', 'defineLinearModels').
 annotation(59, 1, 113, 'in', '@IN', 'predlist').
 annotation(60, 1, 114, 'in', '@IN', 'carscores').
-annotation(61, 1, 115, 'out', '@OUT', 'models').
-annotation(62, 1, 116, 'out', '@OUT', 'matches').
-annotation(63, 1, 213, 'end', '@END', 'defineLinearModels').
-annotation(64, 1, 215, 'begin', '@BEGIN', 'calculateLinearModels').
-annotation(65, 1, 216, 'in', '@IN', 'models').
-annotation(66, 1, 217, 'in', '@IN', 'matches').
-annotation(67, 1, 218, 'out', '@OUT', 'coefficients').
-annotation(68, 1, 219, 'out', '@OUT', 'model.errors').
-annotation(69, 1, 262, 'end', '@END', 'calculateLinearModels').
-annotation(70, 1, 264, 'begin', '@BEGIN', 'simplifyLinearModels').
-annotation(71, 1, 265, 'in', '@IN', 'coefficients').
-annotation(72, 1, 266, 'in', '@IN', 'model.errors').
-annotation(73, 1, 267, 'out', '@OUT', 'final.models').
-annotation(74, 1, 328, 'end', '@END', 'simplifyLinearModels').
-annotation(75, 1, 340, 'end', '@END', 'calculateModels').
-annotation(76, 1, 342, 'begin', '@BEGIN', 'optimizeModels').
-annotation(77, 1, 343, 'in', '@IN', 'linear.models').
-annotation(78, 1, 344, 'out', '@OUT', 'final.models').
-annotation(79, 1, 344, 'as', '@as', 'paleocar_models').
-annotation(80, 1, 344, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
-annotation(81, 1, 344, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
-annotation(82, 1, 371, 'end', '@END', 'optimizeModels').
-annotation(83, 1, 373, 'out', '@out', 'paleocar_models').
-annotation(84, 1, 373, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
-annotation(85, 1, 373, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
-annotation(86, 1, 374, 'end', '@END', 'main').
+annotation(61, 1, 115, 'in', '@IN', 'max.preds').
+annotation(62, 1, 116, 'out', '@OUT', 'models').
+annotation(63, 1, 117, 'out', '@OUT', 'matches').
+annotation(64, 1, 214, 'end', '@END', 'defineLinearModels').
+annotation(65, 1, 216, 'begin', '@BEGIN', 'calculateLinearModels').
+annotation(66, 1, 217, 'in', '@IN', 'models').
+annotation(67, 1, 218, 'in', '@IN', 'matches').
+annotation(68, 1, 219, 'out', '@OUT', 'coefficients').
+annotation(69, 1, 220, 'out', '@OUT', 'model.errors').
+annotation(70, 1, 263, 'end', '@END', 'calculateLinearModels').
+annotation(71, 1, 265, 'begin', '@BEGIN', 'simplifyLinearModels').
+annotation(72, 1, 266, 'in', '@IN', 'coefficients').
+annotation(73, 1, 267, 'in', '@IN', 'model.errors').
+annotation(74, 1, 268, 'out', '@OUT', 'final.models').
+annotation(75, 1, 268, 'as', '@as', 'linear.models').
+annotation(76, 1, 329, 'end', '@END', 'simplifyLinearModels').
+annotation(77, 1, 341, 'end', '@END', 'calculate_Models').
+annotation(78, 1, 343, 'begin', '@BEGIN', 'optimizeModels').
+annotation(79, 1, 344, 'in', '@IN', 'linear.models').
+annotation(80, 1, 345, 'out', '@OUT', 'final.models').
+annotation(81, 1, 345, 'as', '@as', 'paleocar_models').
+annotation(82, 1, 345, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
+annotation(83, 1, 345, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
+annotation(84, 1, 372, 'end', '@END', 'optimizeModels').
+annotation(85, 1, 374, 'out', '@out', 'paleocar_models').
+annotation(86, 1, 374, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
+annotation(87, 1, 374, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
+annotation(88, 1, 375, 'end', '@END', 'main').
 
 % FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
 annotation_qualifies(2, 1).
@@ -113,8 +115,9 @@ annotation_qualifies(38, 37).
 annotation_qualifies(42, 41).
 annotation_qualifies(47, 46).
 annotation_qualifies(49, 48).
-annotation_qualifies(79, 78).
-annotation_qualifies(80, 78).
-annotation_qualifies(81, 78).
-annotation_qualifies(84, 83).
-annotation_qualifies(85, 83).
+annotation_qualifies(75, 74).
+annotation_qualifies(81, 80).
+annotation_qualifies(82, 80).
+annotation_qualifies(83, 80).
+annotation_qualifies(86, 85).
+annotation_qualifies(87, 85).

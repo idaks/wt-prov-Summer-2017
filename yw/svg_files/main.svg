@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 722)">
 <title>Workflow</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-722 2281.19,-722 2281.19,4 -4,4"/>
-<text text-anchor="middle" x="1138.59" y="-699.6" font-family="Helvetica,sans-Serif" font-size="18.00">paleocar_web&#45;app_data_flow</text>
+<text text-anchor="middle" x="1138.59" y="-699.6" font-family="Helvetica,sans-Serif" font-size="18.00">paleocar_web_app_data_flow</text>
 <g id="clust1" class="cluster"><title>cluster_workflow_box_outer</title>
 <polygon fill="none" stroke="black" stroke-width="2" points="52.188,-62 52.188,-628 2269.19,-628 2269.19,-62 52.188,-62"/>
 </g>

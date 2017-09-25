@@ -52,20 +52,8 @@ yw_data(1,user_map_marker_pos,nil,nil).
 %...................................................................................................
 yw_step_input(2,gen_boundary_region,param,5,prism_data,2,prism_data).
 yw_step_input(2,gen_boundary_region,in,4,user_map_marker_pos,1,user_map_marker_pos).
-yw_step_input(2,gen_boundary_region,_h213,5,_h249,3,boundary_coordinates).
-yw_step_input(2,gen_boundary_region,_h213,5,_h249,2,prism_data).
-yw_step_input(2,gen_boundary_region,_h213,5,_h249,1,user_map_marker_pos).
-yw_step_input(2,gen_boundary_region,_h213,4,_h249,3,boundary_coordinates).
-yw_step_input(2,gen_boundary_region,_h213,4,_h249,2,prism_data).
-yw_step_input(2,gen_boundary_region,_h213,4,_h249,1,user_map_marker_pos).
 yw_step_input(1,gen_boundary_region,param,2,prism_data,2,prism_data).
 yw_step_input(1,gen_boundary_region,in,1,user_map_marker_pos,1,user_map_marker_pos).
-yw_step_input(1,gen_boundary_region,_h213,2,_h249,3,boundary_coordinates).
-yw_step_input(1,gen_boundary_region,_h213,2,_h249,2,prism_data).
-yw_step_input(1,gen_boundary_region,_h213,2,_h249,1,user_map_marker_pos).
-yw_step_input(1,gen_boundary_region,_h213,1,_h249,3,boundary_coordinates).
-yw_step_input(1,gen_boundary_region,_h213,1,_h249,2,prism_data).
-yw_step_input(1,gen_boundary_region,_h213,1,_h249,1,user_map_marker_pos).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -79,40 +67,12 @@ yw_step_output(2,gen_boundary_region,out,6,boundary_coordinates,3,boundary_coord
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
 yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,3,boundary_coordinates,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,3,boundary_coordinates,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,3,boundary_coordinates,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,3,boundary_coordinates,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,2,prism_data,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
-yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
 yw_inflow(1,gen_boundary_region,1,user_map_marker_pos,2,gen_boundary_region).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
 %...................................................................................................
-yw_flow(1,gen_boundary_region,3,boundary_coordinates,3,boundary_coordinates,5,_h303,2,gen_boundary_region).
-yw_flow(1,gen_boundary_region,3,boundary_coordinates,3,boundary_coordinates,4,_h303,2,gen_boundary_region).
-yw_flow(1,gen_boundary_region,3,boundary_coordinates,3,boundary_coordinates,2,_h303,1,gen_boundary_region).
-yw_flow(1,gen_boundary_region,3,boundary_coordinates,3,boundary_coordinates,1,_h303,1,gen_boundary_region).
-yw_flow(2,gen_boundary_region,6,boundary_coordinates,3,boundary_coordinates,5,_h303,2,gen_boundary_region).
-yw_flow(2,gen_boundary_region,6,boundary_coordinates,3,boundary_coordinates,4,_h303,2,gen_boundary_region).
-yw_flow(2,gen_boundary_region,6,boundary_coordinates,3,boundary_coordinates,2,_h303,1,gen_boundary_region).
-yw_flow(2,gen_boundary_region,6,boundary_coordinates,3,boundary_coordinates,1,_h303,1,gen_boundary_region).
 
 
 %---------------------------------------------------------------------------------------------------

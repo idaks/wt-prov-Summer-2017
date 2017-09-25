@@ -24,11 +24,23 @@ xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN > ../results
 set_prolog_flag(unknown, fail).
 
 %-------------------------------------------------------------------------------
- banner( 'EQ2','What are the names N of all program blocks?','eq2(ProgramName)').
+ banner( 'EQ1','What are the names N of all program blocks?','eq1(ProgramName)').
 [user].
-:- table eq2/1. 
-eq2(ProgramName) :- 
+:- table eq1/1. 
+eq1(ProgramName) :- 
 annotation(_, _, _, 'begin', _, ProgramName).
+end_of_file.
+printall(eq1(_)).
+%-------------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------------
+
+
+banner( 'EQ2','What out ports are qualified with URIs','eq2(PortName)').
+[user].
+:- table eq2/1.
+eq2(PortName) :- annotation(URI, _, _, 'uri', _, _),annotation(OUT, _, _, 'out', _, PortName), annotation_qualifies(URI, OUT).
 end_of_file.
 printall(eq2(_)).
 %-------------------------------------------------------------------------------
@@ -36,22 +48,18 @@ printall(eq2(_)).
 
 %-------------------------------------------------------------------------------
 
-
-banner( 'EQ3','What out ports are qualified with URIs','eq3(PortName)').
+banner( 'EQ3','What products are produced by ports qualified with URIs ','eq2(PortName)').
 [user].
-:- table eq3/1.
-eq3(PortName) :- annotation(URI, _, _, 'uri', _, _),annotation(OUT, _, _, 'out', _, PortName), annotation_qualifies(URI, OUT).
+% FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
+:- table eq3/3.
+eq3(PortName,PortType,DataProduct) :- port(port_id, PortType, PortName, _, _, _), port_uri_template(port_id, DataProduct).
 end_of_file.
-printall(eq3(_)).
+printall(eq2(_,_,_)).
 %-------------------------------------------------------------------------------
 
 
 
 %-------------------------------------------------------------------------------
-
-% 
-
-
 
 banner( 'YW_Q1',
         'What program blocks provide input to gen_paleocar_model?',
@@ -109,56 +117,6 @@ yw_q4(OutputName,Description) :-
     yw_workflow_script(WorkflowId,_,_,_), yw_step_output(WorkflowId, _, _, PortId, _,_, OutputName), yw_description(port, PortId, _, Description).
 end_of_file.
 printall(yw_q4(_,_)).
-%-------------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------------
-
-
-banner( 'YW_Q6',
-        'What are the output data for the paleocar?',
-        'yw_q6(DataName)').
-[user].
-:- table yw_q6/1.
-yw_q6(DataName) :-
-         yw_outflow(_,_,_,DataName,_,exec_paleocar,_,_).
-end_of_file.
-printall(yw_q6(_)).
-%-------------------------------------------------------------------------------
-
-
-%-------------------------------------------------------------------------------
-
-
-banner( 'YW_Q7',
-        'What are the input data for the generation of the prediction plot in paleocar?',
-        'yw_q7(DataName,StepName)').
-[user].
-:- table yw_q7/2.
-yw_q7(DataName,StepName) :-
-			yw_outflow(_,StepName,_,_,_,_,_,prediction_plot), 
-			yw_flow(_, SourceProgramName, _, _, _,_, _, _, _,StepName),
-			yw_inflow(_,_,_,DataName,_,SourceProgramName).
-end_of_file.
-printall(yw_q7(_,_)).
-%-------------------------------------------------------------------------------
-
-
-%-------------------------------------------------------------------------------
-
-
-banner( 'YW_Q5',
-        'What are the input data for the generation of the uncertainty plot in paleocar?',
-        'yw_q5(DataName)').
-[user].
-:- table yw_q5/1.
-yw_q5(DataName) :-
-	yw_outflow(_,StepName,_,_,_,_,_,uncertainty_plot),
-	yw_flow(X,SPN,_,_,_,_,_,_,_,StepName),
-	yw_flow(_,SPN2,_,_,_,_,_,_,_,_,SPN),
-	yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, SPN),
-yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, SPN2).
-end_of_file.
-printall(yw_q5(_,_)).
 %-------------------------------------------------------------------------------
 
 

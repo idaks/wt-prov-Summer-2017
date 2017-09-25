@@ -52,20 +52,8 @@ yw_data(1,coordinates,nil,nil).
 %...................................................................................................
 yw_step_input(2,extract_prism_data,param,5,prism_data,2,prism_data).
 yw_step_input(2,extract_prism_data,in,4,coordinates,1,coordinates).
-yw_step_input(2,extract_prism_data,_h213,5,_h249,3,prism_data_for_coordinates).
-yw_step_input(2,extract_prism_data,_h213,5,_h249,2,prism_data).
-yw_step_input(2,extract_prism_data,_h213,5,_h249,1,coordinates).
-yw_step_input(2,extract_prism_data,_h213,4,_h249,3,prism_data_for_coordinates).
-yw_step_input(2,extract_prism_data,_h213,4,_h249,2,prism_data).
-yw_step_input(2,extract_prism_data,_h213,4,_h249,1,coordinates).
 yw_step_input(1,extract_prism_data,param,2,prism_data,2,prism_data).
 yw_step_input(1,extract_prism_data,in,1,coordinates,1,coordinates).
-yw_step_input(1,extract_prism_data,_h213,2,_h249,3,prism_data_for_coordinates).
-yw_step_input(1,extract_prism_data,_h213,2,_h249,2,prism_data).
-yw_step_input(1,extract_prism_data,_h213,2,_h249,1,coordinates).
-yw_step_input(1,extract_prism_data,_h213,1,_h249,3,prism_data_for_coordinates).
-yw_step_input(1,extract_prism_data,_h213,1,_h249,2,prism_data).
-yw_step_input(1,extract_prism_data,_h213,1,_h249,1,coordinates).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -79,40 +67,12 @@ yw_step_output(2,extract_prism_data,out,6,prism_data_for_coordinates,3,prism_dat
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
 yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,3,prism_data_for_coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,3,prism_data_for_coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,3,prism_data_for_coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,3,prism_data_for_coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,2,prism_data,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
-yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
 yw_inflow(1,extract_prism_data,1,coordinates,2,extract_prism_data).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
 %...................................................................................................
-yw_flow(1,extract_prism_data,3,prism_data_for_coordinates,3,prism_data_for_coordinates,5,_h303,2,extract_prism_data).
-yw_flow(1,extract_prism_data,3,prism_data_for_coordinates,3,prism_data_for_coordinates,4,_h303,2,extract_prism_data).
-yw_flow(1,extract_prism_data,3,prism_data_for_coordinates,3,prism_data_for_coordinates,2,_h303,1,extract_prism_data).
-yw_flow(1,extract_prism_data,3,prism_data_for_coordinates,3,prism_data_for_coordinates,1,_h303,1,extract_prism_data).
-yw_flow(2,extract_prism_data,6,prism_data_for_coordinates,3,prism_data_for_coordinates,5,_h303,2,extract_prism_data).
-yw_flow(2,extract_prism_data,6,prism_data_for_coordinates,3,prism_data_for_coordinates,4,_h303,2,extract_prism_data).
-yw_flow(2,extract_prism_data,6,prism_data_for_coordinates,3,prism_data_for_coordinates,2,_h303,1,extract_prism_data).
-yw_flow(2,extract_prism_data,6,prism_data_for_coordinates,3,prism_data_for_coordinates,1,_h303,1,extract_prism_data).
 
 
 %---------------------------------------------------------------------------------------------------

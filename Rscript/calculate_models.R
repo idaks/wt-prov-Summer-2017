@@ -1,4 +1,4 @@
-  # @BEGIN calculate_Models 
+  # @BEGIN calculate_models 
   # @IN predlist
   # @IN carscores
   # @in max.preds 

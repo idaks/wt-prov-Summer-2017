@@ -1,31 +1,38 @@
 
 
 ---------------------------------------------------------------------------------------------------
-EQ2 : What are the names N of all program blocks?
+EQ1 : What are the names N of all program blocks?
 
-eq2(ProgramName)
+eq1(ProgramName)
 ...................................................................................................
-eq2(exec_paleocar).
-eq2(extract_prism_data).
-eq2(access_static_server_files).
-eq2(get_client_data).
-eq2('paleocar_web-app_data_flow').
+eq1(exec_paleocar).
+eq1(extract_prism_data).
+eq1(access_static_server_files).
+eq1(get_client_data).
+eq1(paleocar_web_app_data_flow).
 
 
 ---------------------------------------------------------------------------------------------------
-EQ3 : What out ports are qualified with URIs
+EQ2 : What out ports are qualified with URIs
 
-eq3(PortName)
+eq2(PortName)
 ...................................................................................................
-eq3(prediction_graph).
-eq3(paleocar_models).
-eq3(uncertainty_model).
-eq3(uncertainty_graph).
-eq3(paleocar_log_file).
-eq3(prism_data).
-eq3(itrdb).
-eq3(prism_data_for_coordinates).
-eq3(prediction_model).
+eq2(uncertainty_graph).
+eq2(prism_data).
+eq2(uncertainty_model).
+eq2(prediction_model).
+eq2(itrdb).
+eq2(prism_data_for_coordinates).
+eq2(prediction_graph).
+eq2(paleocar_log_file).
+eq2(paleocar_models).
+
+
+---------------------------------------------------------------------------------------------------
+EQ3 : What products are produced by ports qualified with URIs 
+
+eq2(PortName)
+...................................................................................................
 
 
 ---------------------------------------------------------------------------------------------------
@@ -55,7 +62,7 @@ YW_Q3 : What programs have input ports that receive data user_prediction_years?
 
 yw_q3(ProgramName)
 ...................................................................................................
-yw_q3('paleocar_web-app_data_flow').
+yw_q3(paleocar_web_app_data_flow).
 yw_q3(get_client_data).
 yw_q3(access_static_server_files).
 yw_q3(extract_prism_data).
@@ -66,25 +73,4 @@ yw_q3(exec_paleocar).
 YW_Q4 : What are the names and descriptions of any outputs of the workflow?
 
 yw_q4(OutputName, Description)
-...................................................................................................
-
-
----------------------------------------------------------------------------------------------------
-YW_Q6 : What are the output data for the paleocar?
-
-yw_q6(DataName)
-...................................................................................................
-
-
----------------------------------------------------------------------------------------------------
-YW_Q7 : What are the input data for the generation of the prediction plot in paleocar?
-
-yw_q7(DataName,StepName)
-...................................................................................................
-
-
----------------------------------------------------------------------------------------------------
-YW_Q5 : What are the input data for the generation of the uncertainty plot in paleocar?
-
-yw_q5(DataName)
 ...................................................................................................

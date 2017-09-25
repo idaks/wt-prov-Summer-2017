@@ -1,32 +1,39 @@
 
 
 ---------------------------------------------------------------------------------------------------
-EQ2 : What are the names N of all program blocks?
+EQ1 : What are the names N of all program blocks?
 
-eq2(ProgramName)
+eq1(ProgramName)
 ...................................................................................................
-eq2(extract_tree_ring_data).
-eq2(get_treepolygon).
-eq2(read_shapefile).
-eq2(uncompress_shapefile).
-eq2(download_shapefile_archive).
-eq2(create_shapefile_dir).
-eq2(get_itrdb_data).
+eq1(extract_tree_ring_data).
+eq1(get_treepolygon).
+eq1(read_shapefile).
+eq1(uncompress_shapefile).
+eq1(download_shapefile_archive).
+eq1(create_shapefile_dir).
+eq1(get_itrdb_data).
 
 
 ---------------------------------------------------------------------------------------------------
-EQ3 : What out ports are qualified with URIs
+EQ2 : What out ports are qualified with URIs
 
-eq3(PortName)
+eq2(PortName)
 ...................................................................................................
-eq3(list).
-eq3(tracts_xml_file).
-eq3(metadata_xml_file).
-eq3(layer_tracts).
-eq3(layer_boundary).
-eq3(shapefiles_dir).
-eq3(compressed_shapefile).
-eq3(user_created_dir).
+eq2(list).
+eq2(tracts_xml_file).
+eq2(metadata_xml_file).
+eq2(layer_tracts).
+eq2(layer_boundary).
+eq2(shapefiles_dir).
+eq2(compressed_shapefile).
+eq2(user_created_dir).
+
+
+---------------------------------------------------------------------------------------------------
+EQ3 : What products are produced by ports qualified with URIs 
+
+eq2(PortName)
+...................................................................................................
 
 
 ---------------------------------------------------------------------------------------------------
@@ -60,25 +67,4 @@ yw_q3(ProgramName)
 YW_Q4 : What are the names and descriptions of any outputs of the workflow?
 
 yw_q4(OutputName, Description)
-...................................................................................................
-
-
----------------------------------------------------------------------------------------------------
-YW_Q6 : What are the output data for the paleocar?
-
-yw_q6(DataName)
-...................................................................................................
-
-
----------------------------------------------------------------------------------------------------
-YW_Q7 : What are the input data for the generation of the prediction plot in paleocar?
-
-yw_q7(DataName,StepName)
-...................................................................................................
-
-
----------------------------------------------------------------------------------------------------
-YW_Q5 : What are the input data for the generation of the uncertainty plot in paleocar?
-
-yw_q5(DataName)
 ...................................................................................................

@@ -1,9 +1,9 @@
 
 % FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
-program(1, 'calculate_Models', 'calculate_Models', 1, 25).
-program(2, 'defineLinearModels', 'calculate_Models.defineLinearModels', 6, 12).
-program(3, 'calculateLinearModels', 'calculate_Models.calculateLinearModels', 13, 18).
-program(4, 'simplifyLinearModels', 'calculate_Models.simplifyLinearModels', 19, 24).
+program(1, 'calculate_models', 'calculate_models', 1, 25).
+program(2, 'defineLinearModels', 'calculate_models.defineLinearModels', 6, 12).
+program(3, 'calculateLinearModels', 'calculate_models.calculateLinearModels', 13, 18).
+program(4, 'simplifyLinearModels', 'calculate_models.simplifyLinearModels', 19, 24).
 
 % FACT: workflow(program_id).
 workflow(1).
@@ -16,22 +16,22 @@ has_subprogram(1, 3).
 has_subprogram(1, 4).
 
 % FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
-port(1, 'IN', 'predlist', 'calculate_Models<-predlist', 2, 1).
-port(2, 'IN', 'carscores', 'calculate_Models<-carscores', 3, 2).
-port(3, 'in', 'max.preds', 'calculate_Models<-max.preds', 4, 3).
-port(4, 'OUT', 'linear.models', 'calculate_Models->linear.models', 5, 4).
-port(5, 'IN', 'predlist', 'calculate_Models.defineLinearModels<-predlist', 7, 5).
-port(6, 'IN', 'carscores', 'calculate_Models.defineLinearModels<-carscores', 8, 6).
-port(7, 'in', 'max.preds', 'calculate_Models.defineLinearModels<-max.preds', 9, 7).
-port(8, 'OUT', 'models', 'calculate_Models.defineLinearModels->models', 10, 8).
-port(9, 'OUT', 'matches', 'calculate_Models.defineLinearModels->matches', 11, 9).
-port(10, 'IN', 'models', 'calculate_Models.calculateLinearModels<-models', 14, 8).
-port(11, 'IN', 'matches', 'calculate_Models.calculateLinearModels<-matches', 15, 9).
-port(12, 'OUT', 'coefficients', 'calculate_Models.calculateLinearModels->coefficients', 16, 10).
-port(13, 'OUT', 'model.errors', 'calculate_Models.calculateLinearModels->model.errors', 17, 11).
-port(14, 'IN', 'coefficients', 'calculate_Models.simplifyLinearModels<-coefficients', 20, 10).
-port(15, 'IN', 'model.errors', 'calculate_Models.simplifyLinearModels<-model.errors', 21, 11).
-port(16, 'OUT', 'final.models', 'calculate_Models.simplifyLinearModels->final.models', 22, 12).
+port(1, 'IN', 'predlist', 'calculate_models<-predlist', 2, 1).
+port(2, 'IN', 'carscores', 'calculate_models<-carscores', 3, 2).
+port(3, 'in', 'max.preds', 'calculate_models<-max.preds', 4, 3).
+port(4, 'OUT', 'linear.models', 'calculate_models->linear.models', 5, 4).
+port(5, 'IN', 'predlist', 'calculate_models.defineLinearModels<-predlist', 7, 5).
+port(6, 'IN', 'carscores', 'calculate_models.defineLinearModels<-carscores', 8, 6).
+port(7, 'in', 'max.preds', 'calculate_models.defineLinearModels<-max.preds', 9, 7).
+port(8, 'OUT', 'models', 'calculate_models.defineLinearModels->models', 10, 8).
+port(9, 'OUT', 'matches', 'calculate_models.defineLinearModels->matches', 11, 9).
+port(10, 'IN', 'models', 'calculate_models.calculateLinearModels<-models', 14, 8).
+port(11, 'IN', 'matches', 'calculate_models.calculateLinearModels<-matches', 15, 9).
+port(12, 'OUT', 'coefficients', 'calculate_models.calculateLinearModels->coefficients', 16, 10).
+port(13, 'OUT', 'model.errors', 'calculate_models.calculateLinearModels->model.errors', 17, 11).
+port(14, 'IN', 'coefficients', 'calculate_models.simplifyLinearModels<-coefficients', 20, 10).
+port(15, 'IN', 'model.errors', 'calculate_models.simplifyLinearModels<-model.errors', 21, 11).
+port(16, 'OUT', 'final.models', 'calculate_models.simplifyLinearModels->final.models', 22, 12).
 
 % FACT: port_alias(port_id, alias).
 port_alias(16, 'linear.models').
@@ -63,14 +63,14 @@ data(1, 'predlist', '[predlist]').
 data(2, 'carscores', '[carscores]').
 data(3, 'max.preds', '[max.preds]').
 data(4, 'linear.models', '[linear.models]').
-data(5, 'predlist', 'calculate_Models[predlist]').
-data(6, 'carscores', 'calculate_Models[carscores]').
-data(7, 'max.preds', 'calculate_Models[max.preds]').
-data(8, 'models', 'calculate_Models[models]').
-data(9, 'matches', 'calculate_Models[matches]').
-data(10, 'coefficients', 'calculate_Models[coefficients]').
-data(11, 'model.errors', 'calculate_Models[model.errors]').
-data(12, 'linear.models', 'calculate_Models[linear.models]').
+data(5, 'predlist', 'calculate_models[predlist]').
+data(6, 'carscores', 'calculate_models[carscores]').
+data(7, 'max.preds', 'calculate_models[max.preds]').
+data(8, 'models', 'calculate_models[models]').
+data(9, 'matches', 'calculate_models[matches]').
+data(10, 'coefficients', 'calculate_models[coefficients]').
+data(11, 'model.errors', 'calculate_models[model.errors]').
+data(12, 'linear.models', 'calculate_models[linear.models]').
 
 % FACT: channel(channel_id, data_id).
 channel(1, 4).

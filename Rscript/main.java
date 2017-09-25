@@ -8,7 +8,7 @@ import './main.html';
 
 
  
- // @begin paleocar_web-app_data_flow 
+ // @begin paleocar_web_app_data_flow 
  // @in user_map_marker_pos  @desc Coordinates of location for reconstruction of paleoclimate. 
  // @in user_prediction_years @desc Prediction years for reconstruction of paleoclimate. 
  
@@ -164,8 +164,8 @@ Template.map.onCreated(function() {
     
  
     // @begin get_client_data @desc get the data from the user and generate the client side metadata for storing the information of each run.
-    // @in coord @as user_map_marker_pos 
-    // @in pred_year @as user_prediction_years 
+    // @in user_map_marker_pos 
+    // @in user_prediction_years 
     
     
     // @out session_id 

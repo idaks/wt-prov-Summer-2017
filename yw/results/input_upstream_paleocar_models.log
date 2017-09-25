@@ -1,0 +1,16 @@
+
+
+---------------------------------------------------------------------------------------------------
+Q2_Pro : List the script inputs that are upstream of data product paleocar_models.
+
+q2_pro(DataProduct, InputDataName)
+...................................................................................................
+q2_pro(paleocar_models,min_width).
+q2_pro(paleocar_models,label).
+q2_pro(paleocar_models,prism_data_for_coordinates).
+q2_pro(paleocar_models,historical_precip_data).
+q2_pro(paleocar_models,tree_ring_data).
+q2_pro(paleocar_models,user_prediction_years).
+q2_pro(paleocar_models,calibration_years).
+q2_pro(paleocar_models,verbose).
+q2_pro(paleocar_models,user_map_marker_pos).
