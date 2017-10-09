@@ -1,0 +1,78 @@
+
+
+---------------------------------------------------------------------------------------------------
+EQ1 : What are the names N of all program blocks?
+
+eq1(ProgramName)
+...................................................................................................
+eq1(collect_data_set).
+eq1(transform_images).
+eq1(transform_image).
+eq1(load_screening_results).
+eq1(simulate_data_collection).
+eq1(initialize_run).
+eq1(log_rejected_sample).
+eq1(log_average_image_intensity).
+eq1(collect_next_image).
+eq1(calculate_strategy).
+
+
+---------------------------------------------------------------------------------------------------
+EQ2 : What out ports are qualified with URIs
+
+eq2(PortName)
+...................................................................................................
+eq2(collection_log).
+eq2(corrected_image_file).
+eq2(raw_image_file).
+eq2(rejection_log).
+eq2(run_log).
+
+
+---------------------------------------------------------------------------------------------------
+EQ3 : What products are produced by ports qualified with URIs 
+
+eq2(PortName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q1 : What program blocks provide input to gen_paleocar_model?
+
+yw_q1(ProgramName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q2 : What workflow steps comprise the top-level workflow?
+
+yw_q2(StepName, Description)
+...................................................................................................
+yw_q2(log_average_image_intensity,'Record statistics about each diffraction image.').
+yw_q2(transform_images,'Correct raw image using the detector calibration image.').
+yw_q2(collect_data_set,'The corrected diffraction images collected on all crystals.').
+yw_q2(collect_data_set,'Collect data set using the given data collection parameters.').
+yw_q2(log_rejected_sample,'File used to correct raw diffraction images.').
+yw_q2(log_rejected_sample,'Record which samples were rejected.').
+yw_q2(calculate_strategy,'CSV file giving quality score for each crystal.').
+yw_q2(calculate_strategy,'Reject unsuitable crystals and compute 
+ best data sets to collect for accepted crystals.').
+yw_q2(load_screening_results,'The desired redundancy of the data sets collected.').
+yw_q2(load_screening_results,'Load sample information from spreadsheet.').
+yw_q2(initialize_run,'The minimum quality score required of crystals.').
+yw_q2(initialize_run,'Create run directory and initialize log files.').
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q3 : What programs have input ports that receive data user_prediction_years?
+
+yw_q3(ProgramName)
+...................................................................................................
+
+
+---------------------------------------------------------------------------------------------------
+YW_Q4 : What are the names and descriptions of any outputs of the workflow?
+
+yw_q4(OutputName, Description)
+...................................................................................................
+yw_q4(corrected_image,'The corrected diffraction images collected on all crystals.').

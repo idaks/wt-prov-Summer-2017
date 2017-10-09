@@ -18,9 +18,9 @@ library(magrittr)
 library(tibble)
 library(readr)
 
-#@begin get_tree_ring_chronologies @desc extract the values of the tree ring chronologies used for reconstruction for a given year
-#@in models @as paleocar_models   @uri  file:.output/{session_id}{run_id}/{label}_models.rds @desc  R model of the paleocar reconstruction of prediction.
-#@in prediction_year @as user_input_year
+#@begin get_species_of_trees @desc extract the species of trees  used for reconstruction for prediction year
+#@in models @as paleocar_models   @uri  file:.output/{session_id}{run_id}/{label}_models.rds 
+#@in itrdb 
 
 ## get the rds file 
 model_rds_file= paste0(args[2])
@@ -43,6 +43,6 @@ setwd(args[1])
 itrdb$metadata[itrdb$metadata$SERIES %in% names(model$predictor.matrix[1,]),1:3] %>% 
   write_csv(output_file)
 
-#@out tree_ring_chronologies 
-#@end get_tree_ring_chronologies 
+#@out tree_species_used @uri  file:.output/{session_id}{run_id}/tree_species.csv 
+#@end get_species_of_trees 
 

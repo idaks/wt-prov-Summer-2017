@@ -21,7 +21,6 @@ library(readr)
 setwd(args[1])
 source("Rscript/wrapper_paleocar.R")
 
-
 ## Call reg_boundary location for getting  the extent values.
 #@begin gen_boundary_region
 #@in user_map_marker_pos  @desc Coordinates of location for reconstruction of paleoclimate. 

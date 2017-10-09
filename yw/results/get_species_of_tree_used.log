@@ -5,7 +5,7 @@ EQ1 : What are the names N of all program blocks?
 
 eq1(ProgramName)
 ...................................................................................................
-eq1(get_tree_ring_chronologies).
+eq1(get_species_of_trees).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -13,6 +13,7 @@ EQ2 : What out ports are qualified with URIs
 
 eq2(PortName)
 ...................................................................................................
+eq2(tree_species_used).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -34,7 +35,7 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(get_tree_ring_chronologies,'extract the values of the tree ring chronologies used for reconstruction for a given year').
+yw_q2(get_species_of_trees,'extract the species of trees used for reconstruction for prediction year').
 
 
 ---------------------------------------------------------------------------------------------------
