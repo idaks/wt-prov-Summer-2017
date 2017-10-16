@@ -1,81 +1,21 @@
 
 % FACT: resource(resource_id, resource_uri).
-resource(1, 'data/.Rhistory').
-resource(2, 'data/112W36N.nc').
-resource(3, 'data/DataSource.js').
-resource(4, 'data/IRDB.Rda').
-resource(5, 'data/itrdb.rda').
-resource(6, 'data/GRCA/GRCA_tracts.zip').
-resource(7, 'data/GRCA/grca_tracts/GRCA_boundary.dbf').
-resource(8, 'data/GRCA/grca_tracts/GRCA_boundary.prj').
-resource(9, 'data/GRCA/grca_tracts/GRCA_boundary.sbn').
-resource(10, 'data/GRCA/grca_tracts/GRCA_boundary.sbx').
-resource(11, 'data/GRCA/grca_tracts/GRCA_boundary.shp').
-resource(12, 'data/GRCA/grca_tracts/GRCA_boundary.shx').
-resource(13, 'data/GRCA/grca_tracts/GRCA_tracts.dbf').
-resource(14, 'data/GRCA/grca_tracts/GRCA_tracts.lyr').
-resource(15, 'data/GRCA/grca_tracts/GRCA_tracts.prj').
-resource(16, 'data/GRCA/grca_tracts/GRCA_tracts.sbn').
-resource(17, 'data/GRCA/grca_tracts/GRCA_tracts.sbx').
-resource(18, 'data/GRCA/grca_tracts/GRCA_tracts.shp').
-resource(19, 'data/GRCA/grca_tracts/GRCA_tracts.shx').
-resource(20, 'data/GRCA/grca_tracts/GRCA_metadata.xml').
+resource(1, 'data/112W36N.nc').
+resource(2, 'data/DataSource.js').
+resource(3, 'data/grca.rda').
+resource(4, 'data/itrdb.rda').
 
 % FACT: data_resource(data_id, resource_id).
 data_resource(6, 1).
 data_resource(6, 2).
 data_resource(6, 3).
 data_resource(6, 4).
-data_resource(6, 5).
-data_resource(8, 6).
-data_resource(10, 7).
-data_resource(10, 8).
-data_resource(10, 9).
-data_resource(10, 10).
-data_resource(10, 11).
-data_resource(10, 12).
-data_resource(11, 13).
-data_resource(11, 14).
-data_resource(11, 15).
-data_resource(11, 16).
-data_resource(11, 17).
-data_resource(11, 18).
-data_resource(11, 19).
-data_resource(12, 20).
+data_resource(26, 4).
 
 % FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
 uri_variable_value(1, 2, '').
 uri_variable_value(2, 2, '').
 uri_variable_value(3, 2, '').
 uri_variable_value(4, 2, '').
-uri_variable_value(5, 2, '').
-uri_variable_value(6, 3, 'GRCA').
-uri_variable_value(7, 5, 'GRCA').
-uri_variable_value(7, 6, '').
-uri_variable_value(8, 5, 'GRCA').
-uri_variable_value(8, 6, '').
-uri_variable_value(9, 5, 'GRCA').
-uri_variable_value(9, 6, '').
-uri_variable_value(10, 5, 'GRCA').
-uri_variable_value(10, 6, '').
-uri_variable_value(11, 5, 'GRCA').
-uri_variable_value(11, 6, '').
-uri_variable_value(12, 5, 'GRCA').
-uri_variable_value(12, 6, '').
-uri_variable_value(13, 7, 'GRCA').
-uri_variable_value(13, 8, '').
-uri_variable_value(14, 7, 'GRCA').
-uri_variable_value(14, 8, '').
-uri_variable_value(15, 7, 'GRCA').
-uri_variable_value(15, 8, '').
-uri_variable_value(16, 7, 'GRCA').
-uri_variable_value(16, 8, '').
-uri_variable_value(17, 7, 'GRCA').
-uri_variable_value(17, 8, '').
-uri_variable_value(18, 7, 'GRCA').
-uri_variable_value(18, 8, '').
-uri_variable_value(19, 7, 'GRCA').
-uri_variable_value(19, 8, '').
-uri_variable_value(20, 9, 'GRCA').
 
 % FACT: log_variable_value(resource_id, log_entry_id, log_variable_id, log_variable_value).

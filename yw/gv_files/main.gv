@@ -5,7 +5,7 @@ rankdir=TB
 
 /* Title for graph */
 fontname=Helvetica; fontsize=18; labelloc=t
-label=paleocar_web_app_data_flow
+label="paleocar_web-app_data_flow"
 
 /* Start of double cluster for drawing box around nodes in workflow */
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
@@ -16,7 +16,7 @@ node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica
 
 /* Nodes representing atomic programs in workflow */
 get_client_data [shape=record rankdir=LR label="{<f0> get_client_data |<f1> get the data from the user and generate the client side metadata for storing the information of each run.}"];
-access_static_server_files [shape=record rankdir=LR label="{<f0> access_static_server_files |<f1> the static files available and required for execution of PaleoCAR on the server.}"];
+acccess_static_server_files [shape=record rankdir=LR label="{<f0> acccess_static_server_files |<f1> the static files available and required for execution of PaleoCAR on the server.}"];
 extract_prism_data [shape=record rankdir=LR label="{<f0> extract_prism_data |<f1> get the prism data file on the server with precipitation values and extract the data for the input coordinates and save as a csv file.}"];
 exec_paleocar [shape=record rankdir=LR label="{<f0> exec_paleocar |<f1> execute paleocar for reconstruction of paleoclimate of the study region. Generate the timeseries graphs, and paleocar models of paleoclimatic reconstruction.}"];
 
@@ -25,10 +25,9 @@ node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname
 
 /* Nodes for non-parameter data channels in workflow */
 prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:data/112W36N.nc}"];
-itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/ITRDB.rda}"];
-prediction_graph [shape=record rankdir=LR label="{<f0> prediction_graph |<f1> file\:/\{session_id\}/\{run_id\}/\{label\}_prediction.jpg}"];
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/ITRDBA.rda}"];
+prediction_graph [shape=record rankdir=LR label="{<f0> prediction_graph |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_prediction.jpg}"];
 paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_model.Rds}"];
-prediction_model [shape=record rankdir=LR label="{<f0> prediction_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_prediction.Rds}"];
 paleocar_log_file [shape=record rankdir=LR label="{<f0> paleocar_log_file |<f1> file\:.output/\{session_id\}/\{run_id\}/paleocar_model_log.txt}"];
 uncertainty_model [shape=record rankdir=LR label="{<f0> uncertainty_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.Rds}"];
 uncertainty_graph [shape=record rankdir=LR label="{<f0> uncertainty_graph |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.jpg}"];
@@ -58,16 +57,16 @@ get_client_data -> coordinates
 get_client_data -> prediction_years
 user_map_marker_pos -> get_client_data
 user_prediction_years -> get_client_data
-access_static_server_files -> prism_data
-access_static_server_files -> itrdb
-historical_precip_data -> access_static_server_files
-tree_ring_data -> access_static_server_files
+acccess_static_server_files -> prism_data
+acccess_static_server_files -> itrdb
+historical_precip_data -> acccess_static_server_files
+tree_ring_data -> acccess_static_server_files
 extract_prism_data -> prism_data_for_coordinates
 coordinates -> extract_prism_data
 session_id -> extract_prism_data
 run_id -> extract_prism_data
 prism_data -> extract_prism_data
-exec_paleocar -> prediction_model
+exec_paleocar -> prediction_models
 exec_paleocar -> prediction_graph
 exec_paleocar -> uncertainty_model
 exec_paleocar -> paleocar_models
@@ -94,7 +93,6 @@ node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontn
 /* Nodes representing workflow input ports */
 user_map_marker_pos_input_port [label=""]
 user_prediction_years_input_port [label=""]
-prism_data_for_coordinates_input_port [label=""]
 calibration_years_input_port [label=""]
 label_input_port [label=""]
 verbose_input_port [label=""]
@@ -117,7 +115,6 @@ prism_data_output_port [label=""]
 itrdb_output_port [label=""]
 prediction_graph_output_port [label=""]
 paleocar_models_output_port [label=""]
-prediction_model_output_port [label=""]
 paleocar_log_file_output_port [label=""]
 uncertainty_model_output_port [label=""]
 uncertainty_graph_output_port [label=""]
@@ -128,7 +125,6 @@ uncertainty_graph_output_port [label=""]
 /* Edges from input ports to channels */
 user_map_marker_pos_input_port -> user_map_marker_pos
 user_prediction_years_input_port -> user_prediction_years
-prism_data_for_coordinates_input_port -> prism_data_for_coordinates
 calibration_years_input_port -> calibration_years
 label_input_port -> label
 verbose_input_port -> verbose
@@ -141,7 +137,6 @@ prism_data -> prism_data_output_port
 itrdb -> itrdb_output_port
 prediction_graph -> prediction_graph_output_port
 paleocar_models -> paleocar_models_output_port
-prediction_model -> prediction_model_output_port
 paleocar_log_file -> paleocar_log_file_output_port
 uncertainty_model -> uncertainty_model_output_port
 uncertainty_graph -> uncertainty_graph_output_port

@@ -7,9 +7,9 @@ eq1(ProgramName)
 ...................................................................................................
 eq1(exec_paleocar).
 eq1(extract_prism_data).
-eq1(access_static_server_files).
+eq1(acccess_static_server_files).
 eq1(get_client_data).
-eq1(paleocar_web_app_data_flow).
+eq1('paleocar_web-app_data_flow').
 
 
 ---------------------------------------------------------------------------------------------------
@@ -17,15 +17,15 @@ EQ2 : What out ports are qualified with URIs
 
 eq2(PortName)
 ...................................................................................................
-eq2(prism_data).
-eq2(paleocar_log_file).
+eq2(pal_model).
 eq2(prism_data_for_coordinates).
-eq2(prediction_model).
-eq2(paleocar_models).
-eq2(itrdb).
-eq2(prediction_graph).
-eq2(uncertainty_model).
-eq2(uncertainty_graph).
+eq2(pred_model).
+eq2(uncertain_plot).
+eq2(uncertain_model).
+eq2(data).
+eq2(log_file).
+eq2(tree_ring).
+eq2(pred_plot).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -47,12 +47,12 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(exec_paleocar,'a user label').
+yw_q2(exec_paleocar,'set to true for writing output to a logfile.').
 yw_q2(exec_paleocar,'execute paleocar for reconstruction of paleoclimate of the study region. Generate the timeseries graphs, and paleocar models of paleoclimatic reconstruction.').
-yw_q2(extract_prism_data,'period for calibrating the information for predicting the climate.').
+yw_q2(extract_prism_data,'a user label').
 yw_q2(extract_prism_data,'get the prism data file on the server with precipitation values and extract the data for the input coordinates and save as a csv file.').
-yw_q2(access_static_server_files,'file containing the precipitation values for the particular region').
-yw_q2(access_static_server_files,'the static files available and required for execution of PaleoCAR on the server.').
+yw_q2(acccess_static_server_files,'period for calibrating the information for predicting the climate.').
+yw_q2(acccess_static_server_files,'the static files available and required for execution of PaleoCAR on the server.').
 yw_q2(get_client_data,'Prediction years for reconstruction of paleoclimate.').
 yw_q2(get_client_data,'get the data from the user and generate the client side metadata for storing the information of each run.').
 
@@ -62,9 +62,9 @@ YW_Q3 : What programs have input ports that receive data user_prediction_years?
 
 yw_q3(ProgramName)
 ...................................................................................................
-yw_q3(paleocar_web_app_data_flow).
+yw_q3('paleocar_web-app_data_flow').
 yw_q3(get_client_data).
-yw_q3(access_static_server_files).
+yw_q3(acccess_static_server_files).
 yw_q3(extract_prism_data).
 yw_q3(exec_paleocar).
 

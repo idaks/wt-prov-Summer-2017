@@ -30,6 +30,17 @@ import './main.html';
  // @out uncertainty_model 
  // @out uncertainty_graph 
  
+ 
+    // @begin get_client_data @desc get the data from the user and generate the client side metadata for storing the information of each run.
+    // @in coord @as user_map_marker_pos 
+    // @in pred_year @as user_prediction_years 
+    
+    
+    // @out session_id 
+    // @out run_id 
+    // @out coordinates 
+    // @out prediction_years 
+ 
 var map_zoom=6; 
 
 // global reactive var for storing lat and long values. 
@@ -163,16 +174,8 @@ Template.map.onCreated(function() {
     // Used animation to drop the marker. 
     
  
-    // @begin get_client_data @desc get the data from the user and generate the client side metadata for storing the information of each run.
-    // @in coord @as user_map_marker_pos 
-    // @in pred_year @as user_prediction_years 
-    
-    
-    // @out session_id 
-    // @out run_id 
-    // @out coordinates 
-    // @out prediction_years 
-    // @end get_client_values
+
+    // @end get_client_data
     
     // @begin acccess_static_server_files @desc the static files available and required for execution of PaleoCAR on the server.
     
@@ -181,7 +184,7 @@ Template.map.onCreated(function() {
     
     // @out data @as prism_data @uri file:data/112W36N.nc @desc file containing the precipitation values for the particular region.
     // @out tree_ring @as itrdb @uri file:data/ITRDBA.rda @desc tree ring chronologies database
-    // @end get_static_server_side_files
+    // @end acccess_static_server_files
  
     marker = new google.maps.Marker
     ({
@@ -309,7 +312,11 @@ Template.pop_lat_lng.helpers({
 
 });
 
-
+    // @begin extract_prism_data @desc get the prism data file on the server with precipitation values and extract the data for the input coordinates and save as a csv file.
+    // @in coord @as coordinates @desc Coordinates of location for reconstruction of paleoclimate. 
+    // @in session_id
+    // @in run_id 
+    // @param input_file @as prism_data 
 
 Template.btn_exec_paleocar.events({
 
@@ -333,11 +340,7 @@ Template.btn_exec_paleocar.events({
     //alert(test_dir);  
  
  
-    // @begin extract_prism_data @desc get the prism data file on the server with precipitation values and extract the data for the input coordinates and save as a csv file.
-    // @in coord @as coordinates @desc Coordinates of location for reconstruction of paleoclimate. 
-    // @in session_id
-    // @in run_id 
-    // @param input_file @as prism_data 
+
     
     // @out prism_data_for_coordinates @uri file:.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region.  @desc file containing the precipitation values for the selected region.
  //    @end  extract_prism_data
@@ -367,10 +370,11 @@ Template.btn_exec_paleocar.events({
     // @param label @desc user entered label for the study region. 
     // @param min_width 
     // @param verbose 
-    
+    session_id = session_id
+	run_id = run_id
     
     // @out pred_model @as prediction_models @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
-    // @out pred_plot @as prediction_graph  @uri file:/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+    // @out pred_plot @as prediction_graph  @uri file:.output/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
     // @out uncertain_model @as uncertainty_model @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
     // @out pal_model @as paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction.
     // @out uncertain_plot @as uncertainty_graph  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.

@@ -26,7 +26,7 @@ extract_tree_ring_data [shape=record rankdir=LR label="{<f0> extract_tree_ring_d
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
 
 /* Nodes for non-parameter data channels in workflow */
-itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/IRTDB.Rda}"];
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/itrdb.rda}"];
 study_region
 shapefile_archive [shape=record rankdir=LR label="{<f0> shapefile_archive |<f1> http\://nrdata.nps.gov/programs/Lands/\{study_region\}_tracts.zip}"];
 user_created_dir [shape=record rankdir=LR label="{<f0> user_created_dir |<f1> file\:data/\{study_region\}}"];
@@ -65,13 +65,13 @@ segments_approx_quarter_circle -> get_treepolygon
 extract_tree_ring_data -> itrdb
 treepolygon -> extract_tree_ring_data
 label -> extract_tree_ring_data
-"raw.dir" -> extract_tree_ring_data
-"extract.dir" -> extract_tree_ring_data
+raw_dir -> extract_tree_ring_data
+extraction_dir -> extract_tree_ring_data
 prediction_years -> extract_tree_ring_data
 calibration_years -> extract_tree_ring_data
 measurement_type -> extract_tree_ring_data
 chronology_type -> extract_tree_ring_data
-"force.redo" -> extract_tree_ring_data
+force_redo -> extract_tree_ring_data
 
 /* End of double cluster for drawing box around nodes in workflow */
 }}

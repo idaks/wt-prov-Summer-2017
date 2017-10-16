@@ -1,12 +1,12 @@
 
 % FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
-program(1, 'get_itrdb_data', 'get_itrdb_data', 1, 81).
+program(1, 'get_itrdb_data', 'get_itrdb_data', 1, 80).
 program(2, 'create_shapefile_dir', 'get_itrdb_data.create_shapefile_dir', 8, 14).
 program(3, 'download_shapefile_archive', 'get_itrdb_data.download_shapefile_archive', 15, 23).
 program(4, 'uncompress_shapefile', 'get_itrdb_data.uncompress_shapefile', 24, 40).
 program(5, 'read_shapefile', 'get_itrdb_data.read_shapefile', 41, 49).
 program(6, 'get_treepolygon', 'get_itrdb_data.get_treepolygon', 50, 60).
-program(7, 'extract_tree_ring_data', 'get_itrdb_data.extract_tree_ring_data', 61, 80).
+program(7, 'extract_tree_ring_data', 'get_itrdb_data.extract_tree_ring_data', 61, 79).
 
 % FACT: workflow(program_id).
 workflow(1).
@@ -47,14 +47,14 @@ port(22, 'in', 'quadsegs', 'get_itrdb_data.get_treepolygon<-quadsegs', 56, 16).
 port(23, 'out', 'template', 'get_itrdb_data.get_treepolygon->template', 58, 17).
 port(24, 'in', 'polygon', 'get_itrdb_data.extract_tree_ring_data<-polygon', 63, 17).
 port(25, 'param', 'label', 'get_itrdb_data.extract_tree_ring_data<-label', 65, 18).
-port(26, 'param', 'raw.dir', 'get_itrdb_data.extract_tree_ring_data<-raw.dir', 66, 19).
-port(27, 'param', 'extract.dir', 'get_itrdb_data.extract_tree_ring_data<-extract.dir', 68, 20).
-port(28, 'in', 'recon_year', 'get_itrdb_data.extract_tree_ring_data<-recon_year', 70, 21).
-port(29, 'param', 'calib.years', 'get_itrdb_data.extract_tree_ring_data<-calib.years', 72, 22).
-port(30, 'param', 'measurement_type', 'get_itrdb_data.extract_tree_ring_data<-measurement_type', 74, 23).
-port(31, 'param', 'chronology_type', 'get_itrdb_data.extract_tree_ring_data<-chronology_type', 75, 24).
-port(32, 'param', 'force.redo', 'get_itrdb_data.extract_tree_ring_data<-force.redo', 76, 25).
-port(33, 'out', 'list', 'get_itrdb_data.extract_tree_ring_data->list', 77, 26).
+port(26, 'param', 'raw_dir', 'get_itrdb_data.extract_tree_ring_data<-raw_dir', 66, 19).
+port(27, 'param', 'extraction_dir', 'get_itrdb_data.extract_tree_ring_data<-extraction_dir', 68, 20).
+port(28, 'in', 'prediction_years', 'get_itrdb_data.extract_tree_ring_data<-prediction_years', 70, 21).
+port(29, 'param', 'calib_years', 'get_itrdb_data.extract_tree_ring_data<-calib_years', 71, 22).
+port(30, 'param', 'measurement_type', 'get_itrdb_data.extract_tree_ring_data<-measurement_type', 73, 23).
+port(31, 'param', 'chronology_type', 'get_itrdb_data.extract_tree_ring_data<-chronology_type', 74, 24).
+port(32, 'param', 'force_redo', 'get_itrdb_data.extract_tree_ring_data<-force_redo', 75, 25).
+port(33, 'out', 'list', 'get_itrdb_data.extract_tree_ring_data->list', 76, 26).
 
 % FACT: port_alias(port_id, alias).
 port_alias(5, 'study_region').
@@ -70,7 +70,6 @@ port_alias(21, 'dataframe').
 port_alias(22, 'segments_approx_quarter_circle').
 port_alias(23, 'treepolygon').
 port_alias(24, 'treepolygon').
-port_alias(28, 'prediction_years').
 port_alias(29, 'calibration_years').
 port_alias(33, 'itrdb').
 
@@ -85,7 +84,7 @@ port_uri_template(15, 'file:data/{study_region}/{study_region}_tracts/{study_reg
 port_uri_template(16, 'file:data/{study_region}/{study_region}_tracts/nps_tracts.xml').
 port_uri_template(26, 'file:data/{study_region}/RAW').
 port_uri_template(27, 'file:data/{study_region}/ITRDB').
-port_uri_template(33, 'file:data/IRTDB.Rda').
+port_uri_template(33, 'file:data/itrdb.rda').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).
@@ -143,13 +142,13 @@ data(15, 'tree_buffer', 'get_itrdb_data[tree_buffer]').
 data(16, 'segments_approx_quarter_circle', 'get_itrdb_data[segments_approx_quarter_circle]').
 data(17, 'treepolygon', 'get_itrdb_data[treepolygon]').
 data(18, 'label', 'get_itrdb_data[label]').
-data(19, 'raw.dir', 'get_itrdb_data[raw.dir]').
-data(20, 'extract.dir', 'get_itrdb_data[extract.dir]').
+data(19, 'raw_dir', 'get_itrdb_data[raw_dir]').
+data(20, 'extraction_dir', 'get_itrdb_data[extraction_dir]').
 data(21, 'prediction_years', 'get_itrdb_data[prediction_years]').
 data(22, 'calibration_years', 'get_itrdb_data[calibration_years]').
 data(23, 'measurement_type', 'get_itrdb_data[measurement_type]').
 data(24, 'chronology_type', 'get_itrdb_data[chronology_type]').
-data(25, 'force.redo', 'get_itrdb_data[force.redo]').
+data(25, 'force_redo', 'get_itrdb_data[force_redo]').
 data(26, 'itrdb', 'get_itrdb_data[itrdb]').
 
 % FACT: channel(channel_id, data_id).

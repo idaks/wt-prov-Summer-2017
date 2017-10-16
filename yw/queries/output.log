@@ -1,0 +1,68 @@
+
+
+---------------------------------------------------------------------------------------------------
+Q2_Pro : List the script inputs that are upstream of data product prism_data_for_coordinates.
+
+q2_pro(DataProduct, InputDataName)
+...................................................................................................
+q2_pro(prism_data_for_coordinates,prism_data_for_coordinates).
+q2_pro(prism_data_for_coordinates,tree_ring_data).
+q2_pro(prism_data_for_coordinates,historical_precip_data).
+q2_pro(prism_data_for_coordinates,user_prediction_years).
+q2_pro(prism_data_for_coordinates,user_map_marker_pos).
+
+
+---------------------------------------------------------------------------------------------------
+Q3_Pro : List the outputs that depend on itrdb.
+
+q3_pro(UpstreamDataName, OutputDataName)
+...................................................................................................
+q3_pro(itrdb,tree_species_used).
+
+
+---------------------------------------------------------------------------------------------------
+Q3_Pro : List the outputs that depend on prism_data.
+
+q3_pro(UpstreamDataName, OutputDataName)
+...................................................................................................
+q3_pro(prism_data,paleocar_log_file).
+q3_pro(prism_data,uncertainty_graph).
+q3_pro(prism_data,paleocar_models).
+q3_pro(prism_data,uncertainty_model).
+q3_pro(prism_data,prediction_graph).
+q3_pro(prism_data,prediction_model).
+q3_pro(prism_data,prism_data).
+
+
+---------------------------------------------------------------------------------------------------
+Q3_Pro : List the outputs that depend on paleocar_models.
+
+q3_pro(UpstreamDataName, OutputDataName)
+...................................................................................................
+q3_pro(paleocar_models,tree_ring_values).
+
+
+---------------------------------------------------------------------------------------------------
+Q2_Pro : List the script inputs that are upstream of data product paleocar_models.
+
+q2_pro(DataProduct, InputDataName)
+...................................................................................................
+q2_pro(paleocar_models,prism_data_for_coordinates).
+q2_pro(paleocar_models,prediction_years).
+q2_pro(paleocar_models,min_width).
+q2_pro(paleocar_models,itrdb).
+q2_pro(paleocar_models,calibration_years).
+q2_pro(paleocar_models,label).
+
+
+---------------------------------------------------------------------------------------------------
+Q3_Pro : List the outputs that depend on label.
+
+q3_pro(UpstreamDataName, OutputDataName)
+...................................................................................................
+q3_pro(label,uncertainty_model).
+q3_pro(label,uncertainty_graph).
+q3_pro(label,prediction_model).
+q3_pro(label,prediction_graph).
+q3_pro(label,paleocar_log_file).
+q3_pro(label,paleocar_models).

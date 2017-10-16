@@ -21,11 +21,12 @@ setwd("D:\\Study\\Internship\\WT_PaleoCar_2017\\meteor_example\\wt-prov-summer-2
 ##### GRCA Spatial Polygon
 
 #@begin get_itrdb_data @desc get the tree ring chronologies for reconstruction of the paleoclimate. 
-#@in shapefile_archive   @uri http://nrdata.nps.gov/programs/Lands/{study_region}_tracts.zip 
+#@in shapefile_archive   @uri http://nrdata.nps.gov/programs/Lands/{study_region}_tracts.zip
 #@in study_region
 #@in prediction_years
 #@out itrdb 
 
+study_region="GRCA"
 
 #@begin create_shapefile_dir @desc create a direcorty for downloading the shapefiles for the study region.
 #@in dir_name @as study_region
@@ -49,6 +50,7 @@ FedData::download_data("http://nrdata.nps.gov/programs/Lands/GRCA_tracts.zip", d
 #@in zipfile @as compressed_shapefile  
 #@in dir_name @as user_created_dir
 # uncompress shapefile directory
+study_region="GRCA"
 utils::unzip("./GRCA/GRCA_tracts.zip", exdir="./GRCA/grca_tracts")
 
 #@out shapefiles_dir @uri file:data/{study_region}/{study_region}_tracts
@@ -108,16 +110,16 @@ treePoly <- suppressWarnings(rgeos::gBuffer(grca, width=tree.buffer, quadsegs=10
 #@begin extract_tree_ring_data @desc get all the tree ring chronologies and extract the values for the study region.
 #@in polygon @as treepolygon
 #@param label 
-#@param raw.dir @uri file:data/{study_region}/RAW/
-#@param extract.dir @uri file:data/{study_region}/ITRDB/
-#@in recon_year @as prediction_years
-#@param calib.years @as calibration_years
+#@param raw_dir @uri file:data/{study_region}/RAW/
+#@param extraction_dir @uri file:data/{study_region}/ITRDB/
+#@in prediction_years
+#@param calib_years @as calibration_years
 #@param measurement_type 
 #@param chronology_type 
-#@param force.redo 
+#@param force_redo 
 
-itrdb <- FedData::get_itrdb(template=treePoly, label="GRCA_PLUS_10DEG", raw.dir = "./GRCA/RAW/ITRDB/", extraction.dir = "./GRCA/ITRDB/", recon.years=prediction.years, 
-                            calib.years=calibration.years, measurement.type="Ring Width", chronology.type="ARSTND", force.redo = TRUE)
+itrdb <- FedData::get_itrdb(template=treePoly, label="GRCA_PLUS_10DEG", raw_dir = "./GRCA/RAW/ITRDB/", extraction_dir = "./GRCA/ITRDB/", recon_years=prediction.years, 
+                            calib_years=calibration.years, measurement.type="Ring Width", chronology.type="ARSTND", force_redo = TRUE)
 
 #unlink("./data-raw/ITRDB_GRCA", recursive = T)
 
@@ -142,7 +144,7 @@ readr::write_rds(itrdb,
                  compress = "gz")
 
 
-#@out list @as itrdb @uri file:data/IRTDB.Rda
+#@out list @as itrdb @uri file:data/itrdb.rda
 #@end  extract_tree_ring_data
 
  
