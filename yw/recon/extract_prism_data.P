@@ -1,22 +1,18 @@
 
 % FACT: resource(resource_id, resource_uri).
 resource(1, 'data/112W36N.nc').
-resource(2, '.output/3aa1442c/Run_output_1/112W36N.csv').
-resource(3, '.output/4e05ed23/Run_output_1/112W36N.csv').
-resource(4, '.output/537b84dd/Run_output_1/112W36N.csv').
-resource(5, '.output/6355972d/Run_output_1/112W36N.csv').
-resource(6, '.output/97b06008/Run_output_1/112W36N.csv').
-resource(7, '.output/97b06008/Run_output_2/112W36N.csv').
-resource(8, '.output/97b06008/Run_output_3/112W36N.csv').
-resource(9, '.output/b1d9072f/Run_output_1/112W36N.csv').
-resource(10, '.output/e0993d31/Run_output_1/112W36N.csv').
-resource(11, '.output/e0993d31/Run_output_2/112W36N.csv').
-resource(12, '.output/f2f1e1a6/Run_output_1/112W36N.csv').
-resource(13, '.output/f2f1e1a6/Run_output_2/112W36N.csv').
-resource(14, '.output/f2f1e1a6/Run_output_3/112W36N.csv').
-resource(15, '.output/f2f1e1a6/Run_output_4/112W36N.csv').
-resource(16, '.output/f2f1e1a6/Run_output_5/112W36N.csv').
-resource(17, '.output/f813c791/Run_output_1/112W36N.csv').
+resource(2, '.output/3b7bf6b2/Run_output_1/112W36N.csv').
+resource(3, '.output/3b7bf6b2/Run_output_2/112W36N.csv').
+resource(4, '.output/3b7bf6b2/Run_output_3/112W36N.csv').
+resource(5, '.output/3b7bf6b2/Run_output_4/112W36N.csv').
+resource(6, '.output/6f63ff30/Run_output_1/112W36N.csv').
+resource(7, '.output/97b06008/Run_output_1/112W36N.csv').
+resource(8, '.output/97b06008/Run_output_2/112W36N.csv').
+resource(9, '.output/97b06008/Run_output_3/112W36N.csv').
+resource(10, '.output/b1d9072f/Run_output_1/112W36N.csv').
+resource(11, '.output/e0993d31/Run_output_1/112W36N.csv').
+resource(12, '.output/e0993d31/Run_output_2/112W36N.csv').
+resource(13, '.output/f813c791/Run_output_1/112W36N.csv').
 
 % FACT: data_resource(data_id, resource_id).
 data_resource(2, 1).
@@ -32,10 +28,6 @@ data_resource(3, 10).
 data_resource(3, 11).
 data_resource(3, 12).
 data_resource(3, 13).
-data_resource(3, 14).
-data_resource(3, 15).
-data_resource(3, 16).
-data_resource(3, 17).
 data_resource(2, 1).
 data_resource(3, 2).
 data_resource(3, 3).
@@ -49,75 +41,55 @@ data_resource(3, 10).
 data_resource(3, 11).
 data_resource(3, 12).
 data_resource(3, 13).
-data_resource(3, 14).
-data_resource(3, 15).
-data_resource(3, 16).
-data_resource(3, 17).
 
 % FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
-uri_variable_value(2, 1, '3aa1442c').
+uri_variable_value(2, 1, '3b7bf6b2').
 uri_variable_value(2, 2, 'Run_output_1').
-uri_variable_value(3, 1, '4e05ed23').
-uri_variable_value(3, 2, 'Run_output_1').
-uri_variable_value(4, 1, '537b84dd').
-uri_variable_value(4, 2, 'Run_output_1').
-uri_variable_value(5, 1, '6355972d').
-uri_variable_value(5, 2, 'Run_output_1').
-uri_variable_value(6, 1, '97b06008').
+uri_variable_value(3, 1, '3b7bf6b2').
+uri_variable_value(3, 2, 'Run_output_2').
+uri_variable_value(4, 1, '3b7bf6b2').
+uri_variable_value(4, 2, 'Run_output_3').
+uri_variable_value(5, 1, '3b7bf6b2').
+uri_variable_value(5, 2, 'Run_output_4').
+uri_variable_value(6, 1, '6f63ff30').
 uri_variable_value(6, 2, 'Run_output_1').
 uri_variable_value(7, 1, '97b06008').
-uri_variable_value(7, 2, 'Run_output_2').
+uri_variable_value(7, 2, 'Run_output_1').
 uri_variable_value(8, 1, '97b06008').
-uri_variable_value(8, 2, 'Run_output_3').
-uri_variable_value(9, 1, 'b1d9072f').
-uri_variable_value(9, 2, 'Run_output_1').
-uri_variable_value(10, 1, 'e0993d31').
+uri_variable_value(8, 2, 'Run_output_2').
+uri_variable_value(9, 1, '97b06008').
+uri_variable_value(9, 2, 'Run_output_3').
+uri_variable_value(10, 1, 'b1d9072f').
 uri_variable_value(10, 2, 'Run_output_1').
 uri_variable_value(11, 1, 'e0993d31').
-uri_variable_value(11, 2, 'Run_output_2').
-uri_variable_value(12, 1, 'f2f1e1a6').
-uri_variable_value(12, 2, 'Run_output_1').
-uri_variable_value(13, 1, 'f2f1e1a6').
-uri_variable_value(13, 2, 'Run_output_2').
-uri_variable_value(14, 1, 'f2f1e1a6').
-uri_variable_value(14, 2, 'Run_output_3').
-uri_variable_value(15, 1, 'f2f1e1a6').
-uri_variable_value(15, 2, 'Run_output_4').
-uri_variable_value(16, 1, 'f2f1e1a6').
-uri_variable_value(16, 2, 'Run_output_5').
-uri_variable_value(17, 1, 'f813c791').
-uri_variable_value(17, 2, 'Run_output_1').
-uri_variable_value(2, 3, '3aa1442c').
+uri_variable_value(11, 2, 'Run_output_1').
+uri_variable_value(12, 1, 'e0993d31').
+uri_variable_value(12, 2, 'Run_output_2').
+uri_variable_value(13, 1, 'f813c791').
+uri_variable_value(13, 2, 'Run_output_1').
+uri_variable_value(2, 3, '3b7bf6b2').
 uri_variable_value(2, 4, 'Run_output_1').
-uri_variable_value(3, 3, '4e05ed23').
-uri_variable_value(3, 4, 'Run_output_1').
-uri_variable_value(4, 3, '537b84dd').
-uri_variable_value(4, 4, 'Run_output_1').
-uri_variable_value(5, 3, '6355972d').
-uri_variable_value(5, 4, 'Run_output_1').
-uri_variable_value(6, 3, '97b06008').
+uri_variable_value(3, 3, '3b7bf6b2').
+uri_variable_value(3, 4, 'Run_output_2').
+uri_variable_value(4, 3, '3b7bf6b2').
+uri_variable_value(4, 4, 'Run_output_3').
+uri_variable_value(5, 3, '3b7bf6b2').
+uri_variable_value(5, 4, 'Run_output_4').
+uri_variable_value(6, 3, '6f63ff30').
 uri_variable_value(6, 4, 'Run_output_1').
 uri_variable_value(7, 3, '97b06008').
-uri_variable_value(7, 4, 'Run_output_2').
+uri_variable_value(7, 4, 'Run_output_1').
 uri_variable_value(8, 3, '97b06008').
-uri_variable_value(8, 4, 'Run_output_3').
-uri_variable_value(9, 3, 'b1d9072f').
-uri_variable_value(9, 4, 'Run_output_1').
-uri_variable_value(10, 3, 'e0993d31').
+uri_variable_value(8, 4, 'Run_output_2').
+uri_variable_value(9, 3, '97b06008').
+uri_variable_value(9, 4, 'Run_output_3').
+uri_variable_value(10, 3, 'b1d9072f').
 uri_variable_value(10, 4, 'Run_output_1').
 uri_variable_value(11, 3, 'e0993d31').
-uri_variable_value(11, 4, 'Run_output_2').
-uri_variable_value(12, 3, 'f2f1e1a6').
-uri_variable_value(12, 4, 'Run_output_1').
-uri_variable_value(13, 3, 'f2f1e1a6').
-uri_variable_value(13, 4, 'Run_output_2').
-uri_variable_value(14, 3, 'f2f1e1a6').
-uri_variable_value(14, 4, 'Run_output_3').
-uri_variable_value(15, 3, 'f2f1e1a6').
-uri_variable_value(15, 4, 'Run_output_4').
-uri_variable_value(16, 3, 'f2f1e1a6').
-uri_variable_value(16, 4, 'Run_output_5').
-uri_variable_value(17, 3, 'f813c791').
-uri_variable_value(17, 4, 'Run_output_1').
+uri_variable_value(11, 4, 'Run_output_1').
+uri_variable_value(12, 3, 'e0993d31').
+uri_variable_value(12, 4, 'Run_output_2').
+uri_variable_value(13, 3, 'f813c791').
+uri_variable_value(13, 4, 'Run_output_1').
 
 % FACT: log_variable_value(resource_id, log_entry_id, log_variable_id, log_variable_value).

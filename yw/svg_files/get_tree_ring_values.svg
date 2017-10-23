@@ -37,10 +37,10 @@
 </g>
 <!-- tree_ring_values -->
 <g id="node2" class="node"><title>tree_ring_values</title>
-<path fill="#ffffcc" stroke="black" d="M87.5,-78.5C87.5,-78.5 518.5,-78.5 518.5,-78.5 524.5,-78.5 530.5,-84.5 530.5,-90.5 530.5,-90.5 530.5,-112.5 530.5,-112.5 530.5,-118.5 524.5,-124.5 518.5,-124.5 518.5,-124.5 87.5,-124.5 87.5,-124.5 81.5,-124.5 75.5,-118.5 75.5,-112.5 75.5,-112.5 75.5,-90.5 75.5,-90.5 75.5,-84.5 81.5,-78.5 87.5,-78.5"/>
+<path fill="#ffffcc" stroke="black" d="M89,-78.5C89,-78.5 517,-78.5 517,-78.5 523,-78.5 529,-84.5 529,-90.5 529,-90.5 529,-112.5 529,-112.5 529,-118.5 523,-124.5 517,-124.5 517,-124.5 89,-124.5 89,-124.5 83,-124.5 77,-118.5 77,-112.5 77,-112.5 77,-90.5 77,-90.5 77,-84.5 83,-78.5 89,-78.5"/>
 <text text-anchor="middle" x="303" y="-109.3" font-family="Helvetica,sans-Serif" font-size="14.00">tree_ring_values</text>
-<polyline fill="none" stroke="black" points="75.5,-101.5 530.5,-101.5 "/>
-<text text-anchor="middle" x="303" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">file:.output/{session_id}/{run_id}/{user_input_year}_tree_ring_data.csv</text>
+<polyline fill="none" stroke="black" points="77,-101.5 529,-101.5 "/>
+<text text-anchor="middle" x="303" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00">file:.output/{session_id}/{run_id}/{calibration_year}_tree_ring_data.csv</text>
 </g>
 <!-- get_tree_ring_values&#45;&gt;tree_ring_values -->
 <g id="edge1" class="edge"><title>get_tree_ring_values&#45;&gt;tree_ring_values</title>
@@ -58,23 +58,23 @@
 </g>
 <!-- paleocar_models -->
 <g id="node3" class="node"><title>paleocar_models</title>
-<path fill="#ffffcc" stroke="black" d="M213,-244.5C213,-244.5 529,-244.5 529,-244.5 535,-244.5 541,-250.5 541,-256.5 541,-256.5 541,-278.5 541,-278.5 541,-284.5 535,-290.5 529,-290.5 529,-290.5 213,-290.5 213,-290.5 207,-290.5 201,-284.5 201,-278.5 201,-278.5 201,-256.5 201,-256.5 201,-250.5 207,-244.5 213,-244.5"/>
-<text text-anchor="middle" x="371" y="-275.3" font-family="Helvetica,sans-Serif" font-size="14.00">paleocar_models</text>
-<polyline fill="none" stroke="black" points="201,-267.5 541,-267.5 "/>
-<text text-anchor="middle" x="371" y="-252.3" font-family="Helvetica,sans-Serif" font-size="14.00">file:.output/{session_id}{run_id}/{label}_models.Rds</text>
+<path fill="#ffffcc" stroke="black" d="M212,-244.5C212,-244.5 528,-244.5 528,-244.5 534,-244.5 540,-250.5 540,-256.5 540,-256.5 540,-278.5 540,-278.5 540,-284.5 534,-290.5 528,-290.5 528,-290.5 212,-290.5 212,-290.5 206,-290.5 200,-284.5 200,-278.5 200,-278.5 200,-256.5 200,-256.5 200,-250.5 206,-244.5 212,-244.5"/>
+<text text-anchor="middle" x="370" y="-275.3" font-family="Helvetica,sans-Serif" font-size="14.00">paleocar_models</text>
+<polyline fill="none" stroke="black" points="200,-267.5 540,-267.5 "/>
+<text text-anchor="middle" x="370" y="-252.3" font-family="Helvetica,sans-Serif" font-size="14.00">file:.output/{session_id}{run_id}/{label}_models.Rds</text>
 </g>
 <!-- paleocar_models&#45;&gt;get_tree_ring_values -->
 <g id="edge2" class="edge"><title>paleocar_models&#45;&gt;get_tree_ring_values</title>
-<path fill="none" stroke="black" d="M352.419,-244.366C344.923,-235.437 336.158,-224.997 328.109,-215.409"/>
-<polygon fill="black" stroke="black" points="330.669,-213.015 321.559,-207.607 325.308,-217.516 330.669,-213.015"/>
+<path fill="none" stroke="black" d="M351.692,-244.366C344.306,-235.437 335.67,-224.997 327.739,-215.409"/>
+<polygon fill="black" stroke="black" points="330.357,-213.082 321.286,-207.607 324.963,-217.543 330.357,-213.082"/>
 </g>
-<!-- user_input_year -->
-<g id="node4" class="node"><title>user_input_year</title>
-<path fill="#ffffcc" stroke="black" d="M171,-285.5C171,-285.5 77,-285.5 77,-285.5 71,-285.5 65,-279.5 65,-273.5 65,-273.5 65,-261.5 65,-261.5 65,-255.5 71,-249.5 77,-249.5 77,-249.5 171,-249.5 171,-249.5 177,-249.5 183,-255.5 183,-261.5 183,-261.5 183,-273.5 183,-273.5 183,-279.5 177,-285.5 171,-285.5"/>
-<text text-anchor="middle" x="124" y="-263.8" font-family="Helvetica,sans-Serif" font-size="14.00">user_input_year</text>
+<!-- calibration_year -->
+<g id="node4" class="node"><title>calibration_year</title>
+<path fill="#ffffcc" stroke="black" d="M170,-285.5C170,-285.5 78,-285.5 78,-285.5 72,-285.5 66,-279.5 66,-273.5 66,-273.5 66,-261.5 66,-261.5 66,-255.5 72,-249.5 78,-249.5 78,-249.5 170,-249.5 170,-249.5 176,-249.5 182,-255.5 182,-261.5 182,-261.5 182,-273.5 182,-273.5 182,-279.5 176,-285.5 170,-285.5"/>
+<text text-anchor="middle" x="124" y="-263.8" font-family="Helvetica,sans-Serif" font-size="14.00">calibration_year</text>
 </g>
-<!-- user_input_year&#45;&gt;get_tree_ring_values -->
-<g id="edge3" class="edge"><title>user_input_year&#45;&gt;get_tree_ring_values</title>
+<!-- calibration_year&#45;&gt;get_tree_ring_values -->
+<g id="edge3" class="edge"><title>calibration_year&#45;&gt;get_tree_ring_values</title>
 <path fill="none" stroke="black" d="M161.961,-249.322C186.013,-238.438 217.598,-224.146 244.78,-211.846"/>
 <polygon fill="black" stroke="black" points="246.523,-214.898 254.191,-207.587 243.637,-208.521 246.523,-214.898"/>
 </g>
@@ -84,15 +84,15 @@
 </g>
 <!-- paleocar_models_input_port&#45;&gt;paleocar_models -->
 <g id="edge4" class="edge"><title>paleocar_models_input_port&#45;&gt;paleocar_models</title>
-<path fill="none" stroke="black" d="M268.504,-333.509C279.443,-326.571 304.83,-310.469 327.6,-296.027"/>
-<polygon fill="black" stroke="black" points="329.593,-298.908 336.163,-290.596 325.843,-292.996 329.593,-298.908"/>
+<path fill="none" stroke="black" d="M268.453,-333.509C279.291,-326.571 304.443,-310.469 327.002,-296.027"/>
+<polygon fill="black" stroke="black" points="328.95,-298.935 335.485,-290.596 325.176,-293.04 328.95,-298.935"/>
 </g>
-<!-- user_input_year_input_port -->
-<g id="node6" class="node"><title>user_input_year_input_port</title>
+<!-- calibration_year_input_port -->
+<g id="node6" class="node"><title>calibration_year_input_port</title>
 <ellipse fill="#ffffff" stroke="black" cx="231" cy="-338" rx="7" ry="7"/>
 </g>
-<!-- user_input_year_input_port&#45;&gt;user_input_year -->
-<g id="edge5" class="edge"><title>user_input_year_input_port&#45;&gt;user_input_year</title>
+<!-- calibration_year_input_port&#45;&gt;calibration_year -->
+<g id="edge5" class="edge"><title>calibration_year_input_port&#45;&gt;calibration_year</title>
 <path fill="none" stroke="black" d="M225.547,-333.509C213.485,-325.787 183.696,-306.716 159.482,-291.215"/>
 <polygon fill="black" stroke="black" points="161.165,-288.137 150.856,-285.693 157.391,-294.032 161.165,-288.137"/>
 </g>

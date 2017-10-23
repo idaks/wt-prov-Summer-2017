@@ -13,6 +13,7 @@ set_prolog_flag(unknown, fail).
 ['../recon_rules.P'].
 
 [user].
+
 graph :-
 
     yw_workflow_script(W, WorkflowName, _, _),

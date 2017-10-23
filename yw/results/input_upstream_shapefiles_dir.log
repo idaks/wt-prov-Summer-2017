@@ -1,9 +1,0 @@
-
-
----------------------------------------------------------------------------------------------------
-Q2_Pro : List the script inputs that are upstream of data product .
-
-q2_pro(DataProduct, InputDataName)
-...................................................................................................
-q2_pro(shapefiles_dir,shapefile_archive).
-q2_pro(shapefiles_dir,study_region).
