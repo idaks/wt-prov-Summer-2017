@@ -20,8 +20,8 @@ import './main.html';
  // @param tree_ring_data
  
 
- // @out prism_data @file data/112W36N.nc  
- // @out itrdb @file data/itrdb.rda 
+ // @out prism_data @file data/ITRDB.rda  
+ // @out itrdb @file data/ITRDB.rda 
  // @out prediction_graph
  // @out paleocar_models 
  // @out prediction_model  
@@ -182,7 +182,7 @@ Template.map.onCreated(function() {
     // @param tree_ring_data 
     
     // @out data @as prism_data @uri file:data/112W36N.nc @desc file containing the precipitation values for the particular region.
-    // @out tree_ring @as itrdb @uri file:data/itrdb.rda @desc tree ring chronologies database
+    // @out tree_ring @as itrdb @uri file:data/ITRDBA.rda @desc tree ring chronologies database
     // @end acccess_static_server_files
  
     marker = new google.maps.Marker
@@ -372,8 +372,8 @@ Template.btn_exec_paleocar.events({
     session_id = session_id
 	run_id = run_id
     
-    // @out pred_model @as prediction_model @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
-    // @out pred_plot @as prediction_graph  @uri file:.output/{session_id}/{run_id}/{label}_predictions.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+    // @out pred_model @as prediction_models @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
+    // @out pred_plot @as prediction_graph  @uri file:.output/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
     // @out uncertain_model @as uncertainty_model @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
     // @out pal_model @as paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction.
     // @out uncertain_plot @as uncertainty_graph  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.

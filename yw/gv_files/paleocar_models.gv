@@ -31,45 +31,45 @@ calculate_Models
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
 
 /* Nodes for non-parameter data channels in workflow */
-paleocar_models
-itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> data/itrdb.Rda}"];
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/ITRDB.Rda}"];
+calibration_years
 prediction_years
-reconstruction_matrix
+"reconstruction.matrix"
 prism_data_for_coordinates [shape=record rankdir=LR label="{<f0> prism_data_for_coordinates |<f1> file\:.output/\{session_id\}/\{run_id\}/112W36N.csv}"];
-predictor_matrix
+"predictor.matrix"
 predlist
 carscores
-max_preds
-linear_models
+"max.preds"
+"linear.models"
+paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_model.Rds}"];
 
 /* Style for nodes representing parameter channels in workflow */
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
 
 /* Nodes representing parameter channels in workflow */
-calibration_years
 min_width
 
 /* Edges representing connections between programs and channels */
-get_predictor_matrix -> predictor_matrix
-get_predictor_matrix -> max_preds
+get_predictor_matrix -> "predictor.matrix"
+get_predictor_matrix -> "max.preds"
 itrdb -> get_predictor_matrix
 calibration_years -> get_predictor_matrix
 min_width -> get_predictor_matrix
-get_reconstruction_matrix -> reconstruction_matrix
+get_reconstruction_matrix -> "reconstruction.matrix"
 itrdb -> get_reconstruction_matrix
 prediction_years -> get_reconstruction_matrix
 min_width -> get_reconstruction_matrix
 get_predlist -> predlist
-reconstruction_matrix -> get_predlist
+"reconstruction.matrix" -> get_predlist
 get_carscores -> carscores
 prism_data_for_coordinates -> get_carscores
-predictor_matrix -> get_carscores
-calculate_Models -> linear_models
+"predictor.matrix" -> get_carscores
+calculate_Models -> "linear.models"
 predlist -> calculate_Models
 carscores -> calculate_Models
-max_preds -> calculate_Models
+"max.preds" -> calculate_Models
 optimizeModels -> paleocar_models
-linear_models -> optimizeModels
+"linear.models" -> optimizeModels
 
 /* End of double cluster for drawing box around nodes in workflow */
 }}

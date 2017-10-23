@@ -55,14 +55,6 @@ sh render_wf_graph_downstream_of_data_q3.sh main.P itrdb itrdb | dot -Tpdf -o ..
 sh render_wf_graph_downstream_of_data_q3.sh main.P prediction_year prediction_year | dot -Tpdf -o ../results/recon_wf_ds_prediction_year.pdf 
 
 
-### Complete Recon WF graphs for a session input ### 
-## Recon graph for the data-products generated in one session of the run. 
-sh render_recon_complete_wf_graph_session.sh main.P  3b7bf6b2 | dot -Tpdf -o ../results/render_recon_complete_wf_graph_main_3b7bf6b2.pdf 
-
-## Recon graph for the data-products generated in one session of the run. 
-sh render_recon_complete_wf_graph_session.sh get_tree_ring_values.P  1950 | dot -Tpdf -o ../results/render_recon_complete_wf_graph_tree_ring_1950.pdf 
-
-
 
 
 

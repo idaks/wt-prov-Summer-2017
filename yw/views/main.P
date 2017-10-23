@@ -76,7 +76,7 @@ yw_data(28,calibration_years,1,'paleocar_web-app_data_flow').
 yw_data(29,label,1,'paleocar_web-app_data_flow').
 yw_data(30,min_width,1,'paleocar_web-app_data_flow').
 yw_data(31,verbose,1,'paleocar_web-app_data_flow').
-yw_data(32,prediction_model,1,'paleocar_web-app_data_flow').
+yw_data(32,prediction_models,1,'paleocar_web-app_data_flow').
 yw_data(33,prediction_graph,1,'paleocar_web-app_data_flow').
 yw_data(34,uncertainty_model,1,'paleocar_web-app_data_flow').
 yw_data(35,paleocar_models,1,'paleocar_web-app_data_flow').
@@ -130,7 +130,7 @@ yw_step_output(2,get_client_data,out,22,prediction_years,22,prediction_years).
 yw_step_output(3,acccess_static_server_files,out,25,data,25,prism_data).
 yw_step_output(3,acccess_static_server_files,out,26,tree_ring,26,itrdb).
 yw_step_output(4,extract_prism_data,out,31,prism_data_for_coordinates,27,prism_data_for_coordinates).
-yw_step_output(5,exec_paleocar,out,39,pred_model,32,prediction_model).
+yw_step_output(5,exec_paleocar,out,39,pred_model,32,prediction_models).
 yw_step_output(5,exec_paleocar,out,40,pred_plot,33,prediction_graph).
 yw_step_output(5,exec_paleocar,out,41,uncertain_model,34,uncertainty_model).
 yw_step_output(5,exec_paleocar,out,42,pal_model,35,paleocar_models).
@@ -170,7 +170,6 @@ yw_outflow(3,acccess_static_server_files,25,prism_data,1,'paleocar_web-app_data_
 yw_outflow(3,acccess_static_server_files,26,itrdb,1,'paleocar_web-app_data_flow',10,itrdb).
 yw_outflow(5,exec_paleocar,33,prediction_graph,1,'paleocar_web-app_data_flow',11,prediction_graph).
 yw_outflow(5,exec_paleocar,35,paleocar_models,1,'paleocar_web-app_data_flow',12,paleocar_models).
-yw_outflow(5,exec_paleocar,32,prediction_model,1,'paleocar_web-app_data_flow',13,prediction_model).
 yw_outflow(5,exec_paleocar,37,paleocar_log_file,1,'paleocar_web-app_data_flow',14,paleocar_log_file).
 yw_outflow(5,exec_paleocar,34,uncertainty_model,1,'paleocar_web-app_data_flow',15,uncertainty_model).
 yw_outflow(5,exec_paleocar,36,uncertainty_graph,1,'paleocar_web-app_data_flow',16,uncertainty_graph).
@@ -259,7 +258,7 @@ yw_qualified_name(data,28,'paleocar_web-app_data_flow[calibration_years]').
 yw_qualified_name(data,29,'paleocar_web-app_data_flow[label]').
 yw_qualified_name(data,30,'paleocar_web-app_data_flow[min_width]').
 yw_qualified_name(data,31,'paleocar_web-app_data_flow[verbose]').
-yw_qualified_name(data,32,'paleocar_web-app_data_flow[prediction_model]').
+yw_qualified_name(data,32,'paleocar_web-app_data_flow[prediction_models]').
 yw_qualified_name(data,33,'paleocar_web-app_data_flow[prediction_graph]').
 yw_qualified_name(data,34,'paleocar_web-app_data_flow[uncertainty_model]').
 yw_qualified_name(data,35,'paleocar_web-app_data_flow[paleocar_models]').

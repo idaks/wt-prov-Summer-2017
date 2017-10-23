@@ -9,14 +9,16 @@ annotation(3, 1, 22, 'in', '@in', 'models').
 annotation(4, 1, 22, 'as', '@as', 'paleocar_models').
 annotation(5, 1, 22, 'uri', '@uri', 'file:.output/{session_id}{run_id}/{label}_models.Rds').
 annotation(6, 1, 22, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
-annotation(7, 1, 23, 'in', '@in', 'calibration_year').
-annotation(8, 1, 44, 'out', '@out', 'tree_ring_values').
-annotation(9, 1, 44, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{calibration_year}_tree_ring_data.csv').
-annotation(10, 1, 45, 'end', '@end', 'get_tree_ring_values').
+annotation(7, 1, 23, 'in', '@in', 'prediction_year').
+annotation(8, 1, 23, 'as', '@as', 'user_input_year').
+annotation(9, 1, 44, 'out', '@out', 'tree_ring_values').
+annotation(10, 1, 44, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{user_input_year}_tree_ring_data.csv').
+annotation(11, 1, 45, 'end', '@end', 'get_tree_ring_chronologies').
 
 % FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
 annotation_qualifies(2, 1).
 annotation_qualifies(4, 3).
 annotation_qualifies(5, 3).
 annotation_qualifies(6, 3).
-annotation_qualifies(9, 8).
+annotation_qualifies(8, 7).
+annotation_qualifies(10, 9).

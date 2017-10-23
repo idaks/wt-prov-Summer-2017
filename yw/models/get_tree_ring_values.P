@@ -1,7 +1,7 @@
 
 % FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
-program(1, 'get_tree_ring_values', 'get_tree_ring_values', 1, 10).
-program(2, 'get_tree_ring_values', 'get_tree_ring_values.get_tree_ring_values', 1, 10).
+program(1, 'get_tree_ring_values', 'get_tree_ring_values', 1, 11).
+program(2, 'get_tree_ring_values', 'get_tree_ring_values.get_tree_ring_values', 1, 11).
 
 % FACT: workflow(program_id).
 workflow(1).
@@ -13,21 +13,23 @@ has_subprogram(1, 2).
 
 % FACT: port(port_id, port_type, port_name, qualified_port_name, port_annotation_id, data_id).
 port(1, 'in', 'models', 'get_tree_ring_values<-models', 3, 1).
-port(2, 'in', 'calibration_year', 'get_tree_ring_values<-calibration_year', 7, 2).
-port(3, 'out', 'tree_ring_values', 'get_tree_ring_values->tree_ring_values', 8, 3).
+port(2, 'in', 'prediction_year', 'get_tree_ring_values<-prediction_year', 7, 2).
+port(3, 'out', 'tree_ring_values', 'get_tree_ring_values->tree_ring_values', 9, 3).
 port(4, 'in', 'models', 'get_tree_ring_values.get_tree_ring_values<-models', 3, 1).
-port(5, 'in', 'calibration_year', 'get_tree_ring_values.get_tree_ring_values<-calibration_year', 7, 2).
-port(6, 'out', 'tree_ring_values', 'get_tree_ring_values.get_tree_ring_values->tree_ring_values', 8, 3).
+port(5, 'in', 'prediction_year', 'get_tree_ring_values.get_tree_ring_values<-prediction_year', 7, 2).
+port(6, 'out', 'tree_ring_values', 'get_tree_ring_values.get_tree_ring_values->tree_ring_values', 9, 3).
 
 % FACT: port_alias(port_id, alias).
 port_alias(1, 'paleocar_models').
+port_alias(2, 'user_input_year').
 port_alias(4, 'paleocar_models').
+port_alias(5, 'user_input_year').
 
 % FACT: port_uri_template(port_id, uri).
 port_uri_template(1, 'file:.output/{session_id}{run_id}/{label}_models.Rds').
-port_uri_template(3, 'file:.output/{session_id}/{run_id}/{calibration_year}_tree_ring_data.csv').
+port_uri_template(3, 'file:.output/{session_id}/{run_id}/{user_input_year}_tree_ring_data.csv').
 port_uri_template(4, 'file:.output/{session_id}{run_id}/{label}_models.Rds').
-port_uri_template(6, 'file:.output/{session_id}/{run_id}/{calibration_year}_tree_ring_data.csv').
+port_uri_template(6, 'file:.output/{session_id}/{run_id}/{user_input_year}_tree_ring_data.csv').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).
@@ -41,7 +43,7 @@ has_out_port(2, 6).
 
 % FACT: data(data_id, data_name, qualified_data_name).
 data(1, 'paleocar_models', '[paleocar_models]').
-data(2, 'calibration_year', '[calibration_year]').
+data(2, 'user_input_year', '[user_input_year]').
 data(3, 'tree_ring_values', '[tree_ring_values]').
 
 % FACT: channel(channel_id, data_id).
@@ -67,13 +69,13 @@ uri_variable(2, 'run_id', 1).
 uri_variable(3, 'label', 1).
 uri_variable(4, 'session_id', 3).
 uri_variable(5, 'run_id', 3).
-uri_variable(6, 'calibration_year', 3).
+uri_variable(6, 'user_input_year', 3).
 uri_variable(7, 'session_id', 4).
 uri_variable(8, 'run_id', 4).
 uri_variable(9, 'label', 4).
 uri_variable(10, 'session_id', 6).
 uri_variable(11, 'run_id', 6).
-uri_variable(12, 'calibration_year', 6).
+uri_variable(12, 'user_input_year', 6).
 
 % FACT: log_template(log_template_id, port_id, entry_template, log_annotation_id).
 

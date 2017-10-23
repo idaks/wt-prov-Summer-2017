@@ -25,10 +25,9 @@ node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname
 
 /* Nodes for non-parameter data channels in workflow */
 prism_data [shape=record rankdir=LR label="{<f0> prism_data |<f1> file\:data/112W36N.nc}"];
-itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/itrdb.rda}"];
-prediction_graph [shape=record rankdir=LR label="{<f0> prediction_graph |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_predictions.jpg}"];
+itrdb [shape=record rankdir=LR label="{<f0> itrdb |<f1> file\:data/ITRDBA.rda}"];
+prediction_graph [shape=record rankdir=LR label="{<f0> prediction_graph |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_prediction.jpg}"];
 paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_model.Rds}"];
-prediction_model [shape=record rankdir=LR label="{<f0> prediction_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_prediction.Rds}"];
 paleocar_log_file [shape=record rankdir=LR label="{<f0> paleocar_log_file |<f1> file\:.output/\{session_id\}/\{run_id\}/paleocar_model_log.txt}"];
 uncertainty_model [shape=record rankdir=LR label="{<f0> uncertainty_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.Rds}"];
 uncertainty_graph [shape=record rankdir=LR label="{<f0> uncertainty_graph |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.jpg}"];
@@ -67,7 +66,7 @@ coordinates -> extract_prism_data
 session_id -> extract_prism_data
 run_id -> extract_prism_data
 prism_data -> extract_prism_data
-exec_paleocar -> prediction_model
+exec_paleocar -> prediction_models
 exec_paleocar -> prediction_graph
 exec_paleocar -> uncertainty_model
 exec_paleocar -> paleocar_models
@@ -116,7 +115,6 @@ prism_data_output_port [label=""]
 itrdb_output_port [label=""]
 prediction_graph_output_port [label=""]
 paleocar_models_output_port [label=""]
-prediction_model_output_port [label=""]
 paleocar_log_file_output_port [label=""]
 uncertainty_model_output_port [label=""]
 uncertainty_graph_output_port [label=""]
@@ -139,7 +137,6 @@ prism_data -> prism_data_output_port
 itrdb -> itrdb_output_port
 prediction_graph -> prediction_graph_output_port
 paleocar_models -> paleocar_models_output_port
-prediction_model -> prediction_model_output_port
 paleocar_log_file -> paleocar_log_file_output_port
 uncertainty_model -> uncertainty_model_output_port
 uncertainty_graph -> uncertainty_graph_output_port
