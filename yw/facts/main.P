@@ -18,9 +18,9 @@ annotation(12, 1, 18, 'param', '@param', 'min_width').
 annotation(13, 1, 19, 'param', '@param', 'historical_precip_data').
 annotation(14, 1, 20, 'param', '@param', 'tree_ring_data').
 annotation(15, 1, 23, 'out', '@out', 'prism_data').
-annotation(16, 1, 23, 'file', '@file', 'data/ITRDB.rda').
+annotation(16, 1, 23, 'file', '@file', 'data/112W36N.nc').
 annotation(17, 1, 24, 'out', '@out', 'itrdb').
-annotation(18, 1, 24, 'file', '@file', 'data/ITRDB.rda').
+annotation(18, 1, 24, 'file', '@file', 'data/itrdb.rda').
 annotation(19, 1, 25, 'out', '@out', 'prediction_graph').
 annotation(20, 1, 26, 'out', '@out', 'paleocar_models').
 annotation(21, 1, 27, 'out', '@out', 'prediction_model').
@@ -48,7 +48,7 @@ annotation(42, 1, 184, 'uri', '@uri', 'file:data/112W36N.nc').
 annotation(43, 1, 184, 'desc', '@desc', 'file containing the precipitation values for the particular region.').
 annotation(44, 1, 185, 'out', '@out', 'tree_ring').
 annotation(45, 1, 185, 'as', '@as', 'itrdb').
-annotation(46, 1, 185, 'uri', '@uri', 'file:data/ITRDBA.rda').
+annotation(46, 1, 185, 'uri', '@uri', 'file:data/itrdb.rda').
 annotation(47, 1, 185, 'desc', '@desc', 'tree ring chronologies database').
 annotation(48, 1, 186, 'end', '@end', 'acccess_static_server_files').
 annotation(49, 1, 314, 'begin', '@begin', 'extract_prism_data').
@@ -81,12 +81,12 @@ annotation(75, 1, 369, 'desc', '@desc', 'user entered label for the study region
 annotation(76, 1, 370, 'param', '@param', 'min_width').
 annotation(77, 1, 371, 'param', '@param', 'verbose').
 annotation(78, 1, 375, 'out', '@out', 'pred_model').
-annotation(79, 1, 375, 'as', '@as', 'prediction_models').
+annotation(79, 1, 375, 'as', '@as', 'prediction_model').
 annotation(80, 1, 375, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_prediction.Rds').
 annotation(81, 1, 375, 'desc', '@desc', 'R model of the paleocar reconstruction of prediction.').
 annotation(82, 1, 376, 'out', '@out', 'pred_plot').
 annotation(83, 1, 376, 'as', '@as', 'prediction_graph').
-annotation(84, 1, 376, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_prediction.jpg').
+annotation(84, 1, 376, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_predictions.jpg').
 annotation(85, 1, 376, 'desc', '@desc', 'timeseries plot of prediction model of the paleocar reconstruction.').
 annotation(86, 1, 377, 'out', '@out', 'uncertain_model').
 annotation(87, 1, 377, 'as', '@as', 'uncertainty_model').

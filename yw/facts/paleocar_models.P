@@ -11,86 +11,70 @@ annotation(5, 1, 4, 'in', '@in', 'prism_data_for_coordinates').
 annotation(6, 1, 4, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/112W36N.csv').
 annotation(7, 1, 4, 'desc', '@desc', 'file containing the precipitation values for the selected region.').
 annotation(8, 1, 6, 'param', '@param', 'itrdb').
-annotation(9, 1, 6, 'file', '@file', 'data/ITRDB.Rda').
-annotation(10, 1, 6, 'uri', '@uri', 'file:data/ITRDB.Rda').
-annotation(11, 1, 6, 'desc', '@desc', 'tree ring chronologies database').
-annotation(12, 1, 7, 'param', '@param', 'calibration_years').
-annotation(13, 1, 7, 'desc', '@desc', 'period for calibrating the information for predicting the climate.').
-annotation(14, 1, 8, 'param', '@param', 'label').
-annotation(15, 1, 8, 'desc', '@desc', 'user entered label for the study region.').
-annotation(16, 1, 9, 'param', '@param', 'min_width').
-annotation(17, 1, 9, 'desc', '@desc', 'min width of the tree rings.').
-annotation(18, 1, 10, 'param', '@param', 'verbose').
-annotation(19, 1, 10, 'desc', '@desc', 'set to true for writing output to a logfile.').
-annotation(20, 1, 27, 'begin', '@BEGIN', 'get_predictor_matrix').
-annotation(21, 1, 27, 'desc', '@desc', 'create a matrix of tree ring chronologies for the calibration year.').
-annotation(22, 1, 28, 'in', '@IN', 'chronologies').
-annotation(23, 1, 28, 'as', '@as', 'itrdb').
-annotation(24, 1, 29, 'in', '@IN', 'calibration.years').
-annotation(25, 1, 29, 'as', '@as', 'calibration_years').
-annotation(26, 1, 30, 'param', '@PARAM', 'min.width').
-annotation(27, 1, 30, 'as', '@as', 'min_width').
-annotation(28, 1, 32, 'out', '@OUT', 'predictor.matrix').
-annotation(29, 1, 33, 'out', '@OUT', 'max.preds').
-annotation(30, 1, 38, 'end', '@END', 'get_predictor_matrix').
-annotation(31, 1, 67, 'begin', '@BEGIN', 'get_reconstruction_matrix').
-annotation(32, 1, 67, 'desc', '@desc', 'get reconstruction matrix for chronologies for the prediction year.').
-annotation(33, 1, 68, 'in', '@IN', 'chronologies').
-annotation(34, 1, 68, 'as', '@as', 'itrdb').
-annotation(35, 1, 69, 'in', '@IN', 'reconstruction.years').
-annotation(36, 1, 69, 'as', '@as', 'prediction_years').
-annotation(37, 1, 70, 'param', '@PARAM', 'min.width').
-annotation(38, 1, 70, 'as', '@as', 'min_width').
-annotation(39, 1, 71, 'out', '@OUT', 'reconstruction.matrix').
-annotation(40, 1, 74, 'end', '@END', 'get_reconstruction_matrix').
-annotation(41, 1, 76, 'begin', '@BEGIN', 'get_predlist').
-annotation(42, 1, 76, 'desc', '@desc', 'create list of prediction values.').
-annotation(43, 1, 77, 'in', '@IN', 'reconstruction.matrix').
-annotation(44, 1, 78, 'out', '@OUT', 'predlist').
-annotation(45, 1, 80, 'end', '@END', 'get_predlist').
-annotation(46, 1, 88, 'begin', '@BEGIN', 'get_carscores').
-annotation(47, 1, 88, 'desc', '@desc', 'get the carscores for reconstruction of paleoclimate.').
-annotation(48, 1, 89, 'in', '@IN', 'predictand.matrix').
-annotation(49, 1, 89, 'as', '@as', 'prism_data_for_coordinates').
-annotation(50, 1, 90, 'in', '@IN', 'predictor.matrix').
-annotation(51, 1, 91, 'out', '@OUT', 'carscores').
-annotation(52, 1, 100, 'end', '@END', 'getCarscores').
-annotation(53, 1, 104, 'begin', '@BEGIN', 'calculate_Models').
-annotation(54, 1, 105, 'in', '@IN', 'predlist').
-annotation(55, 1, 106, 'in', '@IN', 'carscores').
-annotation(56, 1, 107, 'in', '@IN', 'max.preds').
-annotation(57, 1, 108, 'out', '@OUT', 'linear.models').
-annotation(58, 1, 112, 'begin', '@BEGIN', 'defineLinearModels').
-annotation(59, 1, 113, 'in', '@IN', 'predlist').
-annotation(60, 1, 114, 'in', '@IN', 'carscores').
-annotation(61, 1, 115, 'in', '@IN', 'max.preds').
-annotation(62, 1, 116, 'out', '@OUT', 'models').
-annotation(63, 1, 117, 'out', '@OUT', 'matches').
-annotation(64, 1, 214, 'end', '@END', 'defineLinearModels').
-annotation(65, 1, 216, 'begin', '@BEGIN', 'calculateLinearModels').
-annotation(66, 1, 217, 'in', '@IN', 'models').
-annotation(67, 1, 218, 'in', '@IN', 'matches').
-annotation(68, 1, 219, 'out', '@OUT', 'coefficients').
-annotation(69, 1, 220, 'out', '@OUT', 'model.errors').
-annotation(70, 1, 263, 'end', '@END', 'calculateLinearModels').
-annotation(71, 1, 265, 'begin', '@BEGIN', 'simplifyLinearModels').
-annotation(72, 1, 266, 'in', '@IN', 'coefficients').
-annotation(73, 1, 267, 'in', '@IN', 'model.errors').
-annotation(74, 1, 268, 'out', '@OUT', 'final.models').
-annotation(75, 1, 268, 'as', '@as', 'linear.models').
-annotation(76, 1, 329, 'end', '@END', 'simplifyLinearModels').
-annotation(77, 1, 341, 'end', '@END', 'calculate_Models').
-annotation(78, 1, 343, 'begin', '@BEGIN', 'optimizeModels').
-annotation(79, 1, 344, 'in', '@IN', 'linear.models').
-annotation(80, 1, 345, 'out', '@OUT', 'final.models').
-annotation(81, 1, 345, 'as', '@as', 'paleocar_models').
-annotation(82, 1, 345, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
-annotation(83, 1, 345, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
-annotation(84, 1, 372, 'end', '@END', 'optimizeModels').
-annotation(85, 1, 374, 'out', '@out', 'paleocar_models').
-annotation(86, 1, 374, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
-annotation(87, 1, 374, 'desc', '@desc', 'R model generated for the paleoclimatic reconstruction.').
-annotation(88, 1, 375, 'end', '@END', 'main').
+annotation(9, 1, 6, 'file', '@file', 'data/itrdb.Rda').
+annotation(10, 1, 7, 'param', '@param', 'calibration_years').
+annotation(11, 1, 7, 'desc', '@desc', 'period for calibrating the information for predicting the climate.').
+annotation(12, 1, 8, 'param', '@param', 'min_width').
+annotation(13, 1, 8, 'desc', '@desc', 'min width of the tree rings.').
+annotation(14, 1, 9, 'param', '@param', 'verbose').
+annotation(15, 1, 9, 'desc', '@desc', 'set to true for writing output to a logfile.').
+annotation(16, 1, 10, 'out', '@out', 'paleocar_models').
+annotation(17, 1, 26, 'begin', '@BEGIN', 'get_predictor_matrix').
+annotation(18, 1, 26, 'desc', '@desc', 'create a matrix of tree ring chronologies for the calibration year.').
+annotation(19, 1, 27, 'in', '@IN', 'itrdb').
+annotation(20, 1, 28, 'param', '@param', 'calibration_years').
+annotation(21, 1, 29, 'param', '@PARAM', 'min_width').
+annotation(22, 1, 31, 'out', '@OUT', 'predictor_matrix').
+annotation(23, 1, 32, 'out', '@OUT', 'max_preds').
+annotation(24, 1, 37, 'end', '@END', 'get_predictor_matrix').
+annotation(25, 1, 66, 'begin', '@BEGIN', 'get_reconstruction_matrix').
+annotation(26, 1, 66, 'desc', '@desc', 'get reconstruction matrix for chronologies for the prediction year.').
+annotation(27, 1, 67, 'in', '@IN', 'itrdb').
+annotation(28, 1, 68, 'in', '@IN', 'prediction_years').
+annotation(29, 1, 69, 'param', '@PARAM', 'min_width').
+annotation(30, 1, 70, 'out', '@OUT', 'reconstruction_matrix').
+annotation(31, 1, 73, 'end', '@END', 'get_reconstruction_matrix').
+annotation(32, 1, 75, 'begin', '@BEGIN', 'get_predlist').
+annotation(33, 1, 75, 'desc', '@desc', 'create list of prediction values.').
+annotation(34, 1, 76, 'in', '@IN', 'reconstruction_matrix').
+annotation(35, 1, 77, 'out', '@OUT', 'predlist').
+annotation(36, 1, 79, 'end', '@END', 'get_predlist').
+annotation(37, 1, 87, 'begin', '@BEGIN', 'get_carscores').
+annotation(38, 1, 87, 'desc', '@desc', 'get the carscores for reconstruction of paleoclimate.').
+annotation(39, 1, 88, 'in', '@IN', 'prism_data_for_coordinates').
+annotation(40, 1, 89, 'in', '@IN', 'predictor_matrix').
+annotation(41, 1, 90, 'out', '@OUT', 'carscores').
+annotation(42, 1, 99, 'end', '@END', 'getCarscores').
+annotation(43, 1, 103, 'begin', '@BEGIN', 'calculate_Models').
+annotation(44, 1, 104, 'in', '@IN', 'predlist').
+annotation(45, 1, 105, 'in', '@IN', 'carscores').
+annotation(46, 1, 106, 'in', '@IN', 'max_preds').
+annotation(47, 1, 107, 'out', '@OUT', 'linear_models').
+annotation(48, 1, 111, 'begin', '@BEGIN', 'defineLinearModels').
+annotation(49, 1, 112, 'in', '@IN', 'predlist').
+annotation(50, 1, 113, 'in', '@IN', 'carscores').
+annotation(51, 1, 114, 'in', '@IN', 'max_preds').
+annotation(52, 1, 115, 'out', '@OUT', 'models').
+annotation(53, 1, 116, 'out', '@OUT', 'matches').
+annotation(54, 1, 213, 'end', '@END', 'defineLinearModels').
+annotation(55, 1, 215, 'begin', '@BEGIN', 'calculateLinearModels').
+annotation(56, 1, 216, 'in', '@IN', 'models').
+annotation(57, 1, 217, 'in', '@IN', 'matches').
+annotation(58, 1, 218, 'out', '@OUT', 'coefficients').
+annotation(59, 1, 219, 'out', '@OUT', 'model_errors').
+annotation(60, 1, 262, 'end', '@END', 'calculateLinearModels').
+annotation(61, 1, 264, 'begin', '@BEGIN', 'simplifyLinearModels').
+annotation(62, 1, 265, 'in', '@IN', 'coefficients').
+annotation(63, 1, 266, 'in', '@IN', 'model_errors').
+annotation(64, 1, 267, 'out', '@OUT', 'final_models').
+annotation(65, 1, 267, 'as', '@as', 'linear_models').
+annotation(66, 1, 328, 'end', '@END', 'simplifyLinearModels').
+annotation(67, 1, 340, 'end', '@END', 'calculate_Models').
+annotation(68, 1, 342, 'begin', '@BEGIN', 'optimizeModels').
+annotation(69, 1, 343, 'in', '@IN', 'linear_models').
+annotation(70, 1, 344, 'out', '@OUT', 'paleocar_models').
+annotation(71, 1, 371, 'end', '@END', 'optimizeModels').
+annotation(72, 1, 373, 'end', '@END', 'gen_paleocar_model').
 
 % FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
 annotation_qualifies(2, 1).
@@ -98,26 +82,11 @@ annotation_qualifies(4, 3).
 annotation_qualifies(6, 5).
 annotation_qualifies(7, 5).
 annotation_qualifies(9, 8).
-annotation_qualifies(10, 8).
-annotation_qualifies(11, 8).
+annotation_qualifies(11, 10).
 annotation_qualifies(13, 12).
 annotation_qualifies(15, 14).
-annotation_qualifies(17, 16).
-annotation_qualifies(19, 18).
-annotation_qualifies(21, 20).
-annotation_qualifies(23, 22).
-annotation_qualifies(25, 24).
-annotation_qualifies(27, 26).
-annotation_qualifies(32, 31).
-annotation_qualifies(34, 33).
-annotation_qualifies(36, 35).
+annotation_qualifies(18, 17).
+annotation_qualifies(26, 25).
+annotation_qualifies(33, 32).
 annotation_qualifies(38, 37).
-annotation_qualifies(42, 41).
-annotation_qualifies(47, 46).
-annotation_qualifies(49, 48).
-annotation_qualifies(75, 74).
-annotation_qualifies(81, 80).
-annotation_qualifies(82, 80).
-annotation_qualifies(83, 80).
-annotation_qualifies(86, 85).
-annotation_qualifies(87, 85).
+annotation_qualifies(65, 64).

@@ -1,0 +1,108 @@
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_source_file(SourceId, SourceFile).
+%...................................................................................................
+yw_source_file(1,'A.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_script(WorkflowId, WorkflowName, SourceId, SourceFile).
+%...................................................................................................
+yw_workflow_script(1,parent_workflow,1,'A.R').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_program(1,parent_workflow,nil,1,2,18).
+yw_program(2,inner_workflow,1,1,6,16).
+yw_program(3,child_workflow,2,1,10,14).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow(1,parent_workflow,nil,1,2,18).
+yw_workflow(2,inner_workflow,1,1,6,16).
+yw_workflow(3,child_workflow,2,1,10,14).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+yw_workflow_step(2,inner_workflow,1,1,6,16).
+yw_workflow_step(3,child_workflow,2,1,10,14).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_function(FunctionId, FunctionName, ParentWorkflowId, SourceId, BeginLine, EndLine).
+%...................................................................................................
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
+%...................................................................................................
+yw_data(5,c_out,2,inner_workflow).
+yw_data(4,out1,1,parent_workflow).
+yw_data(3,in1,1,parent_workflow).
+yw_data(2,out1,nil,nil).
+yw_data(1,in1,nil,nil).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_input(3,child_workflow,in,5,c_out,5,c_out).
+yw_step_input(2,inner_workflow,in,3,c_in1,3,in1).
+yw_step_input(1,parent_workflow,in,1,in1,1,in1).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
+%...................................................................................................
+yw_step_output(1,parent_workflow,out,2,out1,2,out1).
+yw_step_output(2,inner_workflow,out,4,c_out,4,out1).
+yw_step_output(3,child_workflow,out,6,final,5,c_out).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
+%...................................................................................................
+yw_inflow(1,parent_workflow,3,in1,2,inner_workflow).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
+%...................................................................................................
+yw_flow(3,child_workflow,6,final,5,c_out,5,c_out,3,child_workflow).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
+%...................................................................................................
+yw_outflow(2,inner_workflow,4,out1,1,parent_workflow,2,out1).
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_qualified_name(EntityType, Id, QualifiedName).
+%...................................................................................................
+yw_qualified_name(program,1,parent_workflow).
+yw_qualified_name(program,2,'parent_workflow.inner_workflow').
+yw_qualified_name(program,3,'parent_workflow.inner_workflow.child_workflow').
+yw_qualified_name(port,1,'parent_workflow<-in1').
+yw_qualified_name(port,2,'parent_workflow->out1').
+yw_qualified_name(port,3,'parent_workflow.inner_workflow<-c_in1').
+yw_qualified_name(port,4,'parent_workflow.inner_workflow->c_out').
+yw_qualified_name(port,5,'parent_workflow.inner_workflow.child_workflow<-c_out').
+yw_qualified_name(port,6,'parent_workflow.inner_workflow.child_workflow->final').
+yw_qualified_name(data,1,'[in1]').
+yw_qualified_name(data,2,'[out1]').
+yw_qualified_name(data,3,'parent_workflow[in1]').
+yw_qualified_name(data,4,'parent_workflow[out1]').
+yw_qualified_name(data,5,'parent_workflow.inner_workflow[c_out]').
+
+
+%---------------------------------------------------------------------------------------------------
+% FACT: yw_description(EntityType, Id, Name, Description)).
+%...................................................................................................

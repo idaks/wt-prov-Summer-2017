@@ -1,40 +1,39 @@
 ## YesWorkflow markup!
 #@BEGIN  gen_paleocar_model @desc generate paleocar models for predicting the climate for the given years. 
 #@in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
-#@in prism_data_for_coordinates @uri file:.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region. 
+#@in prism_data_for_coordinates @uri file:.output/{session_id}/{run_id}/112W36N.csv  @desc file containing the precipitation values for the selected region. 
 
-#@param itrdb @file data/ITRDB.Rda @uri file:data/ITRDB.Rda @desc tree ring chronologies database
+#@param itrdb   @file data/itrdb.Rda
 #@param calibration_years @desc period for calibrating the information for predicting the climate. 
-#@param label @desc user entered label for the study region. 
 #@param min_width @desc min width of the tree rings. 
 #@param verbose @desc set to true for writing output to a logfile. 
-
+#@out paleocar_models
 
 paleocar_models <- function(chronologies,
                             predictands,
                             calibration.years,
                             prediction.years = NULL,
-                            min.width = NULL,
+                            min_width = NULL,
                             verbose = F,
                             ...){
   if(verbose) cat("Calculating PaleoCAR models\n")
   # cat("...:\n")
   # print(list(...))
   # cat("params:\n")
-  # print(list(min.width = min.width,
+  # print(list(min_width = min_width,
   #            verbose = verbose))
 
   # @BEGIN get_predictor_matrix  @desc create a matrix of tree ring chronologies for the calibration year.
-  # @IN chronologies @as itrdb 
-  # @IN calibration.years @as  calibration_years
-  # @PARAM min.width @as min_width
+  # @IN itrdb 
+  # @param calibration_years
+  # @PARAM min_width 
   
-  # @OUT predictor.matrix 
-  # @OUT max.preds
+  # @OUT predictor_matrix 
+  # @OUT max_preds
   t <- Sys.time()
   predictor.matrix <- get_predictor_matrix(chronologies = chronologies,
                                            calibration.years = calibration.years,
-                                           min.width = min.width)
+                                           min_width = min_width)
   # @END get_predictor_matrix
   
   maxPreds <- nrow(predictor.matrix)-5
@@ -65,16 +64,16 @@ paleocar_models <- function(chronologies,
   }
   
   # @BEGIN get_reconstruction_matrix @desc get reconstruction matrix for chronologies for the prediction year.
-  # @IN chronologies @as itrdb 
-  # @IN reconstruction.years @as prediction_years
-  # @PARAM min.width @as min_width
-  # @OUT reconstruction.matrix 
-  reconstruction.matrix <- get_reconstruction_matrix(chronologies=chronologies, reconstruction.years=prediction.years, min.width=min.width)
+  # @IN itrdb  
+  # @IN prediction_years 
+  # @PARAM min_width
+  # @OUT reconstruction_matrix 
+  reconstruction.matrix <- get_reconstruction_matrix(chronologies=chronologies, reconstruction.years=prediction.years, min_width=min_width)
   reconstruction.matrix <- reconstruction.matrix[,colnames(predictor.matrix)]
   # @END get_reconstruction_matrix
   
   # @BEGIN get_predlist @desc create list of prediction values. 
-  # @IN reconstruction.matrix 
+  # @IN reconstruction_matrix 
   # @OUT predlist 
   predlist <- get_predlist(reconstruction.matrix)
   # @END get_predlist
@@ -86,8 +85,8 @@ paleocar_models <- function(chronologies,
   hinge.year <- min(predyears[predyears > max(calibration.years)], max(calibration.years))
   
   # @BEGIN get_carscores @desc get the carscores for reconstruction of paleoclimate.
-  # @IN predictand.matrix @as prism_data_for_coordinates
-  # @IN predictor.matrix
+  # @IN prism_data_for_coordinates 
+  # @IN predictor_matrix
   # @OUT carscores
     carscores <- carscore_batch(predictand.matrix=predictand.matrix, predictor.matrix=predictor.matrix)
     carscores.ranks <- matrixStats::colRanks(1-(carscores^2), preserveShape=T)
@@ -104,15 +103,15 @@ paleocar_models <- function(chronologies,
   # @BEGIN calculate_Models 
   # @IN predlist
   # @IN carscores
-  # @IN max.preds
-  # @OUT linear.models
+  # @IN max_preds
+  # @OUT linear_models
   allModels <- data.table::data.table(cell=numeric(),year=numeric(),model=numeric(),numPreds=numeric(),CV=numeric(),AICc=numeric(),coefs=numeric())
   complete.cell.years <- data.table::data.table(cell=numeric(),year=numeric())
   times <- vector('numeric',max(prednums))
   # @BEGIN defineLinearModels
   # @IN predlist
   # @IN carscores
-  # @IN max.preds
+  # @IN max_preds
   # @OUT models
   # @OUT matches
   for(i in 1:maxPreds){
@@ -217,7 +216,7 @@ paleocar_models <- function(chronologies,
     # @IN models
     # @IN matches
     # @OUT coefficients
-    # @OUT model.errors
+    # @OUT model_errors
     new.t <- Sys.time()
     all.lms <- lapply(1:nrow(models),function(this.model){
       # cat(this.model,'\n')
@@ -264,8 +263,8 @@ paleocar_models <- function(chronologies,
     
     # @BEGIN simplifyLinearModels
     # @IN coefficients
-    # @IN model.errors
-    # @OUT final.models @as linear.models
+    # @IN model_errors
+    # @OUT final_models @as linear_models
     ## LMS SIMPLIFY PREP
     new.t <- Sys.time()
     
@@ -341,8 +340,8 @@ paleocar_models <- function(chronologies,
   # @END calculate_Models
   
   # @BEGIN optimizeModels
-  # @IN linear.models
-  # @OUT final.models  @as paleocar_models @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction. 
+  # @IN linear_models
+  # @OUT paleocar_models 
   t <- Sys.time()
   get.coef.names <- function(year,model,coefs,numPreds,CV,AICc){
     the.coefs <- lapply(coefs,function(x){names(x)[-1]})
@@ -371,7 +370,6 @@ paleocar_models <- function(chronologies,
   
   # @END optimizeModels
   return(allModels)
-  #@out paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction. 
-  # @END main
+  # @END gen_paleocar_model
 }
 

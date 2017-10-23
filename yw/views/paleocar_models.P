@@ -15,37 +15,37 @@ yw_workflow_script(1,gen_paleocar_model,1,'paleocar_models.R').
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_program(1,gen_paleocar_model,nil,1,2,375).
-yw_program(2,get_predictor_matrix,1,1,27,38).
-yw_program(3,get_reconstruction_matrix,1,1,67,74).
-yw_program(4,get_predlist,1,1,76,80).
-yw_program(5,get_carscores,1,1,88,100).
-yw_program(6,calculate_Models,1,1,104,341).
-yw_program(7,defineLinearModels,6,1,112,214).
-yw_program(8,calculateLinearModels,6,1,216,263).
-yw_program(9,simplifyLinearModels,6,1,265,329).
-yw_program(10,optimizeModels,1,1,343,372).
+yw_program(1,gen_paleocar_model,nil,1,2,373).
+yw_program(2,get_predictor_matrix,1,1,26,37).
+yw_program(3,get_reconstruction_matrix,1,1,66,73).
+yw_program(4,get_predlist,1,1,75,79).
+yw_program(5,get_carscores,1,1,87,99).
+yw_program(6,calculate_Models,1,1,103,340).
+yw_program(7,defineLinearModels,6,1,111,213).
+yw_program(8,calculateLinearModels,6,1,215,262).
+yw_program(9,simplifyLinearModels,6,1,264,328).
+yw_program(10,optimizeModels,1,1,342,371).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow(1,gen_paleocar_model,nil,1,2,375).
-yw_workflow(6,calculate_Models,1,1,104,341).
+yw_workflow(1,gen_paleocar_model,nil,1,2,373).
+yw_workflow(6,calculate_Models,1,1,103,340).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow_step(2,get_predictor_matrix,1,1,27,38).
-yw_workflow_step(3,get_reconstruction_matrix,1,1,67,74).
-yw_workflow_step(4,get_predlist,1,1,76,80).
-yw_workflow_step(5,get_carscores,1,1,88,100).
-yw_workflow_step(6,calculate_Models,1,1,104,341).
-yw_workflow_step(7,defineLinearModels,6,1,112,214).
-yw_workflow_step(8,calculateLinearModels,6,1,216,263).
-yw_workflow_step(9,simplifyLinearModels,6,1,265,329).
-yw_workflow_step(10,optimizeModels,1,1,343,372).
+yw_workflow_step(2,get_predictor_matrix,1,1,26,37).
+yw_workflow_step(3,get_reconstruction_matrix,1,1,66,73).
+yw_workflow_step(4,get_predlist,1,1,75,79).
+yw_workflow_step(5,get_carscores,1,1,87,99).
+yw_workflow_step(6,calculate_Models,1,1,103,340).
+yw_workflow_step(7,defineLinearModels,6,1,111,213).
+yw_workflow_step(8,calculateLinearModels,6,1,215,262).
+yw_workflow_step(9,simplifyLinearModels,6,1,264,328).
+yw_workflow_step(10,optimizeModels,1,1,342,371).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -60,38 +60,37 @@ yw_data(1,prediction_years,nil,nil).
 yw_data(2,prism_data_for_coordinates,nil,nil).
 yw_data(3,itrdb,nil,nil).
 yw_data(4,calibration_years,nil,nil).
-yw_data(5,label,nil,nil).
-yw_data(6,min_width,nil,nil).
-yw_data(7,verbose,nil,nil).
+yw_data(5,min_width,nil,nil).
+yw_data(6,verbose,nil,nil).
+yw_data(7,paleocar_models,nil,nil).
 yw_data(8,itrdb,1,gen_paleocar_model).
 yw_data(9,calibration_years,1,gen_paleocar_model).
 yw_data(10,min_width,1,gen_paleocar_model).
-yw_data(11,'predictor.matrix',1,gen_paleocar_model).
-yw_data(12,'max.preds',1,gen_paleocar_model).
+yw_data(11,predictor_matrix,1,gen_paleocar_model).
+yw_data(12,max_preds,1,gen_paleocar_model).
 yw_data(13,prediction_years,1,gen_paleocar_model).
-yw_data(14,'reconstruction.matrix',1,gen_paleocar_model).
+yw_data(14,reconstruction_matrix,1,gen_paleocar_model).
 yw_data(15,predlist,1,gen_paleocar_model).
 yw_data(16,prism_data_for_coordinates,1,gen_paleocar_model).
 yw_data(17,carscores,1,gen_paleocar_model).
-yw_data(18,'linear.models',1,gen_paleocar_model).
+yw_data(18,linear_models,1,gen_paleocar_model).
 yw_data(19,predlist,6,calculate_Models).
 yw_data(20,carscores,6,calculate_Models).
-yw_data(21,'max.preds',6,calculate_Models).
+yw_data(21,max_preds,6,calculate_Models).
 yw_data(22,models,6,calculate_Models).
 yw_data(23,matches,6,calculate_Models).
 yw_data(24,coefficients,6,calculate_Models).
-yw_data(25,'model.errors',6,calculate_Models).
-yw_data(26,'linear.models',6,calculate_Models).
+yw_data(25,model_errors,6,calculate_Models).
+yw_data(26,linear_models,6,calculate_Models).
 yw_data(27,paleocar_models,1,gen_paleocar_model).
-yw_data(28,paleocar_models,nil,nil).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
-yw_step_input(1,gen_paleocar_model,param,7,verbose,7,verbose).
-yw_step_input(1,gen_paleocar_model,param,6,min_width,6,min_width).
-yw_step_input(1,gen_paleocar_model,param,5,label,5,label).
+yw_step_input(2,get_predictor_matrix,param,9,calibration_years,9,calibration_years).
+yw_step_input(1,gen_paleocar_model,param,6,verbose,6,verbose).
+yw_step_input(1,gen_paleocar_model,param,5,min_width,5,min_width).
 yw_step_input(1,gen_paleocar_model,param,4,calibration_years,4,calibration_years).
 yw_step_input(1,gen_paleocar_model,param,3,itrdb,3,itrdb).
 yw_step_input(1,gen_paleocar_model,in,2,prism_data_for_coordinates,2,prism_data_for_coordinates).
@@ -101,12 +100,13 @@ yw_step_input(1,gen_paleocar_model,in,1,prediction_years,1,prediction_years).
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
-yw_step_output(1,gen_paleocar_model,out,40,paleocar_models,28,paleocar_models).
+yw_step_output(1,gen_paleocar_model,out,7,paleocar_models,7,paleocar_models).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
+yw_inflow(1,gen_paleocar_model,9,calibration_years,2,get_predictor_matrix).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -136,70 +136,68 @@ yw_qualified_name(port,1,'gen_paleocar_model<-prediction_years').
 yw_qualified_name(port,2,'gen_paleocar_model<-prism_data_for_coordinates').
 yw_qualified_name(port,3,'gen_paleocar_model<-itrdb').
 yw_qualified_name(port,4,'gen_paleocar_model<-calibration_years').
-yw_qualified_name(port,5,'gen_paleocar_model<-label').
-yw_qualified_name(port,6,'gen_paleocar_model<-min_width').
-yw_qualified_name(port,7,'gen_paleocar_model<-verbose').
-yw_qualified_name(port,40,'gen_paleocar_model->paleocar_models').
-yw_qualified_name(port,8,'gen_paleocar_model.get_predictor_matrix<-chronologies').
-yw_qualified_name(port,9,'gen_paleocar_model.get_predictor_matrix<-calibration.years').
-yw_qualified_name(port,10,'gen_paleocar_model.get_predictor_matrix<-min.width').
-yw_qualified_name(port,11,'gen_paleocar_model.get_predictor_matrix->predictor.matrix').
-yw_qualified_name(port,12,'gen_paleocar_model.get_predictor_matrix->max.preds').
-yw_qualified_name(port,13,'gen_paleocar_model.get_reconstruction_matrix<-chronologies').
-yw_qualified_name(port,14,'gen_paleocar_model.get_reconstruction_matrix<-reconstruction.years').
-yw_qualified_name(port,15,'gen_paleocar_model.get_reconstruction_matrix<-min.width').
-yw_qualified_name(port,16,'gen_paleocar_model.get_reconstruction_matrix->reconstruction.matrix').
-yw_qualified_name(port,17,'gen_paleocar_model.get_predlist<-reconstruction.matrix').
+yw_qualified_name(port,5,'gen_paleocar_model<-min_width').
+yw_qualified_name(port,6,'gen_paleocar_model<-verbose').
+yw_qualified_name(port,7,'gen_paleocar_model->paleocar_models').
+yw_qualified_name(port,8,'gen_paleocar_model.get_predictor_matrix<-itrdb').
+yw_qualified_name(port,9,'gen_paleocar_model.get_predictor_matrix<-calibration_years').
+yw_qualified_name(port,10,'gen_paleocar_model.get_predictor_matrix<-min_width').
+yw_qualified_name(port,11,'gen_paleocar_model.get_predictor_matrix->predictor_matrix').
+yw_qualified_name(port,12,'gen_paleocar_model.get_predictor_matrix->max_preds').
+yw_qualified_name(port,13,'gen_paleocar_model.get_reconstruction_matrix<-itrdb').
+yw_qualified_name(port,14,'gen_paleocar_model.get_reconstruction_matrix<-prediction_years').
+yw_qualified_name(port,15,'gen_paleocar_model.get_reconstruction_matrix<-min_width').
+yw_qualified_name(port,16,'gen_paleocar_model.get_reconstruction_matrix->reconstruction_matrix').
+yw_qualified_name(port,17,'gen_paleocar_model.get_predlist<-reconstruction_matrix').
 yw_qualified_name(port,18,'gen_paleocar_model.get_predlist->predlist').
-yw_qualified_name(port,19,'gen_paleocar_model.get_carscores<-predictand.matrix').
-yw_qualified_name(port,20,'gen_paleocar_model.get_carscores<-predictor.matrix').
+yw_qualified_name(port,19,'gen_paleocar_model.get_carscores<-prism_data_for_coordinates').
+yw_qualified_name(port,20,'gen_paleocar_model.get_carscores<-predictor_matrix').
 yw_qualified_name(port,21,'gen_paleocar_model.get_carscores->carscores').
 yw_qualified_name(port,22,'gen_paleocar_model.calculate_Models<-predlist').
 yw_qualified_name(port,23,'gen_paleocar_model.calculate_Models<-carscores').
-yw_qualified_name(port,24,'gen_paleocar_model.calculate_Models<-max.preds').
-yw_qualified_name(port,25,'gen_paleocar_model.calculate_Models->linear.models').
+yw_qualified_name(port,24,'gen_paleocar_model.calculate_Models<-max_preds').
+yw_qualified_name(port,25,'gen_paleocar_model.calculate_Models->linear_models').
 yw_qualified_name(port,26,'gen_paleocar_model.calculate_Models.defineLinearModels<-predlist').
 yw_qualified_name(port,27,'gen_paleocar_model.calculate_Models.defineLinearModels<-carscores').
-yw_qualified_name(port,28,'gen_paleocar_model.calculate_Models.defineLinearModels<-max.preds').
+yw_qualified_name(port,28,'gen_paleocar_model.calculate_Models.defineLinearModels<-max_preds').
 yw_qualified_name(port,29,'gen_paleocar_model.calculate_Models.defineLinearModels->models').
 yw_qualified_name(port,30,'gen_paleocar_model.calculate_Models.defineLinearModels->matches').
 yw_qualified_name(port,31,'gen_paleocar_model.calculate_Models.calculateLinearModels<-models').
 yw_qualified_name(port,32,'gen_paleocar_model.calculate_Models.calculateLinearModels<-matches').
 yw_qualified_name(port,33,'gen_paleocar_model.calculate_Models.calculateLinearModels->coefficients').
-yw_qualified_name(port,34,'gen_paleocar_model.calculate_Models.calculateLinearModels->model.errors').
+yw_qualified_name(port,34,'gen_paleocar_model.calculate_Models.calculateLinearModels->model_errors').
 yw_qualified_name(port,35,'gen_paleocar_model.calculate_Models.simplifyLinearModels<-coefficients').
-yw_qualified_name(port,36,'gen_paleocar_model.calculate_Models.simplifyLinearModels<-model.errors').
-yw_qualified_name(port,37,'gen_paleocar_model.calculate_Models.simplifyLinearModels->final.models').
-yw_qualified_name(port,38,'gen_paleocar_model.optimizeModels<-linear.models').
-yw_qualified_name(port,39,'gen_paleocar_model.optimizeModels->final.models').
+yw_qualified_name(port,36,'gen_paleocar_model.calculate_Models.simplifyLinearModels<-model_errors').
+yw_qualified_name(port,37,'gen_paleocar_model.calculate_Models.simplifyLinearModels->final_models').
+yw_qualified_name(port,38,'gen_paleocar_model.optimizeModels<-linear_models').
+yw_qualified_name(port,39,'gen_paleocar_model.optimizeModels->paleocar_models').
 yw_qualified_name(data,1,'[prediction_years]').
 yw_qualified_name(data,2,'[prism_data_for_coordinates]').
 yw_qualified_name(data,3,'[itrdb]').
 yw_qualified_name(data,4,'[calibration_years]').
-yw_qualified_name(data,5,'[label]').
-yw_qualified_name(data,6,'[min_width]').
-yw_qualified_name(data,7,'[verbose]').
-yw_qualified_name(data,28,'[paleocar_models]').
+yw_qualified_name(data,5,'[min_width]').
+yw_qualified_name(data,6,'[verbose]').
+yw_qualified_name(data,7,'[paleocar_models]').
 yw_qualified_name(data,8,'gen_paleocar_model[itrdb]').
 yw_qualified_name(data,9,'gen_paleocar_model[calibration_years]').
 yw_qualified_name(data,10,'gen_paleocar_model[min_width]').
-yw_qualified_name(data,11,'gen_paleocar_model[predictor.matrix]').
-yw_qualified_name(data,12,'gen_paleocar_model[max.preds]').
+yw_qualified_name(data,11,'gen_paleocar_model[predictor_matrix]').
+yw_qualified_name(data,12,'gen_paleocar_model[max_preds]').
 yw_qualified_name(data,13,'gen_paleocar_model[prediction_years]').
-yw_qualified_name(data,14,'gen_paleocar_model[reconstruction.matrix]').
+yw_qualified_name(data,14,'gen_paleocar_model[reconstruction_matrix]').
 yw_qualified_name(data,15,'gen_paleocar_model[predlist]').
 yw_qualified_name(data,16,'gen_paleocar_model[prism_data_for_coordinates]').
 yw_qualified_name(data,17,'gen_paleocar_model[carscores]').
-yw_qualified_name(data,18,'gen_paleocar_model[linear.models]').
+yw_qualified_name(data,18,'gen_paleocar_model[linear_models]').
 yw_qualified_name(data,27,'gen_paleocar_model[paleocar_models]').
 yw_qualified_name(data,19,'gen_paleocar_model.calculate_Models[predlist]').
 yw_qualified_name(data,20,'gen_paleocar_model.calculate_Models[carscores]').
-yw_qualified_name(data,21,'gen_paleocar_model.calculate_Models[max.preds]').
+yw_qualified_name(data,21,'gen_paleocar_model.calculate_Models[max_preds]').
 yw_qualified_name(data,22,'gen_paleocar_model.calculate_Models[models]').
 yw_qualified_name(data,23,'gen_paleocar_model.calculate_Models[matches]').
 yw_qualified_name(data,24,'gen_paleocar_model.calculate_Models[coefficients]').
-yw_qualified_name(data,25,'gen_paleocar_model.calculate_Models[model.errors]').
-yw_qualified_name(data,26,'gen_paleocar_model.calculate_Models[linear.models]').
+yw_qualified_name(data,25,'gen_paleocar_model.calculate_Models[model_errors]').
+yw_qualified_name(data,26,'gen_paleocar_model.calculate_Models[linear_models]').
 
 
 %---------------------------------------------------------------------------------------------------
@@ -212,10 +210,6 @@ yw_description(program,4,get_predlist,'create list of prediction values.').
 yw_description(program,5,get_carscores,'get the carscores for reconstruction of paleoclimate.').
 yw_description(port,1,prediction_years,'period for reconstruction of the paleoclimate using paleocar.').
 yw_description(port,2,prism_data_for_coordinates,'file containing the precipitation values for the selected region.').
-yw_description(port,3,itrdb,'tree ring chronologies database').
 yw_description(port,4,calibration_years,'period for calibrating the information for predicting the climate.').
-yw_description(port,5,label,'user entered label for the study region.').
-yw_description(port,6,min_width,'min width of the tree rings.').
-yw_description(port,7,verbose,'set to true for writing output to a logfile.').
-yw_description(port,40,paleocar_models,'R model generated for the paleoclimatic reconstruction.').
-yw_description(port,39,'final.models','R model generated for the paleoclimatic reconstruction.').
+yw_description(port,5,min_width,'min width of the tree rings.').
+yw_description(port,6,verbose,'set to true for writing output to a logfile.').

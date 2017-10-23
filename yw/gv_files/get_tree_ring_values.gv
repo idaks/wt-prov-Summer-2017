@@ -21,9 +21,9 @@ get_tree_ring_values [shape=record rankdir=LR label="{<f0> get_tree_ring_values 
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
 
 /* Nodes for non-parameter data channels in workflow */
-tree_ring_values [shape=record rankdir=LR label="{<f0> tree_ring_values |<f1> file\:.output/\{session_id\}/\{run_id\}/\{user_input_year\}_tree_ring_data.csv}"];
+tree_ring_values [shape=record rankdir=LR label="{<f0> tree_ring_values |<f1> file\:.output/\{session_id\}/\{run_id\}/\{calibration_year\}_tree_ring_data.csv}"];
 paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:.output/\{session_id\}\{run_id\}/\{label\}_models.Rds}"];
-user_input_year
+calibration_year
 
 /* Style for nodes representing parameter channels in workflow */
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
@@ -33,7 +33,7 @@ node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname
 /* Edges representing connections between programs and channels */
 get_tree_ring_values -> tree_ring_values
 paleocar_models -> get_tree_ring_values
-user_input_year -> get_tree_ring_values
+calibration_year -> get_tree_ring_values
 
 /* End of double cluster for drawing box around nodes in workflow */
 }}
@@ -47,7 +47,7 @@ node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontn
 
 /* Nodes representing workflow input ports */
 paleocar_models_input_port [label=""]
-user_input_year_input_port [label=""]
+calibration_year_input_port [label=""]
 
 /* End of double-cluster for grouping workflow input ports */
 }}
@@ -67,7 +67,7 @@ tree_ring_values_output_port [label=""]
 
 /* Edges from input ports to channels */
 paleocar_models_input_port -> paleocar_models
-user_input_year_input_port -> user_input_year
+calibration_year_input_port -> calibration_year
 
 /* Edges from channels to output ports */
 tree_ring_values -> tree_ring_values_output_port

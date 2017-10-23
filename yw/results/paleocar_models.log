@@ -5,16 +5,16 @@ EQ1 : What are the names N of all program blocks?
 
 eq1(ProgramName)
 ...................................................................................................
+eq1(optimizeModels).
+eq1(gen_paleocar_model).
+eq1(calculateLinearModels).
+eq1(defineLinearModels).
+eq1(get_reconstruction_matrix).
+eq1(calculate_Models).
+eq1(simplifyLinearModels).
 eq1(get_predlist).
 eq1(get_carscores).
 eq1(get_predictor_matrix).
-eq1(gen_paleocar_model).
-eq1(optimizeModels).
-eq1(get_reconstruction_matrix).
-eq1(simplifyLinearModels).
-eq1(calculateLinearModels).
-eq1(defineLinearModels).
-eq1(calculate_Models).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -22,8 +22,6 @@ EQ2 : What out ports are qualified with URIs
 
 eq2(PortName)
 ...................................................................................................
-eq2(paleocar_models).
-eq2('final.models').
 
 
 ---------------------------------------------------------------------------------------------------
@@ -45,12 +43,11 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(calculate_Models,'min width of the tree rings.').
-yw_q2(get_carscores,'user entered label for the study region.').
+yw_q2(calculate_Models,'set to true for writing output to a logfile.').
+yw_q2(get_carscores,'min width of the tree rings.').
 yw_q2(get_carscores,'get the carscores for reconstruction of paleoclimate.').
 yw_q2(get_predlist,'period for calibrating the information for predicting the climate.').
 yw_q2(get_predlist,'create list of prediction values.').
-yw_q2(get_reconstruction_matrix,'tree ring chronologies database').
 yw_q2(get_reconstruction_matrix,'get reconstruction matrix for chronologies for the prediction year.').
 yw_q2(get_predictor_matrix,'file containing the precipitation values for the selected region.').
 yw_q2(get_predictor_matrix,'create a matrix of tree ring chronologies for the calibration year.').
@@ -68,4 +65,3 @@ YW_Q4 : What are the names and descriptions of any outputs of the workflow?
 
 yw_q4(OutputName, Description)
 ...................................................................................................
-yw_q4(paleocar_models,'R model generated for the paleoclimatic reconstruction.').
