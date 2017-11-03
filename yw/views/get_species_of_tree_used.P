@@ -15,20 +15,20 @@ yw_workflow_script(1,get_species_of_trees,1,'get_species_of_tree_used.R').
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_program(WorkflowId, ProgramName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_program(1,get_species_of_trees,nil,1,21,47).
-yw_program(2,get_species_of_trees,1,1,21,47).
+yw_program(1,get_species_of_trees,nil,1,21,55).
+yw_program(2,extract_tree_species,1,1,39,53).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow(WorkflowId, WorkflowName, ParentWorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow(1,get_species_of_trees,nil,1,21,47).
+yw_workflow(1,get_species_of_trees,nil,1,21,55).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_workflow_step(StepId, StepName, WorkflowId, SourceId, BeginLine, EndLine).
 %...................................................................................................
-yw_workflow_step(2,get_species_of_trees,1,1,21,47).
+yw_workflow_step(2,extract_tree_species,1,1,39,53).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -39,35 +39,35 @@ yw_workflow_step(2,get_species_of_trees,1,1,21,47).
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_data(DataId, DataName, WorkflowId, WorkflowName).
 %...................................................................................................
-yw_data(3,tree_species_used,1,get_species_of_trees).
+yw_data(6,tree_species_used,1,get_species_of_trees).
+yw_data(5,paleocar_models,1,get_species_of_trees).
+yw_data(4,itrdb,1,get_species_of_trees).
 yw_data(3,tree_species_used,nil,nil).
-yw_data(2,itrdb,1,get_species_of_trees).
 yw_data(2,itrdb,nil,nil).
-yw_data(1,paleocar_models,1,get_species_of_trees).
 yw_data(1,paleocar_models,nil,nil).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
-yw_step_input(2,get_species_of_trees,in,5,itrdb,2,itrdb).
-yw_step_input(2,get_species_of_trees,in,4,models,1,paleocar_models).
+yw_step_input(2,extract_tree_species,in,5,paleocar_models,5,paleocar_models).
+yw_step_input(2,extract_tree_species,in,4,itrdb,4,itrdb).
 yw_step_input(1,get_species_of_trees,in,2,itrdb,2,itrdb).
-yw_step_input(1,get_species_of_trees,in,1,models,1,paleocar_models).
+yw_step_input(1,get_species_of_trees,in,1,paleocar_models,1,paleocar_models).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
 yw_step_output(1,get_species_of_trees,out,3,tree_species_used,3,tree_species_used).
-yw_step_output(2,get_species_of_trees,out,6,tree_species_used,3,tree_species_used).
+yw_step_output(2,extract_tree_species,out,6,tree_species_used,6,tree_species_used).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
-yw_inflow(1,get_species_of_trees,2,itrdb,2,get_species_of_trees).
-yw_inflow(1,get_species_of_trees,1,paleocar_models,2,get_species_of_trees).
+yw_inflow(1,get_species_of_trees,5,paleocar_models,2,extract_tree_species).
+yw_inflow(1,get_species_of_trees,4,itrdb,2,extract_tree_species).
 
 
 %---------------------------------------------------------------------------------------------------
@@ -78,27 +78,29 @@ yw_inflow(1,get_species_of_trees,1,paleocar_models,2,get_species_of_trees).
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
 %...................................................................................................
-yw_outflow(2,get_species_of_trees,3,tree_species_used,1,get_species_of_trees,3,tree_species_used).
+yw_outflow(2,extract_tree_species,6,tree_species_used,1,get_species_of_trees,3,tree_species_used).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_qualified_name(EntityType, Id, QualifiedName).
 %...................................................................................................
 yw_qualified_name(program,1,get_species_of_trees).
-yw_qualified_name(program,2,'get_species_of_trees.get_species_of_trees').
-yw_qualified_name(port,1,'get_species_of_trees<-models').
+yw_qualified_name(program,2,'get_species_of_trees.extract_tree_species').
+yw_qualified_name(port,1,'get_species_of_trees<-paleocar_models').
 yw_qualified_name(port,2,'get_species_of_trees<-itrdb').
 yw_qualified_name(port,3,'get_species_of_trees->tree_species_used').
-yw_qualified_name(port,4,'get_species_of_trees.get_species_of_trees<-models').
-yw_qualified_name(port,5,'get_species_of_trees.get_species_of_trees<-itrdb').
-yw_qualified_name(port,6,'get_species_of_trees.get_species_of_trees->tree_species_used').
+yw_qualified_name(port,4,'get_species_of_trees.extract_tree_species<-itrdb').
+yw_qualified_name(port,5,'get_species_of_trees.extract_tree_species<-paleocar_models').
+yw_qualified_name(port,6,'get_species_of_trees.extract_tree_species->tree_species_used').
 yw_qualified_name(data,1,'[paleocar_models]').
 yw_qualified_name(data,2,'[itrdb]').
 yw_qualified_name(data,3,'[tree_species_used]').
+yw_qualified_name(data,4,'get_species_of_trees[itrdb]').
+yw_qualified_name(data,5,'get_species_of_trees[paleocar_models]').
+yw_qualified_name(data,6,'get_species_of_trees[tree_species_used]').
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_description(EntityType, Id, Name, Description)).
 %...................................................................................................
 yw_description(program,1,get_species_of_trees,'extract the species of trees used for reconstruction for prediction year').
-yw_description(program,2,get_species_of_trees,'extract the species of trees used for reconstruction for prediction year').

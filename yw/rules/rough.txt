@@ -1,0 +1,39 @@
+['../views/main.P'].
+['../recon/main.P'].
+['../models/main.P'].
+['../rules/yw_rules.P'].
+['../rules/gv_rules.P'].
+['../rules/yw_graph_rules.P'].
+['../rules/recon_rules.P'].
+
+[user].
+:- table Uri_template_label(D, Z)/2.
+Uri_template_label(D, Z) :-
+    data(Y, D, _),
+	port(X, _, _, _, _,Y),
+	port_uri_template(X, Z).
+end_of_file.
+ 
+Uri_template_label(D, Z).
+
+
+gv_record_node_open_mod(DataName,Top,UriLabel).
+
+gv_nodes__recon_input_output_data(W).
+
+[user].
+:- table data_uri_resource/2.
+data_uri_resource(DataId, ResourceURI) :-
+     data_resource(DataId,ResourceId),
+     resource(ResourceId, ResourceURI),
+	 not uri_variable_value(ResourceId, _,_).
+data_uri_resource(DataId, ResourceURI) :-
+     port_uri_template(4,ResourceURI).
+data_uri_resource(DataId, ResourceURI) :-
+     data_resource(DataId,ResourceId),
+     resource(ResourceId, ResourceURI),
+	 uri_variable_value(ResourceId, _, '3b7bf6b2').
+
+end_of_file. 
+
+data_uri_resource(DataId, ResourceURI).

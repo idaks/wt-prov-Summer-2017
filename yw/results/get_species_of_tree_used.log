@@ -5,6 +5,7 @@ EQ1 : What are the names N of all program blocks?
 
 eq1(ProgramName)
 ...................................................................................................
+eq1(extract_tree_species).
 eq1(get_species_of_trees).
 
 
@@ -35,7 +36,6 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(get_species_of_trees,'extract the species of trees used for reconstruction for prediction year').
 
 
 ---------------------------------------------------------------------------------------------------

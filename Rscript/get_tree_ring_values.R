@@ -18,9 +18,6 @@ library(magrittr)
 library(tibble)
 library(readr)
 
-#@begin get_tree_ring_values @desc extract the values of the tree ring chronologies used for reconstruction for a given year
-#@in models @as paleocar_models   @uri  file:.output/{session_id}{run_id}/{label}_models.Rds @desc  R model of the paleocar reconstruction of prediction.
-#@in calibration_year 
 
 ## get the rds file 
 model_rds_file= paste0(args[2])
@@ -35,12 +32,21 @@ model <-readRDS(model_rds_file)
 
 setwd(args[1])
 
-
+#@begin get_tree_ring_values @desc extract the values of the tree ring chronologies used for reconstruction for a given year
+#@in paleocar_models 
+#@in calibration_year 
+#@out tree_ring_values 
+#label='GRCA'
+	#@begin extract_tree_ring_values
+	#@in models @as paleocar_models   @uri  file:.output/{session_id}/{run_id}/{label}_model.Rds
+	#@in calibration_year
+	#@out tree_ring_values @uri file:.output/{session_id}/{run_id}/{calibration_year}_tree_ring_data.csv
 
 data.frame(x=names(model$predictor.matrix[calibration_year,]),
            y=as.numeric(model$predictor.matrix[calibration_year,])) %>%
 		   write_csv(output_file)
 
-#@out tree_ring_values @uri file:.output/{session_id}/{run_id}/{calibration_year}_tree_ring_data.csv
+	#@end extract_tree_ring_values
+
 #@end get_tree_ring_values 
 

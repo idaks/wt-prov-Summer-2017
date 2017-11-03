@@ -1,29 +1,11 @@
 #/usr/bin/bash
+#
+#
 
-# put Git for Windows at beginning of PATH
-export PATH='/c/Program Files/Git/bin':$PATH
 
-# put MSYS2 executables before Git for Windows so that MSYS2 bash and sh are used 
-export PATH=/mingw64/bin:/usr/local/bin:/usr/bin:/bin:$PATH 
+source ./settings.sh
 
-# configure Java
-export JAVA_HOME='/c/Program Files/Java/jdk1.7.0_80'
-export PATH=$PATH:$JAVA_HOME/bin
-
-# configure GraphViz
-export GRAPHVIZ_HOME='/c/Program Files (x86)/Graphviz2.38/' 
-export PATH=$PATH:$GRAPHVIZ_HOME/bin
-
-# configure XSB 
-export XSB_HOME='/c/Program Files (x86)/XSB' 
-export PATH=$PATH:$XSB_HOME/config/x64-pc-windows/bin 
-
-alias yw="java -jar /d/Study/Internship/WT_PaleoCar_2017/YesWorkflow/yesworkflow-0.2.1.1-jar-with-dependencies.jar"
  
-
-script_dir="/d/Study/Internship/WT_PaleoCar_2017/meteor_example/wt-prov-summer-2017/Rscript"
-yw_dir="/d/Study/Internship/WT_PaleoCar_2017/meteor_example/wt-prov-summer-2017/yw"
-
 #@begin yw_artifacts @desc YW artifacts creating script using YW annotations.
 
 #@in dir
@@ -37,11 +19,6 @@ yw_dir="/d/Study/Internship/WT_PaleoCar_2017/meteor_example/wt-prov-summer-2017/
 #@param yw_queries.sh
 #@param yw_jar_file @file yesworkflow-0.2.1.1-jar-with-dependencies.jar
 
-cd $script_dir
-#mkdir -p prov_pdf svg_files gv_files graphs recon results models views facts
-
-cd $yw_dir
-rm -rf prov_pdf/* svg_files/* gv_files/* graphs/* 
 
 #@begin get_filenames @desc get the filenames from the scripts directory.
 #@in script_dir 
@@ -95,24 +72,22 @@ rm -rf prov_pdf/* svg_files/* gv_files/* graphs/*
 
 
 
-cd $script_dir
+cd $SCRIPT_DIR
 
 for file in `ls -1 *.R  *.java  *.sh` ;
 do
 
  filename=`ls -1 $file | sed -e 's/\..*$//' `
- yw graph $file > $yw_dir/gv_files/${filename}.gv
- yw graph $file | dot -Tpdf -o $yw_dir/prov_pdf/${filename}.pdf
- yw graph $file | dot -Tpng -o $yw_dir/graphs/${filename}.png
- yw graph $file | dot -Tsvg -o $yw_dir/svg_files/${filename}.svg
+ $YW_CMD graph $file > $GRAPH_DOT_DIR/${filename}.gv
+ $YW_CMD graph $file | dot -Tpdf -o $GRAPH_PDF_DIR/${filename}.pdf
+ $YW_CMD graph $file | dot -Tpng -o $GRAPH_PNG_DIR/${filename}.png
+ $YW_CMD graph $file | dot -Tsvg -o $GRAPH_SVG_DIR/${filename}.svg
 
- yw extract -c extract.factsfile $file > $yw_dir/facts/${filename}.P
- yw model   -c model.factsfile   $file > $yw_dir/models/${filename}.P
+ $YW_CMD extract -c extract.factsfile $file > $FACTS_DIR/${filename}.P
+ $YW_CMD model   -c model.factsfile   $file > $MODEL_DIR/${filename}.P
  
 done
-
-cd $yw_dir
-
+ 
 
 #@begin gen_views @desc create datalog facts views from the models files.
 #@in filename
@@ -124,29 +99,13 @@ cd $yw_dir
 #@param yw_graph_rules.P
 #@param yw_jar_file
 
+
+cd $RULES_DIR
+# genereate the views and execute YW queries for the model. 
+sh yw_views.sh 
 #@out views @uri file:views/{filename}.P
 #@end gen_views
 
-# genereate the views and execute YW queries for the model. 
-sh yw_views.sh 
-
-
-#@begin exec_queries @desc execute prospective provenance queries.
-#@in filename
-#@in models
-#@in facts
-#@in views
-
-#@param general_rules.P
-#@param yw_views.P
-#@param yw_graph_rules.P
-#@param yw_jar_file
-
-#@out results @uri file:results/{filename}.log
-#@end exec_queries
-
-
-sh yw_queries.sh 
 
 ## Execute the YW recon for the model
 
@@ -156,19 +115,41 @@ sh yw_queries.sh
 #@param yw_jar_file
 
 #@out recon @uri file:recon/{filename}.P
-#@end exec_yw_recon
 
-cd $script_dir
+cd $SCRIPT_DIR
 
 for file in `ls -1 *.R  *.java *.sh` ;
 do
  filename=`ls -1 $file | sed -e 's/\..*$//' `
  sed -i -e 's|#extract.sources     = ../Rscript/file|'"extract.sources     = ../Rscript/${file}"'|g' yw.properties 
  sed -i -e 's|#recon.factsfile     = ../yw/recon/file|'"recon.factsfile     = ../yw/recon/${filename}.P"'|g' yw.properties 
- yw recon
+ $YW_CMD recon
  sed -i -e 's|'"extract.sources     = ../Rscript/${file}"'|#extract.sources     = ../Rscript/file|g' yw.properties 
  sed -i -e 's|'"recon.factsfile     = ../yw/recon/${filename}.P"'|#recon.factsfile     = ../yw/recon/file|g' yw.properties 
 done
+#@end exec_yw_recon
+
+
+
+#@begin exec_queries @desc execute prospective provenance queries.
+#@in filename
+#@in models
+#@in facts
+#@in views
+#@param general_rules.P
+#@param yw_views.P
+#@param yw_graph_rules.P
+#@param yw_jar_file
+
+
+sh $QUERIES_DIR/queries.sh 
+
+
+
+#@out results @uri file:results/{filename}.log
+#@end exec_queries
+
+
 
 #@out graphs
 #@out models
@@ -180,3 +161,4 @@ done
 #@out views
 #@out gv_files
 #@end yw_artifacts
+

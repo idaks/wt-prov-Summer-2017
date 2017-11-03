@@ -1,7 +1,7 @@
 
 % FACT: program(program_id, program_name, qualified_program_name, begin_annotation_id, end_annotation_id).
-program(1, 'exec_paleocar', 'exec_paleocar', 1, 76).
-program(2, 'gen_paleocar_model', 'exec_paleocar.gen_paleocar_model', 21, 59).
+program(1, 'exec_paleocar', 'exec_paleocar', 1, 70).
+program(2, 'gen_paleocar_model', 'exec_paleocar.gen_paleocar_model', 21, 58).
 
 % FACT: workflow(program_id).
 workflow(1).
@@ -19,11 +19,11 @@ port(4, 'param', 'calibration_years', 'exec_paleocar<-calibration_years', 13, 4)
 port(5, 'param', 'label', 'exec_paleocar<-label', 15, 5).
 port(6, 'param', 'min_width', 'exec_paleocar<-min_width', 17, 6).
 port(7, 'param', 'verbose', 'exec_paleocar<-verbose', 19, 7).
-port(20, 'out', 'prediction_model', 'exec_paleocar->prediction_model', 60, 20).
-port(21, 'out', 'plot', 'exec_paleocar->plot', 63, 21).
-port(22, 'out', 'model', 'exec_paleocar->model', 67, 22).
-port(23, 'out', 'plot', 'exec_paleocar->plot', 71, 23).
-port(24, 'out', 'paleocar_log_file', 'exec_paleocar->paleocar_log_file', 75, 24).
+port(20, 'out', 'prediction_model', 'exec_paleocar->prediction_model', 59, 20).
+port(21, 'out', 'prediction_plot', 'exec_paleocar->prediction_plot', 61, 21).
+port(22, 'out', 'model', 'exec_paleocar->model', 63, 22).
+port(23, 'out', 'plot', 'exec_paleocar->plot', 66, 23).
+port(24, 'out', 'paleocar_log_file', 'exec_paleocar->paleocar_log_file', 69, 24).
 port(8, 'in', 'prediction_years', 'exec_paleocar.gen_paleocar_model<-prediction_years', 23, 8).
 port(9, 'in', 'prism_data_for_coordinates', 'exec_paleocar.gen_paleocar_model<-prism_data_for_coordinates', 25, 9).
 port(10, 'param', 'itrdb', 'exec_paleocar.gen_paleocar_model<-itrdb', 29, 10).
@@ -32,16 +32,14 @@ port(12, 'param', 'label', 'exec_paleocar.gen_paleocar_model<-label', 35, 12).
 port(13, 'param', 'min_width', 'exec_paleocar.gen_paleocar_model<-min_width', 37, 13).
 port(14, 'param', 'verbose', 'exec_paleocar.gen_paleocar_model<-verbose', 39, 14).
 port(15, 'out', 'prediction_model', 'exec_paleocar.gen_paleocar_model->prediction_model', 41, 15).
-port(16, 'out', 'plot', 'exec_paleocar.gen_paleocar_model->plot', 44, 16).
-port(17, 'out', 'model', 'exec_paleocar.gen_paleocar_model->model', 48, 17).
-port(18, 'out', 'plot', 'exec_paleocar.gen_paleocar_model->plot', 52, 18).
-port(19, 'out', 'paleocar_log_file', 'exec_paleocar.gen_paleocar_model->paleocar_log_file', 56, 19).
+port(16, 'out', 'prediction_plot', 'exec_paleocar.gen_paleocar_model->prediction_plot', 44, 16).
+port(17, 'out', 'model', 'exec_paleocar.gen_paleocar_model->model', 47, 17).
+port(18, 'out', 'plot', 'exec_paleocar.gen_paleocar_model->plot', 51, 18).
+port(19, 'out', 'paleocar_log_file', 'exec_paleocar.gen_paleocar_model->paleocar_log_file', 55, 19).
 
 % FACT: port_alias(port_id, alias).
-port_alias(21, 'prediction_plot').
 port_alias(22, 'uncertainty_model').
 port_alias(23, 'uncertainty_plot').
-port_alias(16, 'prediction_plot').
 port_alias(17, 'uncertainty_model').
 port_alias(18, 'uncertainty_plot').
 
@@ -49,13 +47,13 @@ port_alias(18, 'uncertainty_plot').
 port_uri_template(2, 'file:.output/{session_id}/{run_id}/112W36N.csv').
 port_uri_template(3, 'file:data/itrdb.Rda').
 port_uri_template(20, 'file:.output/{session_id}/{run_id}/{label}_prediction.Rds').
-port_uri_template(21, 'file:.output/{session_id}/{run_id}/{label}_prediction.jpg').
+port_uri_template(21, 'file:.output/{session_id}/{run_id}/{label}_predictions.jpg').
 port_uri_template(22, 'file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds').
 port_uri_template(23, 'file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg').
 port_uri_template(9, 'file:.output/{session_id}/{run_id}/112W36N.csv').
 port_uri_template(10, 'file:data/itrdb.Rda').
 port_uri_template(15, 'file:.output/{session_id}/{run_id}/{label}_prediction.Rds').
-port_uri_template(16, 'file:.ouptut/{session_id}/{run_id}/{label}_prediction.jpg').
+port_uri_template(16, 'file:.ouptut/{session_id}/{run_id}/{label}_predictions.jpg').
 port_uri_template(17, 'file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds').
 port_uri_template(18, 'file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg').
 port_uri_template(19, 'file:.output/{session_id}/{run_id}/paleocar_model_log.txt').

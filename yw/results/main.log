@@ -17,15 +17,15 @@ EQ2 : What out ports are qualified with URIs
 
 eq2(PortName)
 ...................................................................................................
-eq2(uncertain_model).
-eq2(tree_ring).
-eq2(pred_plot).
-eq2(data).
-eq2(log_file).
-eq2(prism_data_for_coordinates).
-eq2(pred_model).
-eq2(uncertain_plot).
+eq2(itrdb).
 eq2(pal_model).
+eq2(uncertain_plot).
+eq2(prism_data).
+eq2(prism_data_for_coordinates).
+eq2(pred_plot).
+eq2(log_file).
+eq2(uncertain_model).
+eq2(pred_model).
 
 
 ---------------------------------------------------------------------------------------------------

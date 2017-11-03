@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 #
 
+source ../settings.sh
+
 file=$1
 ProvidedDataName=$2
 PrintProvidedDataName=$3
 
+ 
+
 xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN
 
-['../general_rules.P'].
-['../yw_rules.P'].
-['../views/${file}'].
+['${RULES_DIR}/general_rules.P'].
+['$RULES_DIR/yw_rules.P'].
+['$VIEWS_DIR/${file}'].
 
 set_prolog_flag(unknown, fail).
 

@@ -15,8 +15,9 @@ EQ2 : What out ports are qualified with URIs
 eq2(PortName)
 ...................................................................................................
 eq2(paleocar_log_file).
-eq2(model).
 eq2(plot).
+eq2(model).
+eq2(prediction_plot).
 eq2(prediction_model).
 
 
@@ -56,7 +57,3 @@ YW_Q4 : What are the names and descriptions of any outputs of the workflow?
 
 yw_q4(OutputName, Description)
 ...................................................................................................
-yw_q4(uncertainty_plot,'timeseries plot of uncertainty model of the paleocar reconstruction.').
-yw_q4(uncertainty_model,'R model of the paleocar reconstruction of uncertainties.').
-yw_q4(prediction_plot,'timeseries plot of prediction model of the paleocar reconstruction.').
-yw_q4(prediction_model,'R model of the paleocar reconstruction of prediction.').

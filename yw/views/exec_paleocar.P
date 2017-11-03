@@ -88,12 +88,12 @@ yw_step_input(1,exec_paleocar,in,1,prediction_years,1,prediction_years).
 % FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
 yw_step_output(1,exec_paleocar,out,20,prediction_model,20,prediction_model).
-yw_step_output(1,exec_paleocar,out,21,plot,21,prediction_plot).
+yw_step_output(1,exec_paleocar,out,21,prediction_plot,21,prediction_plot).
 yw_step_output(1,exec_paleocar,out,22,model,22,uncertainty_model).
 yw_step_output(1,exec_paleocar,out,23,plot,23,uncertainty_plot).
 yw_step_output(1,exec_paleocar,out,24,paleocar_log_file,24,paleocar_log_file).
 yw_step_output(2,gen_paleocar_model,out,15,prediction_model,15,prediction_model).
-yw_step_output(2,gen_paleocar_model,out,16,plot,16,prediction_plot).
+yw_step_output(2,gen_paleocar_model,out,16,prediction_plot,16,prediction_plot).
 yw_step_output(2,gen_paleocar_model,out,17,model,17,uncertainty_model).
 yw_step_output(2,gen_paleocar_model,out,18,plot,18,uncertainty_plot).
 yw_step_output(2,gen_paleocar_model,out,19,paleocar_log_file,19,paleocar_log_file).
@@ -139,7 +139,7 @@ yw_qualified_name(port,5,'exec_paleocar<-label').
 yw_qualified_name(port,6,'exec_paleocar<-min_width').
 yw_qualified_name(port,7,'exec_paleocar<-verbose').
 yw_qualified_name(port,20,'exec_paleocar->prediction_model').
-yw_qualified_name(port,21,'exec_paleocar->plot').
+yw_qualified_name(port,21,'exec_paleocar->prediction_plot').
 yw_qualified_name(port,22,'exec_paleocar->model').
 yw_qualified_name(port,23,'exec_paleocar->plot').
 yw_qualified_name(port,24,'exec_paleocar->paleocar_log_file').
@@ -151,7 +151,7 @@ yw_qualified_name(port,12,'exec_paleocar.gen_paleocar_model<-label').
 yw_qualified_name(port,13,'exec_paleocar.gen_paleocar_model<-min_width').
 yw_qualified_name(port,14,'exec_paleocar.gen_paleocar_model<-verbose').
 yw_qualified_name(port,15,'exec_paleocar.gen_paleocar_model->prediction_model').
-yw_qualified_name(port,16,'exec_paleocar.gen_paleocar_model->plot').
+yw_qualified_name(port,16,'exec_paleocar.gen_paleocar_model->prediction_plot').
 yw_qualified_name(port,17,'exec_paleocar.gen_paleocar_model->model').
 yw_qualified_name(port,18,'exec_paleocar.gen_paleocar_model->plot').
 yw_qualified_name(port,19,'exec_paleocar.gen_paleocar_model->paleocar_log_file').
@@ -194,10 +194,6 @@ yw_description(port,4,calibration_years,'period for calibrating the information 
 yw_description(port,5,label,'user entered label for the study region.').
 yw_description(port,6,min_width,'min width of the tree rings.').
 yw_description(port,7,verbose,'set to true for writing output to a logfile.').
-yw_description(port,20,prediction_model,'R model of the paleocar reconstruction of prediction.').
-yw_description(port,21,plot,'timeseries plot of prediction model of the paleocar reconstruction.').
-yw_description(port,22,model,'R model of the paleocar reconstruction of uncertainties.').
-yw_description(port,23,plot,'timeseries plot of uncertainty model of the paleocar reconstruction.').
 yw_description(port,8,prediction_years,'period for reconstruction of the paleoclimate using paleocar.').
 yw_description(port,9,prism_data_for_coordinates,'file containing the precipitation values for the selected region.').
 yw_description(port,9,prism_data_for_coordinates,'file containing the precipitation values for the particular region').
@@ -207,7 +203,7 @@ yw_description(port,12,label,'user entered label for the study region.').
 yw_description(port,13,min_width,'min width of the tree rings.').
 yw_description(port,14,verbose,'set to true for writing output to a logfile.').
 yw_description(port,15,prediction_model,'R model of the paleocar reconstruction of prediction.').
-yw_description(port,16,plot,'timeseries plot of prediction model of the paleocar reconstruction.').
+yw_description(port,16,prediction_plot,'timeseries plot of prediction model of the paleocar reconstruction.').
 yw_description(port,17,model,'R model of the paleocar reconstruction of uncertainties.').
 yw_description(port,18,plot,'timeseries plot of uncertainty model of the paleocar reconstruction.').
 yw_description(port,19,paleocar_log_file,'text file containing information of the execution of the run.').

@@ -5,16 +5,21 @@ extract_source(1, 'get_species_of_tree_used.R').
 % FACT: annotation(annotation_id, source_id, line_number, tag, keyword, value).
 annotation(1, 1, 21, 'begin', '@begin', 'get_species_of_trees').
 annotation(2, 1, 21, 'desc', '@desc', 'extract the species of trees used for reconstruction for prediction year').
-annotation(3, 1, 22, 'in', '@in', 'models').
-annotation(4, 1, 22, 'as', '@as', 'paleocar_models').
-annotation(5, 1, 22, 'uri', '@uri', 'file:.output/{session_id}{run_id}/{label}_models.rds').
-annotation(6, 1, 23, 'in', '@in', 'itrdb').
-annotation(7, 1, 46, 'out', '@out', 'tree_species_used').
-annotation(8, 1, 46, 'uri', '@uri', 'file:.output/{session_id}{run_id}/tree_species.csv').
-annotation(9, 1, 47, 'end', '@end', 'get_species_of_trees').
+annotation(3, 1, 22, 'in', '@in', 'paleocar_models').
+annotation(4, 1, 23, 'in', '@in', 'itrdb').
+annotation(5, 1, 25, 'out', '@out', 'tree_species_used').
+annotation(6, 1, 39, 'begin', '@begin', 'extract_tree_species').
+annotation(7, 1, 40, 'in', '@in', 'itrdb').
+annotation(8, 1, 40, 'uri', '@uri', 'file:data/itrdb.Rda').
+annotation(9, 1, 41, 'in', '@in', 'paleocar_models').
+annotation(10, 1, 41, 'uri', '@uri', 'file:.output/{session_id}{run_id}/{label}_models.rds').
+annotation(11, 1, 43, 'out', '@out', 'tree_species_used').
+annotation(12, 1, 43, 'uri', '@uri', 'file:.output/{session_id}{run_id}/tree_species.csv').
+annotation(13, 1, 53, 'end', '@end', 'extract_tree_species').
+annotation(14, 1, 55, 'end', '@end', 'get_species_of_trees').
 
 % FACT: annotation_qualifies(qualifying_annotation_id, primary_annotation_id).
 annotation_qualifies(2, 1).
-annotation_qualifies(4, 3).
-annotation_qualifies(5, 3).
 annotation_qualifies(8, 7).
+annotation_qualifies(10, 9).
+annotation_qualifies(12, 11).

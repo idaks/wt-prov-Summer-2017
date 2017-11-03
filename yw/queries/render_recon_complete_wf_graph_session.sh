@@ -6,18 +6,31 @@ session_id=$2
 xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN
  
 
-['../views/${file}'].
-['../recon/${file}'].
-['../yw_rules.P'].
-['../gv_rules.P'].
-['../yw_graph_rules.P'].
-['../recon_rules.P'].
+['$VIEWS_DIR/${file}'].
+['$RECON_DIR/${file}'].
+['$MODEL_DIR/${file}'].
+['$RULES_DIR/yw_rules.P'].
+['$RULES_DIR/gv_rules.P'].
+['$RULES_DIR/yw_graph_rules.P'].
+
+%['../recon_rules.P'].
 
 [user].
+:- table data_uri_resource/2.
 data_uri_resource(DataId, ResourceURI) :-
      data_resource(DataId,ResourceId),
      resource(ResourceId, ResourceURI),
-	 uri_variable_value(ResourceId, _,'${session_id}').
+	 not uri_variable_value(ResourceId, _,_).
+data_uri_resource(DataId, ResourceURI) :-
+     data_resource(DataId,ResourceId),
+     resource(ResourceId, ResourceURI),
+	 uri_variable_value(ResourceId, _, '${session_id}').
+
+:- table Uri_template_label/2.	 
+Uri_template_label(Y,Z) :-
+	port(X, _, _, _, _,Y),
+	port_uri_template(X, Z).
+	 
 graph :-
 
     yw_workflow_script(W, WorkflowName, _, _),
@@ -30,9 +43,13 @@ graph :-
             gv_nodestyle__subworkflow,
             gv_nodes__subworkflows(W),
             gv_nodestyle__data_value,
+			gv_nodes__input_recon_data_wo_uri(WorkflowId),
+			gv_nodestyle__data_value,
             gv_nodes__input_recon_data(W),
             gv_node_style__data,
-            gv_nodes__recon_not_input_not_output_data(W),
+			gv_nodes__recon_input_output_data_wo_uri(W),
+			gv_node_style__data,
+            gv_nodes__recon_input_output_data(W),
             gv_nodestyle__data_value,
             gv_nodes__output_recon_data(W),
             gv_node_style__param,

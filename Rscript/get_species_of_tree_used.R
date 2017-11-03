@@ -19,9 +19,10 @@ library(tibble)
 library(readr)
 
 #@begin get_species_of_trees @desc extract the species of trees  used for reconstruction for prediction year
-#@in models @as paleocar_models   @uri  file:.output/{session_id}{run_id}/{label}_models.rds 
+#@in paleocar_models   
 #@in itrdb 
 
+#@out tree_species_used
 ## get the rds file 
 model_rds_file= paste0(args[2])
 
@@ -35,6 +36,12 @@ model <-readRDS(model_rds_file)
 
 setwd(args[1])
 
+#@begin  extract_tree_species 
+#@in itrdb @uri file:data/itrdb.Rda
+#@in paleocar_models @uri  file:.output/{session_id}{run_id}/{label}_models.rds 
+
+#@out tree_species_used @uri  file:.output/{session_id}{run_id}/tree_species.csv 
+
 # data.frame(grca_vector$reconstruction.matrix[prediction.years] )%>%
 #   write_csv("reconst_matrix.csv")
 
@@ -43,6 +50,7 @@ setwd(args[1])
 itrdb$metadata[itrdb$metadata$SERIES %in% names(model$predictor.matrix[1,]),1:3] %>% 
   write_csv(output_file)
 
-#@out tree_species_used @uri  file:.output/{session_id}{run_id}/tree_species.csv 
+#@end extract_tree_species
+
 #@end get_species_of_trees 
 

@@ -1,7 +1,9 @@
 
 % FACT: resource(resource_id, resource_uri).
+resource(1, 'data/itrdb.Rda').
 
 % FACT: data_resource(data_id, resource_id).
+data_resource(4, 1).
 
 % FACT: uri_variable_value(resource_id, uri_variable_id, uri_variable_value).
 

@@ -5,12 +5,12 @@ xsb --quietload --noprompt --nofeedback --nobanner << END_XSB_STDIN
 
 set_prolog_flag(unknown, fail).
 
-['../views/${file}'].
-['../recon/${file}'].
-['../yw_rules.P'].
-['../gv_rules.P'].
-['../yw_graph_rules.P'].
-['../recon_rules.P'].
+['$VIEWS_DIR/${file}'].
+['$RECON_DIR/${file}'].
+['$RULES_DIR/yw_rules.P'].
+['$RULES_DIR/gv_rules.P'].
+['$RULES_DIR/yw_graph_rules.P'].
+['$RULES_DIR/recon_rules.P'].
 
 [user].
 

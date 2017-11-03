@@ -18,10 +18,9 @@ import './main.html';
  // @param min_width
  // @param historical_precip_data 
  // @param tree_ring_data
- 
 
- // @out prism_data @file data/112W36N.nc  
- // @out itrdb @file data/itrdb.rda 
+
+
  // @out prediction_graph
  // @out paleocar_models 
  // @out prediction_model  
@@ -30,15 +29,15 @@ import './main.html';
  // @out uncertainty_graph 
  
  
-    // @begin get_client_data @desc get the data from the user and generate the client side metadata for storing the information of each run.
-    // @in coord @as user_map_marker_pos 
-    // @in pred_year @as user_prediction_years 
-    
-    
-    // @out session_id 
-    // @out run_id 
-    // @out coordinates 
-    // @out prediction_years 
+// @begin get_client_data @desc get the data from the user and generate the client side metadata for storing the information of each run.
+// @in user_map_marker_pos 
+// @in user_prediction_years 
+
+
+// @out session_id 
+// @out run_id 
+// @out coordinates 
+// @out prediction_years 
  
 var map_zoom=6; 
 
@@ -176,14 +175,16 @@ Template.map.onCreated(function() {
 
     // @end get_client_data
     
-    // @begin acccess_static_server_files @desc the static files available and required for execution of PaleoCAR on the server.
+	
+	// @begin acccess_static_server_files @desc the static files available and required for execution of PaleoCAR on the server.
     
     // @param historical_precip_data 
     // @param tree_ring_data 
     
-    // @out data @as prism_data @uri file:data/112W36N.nc @desc file containing the precipitation values for the particular region.
-    // @out tree_ring @as itrdb @uri file:data/itrdb.rda @desc tree ring chronologies database
+    // @out prism_data @uri file:data/112W36N.nc @desc file containing the precipitation values for the particular region.
+    // @out itrdb @uri file:data/itrdb.rda @desc tree ring chronologies database
     // @end acccess_static_server_files
+ 
  
     marker = new google.maps.Marker
     ({
@@ -312,11 +313,11 @@ Template.pop_lat_lng.helpers({
 });
 
     // @begin extract_prism_data @desc get the prism data file on the server with precipitation values and extract the data for the input coordinates and save as a csv file.
-    // @in coord @as coordinates @desc Coordinates of location for reconstruction of paleoclimate. 
+    // @in coordinates @desc Coordinates of location for reconstruction of paleoclimate. 
     // @in session_id
     // @in run_id 
-    // @param input_file @as prism_data 
-
+    // @in prism_data
+                          
 Template.btn_exec_paleocar.events({
 
   'click .exec_PaleoCar':function(){
@@ -341,9 +342,7 @@ Template.btn_exec_paleocar.events({
  
 
     
-    // @out prism_data_for_coordinates @uri file:.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region.  @desc file containing the precipitation values for the selected region.
- //    @end  extract_prism_data
- 
+
   var cmd_prism_data = 'Rscript  '+ curr_dir + 'Rscript\\extract_prism_data.R ' + curr_dir + ' ' +  g_Lat.get() + ' ' + g_Lng.get() +' ' + in_file_name_ext  + ' '  + out_file_prism_data  + ' ' + test_dir ;
   
   //alert(cmd_prism_data);
@@ -360,24 +359,27 @@ Template.btn_exec_paleocar.events({
       }
     });
     
+	// @out prism_data_for_coordinates @uri file:.output/{session_id}/{run_id}/112W36N.csv @desc file containing the precipitation values for the selected region.  @desc file containing the precipitation values for the selected region.
+	//    @end extract_prism_data
+ 
  
     // @begin exec_paleocar @desc execute paleocar for reconstruction of paleoclimate of the study region. Generate the timeseries graphs, and  paleocar models of paleoclimatic reconstruction. 
     // @in prediction_years @desc period for reconstruction of the paleoclimate using paleocar. 
-    // @in data @as prism_data_for_coordinates
-    // @param tree_ring @as itrdb 
-    // @param calib_year @as calibration_years  @desc period for calibrating the information for predicting the climate. 
+    // @in prism_data_for_coordinates
+    // @in itrdb 
+    // @param calibration_years  @desc period for calibrating the information for predicting the climate. 
     // @param label @desc user entered label for the study region. 
     // @param min_width 
     // @param verbose 
     session_id = session_id
 	run_id = run_id
     
-    // @out pred_model @as prediction_model @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
-    // @out pred_plot @as prediction_graph  @uri file:.output/{session_id}/{run_id}/{label}_predictions.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
-    // @out uncertain_model @as uncertainty_model @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
-    // @out pal_model @as paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds  @desc R model generated for the paleoclimatic reconstruction.
-    // @out uncertain_plot @as uncertainty_graph  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
-    // @out log_file @as paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt  @desc timeseries plot of uncertainty model of the paleocar reconstruction.  
+    // @out pred_model @as prediction_model @uri file:.output/{session_id}/{run_id}/{label}_prediction.Rds 
+    // @out pred_plot @as prediction_graph  @uri file:.output/{session_id}/{run_id}/{label}_predictions.jpg
+    // @out uncertain_model @as uncertainty_model @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds
+    // @out pal_model @as paleocar_models   @uri file:.output/{session_id}/{run_id}/{label}_model.Rds 
+    // @out uncertain_plot @as uncertainty_graph  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg
+    // @out log_file @as paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt  
     // @end exec_paleocar
  
   // Execute  PaleoCAr for the Vector region for now. 

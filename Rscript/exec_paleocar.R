@@ -87,7 +87,7 @@ input_data_type=args[8]
 
 
 #@out prediction_model @uri  file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
-#@out plot @as prediction_plot  @uri file:.ouptut/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
+# @out prediction_plot  @uri file:.ouptut/{session_id}/{run_id}/{label}_predictions.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
 #@out model @as uncertainty_model  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
 #@out plot @as uncertainty_plot  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
 #@out paleocar_log_file @uri file:.output/{session_id}/{run_id}/paleocar_model_log.txt @desc  text file containing information of the execution of the run. 
@@ -114,10 +114,10 @@ if(input_data_type=="v")
   )
 }
 
-#@out prediction_model @uri  file:.output/{session_id}/{run_id}/{label}_prediction.Rds @desc  R model of the paleocar reconstruction of prediction.
-#@out plot @as prediction_plot  @uri file:.output/{session_id}/{run_id}/{label}_prediction.jpg  @desc timeseries plot of prediction model of the paleocar reconstruction.    
-#@out model @as uncertainty_model  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds  @desc R model of the paleocar reconstruction of uncertainties.
-#@out plot @as uncertainty_plot  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  @desc timeseries plot of uncertainty model of the paleocar reconstruction.
+#@out prediction_model @uri  file:.output/{session_id}/{run_id}/{label}_prediction.Rds 
+#@out prediction_plot  @uri file:.output/{session_id}/{run_id}/{label}_predictions.jpg  
+#@out model @as uncertainty_model  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds 
+#@out plot @as uncertainty_plot  @uri file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg  
 #@out paleocar_log_file 
 #@end exec_paleocar
 ## Check if input_data_type is a matrix and execute the paleocar
