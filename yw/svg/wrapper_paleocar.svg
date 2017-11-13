@@ -16,9 +16,17 @@
 <g id="clust2" class="cluster"><title>cluster_workflow_box_inner</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="16,-70 16,-465 1510,-465 1510,-70 16,-70"/>
 </g>
+<g id="clust3" class="cluster"><title>cluster_input_ports_group_outer</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="857,-481 857,-527 1063,-527 1063,-481 857,-481"/>
 </g>
+<g id="clust4" class="cluster"><title>cluster_input_ports_group_inner</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="865,-489 865,-519 1055,-519 1055,-489 865,-489"/>
 </g>
+<g id="clust5" class="cluster"><title>cluster_output_ports_group_outer</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="1032,-8 1032,-54 1238,-54 1238,-8 1032,-8"/>
 </g>
+<g id="clust6" class="cluster"><title>cluster_output_ports_group_inner</title>
+<polygon fill="none" stroke="black" stroke-width="0" points="1040,-16 1040,-46 1230,-46 1230,-16 1040,-16"/>
 </g>
 <!-- create_paleocar_model -->
 <g id="node1" class="node"><title>create_paleocar_model</title>

@@ -22,8 +22,8 @@ port(6, 'out', 'boundary_coordinates', 'gen_boundary_region.gen_boundary_region-
 % FACT: port_alias(port_id, alias).
 
 % FACT: port_uri_template(port_id, uri).
-port_uri_template(2, 'file:data/112W36N.nc').
-port_uri_template(5, 'file:data/112W36N.nc').
+port_uri_template(2, 'file\:data/112W36N.nc').
+port_uri_template(5, 'file\:data/112W36N.nc').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).

@@ -5,7 +5,7 @@ rankdir=TB
 
 /* Title for graph */
 fontname=Helvetica; fontsize=18; labelloc=t
-label=exec_paleocar
+label=gen_paleocar_model
 
 /* Start of double cluster for drawing box around nodes in workflow */
 subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
@@ -15,43 +15,64 @@ subgraph cluster_workflow_box_inner { label=""; penwidth=0
 node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
 
 /* Nodes representing atomic programs in workflow */
-gen_paleocar_model [shape=record rankdir=LR label="{<f0> gen_paleocar_model |<f1> execute paleocar for reconstruction of paleoclimate of the study region.}"];
+print_message [shape=record rankdir=LR label="{<f0> print_message |<f1> writing messages to the command line, if the variable is set.}"];
+get_predictor_matrix [shape=record rankdir=LR label="{<f0> get_predictor_matrix |<f1> create a matrix of tree ring chronologies for the calibration year.}"];
+get_reconstruction_matrix [shape=record rankdir=LR label="{<f0> get_reconstruction_matrix |<f1> get reconstruction matrix for chronologies for the prediction year.}"];
+get_predlist [shape=record rankdir=LR label="{<f0> get_predlist |<f1> create list of prediction values.}"];
+get_carscores [shape=record rankdir=LR label="{<f0> get_carscores |<f1> get the carscores for reconstruction of paleoclimate.}"];
+optimizeModels
+
+/* Style for nodes representing composite programs (sub-workflows) in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=2 fontname=Helvetica]
+
+/* Nodes representing composite programs (sub-workflows) in workflow */
+calculate_Models
 
 /* Style for nodes representing non-parameter data channels in workflow */
 node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
 
 /* Nodes for non-parameter data channels in workflow */
-prediction_model [shape=record rankdir=LR label="{<f0> prediction_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_prediction.Rds}"];
-prediction_plot [shape=record rankdir=LR label="{<f0> prediction_plot |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_predictions.jpg}"];
-uncertainty_model [shape=record rankdir=LR label="{<f0> uncertainty_model |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.Rds}"];
-uncertainty_plot [shape=record rankdir=LR label="{<f0> uncertainty_plot |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.jpg}"];
-paleocar_log_file [shape=record rankdir=LR label="{<f0> paleocar_log_file |<f1> file\:.output/\{session_id\}/\{run_id\}/paleocar_model_log.txt}"];
+paleocar_models [shape=record rankdir=LR label="{<f0> paleocar_models |<f1> file\:.output/\{session_id\}/\{run_id\}/\{label\}_model.Rds}"];
+verbose
+itrdb
 prediction_years
+reconstruction_matrix
 prism_data_for_coordinates
+predictor_matrix
+predlist
+carscores
+max_preds
+linear_models
 
 /* Style for nodes representing parameter channels in workflow */
 node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
 
 /* Nodes representing parameter channels in workflow */
-itrdb
 calibration_years
-label
 min_width
-verbose
 
 /* Edges representing connections between programs and channels */
-gen_paleocar_model -> prediction_model
-gen_paleocar_model -> prediction_plot
-gen_paleocar_model -> uncertainty_model
-gen_paleocar_model -> uncertainty_plot
-gen_paleocar_model -> paleocar_log_file
-prediction_years -> gen_paleocar_model
-prism_data_for_coordinates -> gen_paleocar_model
-itrdb -> gen_paleocar_model
-calibration_years -> gen_paleocar_model
-label -> gen_paleocar_model
-min_width -> gen_paleocar_model
-verbose -> gen_paleocar_model
+verbose -> print_message
+get_predictor_matrix -> predictor_matrix
+get_predictor_matrix -> max_preds
+itrdb -> get_predictor_matrix
+calibration_years -> get_predictor_matrix
+min_width -> get_predictor_matrix
+get_reconstruction_matrix -> reconstruction_matrix
+itrdb -> get_reconstruction_matrix
+prediction_years -> get_reconstruction_matrix
+min_width -> get_reconstruction_matrix
+get_predlist -> predlist
+reconstruction_matrix -> get_predlist
+get_carscores -> carscores
+prism_data_for_coordinates -> get_carscores
+predictor_matrix -> get_carscores
+calculate_Models -> linear_models
+predlist -> calculate_Models
+carscores -> calculate_Models
+max_preds -> calculate_Models
+optimizeModels -> paleocar_models
+linear_models -> optimizeModels
 
 /* End of double cluster for drawing box around nodes in workflow */
 }}
@@ -68,7 +89,6 @@ prediction_years_input_port [label=""]
 prism_data_for_coordinates_input_port [label=""]
 itrdb_input_port [label=""]
 calibration_years_input_port [label=""]
-label_input_port [label=""]
 min_width_input_port [label=""]
 verbose_input_port [label=""]
 
@@ -83,11 +103,7 @@ subgraph cluster_output_ports_group_inner { label=""; penwidth=0
 node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
 
 /* Nodes representing workflow output ports */
-prediction_model_output_port [label=""]
-prediction_plot_output_port [label=""]
-uncertainty_model_output_port [label=""]
-uncertainty_plot_output_port [label=""]
-paleocar_log_file_output_port [label=""]
+paleocar_models_output_port [label=""]
 
 /* End of double-cluster for grouping workflow output ports */
 }}
@@ -97,16 +113,11 @@ prediction_years_input_port -> prediction_years
 prism_data_for_coordinates_input_port -> prism_data_for_coordinates
 itrdb_input_port -> itrdb
 calibration_years_input_port -> calibration_years
-label_input_port -> label
 min_width_input_port -> min_width
 verbose_input_port -> verbose
 
 /* Edges from channels to output ports */
-prediction_model -> prediction_model_output_port
-prediction_plot -> prediction_plot_output_port
-uncertainty_model -> uncertainty_model_output_port
-uncertainty_plot -> uncertainty_plot_output_port
-paleocar_log_file -> paleocar_log_file_output_port
+paleocar_models -> paleocar_models_output_port
 
 /* End of top-level graph */
 }

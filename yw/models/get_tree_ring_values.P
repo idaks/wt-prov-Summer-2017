@@ -23,8 +23,8 @@ port(6, 'out', 'tree_ring_values', 'get_tree_ring_values.extract_tree_ring_value
 port_alias(4, 'paleocar_models').
 
 % FACT: port_uri_template(port_id, uri).
-port_uri_template(4, 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
-port_uri_template(6, 'file:.output/{session_id}/{run_id}/{calibration_year}_tree_ring_data.csv').
+port_uri_template(4, 'file\:.output/\{session_id\}/\{run_id\}/\{label\}_model.Rds').
+port_uri_template(6, 'file\:.output/\{session_id\}/\{run_id\}/\{calibration_year\}_tree_ring_data.csv').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).

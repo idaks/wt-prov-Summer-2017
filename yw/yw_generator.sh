@@ -86,7 +86,12 @@ do
  $YW_CMD extract -c extract.factsfile $file > $FACTS_DIR/${filename}.P
  $YW_CMD model   -c model.factsfile   $file > $MODEL_DIR/${filename}.P
  
+ sed -i -e 's|file:|file\\:|g' $MODEL_DIR/${filename}.P
+ sed -i -e 's|{|\\{|g' $MODEL_DIR/${filename}.P
+ sed -i -e 's|}|\\}|g' $MODEL_DIR/${filename}.P
+ 
 done
+
  
 
 #@begin gen_views @desc create datalog facts views from the models files.

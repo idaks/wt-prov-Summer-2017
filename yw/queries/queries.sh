@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 
-## list the inputs for the upstream for the 
+cd $QUERIES_DIR
 
+## execute general yw model queries. 
+
+sh gen_queries.sh 
 
 ## list the inputs for the upstream of the prism_data_for_coordinates. 
 sh list_inputs_upstream_of_data_q2.sh main.P prism_data_for_coordinates prism_data_for_coordinates
@@ -35,15 +38,21 @@ sh list_outputs_downstream_of_data_q3.sh wrapper_paleocar.P label label
 
 ### Complete Recon WF Graphs ## 
 
-sh render_recon_complete_wf_graph.sh main.P | dot -Tpdf -o ../results/recon_wf_main.pdf 
+#sh render_recon_complete_wf_graph.sh main.P | dot -Tpdf -o ../results/recon_wf_main.pdf 
+sh render_recon_complete_wf_graph_mod.sh main.P | dot -Tpdf -o ../results/recon_wf_main.pdf 
 
-sh render_recon_complete_wf_graph.sh get_itrdb_data.P | dot -Tpdf -o ../results/recon_wf_get_itrdb_data.pdf 
+#sh render_recon_complete_wf_graph.sh get_itrdb_data.P | dot -Tpdf -o ../results/recon_wf_get_itrdb_data.pdf 
+sh render_recon_complete_wf_graph_mod.sh get_itrdb_data.P | dot -Tpdf -o ../results/recon_wf_get_itrdb_data.pdf 
 
-sh render_recon_complete_wf_graph.sh extract_prism_data.P | dot -Tpdf -o ../results/recon_wf_extract_prism_data.pdf 
 
-sh render_recon_complete_wf_graph.sh paleocar_models.P | dot -Tpdf -o ../results/recon_wf_paleocar_models.pdf 
+#sh render_recon_complete_wf_graph.sh extract_prism_data.P | dot -Tpdf -o ../results/recon_wf_extract_prism_data.pdf 
+sh render_recon_complete_wf_graph_mod.sh extract_prism_data.P | dot -Tpdf -o ../results/recon_wf_extract_prism_data.pdf 
 
-sh render_recon_complete_wf_graph.sh exec_paleocar.P | dot -Tpdf -o ../results/recon_wf_exec_paleocar.pdf 
+#sh render_recon_complete_wf_graph.sh paleocar_models.P | dot -Tpdf -o ../results/recon_wf_paleocar_models.pdf 
+sh render_recon_complete_wf_graph_mod.sh paleocar_models.P | dot -Tpdf -o ../results/recon_wf_paleocar_models.pdf 
+
+#sh render_recon_complete_wf_graph.sh exec_paleocar.P | dot -Tpdf -o ../results/recon_wf_exec_paleocar.pdf 
+sh render_recon_complete_wf_graph_mod.sh exec_paleocar.P | dot -Tpdf -o ../results/recon_wf_exec_paleocar.pdf 
 
 
 ## Downstream WF graphs ### 
@@ -60,10 +69,10 @@ sh render_wf_graph_downstream_of_data_q3.sh main.P prediction_year prediction_ye
 sh render_recon_complete_wf_graph_session.sh main.P  3b7bf6b2 | dot -Tpdf -o ../results/render_recon_complete_wf_graph_main_3b7bf6b2.pdf 
 
 ## Recon graph for the data-products generated in one session of the run. 
-sh render_recon_complete_wf_graph_session.sh get_tree_ring_values.P  1950 | dot -Tpdf -o ../results/render_recon_complete_wf_graph_tree_ring_1950.pdf 
+sh render_recon_complete_wf_graph_session.sh get_tree_ring_values.P  3b7bf6b2 | dot -Tpdf -o ../results/render_recon_complete_wf_graph_tree_ring_1950.pdf 
 
 
-
+sh render_recon_complete_wf_graph_session.sh paleocar_models.P  3b7bf6b2 | dot -Tpdf -o ../results/render_recon_complete_wf_graph_paleo_models_3b7bf6b2.pdf 
 
 
 

@@ -15,8 +15,8 @@ EQ2 : What out ports are qualified with URIs
 eq2(PortName)
 ...................................................................................................
 eq2(paleocar_log_file).
-eq2(plot).
-eq2(model).
+eq2(uncertainty_plot).
+eq2(uncertainty_model).
 eq2(prediction_plot).
 eq2(prediction_model).
 
@@ -40,8 +40,6 @@ YW_Q2 : What workflow steps comprise the top-level workflow?
 
 yw_q2(StepName, Description)
 ...................................................................................................
-yw_q2(gen_paleocar_model,'file containing the precipitation values for the particular region').
-yw_q2(gen_paleocar_model,'file containing the precipitation values for the selected region.').
 yw_q2(gen_paleocar_model,'execute paleocar for reconstruction of paleoclimate of the study region.').
 
 

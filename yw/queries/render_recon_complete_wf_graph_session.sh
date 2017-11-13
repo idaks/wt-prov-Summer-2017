@@ -27,9 +27,9 @@ data_uri_resource(DataId, ResourceURI) :-
 	 uri_variable_value(ResourceId, _, '${session_id}').
 
 :- table Uri_template_label/2.	 
-Uri_template_label(Y,Z) :-
-	port(X, _, _, _, _,Y),
-	port_uri_template(X, Z).
+Uri_template_label(DataId,UriLabel) :-
+	port(X, _, _, _, _,DataId),
+	port_uri_template(X, UriLabel).
 	 
 graph :-
 

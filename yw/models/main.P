@@ -70,15 +70,15 @@ port_alias(41, 'uncertainty_graph').
 port_alias(42, 'paleocar_log_file').
 
 % FACT: port_uri_template(port_id, uri).
-port_uri_template(23, 'file:data/112W36N.nc').
-port_uri_template(24, 'file:data/itrdb.rda').
-port_uri_template(29, 'file:.output/{session_id}/{run_id}/112W36N.csv').
-port_uri_template(37, 'file:.output/{session_id}/{run_id}/{label}_prediction.Rds').
-port_uri_template(38, 'file:.output/{session_id}/{run_id}/{label}_predictions.jpg').
-port_uri_template(39, 'file:.output/{session_id}/{run_id}/{label}_uncertainty.Rds').
-port_uri_template(40, 'file:.output/{session_id}/{run_id}/{label}_model.Rds').
-port_uri_template(41, 'file:.output/{session_id}/{run_id}/{label}_uncertainty.jpg').
-port_uri_template(42, 'file:.output/{session_id}/{run_id}/paleocar_model_log.txt').
+port_uri_template(23, 'file\:data/112W36N.nc').
+port_uri_template(24, 'file\:data/itrdb.rda').
+port_uri_template(29, 'file\:.output/\{session_id\}/\{run_id\}/112W36N.csv').
+port_uri_template(37, 'file\:.output/\{session_id\}/\{run_id\}/\{label\}_prediction.Rds').
+port_uri_template(38, 'file\:.output/\{session_id\}/\{run_id\}/\{label\}_predictions.jpg').
+port_uri_template(39, 'file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.Rds').
+port_uri_template(40, 'file\:.output/\{session_id\}/\{run_id\}/\{label\}_model.Rds').
+port_uri_template(41, 'file\:.output/\{session_id\}/\{run_id\}/\{label\}_uncertainty.jpg').
+port_uri_template(42, 'file\:.output/\{session_id\}/\{run_id\}/paleocar_model_log.txt').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).

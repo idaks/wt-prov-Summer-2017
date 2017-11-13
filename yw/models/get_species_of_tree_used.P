@@ -22,9 +22,9 @@ port(6, 'out', 'tree_species_used', 'get_species_of_trees.extract_tree_species->
 % FACT: port_alias(port_id, alias).
 
 % FACT: port_uri_template(port_id, uri).
-port_uri_template(4, 'file:data/itrdb.Rda').
-port_uri_template(5, 'file:.output/{session_id}{run_id}/{label}_models.rds').
-port_uri_template(6, 'file:.output/{session_id}{run_id}/tree_species.csv').
+port_uri_template(4, 'file\:data/itrdb.Rda').
+port_uri_template(5, 'file\:.output/\{session_id\}\{run_id\}/\{label\}_models.rds').
+port_uri_template(6, 'file\:.output/\{session_id\}\{run_id\}/tree_species.csv').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).

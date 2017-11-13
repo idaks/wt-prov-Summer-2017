@@ -101,15 +101,15 @@ port(57, 'out', 'recon', 'yw_artifacts.exec_yw_recon->recon', 97, 26).
 
 % FACT: port_uri_template(port_id, uri).
 port_uri_template(10, 'yesworkflow-0.2.1.1-jar-with-dependencies.jar').
-port_uri_template(16, 'file:gv_files/{filename}.gv').
-port_uri_template(20, 'file:graphs/{filename}.png').
-port_uri_template(24, 'file:prov_pdf/{filename}.pdf').
-port_uri_template(28, 'file:svg_files/{filename}.svg').
-port_uri_template(32, 'file:facts/{filename}.P').
-port_uri_template(36, 'file:models/{filename}.P').
-port_uri_template(44, 'file:views/{filename}.P').
-port_uri_template(53, 'file:results/{filename}.log').
-port_uri_template(57, 'file:recon/{filename}.P').
+port_uri_template(16, 'file\:gv_files/\{filename\}.gv').
+port_uri_template(20, 'file\:graphs/\{filename\}.png').
+port_uri_template(24, 'file\:prov_pdf/\{filename\}.pdf').
+port_uri_template(28, 'file\:svg_files/\{filename\}.svg').
+port_uri_template(32, 'file\:facts/\{filename\}.P').
+port_uri_template(36, 'file\:models/\{filename\}.P').
+port_uri_template(44, 'file\:views/\{filename\}.P').
+port_uri_template(53, 'file\:results/\{filename\}.log').
+port_uri_template(57, 'file\:recon/\{filename\}.P').
 
 % FACT: has_in_port(block_id, port_id).
 has_in_port(1, 1).

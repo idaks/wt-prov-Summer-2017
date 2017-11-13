@@ -496,7 +496,7 @@ gv_nodes__recon_input_output_data(WorkflowId) :-
 	concat_atom([DataName], Top),
 	concat_atom([UriLabel], Bottom),
 	%gv_record_node_open(DataName, Top),
-	gv_record_node_open_mod(DataName,Top,"Bottom"),
+	gv_record_node_open_mod(DataName,Top,Bottom),
     gv_record_node_uri_list(DataId),
 	gv_record_node_close,
     fail
@@ -541,7 +541,7 @@ gv_nodes__input_recon_data(WorkflowId) :-
     concat_atom([DataName], Top),
 	concat_atom([UriLabel], Bottom),
     %gv_record_node_open(DataName, Top),
-	gv_record_node_open_mod(DataName,Top,"Bottom"),
+	gv_record_node_open_mod(DataName,Top,Bottom),
     gv_record_node_uri_list(DataId),
     gv_record_node_close,
 	%gv_record_node_mod_close,
@@ -560,7 +560,7 @@ gv_nodes__output_recon_data(WorkflowId) :-
     concat_atom([DataName], Top),
 	concat_atom([UriLabel], Bottom),
 	%gv_record_node_open(DataName, Top),
-	gv_record_node_open_mod(DataName,Top,"Bottom"),
+	gv_record_node_open_mod(DataName,Top,Bottom),
     gv_record_node_uri_list(DataId),
     gv_record_node_close,
     fail

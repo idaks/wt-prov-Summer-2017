@@ -1,25 +1,32 @@
-['../views/main.P'].
-['../recon/main.P'].
-['../models/main.P'].
+['../views/paleocar_models.P'].
+['../recon/paleocar_models.P'].
+['../models/paleocar_models.P'].
 ['../rules/yw_rules.P'].
 ['../rules/gv_rules.P'].
 ['../rules/yw_graph_rules.P'].
-['../rules/recon_rules.P'].
+%['../rules/recon_rules.P'].
 
 [user].
-:- table Uri_template_label(D, Z)/2.
-Uri_template_label(D, Z) :-
-    data(Y, D, _),
-	port(X, _, _, _, _,Y),
-	port_uri_template(X, Z).
-end_of_file.
- 
-Uri_template_label(D, Z).
+:- table Uri_template_label/2.
 
+Uri_template_label(Y,Z) :-
+    port(X, _, _, _, _,Y),
+	port_uri_template(X, Z).	
+end_of_file. 
 
-gv_record_node_open_mod(DataName,Top,UriLabel).
+Uri_template_label(Y, Z).
+%gv_nodes__recon_input_output_data(W).
+gv_nodes__input_recon_data_wo_uridata(WorkflowId).
+
+%gv_record_node_open_mod(DataId,Top,UriLabel).
 
 gv_nodes__recon_input_output_data(W).
+
+gv_nodes__recon_input_output_data_wo_uri(W).
+
+Uri_template_label(Y,Z) :-
+    port(X, _, _, _, _,Y),
+	port_uri_template(X, Z).
 
 [user].
 :- table data_uri_resource/2.
@@ -36,4 +43,9 @@ data_uri_resource(DataId, ResourceURI) :-
 
 end_of_file. 
 
-data_uri_resource(DataId, ResourceURI).
+yw_data(DataId, DataName, WorkflowId, _),
+    not yw_workflow_param(_, _, DataId, _),
+    yw_outflow_data(WorkflowId, _, DataId, _),
+	concat_atom([DataName], Top),
+	gv_record_node_open(DataName, Top).
+	
