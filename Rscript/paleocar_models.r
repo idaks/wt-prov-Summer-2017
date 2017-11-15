@@ -8,7 +8,7 @@
 #@in min_width
 #@in verbose 
 
-#@out paleocar_models 
+#@OUT paleocar_models 
 
 paleocar_models <- function(chronologies,
                             predictands,
@@ -73,8 +73,8 @@ paleocar_models <- function(chronologies,
   }
   
   # @begin get_reconstruction_matrix @desc get reconstruction matrix for chronologies for the prediction year.
-  # @in itrdb  @uri file:data/itrdb.Rda
-  # @in prediction_years 
+  # @IN itrdb  @uri file:data/itrdb.Rda
+  # @IN prediction_years 
   # @param min_width
   # @out reconstruction_matrix 
   reconstruction.matrix <- get_reconstruction_matrix(chronologies=chronologies, reconstruction.years=prediction.years, min_width=min_width)
@@ -94,7 +94,7 @@ paleocar_models <- function(chronologies,
   hinge.year <- min(predyears[predyears > max(calibration.years)], max(calibration.years))
   
   # @begin get_carscores @desc get the carscores for reconstruction of paleoclimate.
-  # @in prism_data_for_coordinates  @uri file:.output/{session_id}/{run_id}/112W36N.csv
+  # @IN prism_data_for_coordinates  @uri file:.output/{session_id}/{run_id}/112W36N.csv
   # @in predictor_matrix
   # @out carscores
     carscores <- carscore_batch(predictand.matrix=predictand.matrix, predictor.matrix=predictor.matrix)

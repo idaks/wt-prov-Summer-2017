@@ -11,7 +11,7 @@ annotation(5, 1, 6, 'in', '@in', 'itrdb').
 annotation(6, 1, 7, 'in', '@in', 'calibration_years').
 annotation(7, 1, 8, 'in', '@in', 'min_width').
 annotation(8, 1, 9, 'in', '@in', 'verbose').
-annotation(9, 1, 11, 'out', '@out', 'paleocar_models').
+annotation(9, 1, 11, 'out', '@OUT', 'paleocar_models').
 annotation(10, 1, 21, 'begin', '@begin', 'print_message').
 annotation(11, 1, 21, 'desc', '@desc', 'writing messages to the command line, if the variable is set.').
 annotation(12, 1, 22, 'in', '@in', 'verbose').
@@ -27,9 +27,9 @@ annotation(21, 1, 40, 'out', '@out', 'max_preds').
 annotation(22, 1, 46, 'end', '@end', 'get_predictor_matrix').
 annotation(23, 1, 75, 'begin', '@begin', 'get_reconstruction_matrix').
 annotation(24, 1, 75, 'desc', '@desc', 'get reconstruction matrix for chronologies for the prediction year.').
-annotation(25, 1, 76, 'in', '@in', 'itrdb').
+annotation(25, 1, 76, 'in', '@IN', 'itrdb').
 annotation(26, 1, 76, 'uri', '@uri', 'file:data/itrdb.Rda').
-annotation(27, 1, 77, 'in', '@in', 'prediction_years').
+annotation(27, 1, 77, 'in', '@IN', 'prediction_years').
 annotation(28, 1, 78, 'param', '@param', 'min_width').
 annotation(29, 1, 79, 'out', '@out', 'reconstruction_matrix').
 annotation(30, 1, 82, 'end', '@end', 'get_reconstruction_matrix').
@@ -40,7 +40,7 @@ annotation(34, 1, 86, 'out', '@out', 'predlist').
 annotation(35, 1, 88, 'end', '@end', 'get_predlist').
 annotation(36, 1, 96, 'begin', '@begin', 'get_carscores').
 annotation(37, 1, 96, 'desc', '@desc', 'get the carscores for reconstruction of paleoclimate.').
-annotation(38, 1, 97, 'in', '@in', 'prism_data_for_coordinates').
+annotation(38, 1, 97, 'in', '@IN', 'prism_data_for_coordinates').
 annotation(39, 1, 97, 'uri', '@uri', 'file:.output/{session_id}/{run_id}/112W36N.csv').
 annotation(40, 1, 98, 'in', '@in', 'predictor_matrix').
 annotation(41, 1, 99, 'out', '@out', 'carscores').

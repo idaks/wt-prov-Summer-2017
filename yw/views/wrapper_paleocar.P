@@ -95,18 +95,18 @@ yw_step_input(1,exec_paleocar,in,1,prediction_years,1,prediction_years).
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
-yw_step_output(1,exec_paleocar,_h213,24,prediction_graph,20,prediction_graph).
-yw_step_output(1,exec_paleocar,_h213,25,prediction_model,21,prediction_model).
-yw_step_output(1,exec_paleocar,_h213,26,paleocar_log_file,22,paleocar_log_file).
-yw_step_output(1,exec_paleocar,_h213,27,uncertainty_model,23,uncertainty_model).
-yw_step_output(1,exec_paleocar,_h213,28,uncertainty_graph,24,uncertainty_graph).
-yw_step_output(1,exec_paleocar,_h213,29,paleocar_models,25,paleocar_models).
 yw_step_output(2,create_paleocar_model,_h213,14,pal_model,14,paleocar_models).
 yw_step_output(2,create_paleocar_model,_h213,15,log_file,15,paleocar_log_file).
 yw_step_output(3,extract_prediction_model,_h213,18,prediction_graph,16,prediction_graph).
 yw_step_output(3,extract_prediction_model,_h213,19,prediction_model,17,prediction_model).
 yw_step_output(4,extract_uncertainty_model,_h213,22,uncertainty_graph,18,uncertainty_graph).
 yw_step_output(4,extract_uncertainty_model,_h213,23,uncertainty_model,19,uncertainty_model).
+yw_step_output(1,exec_paleocar,_h213,24,prediction_graph,20,prediction_graph).
+yw_step_output(1,exec_paleocar,_h213,25,prediction_model,21,prediction_model).
+yw_step_output(1,exec_paleocar,_h213,26,paleocar_log_file,22,paleocar_log_file).
+yw_step_output(1,exec_paleocar,_h213,27,uncertainty_model,23,uncertainty_model).
+yw_step_output(1,exec_paleocar,_h213,28,uncertainty_graph,24,uncertainty_graph).
+yw_step_output(1,exec_paleocar,_h213,29,paleocar_models,25,paleocar_models).
 
 
 %---------------------------------------------------------------------------------------------------

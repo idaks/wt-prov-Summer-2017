@@ -60,29 +60,50 @@ yw_data(12,'linear.models',1,calculate_models).
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_input(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
+yw_step_input(4,simplifyLinearModels,in,15,'model.errors',11,'model.errors').
+yw_step_input(4,simplifyLinearModels,in,14,coefficients,10,coefficients).
+yw_step_input(3,calculateLinearModels,in,11,matches,9,matches).
+yw_step_input(3,calculateLinearModels,in,10,models,8,models).
 yw_step_input(2,defineLinearModels,in,7,'max.preds',7,'max.preds').
+yw_step_input(2,defineLinearModels,in,6,carscores,6,carscores).
+yw_step_input(2,defineLinearModels,in,5,predlist,5,predlist).
 yw_step_input(1,calculate_models,in,3,'max.preds',3,'max.preds').
+yw_step_input(1,calculate_models,in,2,carscores,2,carscores).
+yw_step_input(1,calculate_models,in,1,predlist,1,predlist).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_step_output(ProgramId, ProgramName, PortType, PortId, PortName, DataId, DataName).
 %...................................................................................................
+yw_step_output(1,calculate_models,_h213,4,'linear.models',4,'linear.models').
+yw_step_output(2,defineLinearModels,_h213,8,models,8,models).
+yw_step_output(2,defineLinearModels,_h213,9,matches,9,matches).
+yw_step_output(3,calculateLinearModels,_h213,12,coefficients,10,coefficients).
+yw_step_output(3,calculateLinearModels,_h213,13,'model.errors',11,'model.errors').
+yw_step_output(4,simplifyLinearModels,_h213,16,'final.models',12,'linear.models').
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_inflow(WorkflowId, WorkflowName, DataId, DataName, ProgramId, ProgramName).
 %...................................................................................................
 yw_inflow(1,calculate_models,7,'max.preds',2,defineLinearModels).
+yw_inflow(1,calculate_models,6,carscores,2,defineLinearModels).
+yw_inflow(1,calculate_models,5,predlist,2,defineLinearModels).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_flow(SourceProgramId, SourceProgramName, SourcePortId, SourcePortName, DataId, DataName, SinkPortId, SinkPortName, SinkProgramId, SinkProgramName).
 %...................................................................................................
+yw_flow(2,defineLinearModels,8,models,8,models,10,models,3,calculateLinearModels).
+yw_flow(2,defineLinearModels,9,matches,9,matches,11,matches,3,calculateLinearModels).
+yw_flow(3,calculateLinearModels,12,coefficients,10,coefficients,14,coefficients,4,simplifyLinearModels).
+yw_flow(3,calculateLinearModels,13,'model.errors',11,'model.errors',15,'model.errors',4,simplifyLinearModels).
 
 
 %---------------------------------------------------------------------------------------------------
 % FACT: yw_outflow(StepId, StepName, StepOutDataId, StepOutDataName, WorkflowId, WorkflowName, WorkflowOutDataId, WorkflowOutDataName).
 %...................................................................................................
+yw_outflow(4,simplifyLinearModels,12,'linear.models',1,calculate_models,4,'linear.models').
 
 
 %---------------------------------------------------------------------------------------------------

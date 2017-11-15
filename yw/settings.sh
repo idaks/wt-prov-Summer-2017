@@ -24,8 +24,10 @@ export PATH=$PATH:$XSB_HOME/config/x64-pc-windows/bin 
 
 
 # define lcoation of YesWorkflow jar file
-export YW_JAR="${BASE_DIR}/yw/yw_jar/yesworkflow-0.2.1.1-jar-with-dependencies.jar"
-export YW_MATLAB_JAR="${BASE_DIR}/yw/yw_jar/yesworkflow-0.2.1.1-jar-with-dependencies.jar"
+#export YW_JAR="${BASE_DIR}/yw/yw_jar/yesworkflow-0.2.1.1-jar-with-dependencies.jar"
+export YW_JAR="${BASE_DIR}/yw/yw_jar/yesworkflow-0.2.1.2-jar-with-dependencies.jar"
+
+#export YW_MATLAB_JAR="${BASE_DIR}/yw/yw_jar/yesworkflow-0.2.1.2-jar-with-dependencies.jar"
 
 ## define command for running YesWorkflow
 export YW_CMD="java -jar $YW_JAR"

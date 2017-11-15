@@ -17,15 +17,15 @@ EQ2 : What out ports are qualified with URIs
 
 eq2(PortName)
 ...................................................................................................
-eq2(uncertain_model).
 eq2(itrdb).
 eq2(prism_data).
-eq2(pred_plot).
 eq2(uncertain_plot).
 eq2(prism_data_for_coordinates).
 eq2(pred_model).
-eq2(log_file).
+eq2(uncertain_model).
 eq2(pal_model).
+eq2(log_file).
+eq2(pred_plot).
 
 
 ---------------------------------------------------------------------------------------------------
@@ -64,9 +64,6 @@ yw_q3(ProgramName)
 ...................................................................................................
 yw_q3('paleocar_web-app_data_flow').
 yw_q3(get_client_data).
-yw_q3(acccess_static_server_files).
-yw_q3(extract_prism_data).
-yw_q3(exec_paleocar).
 
 
 ---------------------------------------------------------------------------------------------------

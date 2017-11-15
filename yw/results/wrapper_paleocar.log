@@ -38,10 +38,8 @@ YW_Q1 : What program blocks provide input to gen_paleocar_model?
 
 yw_q1(ProgramName)
 ...................................................................................................
-yw_q1(extract_uncertainty_model).
-yw_q1(extract_prediction_model).
-yw_q1(create_paleocar_model).
 yw_q1(exec_paleocar).
+yw_q1(create_paleocar_model).
 
 
 ---------------------------------------------------------------------------------------------------
